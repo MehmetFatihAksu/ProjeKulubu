@@ -6,8 +6,6 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-
-
 <div class="page-title">
     <div>
         <h1><i class="fa fa-bars"></i> Makale Yönetimi</h1>
@@ -173,7 +171,7 @@
                                     </td>
                                     <td>@item.BlogPictureSEO</td>
                                     <td>@item.BlogContent</td>
-                                    <td>@item.BlogDate</td>
+                                    <td>@item.BlogDate.ToString().Substring(0,10)</td>
                                     <td>@item.BlogViewCount</td>
                                     <td><a class="btn btn-sm show-tooltip" target="_blank" title="İncele" href="@Url.Action("BlogSingle", "Home")/@item.ID"><i class="fa fa-search"></i></a></td>
                                     <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("BlogUpdate", "Blog")/@item.ID"><i class="fa fa-edit"></i></a></td>

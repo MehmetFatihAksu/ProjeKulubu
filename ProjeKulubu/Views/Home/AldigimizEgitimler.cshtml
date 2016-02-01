@@ -4,7 +4,7 @@
 
 @{ 
     db2299D218BEEntities8 db = new db2299D218BEEntities8();
-    var takingList = db.Education.Where(x => x.EducationTypeID == 1).ToList();
+    var takingList = Model.Where(x => x.EducationTypeID == 1).ToList();
     var popList = (from x in takingList orderby x.EducationView descending select x).Take(3);
     var newList = (from x in takingList orderby x.ID descending select x).Take(3);
 }

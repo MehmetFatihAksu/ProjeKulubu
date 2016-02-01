@@ -1,4 +1,14 @@
-﻿@model ProjeKulubu.Models.Team
+﻿@using ProjeKulubu.Models
+@model Team
+
+@{
+    ProjeKulubu.Models.db2299D218BEEntities8 db = new ProjeKulubu.Models.db2299D218BEEntities8();
+
+    List<Office> officeList = new List<Office>();
+
+    officeList = db.Office.ToList();
+
+}
 
 @{
     ViewBag.Title = "TeamUpdate";
@@ -13,7 +23,7 @@
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
         <li>
-            <i class="fa fa-user"></i>
+            <i class="fa fa-users"></i>
             <a href="@Url.Action("TeamIndex","Team")">Ekip Yönetimi</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
@@ -25,7 +35,7 @@
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-user"></i> Ekip Üyesi Düzenleme Formu</h3>
+                <h3><i class="fa fa-edit"></i> Ekip Üyesi Düzenleme Formu</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
@@ -36,7 +46,24 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Üye İsim ve Soyisim:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" required oninvalid="this.setCustomValidity('Üye ismini boş geçemezsiniz')" oninput="setCustomValidity('')" style="color:#000000" name="name" id="name" value="@Model.MemberName" class="form-control show-popover">
+                            <input type="text" required oninvalid="this.setCustomValidity('Üye ismini boş geçemezsiniz')" oninput="setCustomValidity('')" placeholder="Üye İsmini ve Soyismini Giriniz" style="color:#000000" name="name" id="name" value="@Model.MemberName" class="form-control show-popover" data-content="Bu kısıma ekip üyenize ait isim ve soyisim bilgisini giriniz..." data-original-title="Üye İsim Soyisim" data-placement="left" data-trigger="hover">
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        <label class="col-sm-3 col-lg-2 control-label">Şuan Ki Ofis:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" required oninvalid="this.setCustomValidity('Üye ismini boş geçemezsiniz')" oninput="setCustomValidity('')" style="color:#000000" name="name" id="name" value="@Model.Office.OfficeName" disabled class="form-control show-popover" data-content="Ekip Üyenizin Bağlı Olduğu Güncel Ofis" data-original-title="Üye Ofis" data-placement="left" data-trigger="hover">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label">* Çalışacağı Ofis:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <select name="officeId" id="Office" class="form-control input-sm" tabindex="1" required oninvalid="this.setCustomValidity('Öncelikle Bir Ofis Eklemelisiniz')" oninput="setCustomValidity('')">
+                                @foreach (Office item in officeList)
+                                {
+                                    <option value="@item.ID">@item.OfficeName</option>
+                                }
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -57,17 +84,18 @@
                         <label class="col-sm-3 col-lg-2 control-label">* Üye Tecrübe:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <select name="exp" id="exp" class="form-control input-sm" tabindex="1">
-                                <option value="Yıldız 1">1 Yıldız</option>
-                                <option value="Yıldız 2">2 Yıldız</option>
-                                <option value="Yıldız 3">3 Yıldız</option>
-                                <option value="Yıldız 4">4 Yıldız</option>
+                                <option value="1">1 Yıldız</option>
+                                <option value="2">2 Yıldız</option>
+                                <option value="3">3 Yıldız</option>
+                                <option value="4">4 Yıldız</option>
+                                <option value="5">5 Yıldız</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Üye Yaşı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="age" style="color:#000000" required oninvalid="this.setCustomValidity('Üye yaşını boş geçemezsiniz')" oninput="setCustomValidity('')" onkeypress="return isNumber(event)" id="age" value="@Model.MemberAge" class="form-control show-popover">
+                            <input type="text" name="age" style="color:#000000" required oninvalid="this.setCustomValidity('Üye yaşını boş geçemezsiniz')" oninput="setCustomValidity('')" onkeypress="return isNumber(event)" id="age" value="@Model.MemberAge" placeholder="Üye Yaşını Giriniz" class="form-control show-popover"  data-trigger="hover" data-content="Bu kısıma üyenizin yaşını giriniz..." data-original-title="Üye Yaş" data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
@@ -82,7 +110,7 @@
                                     <span class="btn btn-default btn-file">
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
-                                        <input  type="file" name="picture" id="picture" class="file-input" />
+                                        <input  type="file" accept="image/*" name="picture" id="picture" class="file-input" />
                                     </span>
                                 </div>
                             </div>
@@ -91,25 +119,25 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Facebook:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="facebook" style="color:#000000" id="facebook" value="@Model.MemberFacebookURL" class="form-control show-popover">
+                            <input type="text" name="facebook" placeholder="Üye Facebook Adresi" style="color:#000000" id="facebook" value="@Model.MemberFacebookURL" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin facebook adresini giriniz.." data-original-title="Üye Facebook" data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Twitter:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="twitter" style="color:#000000" id="twitter" value="@Model.MemberTwitterURL" class="form-control show-popover"">
+                            <input type="text" name="twitter" placeholder="Üye Twitter Adresi"  style="color:#000000" id="twitter" value="@Model.MemberTwitterURL" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin twitter adresini giriniz.." data-original-title="Üye Twitter" data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye GooglePlus:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="google" style="color:#000000" id="google" value="@Model.MemberGoogleURL" class="form-control show-popover">
+                            <input type="text" name="google" style="color:#000000" placeholder="Üye GooglePlus Adresi" id="google" value="@Model.MemberGoogleURL" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin googlePlus adresini giriniz.." data-original-title="Üye GooglePlus" data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Linkedin:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="linkedin" style="color:#000000" id="linkedin" value="@Model.MemberLinkedinURL"  class="form-control show-popover">
+                            <input type="text" name="linkedin" style="color:#000000" placeholder="Üye Linkedin Adresi" id="linkedin" value="@Model.MemberLinkedinURL"  class="form-control show-popover" data-trigger="hover" data-content="Üyenizin linkedin adresini giriniz.." data-original-title="Üye Linkedin" data-placement="left">
                         </div>
                     </div>
                     <div class="box-content">
@@ -125,8 +153,8 @@
 
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <input type="hidden" id="dataId" name="Id" value="@Model.ID" />
-                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i>Güncelle</button>
+                            <input type="hidden" id="dataId" name="id" value="@Model.ID" />
+                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i>Kaydet</button>
                             <a class="btn btn-danger" style="float:left" href="@Url.Action("TeamIndex","Team")">Geri Dön</a>
                         </div>
                     </div>
@@ -146,8 +174,8 @@
     <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
 </footer>@*Footer*@
 
-@*Scripts Down HERE*@
 
+@*Scripts Down HERE*@
 <script language="javascript" type="text/javascript">
 
 

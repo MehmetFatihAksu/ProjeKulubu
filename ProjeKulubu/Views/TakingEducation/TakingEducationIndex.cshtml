@@ -1,10 +1,12 @@
 ﻿@model PagedList.IPagedList<ProjeKulubu.Models.Education>
 @using PagedList.Mvc
 @using ProjeKulubu.Models
+
 @{
     db2299D218BEEntities8 db = new db2299D218BEEntities8();
     var query = Model.Where(x => x.EducationTypeID == 1).ToList();
 }
+
 @{
 ViewBag.Title = "TakingEducationIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
@@ -210,7 +212,6 @@ ViewBag.Title = "TakingEducationIndex";
                 color: #0094ff;
             }
     </style>
-
     <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
     <script src="~/Content/AdminContent/js/buttonActions.js"></script>
     <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>

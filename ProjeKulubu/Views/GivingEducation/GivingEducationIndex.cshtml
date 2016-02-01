@@ -4,7 +4,7 @@
 
 @{ 
     db2299D218BEEntities8 db = new db2299D218BEEntities8();
-    var query = db.Education.Where(x => x.EducationTypeID == 2).ToList();
+    var query = Model.Where(x => x.EducationTypeID == 2).ToList();
 }
 
 @{
@@ -186,7 +186,7 @@
                 }
                 <div class="text-center">
                     <ul class="pagination">
-                        @Html.PagedListPager(Model, page => Url.Action("GivingEducation", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
+                        @Html.PagedListPager(Model, page => Url.Action("GivingEducationIndex", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
                     </ul>
                 </div>
                 <div class="text-right" style="font-size:14px">

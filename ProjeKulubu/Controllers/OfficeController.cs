@@ -79,29 +79,20 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddOffice(string Name, string Content, string AltIcerik, string Zaman, string Telefon, string EMail, string Location, string Adres)
         {
             Office office = new Office();
-
             Location = "İstanbul,Türkiye";
-
             Content = Content.Replace("<p>","").Replace("</p>","").Replace("\r","").Replace("\n","");
-
             AltIcerik = AltIcerik.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
 
-            if (Name !=null || Content !=null || AltIcerik !=null)
-            {
-                office.OfficeName = Name;
-                office.OfficeMainContent = Content;
-                office.OfficeAltContent = AltIcerik;
-                office.OfficeMail = EMail;
-                office.OfficeLocation = Adres + " " + Location;
-                office.OfficePhone = Telefon;
-                office.OfficeWorkingTime = Zaman;
-                db.Office.Add(office);
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Error = "Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin";
-            }
+            office.OfficeName = Name;
+            office.OfficeMainContent = Content;
+            office.OfficeAltContent = AltIcerik;
+            office.OfficeMail = EMail;
+            office.OfficeLocation = Adres + " " + Location;
+            office.OfficePhone = Telefon;
+            office.OfficeWorkingTime = Zaman;
+            db.Office.Add(office);
+            db.SaveChanges();
+
             return RedirectToAction("OfficeIndex","Office");
         }
 

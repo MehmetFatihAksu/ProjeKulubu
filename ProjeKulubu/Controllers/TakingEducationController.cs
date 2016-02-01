@@ -57,7 +57,7 @@ namespace ProjeKulubu.Controllers
                     break;
             }
 
-            ViewBag.HtmlStr = kayitlar.Count();
+            ViewBag.HtmlStr = kayitlar.Where(x => x.EducationTypeID == 1).Count();
             int pageSize = 5;
             int pageNumber = (page ?? 1);
 
@@ -151,7 +151,7 @@ namespace ProjeKulubu.Controllers
             Education removeEdu = db.Education.Find(id);
             db.Education.Remove(removeEdu);
             db.SaveChanges();
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return RedirectToAction("TakingEducationIndex", "TakingEducation");
         }
 
         public ActionResult MultipleDelete(IEnumerable<int> idler)

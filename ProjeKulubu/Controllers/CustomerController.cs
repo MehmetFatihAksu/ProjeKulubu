@@ -12,13 +12,11 @@ namespace ProjeKulubu.Controllers
 {
     public class CustomerController : Controller
     {
-        //
-        // GET: /Customer/
-
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
+        #region Views
         [UserAuthorize]
-        public ActionResult CustomerIndex(string Sorting_Order,string SearchString,string currentFilter,int? page)
+        public ActionResult CustomerIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
             ViewBag.CustomerName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
 
@@ -44,7 +42,7 @@ namespace ProjeKulubu.Controllers
             switch (Sorting_Order)
             {
                 case "Ada_Gore":
-                    kayitlar = kayitlar.OrderBy(CustomerComments =>CustomerComments.Name);
+                    kayitlar = kayitlar.OrderBy(CustomerComments => CustomerComments.Name);
                     break;
                 default:
                     kayitlar = kayitlar.OrderByDescending(CustomerComments => CustomerComments.ID);
@@ -59,11 +57,28 @@ namespace ProjeKulubu.Controllers
 
 
         }
+
+        [UserAuthorize]
+        public ActionResult CustomerDelete(int id)
+        {
+            var data = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        [UserAuthorize]
+        public ActionResult CustomerUpdate(int id)
+        {
+            var data = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+        #endregion
+
+        #region Methods
         [HttpPost]
         public ActionResult AddCustomer(HttpPostedFileBase CommentPicture, string CustomerName)
         {
             CustomerComments customerModel = new CustomerComments();
-            if (CommentPicture != null && CustomerName!=null)
+            if (CommentPicture != null && CustomerName != null)
             {
                 string fileMap = Path.GetFileName(CommentPicture.FileName);
                 var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
@@ -83,11 +98,11 @@ namespace ProjeKulubu.Controllers
         }
 
         [HttpPost]
-        public ActionResult CustomerDataUpdate(int id, HttpPostedFileBase CommentPicture,string CustomerName)
+        public ActionResult CustomerDataUpdate(int id, HttpPostedFileBase CommentPicture, string CustomerName)
         {
             CustomerComments customerModel = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
 
-            if (CommentPicture ==null)
+            if (CommentPicture == null)
             {
                 customerModel.Name = CustomerName;
                 db.SaveChanges();
@@ -110,27 +125,16 @@ namespace ProjeKulubu.Controllers
             CustomerComments customer = db.CustomerComments.Find(id);
             db.CustomerComments.Remove(customer);
             db.SaveChanges();
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return RedirectToAction("CustomerIndex", "Customer");
         }
-        [UserAuthorize]
-        public ActionResult CustomerDelete(int id)
-        {
-            var data = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-        [UserAuthorize]
-        public ActionResult CustomerUpdate(int id)
-        {
-            var data = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
+
         public ActionResult MultipleDelete(IEnumerable<int> idler)
         {
             db.CustomerComments.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.CustomerComments.Remove(y));
             db.SaveChanges();
-            return RedirectToAction("CustomerIndex","Customer");
+            return RedirectToAction("CustomerIndex", "Customer");
         }
-
+        #endregion
 
     }
 }

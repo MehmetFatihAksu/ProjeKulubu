@@ -11,8 +11,6 @@ namespace ProjeKulubu.Controllers
 {
     public class TeamController : Controller
     {
-        //
-        // GET: /Team/
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
         #region Views
@@ -143,7 +141,7 @@ namespace ProjeKulubu.Controllers
             Team teamMemberDelete = db.Team.Find(id);
             db.Team.Remove(teamMemberDelete);
             db.SaveChanges();
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return RedirectToAction("TeamIndex", "Team");
         }
 
         [HttpPost]
@@ -154,9 +152,6 @@ namespace ProjeKulubu.Controllers
             return RedirectToAction("TeamIndex", "Team");
         }
         #endregion
-
-
-
 
     }
 }

@@ -57,14 +57,13 @@ namespace ProjeKulubu.Controllers
                     break;
             }
 
-            ViewBag.HtmlStr = kayitlar.Count();
+            ViewBag.HtmlStr = kayitlar.Where(x => x.EducationTypeID == 2).Count();
             int pageSize = 5;
             int pageNumber = (page ?? 1);
 
             return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
 
-        [HttpPost]
         [UserAuthorize]
         public ActionResult GivingEducationDelete(int id)
         {
@@ -72,7 +71,6 @@ namespace ProjeKulubu.Controllers
             return View(data);
         }
 
-        [HttpPost]
         [UserAuthorize]
         public ActionResult GivingEducationUpdate(int id)
         {
@@ -152,7 +150,7 @@ namespace ProjeKulubu.Controllers
             Education removeEdu = db.Education.Find(id);
             db.Education.Remove(removeEdu);
             db.SaveChanges();
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return RedirectToAction("GivingEducationIndex","GivingEducation");
         }
 
         public ActionResult MultipleDelete(IEnumerable<int> idler)

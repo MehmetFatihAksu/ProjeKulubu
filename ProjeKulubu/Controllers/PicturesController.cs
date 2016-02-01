@@ -11,11 +11,9 @@ namespace ProjeKulubu.Controllers
 {
     public class PicturesController : Controller
     {
-        //
-        // GET: /Pictures/
-
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
+        #region Views
         [UserAuthorize]
         public ActionResult PicturesIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
@@ -57,33 +55,46 @@ namespace ProjeKulubu.Controllers
             return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
 
+        [UserAuthorize]
+        public ActionResult PicturesDelete(int id)
+        {
+            var data = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
 
+        [UserAuthorize]
+        public ActionResult PicturesUpdate(int id)
+        {
+            var data = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+        #endregion
+
+        #region Methods
         [HttpPost]
-        public ActionResult AddPictures(HttpPostedFileBase Picture,string PictureSEO)
+        public ActionResult AddPictures(HttpPostedFileBase Picture, string PictureSEO)
         {
             OurPictures picturesModel = new OurPictures();
-            if(Picture !=null && PictureSEO!=null)
-            {
-                string fileMap = Path.GetFileName(Picture.FileName);
-                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                Picture.SaveAs(loadLocation);
-                picturesModel.PictureURL = fileMap;
-                picturesModel.PictureSEO = PictureSEO;
-                db.OurPictures.Add(picturesModel);
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Error("Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin");
-            }
+            string fileMap = Path.GetFileName(Picture.FileName);
+            var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+            Picture.SaveAs(loadLocation);
+            picturesModel.PictureURL = fileMap;
+            picturesModel.PictureSEO = PictureSEO;
+            db.OurPictures.Add(picturesModel);
+            db.SaveChanges();
             return RedirectToAction("PicturesIndex", "Pictures");
         }
 
         [HttpPost]
-        public ActionResult PicturesDataUpdate(int id,HttpPostedFileBase Picture,string PictureSEO)
+        public ActionResult PicturesDataUpdate(int id, HttpPostedFileBase Picture, string PictureSEO)
         {
             OurPictures pictureModel = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
-            if(Picture!=null && PictureSEO!=null)
+            if (Picture == null)
+            {
+                pictureModel.PictureSEO = PictureSEO;
+                db.SaveChanges();
+            }
+            else
             {
                 string fileMap = Path.GetFileName(Picture.FileName);
                 var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
@@ -91,13 +102,8 @@ namespace ProjeKulubu.Controllers
                 pictureModel.PictureURL = fileMap;
                 pictureModel.PictureSEO = PictureSEO;
                 db.SaveChanges();
-                return RedirectToAction("PicturesIndex", "Pictures");
             }
-            else
-            {
-                ViewBag.Error("Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin");
-            }
-            return View();
+            return RedirectToAction("PicturesIndex", "Pictures");
         }
 
         [HttpPost]
@@ -106,27 +112,25 @@ namespace ProjeKulubu.Controllers
             OurPictures picture = db.OurPictures.Find(id);
             db.OurPictures.Remove(picture);
             db.SaveChanges();
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
-        }
-        [UserAuthorize]
-        public ActionResult PicturesDelete(int id)
-        {
-            var data = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-        [UserAuthorize]
-        public ActionResult PicturesUpdate(int id)
-        {
-            var data = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-        public ActionResult MultipleDelete(IEnumerable<int> idler)
-        {
-            db.OurPictures.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.OurPictures.Remove(y));
-            db.SaveChanges();
             return RedirectToAction("PicturesIndex", "Pictures");
         }
 
+        public ActionResult MultipleDelete(IEnumerable<int> idler)
+        {
+            if(idler!=null)
+            {
+                db.OurPictures.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.OurPictures.Remove(y));
+                db.SaveChanges();
+                return RedirectToAction("PicturesIndex", "Pictures");
+            }
+            else
+            {
+                string olmadi = "olmadi";
+                ViewBag.Error = olmadi;
+                return RedirectToAction("PicturesIndex", "Pictures");
+            }
+        }
+        #endregion
 
     }
 }

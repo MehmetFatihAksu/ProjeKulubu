@@ -148,20 +148,24 @@ namespace ProjeKulubu.Controllers
         public ActionResult BlogDataDelete(int id)
         {
             Blog removeModel = db.Blog.Find(id);
+            db.Tags.Where(x => x.BlogID == removeModel.ID).ToList().ForEach(y => db.Tags.Remove(y));
             db.Blog.Remove(removeModel);
             db.SaveChanges();
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return RedirectToAction("BlogIndex", "Blog");
         }
 
         public ActionResult MultipleDelete(IEnumerable<int> idler)
         {
+            foreach (var item in idler)
+            {
+                Blog removeModel = db.Blog.Find(item);
+                db.Tags.Where(x => x.BlogID == removeModel.ID).ToList().ForEach(y => db.Tags.Remove(y));
+            }
             db.Blog.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Blog.Remove(y));
             db.SaveChanges();
             return RedirectToAction("BlogIndex", "Blog");
         }
         #endregion
-
-
 
     }
 }

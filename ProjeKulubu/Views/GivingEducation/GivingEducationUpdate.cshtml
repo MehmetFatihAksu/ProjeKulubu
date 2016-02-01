@@ -5,8 +5,6 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
-
 <div id="breadcrumbs">
     <ul class="breadcrumb">
         <li>
@@ -21,7 +19,7 @@
         </li>
         <li class="active"><i class="fa fa-edit"></i>Eğitim Düzenleme Ekranı</li>
     </ul>
-</div>
+</div>@*Header 1*@
 
 <div class="row">
     <div class="col-md-12">
@@ -39,7 +37,7 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim Başlığı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="title" id="title" value="@Model.EducationTitle" class="form-control show-popover">
+                            <input type="text" required oninvalid="this.setCustomValidity('Eğitim İsmini Boş Geçemezsiniz')" oninput="setCustomValidity('')"  style="color:#000000" name="title" id="title" value="@Model.EducationTitle" class="form-control show-popover">
                         </div>
                     </div>
                     <div class="form-group">
@@ -56,7 +54,6 @@
                                         <span class="fileupload-exists">Değiştir</span>
                                         <input type="file" name="file" id="file" class="file-input" />
                                     </span>
-                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +61,7 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim Resim SEO:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="seo" id="seo" value="@Model.EducationFileSEO" class="form-control show-popover">
+                            <input type="text" name="seo" id="seo" value="@Model.EducationFileSEO" required oninvalid="this.setCustomValidity('Eğitim Resim SEO Kısmını Boş Geçemezsiniz')" oninput="setCustomValidity('')"  style="color:#000000" class="form-control show-popover">
                         </div>
                     </div>
                     <div class="box-content">
@@ -72,7 +69,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">Eğitim İçeriği:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control col-md-12" id="content" name="content" rows="6">@Model.EducationContent</textarea>
+                                <textarea class="form-control col-md-12 ckeditor" id="content" name="content" rows="6">@Model.EducationContent</textarea>
                             </div>
                         </div>
 
@@ -81,7 +78,7 @@
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
                             <input type="hidden" id="dataId" name="Id" value="@Model.ID" />
-                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Güncelle</button>
+                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
                             <a class="btn btn-danger" style="float:left" href="@Url.Action("GivingEducationIndex","GivingEducation")">Geri Dön</a>
                         </div>
                     </div>
@@ -89,11 +86,12 @@
             </div>
         </div>
     </div>
-</div>
-
+</div>@*Giving Education Update Form*@
 
 <footer>
     <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-</footer>
+</footer> @*Footer*@
 
+@*Scripts Down HERE*@
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />

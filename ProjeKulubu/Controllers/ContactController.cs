@@ -11,6 +11,7 @@ namespace ProjeKulubu.Controllers
     public class ContactController : Controller
     {
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
+
         #region Views
         [UserAuthorize]
         public ActionResult ContactIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
@@ -88,12 +89,15 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return RedirectToAction("ContactIndex", "Contact");
         }
+
+        public ActionResult DeleteContact(int id)
+        {
+            Contact removeContact = db.Contact.Find(id);
+            db.Contact.Remove(removeContact);
+            db.SaveChanges();
+            return RedirectToAction("ContactIndex", "Contact");
+        }
         #endregion
-
-
-
-
-
 
     }
 }

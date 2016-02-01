@@ -11,10 +11,9 @@ namespace ProjeKulubu.Controllers
 {
     public class ReferenceController : Controller
     {
-        //
-        // GET: /Reference/
-
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
+
+        #region Views
         [UserAuthorize]
         public ActionResult ReferenceIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
@@ -56,22 +55,37 @@ namespace ProjeKulubu.Controllers
             return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
 
+        [UserAuthorize]
+        public ActionResult ReferenceDelete(int id)
+        {
+            var data = db.Reference.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        [UserAuthorize]
+        public ActionResult ReferenceUpdate(int id)
+        {
+            var data = db.Reference.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+        #endregion
+
+        #region Methods
         [HttpPost]
         public ActionResult AddReference(HttpPostedFileBase ReferencePicture, string ReferenceName, string ReferencePictureSEO, string ReferenceURL)
         {
             Reference referenceModel = new Reference();
-                string fileMap = Path.GetFileName(ReferencePicture.FileName);
-                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                ReferencePicture.SaveAs(loadLocation);
-                referenceModel.ReferencePictureURL = fileMap;
-                referenceModel.ReferenceLink ="Http://"+ReferenceURL;
-                referenceModel.ReferenceTitle = ReferenceName;
-                referenceModel.ReferencePictureSEO = ReferencePictureSEO;
-                db.Reference.Add(referenceModel);
-                db.SaveChanges();
+            string fileMap = Path.GetFileName(ReferencePicture.FileName);
+            var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+            ReferencePicture.SaveAs(loadLocation);
+            referenceModel.ReferencePictureURL = fileMap;
+            referenceModel.ReferenceLink = "Http://" + ReferenceURL;
+            referenceModel.ReferenceTitle = ReferenceName;
+            referenceModel.ReferencePictureSEO = ReferencePictureSEO;
+            db.Reference.Add(referenceModel);
+            db.SaveChanges();
             return RedirectToAction("ReferenceIndex", "Reference");
         }
-
 
         [HttpPost]
         public ActionResult ReferenceDataUpdate(int Id, HttpPostedFileBase ReferencePicture, string ReferenceName, string ReferenceURL, string ReferencePictureSEO)
@@ -105,26 +119,16 @@ namespace ProjeKulubu.Controllers
             Reference deleteReference = db.Reference.Find(id);
             db.Reference.Remove(deleteReference);
             db.SaveChanges();
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return RedirectToAction("ReferenceIndex", "Reference");
         }
-        [UserAuthorize]
-        public ActionResult ReferenceDelete(int id)
-        {
-            var data = db.Reference.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-        [UserAuthorize]
-        public ActionResult ReferenceUpdate(int id)
-        {
-            var data = db.Reference.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
+
         public ActionResult MultipleDelete(IEnumerable<int> idler)
         {
             db.Reference.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Reference.Remove(y));
             db.SaveChanges();
             return RedirectToAction("ReferenceIndex", "Reference");
         }
+        #endregion
 
     }
 }

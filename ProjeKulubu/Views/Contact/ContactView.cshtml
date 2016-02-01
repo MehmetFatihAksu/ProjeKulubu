@@ -16,7 +16,7 @@
 <div class="page-title">
     <div>
         <h1><i class="fa fa-bars"></i> İletişim Yönetimi</h1>
-        <h4>Bu kısımda ana temanızdan silere gelen mesajları inceleyebilirsiniz</h4>
+        <h4>Bu kısımda sizlere gelen mesajları inceleyebilirsiniz</h4>
     </div>
 </div> @*Header 1*@
 
@@ -27,65 +27,82 @@
             <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
-        <li class="active">İletişim Yönetimi</li>
+        <li>
+            <i class="fa fa-connectdevelop"></i>
+            <a href="@Url.Action("ContactIndex","Contact")">İletişim Mesajları</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li class="active">@Model.ContactName'ın Mesajı</li>
     </ul>
 </div> @*Header 2*@
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-black">
-            <div class="box-title">
-                <h3><i class="fa fa-tasks"></i>Mevcut Mesajın İncelenme Formu</h3>
-                <div class="box-tool">
-                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+<form action="/Contact/DeleteContact" class="form-horizontal form-row-separated" method="post">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-black">
+                <div class="box-title">
+                    <h3><i class="fa fa-tasks"></i>Mevcut Mesajın İncelenme Formu</h3>
+                    <div class="box-tool">
+                        <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                        <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="box-content">
-                <form  class="form-horizontal form-row-separated">
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Gönderen İsim:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input style="color:#000000" gnntype="text" name="title" id="title" disabled value="@Model.ContactName" class="form-control show-popover">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Gönderen E-Mail:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input name="tag" type="text" class="form-control tags show-popover" style="color:#000000" disabled value="@Model.ContactMail" />
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Gönderen Telefon:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" style="color:#000000" name="seo" id="seo" value="@Model.ContactPhone" disabled class="form-control show-popover">
-                        </div>
-                    </div>
-                    <div class="box-content">
-
+                <div class="box-content">
+                    <form class="form-horizontal form-row-separated">
                         <div class="form-group">
-                            <label class="col-sm-3 col-lg-2 control-label">Mesaj İçeriği:</label>
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Gönderen İsim:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control col-md-12" disabled name="content" rows="6">@Model.ContactSubjectContent</textarea>
+                                <input style="color:#000000" gnntype="text" name="title" id="title" disabled value="@Model.ContactName" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Gönderen E-Mail:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input name="tag" type="text" class="form-control" style="color:#000000" disabled value="@Model.ContactMail" />
                             </div>
                         </div>
 
-                    </div>
-
-                    <div class="form-group last">
-                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <a class="btn btn-danger" style="float:right" href="@Url.Action("ContactIndex","Contact")">Geri Dön</a>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Gönderen Telefon:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" style="color:#000000" name="seo" id="seo" value="@Model.ContactPhone" disabled class="form-control">
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="box-content">
+
+                            <div class="form-group">
+                                <label class="col-sm-3 col-lg-2 control-label">Mesaj İçeriği:</label>
+                                <div class="col-sm-9 col-lg-10 controls">
+                                    <textarea class="form-control col-md-12" disabled name="content" rows="6">@Model.ContactSubjectContent</textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group last">
+                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                <input type="hidden" value="@Model.ID" name="id" />
+                                <button type="submit" class="btn btn-primary" onclick="Success()" style="float:right">Sil</button>
+                                <a class="btn btn-danger" style="float:left" href="@Url.Action("ContactIndex","Contact")">Geri Dön</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>@*Message View Form*@
 
 <footer>
     <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
 </footer> @*Footer*@
 
+
+@*Scripts Down Here*@
+
+<script type="text/javascript">
+    function Success() {
+        alert("Mesaj Başarıyla Silindi");
+    }
+</script>@*Success Message*@
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>

@@ -6,30 +6,6 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<script type="text/javascript">
-
-    function DataDelete() {
-
-        $.ajax({
-
-            type: "POST",
-            url: "/Pictures/PicturesDataDelete/",
-            data: { id : $("#dataId").val()},
-            ajaxasync: true,
-            traditional: true,
-            success: function (response) {
-                alert("Resim Başarıyla Silindi");
-                window.location.href = "/Pictures/PicturesIndex";
-            },
-            error: function (response) {
-                console.log("Hata Oluştu");
-            }
-
-        });
-    }
-
-</script>@*Delete Scripts*@
-
 <div id="breadcrumbs">
     <ul class="breadcrumb">
         <li>
@@ -46,11 +22,7 @@
     </ul>
 </div>@*Header*@
 
-<aside id="QuesionDeleteDetail" class="QuestionContent">
-
-    <form action="/Customer/CustomerDelete" class="form-horizontal form-row-separated">
-
-
+<form action="/Pictures/PicturesDataDelete" method="post" class="form-horizontal form-row-separated">
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-black">
@@ -66,7 +38,7 @@
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Resim ID:</label>
                             <div class="col-sm-9 col-lg-10 controls">
 
-                                <input type="text" style="color:#000000" class="form-control show-popover" disabled value="@Model.ID" id="ID" name="textfield3" />
+                                <input type="text" style="color:#000000" class="form-control" disabled value="@Model.ID" id="ID" name="textfield3" />
                             </div>
                         </div>
                       
@@ -81,15 +53,14 @@
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Resim SEO:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000" class="form-control show-popover" value="@Model.PictureSEO" disabled id="QuestionContent" name="textfield3" />
+                                <input type="text" style="color:#000000" class="form-control" value="@Model.PictureSEO" disabled id="QuestionContent" name="textfield3" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                <input type="hidden" id="dataId" value="@Model.ID" />
-                                <input type="button" class="btn btn-primary" style="float:right" value="Sil" onclick="DataDelete()" />
-                                @ViewBag.Error
+                                <input type="hidden" id="id" name="id" value="@Model.ID" />
+                                <button type="submit" class="btn btn-primary" style="float:right" onclick="Success()">Sil</button>
                                 <a class="btn btn-danger" style="float:left" href="@Url.Action("PicturesIndex","Pictures")">Geri Dön</a>
                             </div>
 
@@ -98,13 +69,15 @@
                 </div>
             </div>
         </div>
+    </form>@*Question Delete Form*@
 
-
-
-
-    </form>
-
-</aside>@*Question Delete Form*@
 <footer>
     <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
 </footer>@*Footer*@
+
+@*Scripts Down Here*@
+<script type="text/javascript">
+    function Success() {
+        alert("Resim Başarıyla Silindi");
+    }
+</script>

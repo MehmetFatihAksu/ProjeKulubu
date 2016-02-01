@@ -98,7 +98,7 @@ namespace ProjeKulubu.Controllers
             Tags tag = db.Tags.Find(id);
             db.Tags.Remove(tag);
             db.SaveChanges();
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return RedirectToAction("TagsIndex", "Tags");
         }
 
         public ActionResult MultipleDelete(IEnumerable<int> idler)
