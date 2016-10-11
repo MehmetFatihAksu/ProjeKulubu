@@ -1,0 +1,347 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" />Content="IE=edge">
+    <title>Ana Sayfa | Proje Kulubu Turkiye</title>
+    <!--put your company information-->
+    <meta name="keywords" />Content="HTML5 Template" />
+    <meta name="description" />Content="Pikocon — A Construction Company Template" />
+    <meta name="author" />Content="themepiko.com" />
+    <meta name="viewport" />Content="width=device-width, initial-scale=1">
+    <!--favicon-->
+    <link rel="shortcut icon" href="/favicon.ico" type="/Content/pikocon_html/images/icon/marker.png">
+    <link rel="shortcut icon" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- load allstyle css -->
+    <!--<link rel="stylesheet" href="assets/plugin/rs-plugin/css/settings.css" />
+    <link rel="stylesheet" href="assets/css/skin/color.css" />-->
+    <link href="/Content/pikocon_html/assets/css/skins/color.css" rel="stylesheet" />
+    <link href="/Content/pikocon_html/assets/plugin/rs-plugin/css/settings.css" rel="stylesheet" />
+
+</head>
+<body class="piko-layout-header-fixed piko-layout-header-topbar">
+    <header class="piko-layout-header full-width piko-layout-header-04 piko-layout-header-light-mobile piko-hover02">
+        <!--top menu-->
+        <div class="piko-topbar">
+            <div class="container">
+                <!-- social icon -->
+                <nav class="piko-top-menu piko-pull-left">
+                    <ul class="piko-icons">
+                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Googleplus"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Youtube"><i class="fa fa-youtube"></i></a></li>
+                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </nav> <!--end social icon -->
+                <!-- language -->
+                <nav class="piko-top-menu piko-pull-left piko-lang">
+                    <ul class="piko-icons">
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true">
+                                TR<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="active"><img src="/Content/pikocon_html/images/logo/eng-flag.png" alt="Flag" /> English</a></li>
+                                <li><a href="#"><img src="/Content/pikocon_html/images/logo/arab-flag.png" alt="Flag" /> Arabic</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav> <!--end language -->
+                <!--login information/ phone number-->
+                <nav class="piko-top-menu piko-pull-right hidden-xs">
+                    <ul class="piko-links">
+                        <li><a><i class="fa fa-phone"></i> (541) 557 36 10</a></li>
+                        <li><a><i class="fa fa-clock-o"></i> 7/24 Destek</a></li>
+                        <li><a><i class="fa fa-envelope-o"></i> info@projekulubuturkiye.com</a></li>
+                    </ul>
+                </nav>  <!--end login information/ phone number-->
+            </div>
+        </div>
+        <div class="piko-navbar">
+            <div class="container">
+                <!-- logo -->
+                <div class="piko-navbar-wrapper clearfix">
+                    <div class="piko-brand piko-pull-left">
+                        <!--logo-->
+                        <a href="@Url.Action("Index","Home")" class="piko-logo">
+                            <img src="/Content/pikocon_html/images/logo/projekulubulogo.png" alt="construction" class="piko-desktop-logo"> <!--desktop logo-->
+                            <img src="/Content/pikocon_html/images/logo/projekulubulogosmall.png" alt="construction" class="piko-desktop-logo-inverse"> <!--inverse logo stiky menu-->
+                            <img src="/Content/pikocon_html/images/logo/projekulubulogomobil.png" alt="construction" class="piko-mobile-logo"> <!--mobile logo menu-->
+                        </a>
+                        <!--mobile click menu-->
+                        <div class="piko-hor-nav-toggler" data-target=".piko-mega-menu">
+                            <div id="piko-hamburger2">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>   <!--end mobile click menu-->
+                        <button class="piko-search-toggler" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                    <form class="piko-quick-search" action="#">
+                        <input type="text" name="search" placeholder="Arama" value="" class="form-control search" autocomplete="off">
+                        <ul class="results"></ul>
+                        <span>&times;</span>
+                    </form>
+                    <!-- start mega menu -->
+                    <nav class="piko-mega-menu piko-pull-right piko-mega-menu-light piko-mega-menu-light-mobile">
+                        <ul class="nav navbar-nav">
+                            <!-- dropdown style-->
+                            <li class="piko-menu-type-classic">
+                                <a href="@Url.Action("Index","Home")" class="piko-link dropdown-toggle">Ana Sayfa</a>
+                                @*<ul class="dropdown-menu piko-menu-type-classic piko-pull-left">
+                                        <li><a href="index.html">Default Home</a></li>
+                                        <li><a href="home2.html">Home 02</a></li>
+                                        <li><a href="home3.html">Home 03</a></li>
+                                        <li><a href="home-box.html">Home Boxes</a></li>
+                                    </ul>*@
+                            </li> <!--end dropdown style-->
+                            <!--mega menu style-->
+                            @*<li class="hidden-md">
+                                    <a href="#" class="piko-link dropdown-toggle">Features</a>
+                                    <ul class="dropdown-menu piko-menu-type-mega piko-menu-type-fullwidth" style="min-width: auto">
+                                        <li>
+                                            <ul class="dropdown-menu piko-menu-type-inline">
+                                                <li><h3>Header + Footer</h3></li>
+                                                <li><a href="header1-footer1.html">Header 1 + Footer 1</a></li>
+                                                <li><a href="header2-footer2.html">Header 2 + Footer 2</a></li>
+                                                <li><a href="header3-footer3.html">Header 3 + Footer 3</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul class="dropdown-menu piko-menu-type-inline">
+                                                <li><h3>Shortcodes</h3></li>
+                                                <li><a href="progress-bars.html">Progress Bars</a></li>
+                                                <li><a href="counters.html">Counters</a></li>
+                                                <li><a href="charts.html">Chart</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul class="dropdown-menu piko-menu-type-inline">
+                                                <li><h3>Special Pages</h3></li>
+                                                <li><a href="team.html">Team Member</a></li>
+                                                <li><a href="404.html">Error 404</a></li>
+                                                <li><a href="maintenance.html">Maintenance</a></li>
+                                                <li><a href="contact2.html">Contact 2</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="piko-menubg-right">
+                                            <div class="dropdown-menu piko-menu-type-inline piko-menu-text">
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>*@   <!--end mega menu style-->
+                            <!--sub menu style-->
+                            <li class="piko-menu-type-classic">
+                                <a href="@Url.Action("Vizyonumuz","Home")" class="piko-link dropdown-toggle">Hakkımızda</a>
+                                <ul class="dropdown-menu piko-menu-type-classic piko-pull-left">
+                                    <li class="dropdown-submenu">
+                                        <a>Kurumsal<i class="fa fa-caret-right pull-right hidden-sm hidden-xs"></i></a>
+                                        <ul class="dropdown-menu piko-pull-right">
+                                            <li>@Html.ActionLink("Vizyonumuz", "Vizyonumuz", "Home")</li>
+                                            <li>@Html.ActionLink("Misyonumuz", "Misyonumuz", "Home")</li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a>Bireysel<i class="fa fa-caret-right pull-right hidden-sm hidden-xs"></i></a>
+                                        <ul class="dropdown-menu piko-pull-right">
+                                            <li>@Html.ActionLink("Müşteri Memnuniyeti", "MusteriMemnuniyeti", "Home")</li>
+                                            <li>@Html.ActionLink("Müşteri Yorumları", "MusteriYorumlari", "Home")</li>
+                                            <li>@Html.ActionLink("Sık Sorulan Sorular", "SikSorular", "Home")</li>
+                                        </ul>
+                                    </li>
+                                    <li>@Html.ActionLink("Biz Kimiz ?", "BizKimiz", "Home")</li>
+                                    <li>@Html.ActionLink("Neler Yaparız ?", "NelerYapariz", "Home")</li>
+
+
+                                </ul>
+                            </li> <!--end sub menu style-->
+                            <li class="piko-menu-type-classic">
+                                <a class="piko-link dropdown-toggle">Projelerimiz</a>
+                                <ul class="dropdown-menu piko-menu-type-classic piko-pull-left">
+                                    <li><a href="portfolio1.html">Tamamlanan Projeler</a></li>
+                                    <li><a href="portfolio2.html">Satışı Devam Eden Projeler</a></li>
+                                    <li><a href="project-details1.html">Yakındaki Projeler</a></li>
+                                </ul>
+                            </li>
+                            <li class="piko-menu-type-classic">
+                                <a href="service.html" class="piko-link dropdown-toggle">Ekibimiz</a>
+                                <ul class="dropdown-menu piko-menu-type-classic piko-pull-left">
+                                    <li><a href="consulting.html">Satış Ofislerimiz</a></li>
+                                    <li><a href="architecture.html">Ekip Üyelerimiz</a></li>
+                                    <li><a href="construction.html">Çalışanlarımız</a></li>
+                                </ul>
+                            </li>
+                            <li class="piko-menu-type-classic">
+                                <a href="@Url.Action("Referanslar","Home")" class="piko-link dropdown-toggle">Referanslar</a>
+                                @*<ul class="dropdown-menu piko-menu-type-classic piko-pull-left">
+                                        <li><a href="shop-grid.html">Shop Grid</a></li>
+                                        <li><a href="shop-single.html">Shop Single View</a></li>
+                                    </ul>*@
+                            </li>
+                            <li class="piko-menu-type-classic">
+                                <a href="@Url.Action("Egitimlerimiz","Home")" class="piko-link dropdown-toggle">Eğitimlerimiz</a>
+                                <ul class="dropdown-menu piko-menu-type-classic piko-pull-left">
+                                    <li><a href="@Url.Action("AldigimizEgitimler","Home")">Aldığımız Eğitimler</a></li>
+                                    <li><a href="@Url.Action("VerdigimizEgitimler","Home")">Verdiğimiz Eğitimler</a></li>
+                                </ul>
+                            </li>
+                            <!--single link style-->
+                            <li class="piko-menu-type-classic">
+                                <a href="@Url.Action("Iletisim","Home")" class="piko-link">İletişim</a>
+                            </li> <!--end single link style-->
+                            <li class="piko-search-toggler-wrapper">
+                                <a href="#" class="piko-btn-icon piko-search-toggler"><i class="fa fa-search"></i></a>
+                            </li>
+                        </ul>
+                    </nav> <!-- end nav-->
+                </div> <!-- end navbar wraper container-->
+            </div> <!-- end container-->
+        </div> <!-- end piko top bar-->
+    </header>
+    <a href="#0" class="back-top"><i class="fa fa-arrow-up"></i></a>
+    @RenderBody()
+    <section class="footer2-bg">
+        <div class="padding-tb50">
+            <div class="container">
+                <div class="row footer2">
+                    <div class="col-sm-6 col-md-3">
+                        <!--box about us-->
+                        <div class="footer2-box">
+                            <div class="piko-title4 widget">
+                                <h3><span class="line"></span><span class="text"><strong>İletişim Bilgilerimiz</strong></span></h3>
+                            </div>
+                            <p>Metin1</p>
+                            <address>
+                                <strong>Ana Ofis</strong><br>
+                                Ofis Adresi<br>
+                                Pendik/İstanbul<br>
+                            </address>
+                            <abbr title="Phone Number"><strong>Telefon:</strong></abbr> (541) 557 36 10<br>
+                            <abbr title="Fax"><strong>Fax:</strong></abbr> (541) 557 36 10<br>
+                            <abbr title="Email Address"><strong>Email:</strong></abbr> info@projekulubuturkiye.com
+                        </div>  <!--end box about us-->
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <!--box tab-->
+                        <div class="footer2-box">
+                            <div class="piko-title4 widget">
+                                <h3><span class="line"></span><span class="text"><strong>Etiketler</strong></span></h3>
+                            </div>
+                            <p>
+                                <a href="#" class="btn-s5 gray2">İnşaat</a>
+                                <a href="#" class="btn-s5 gray2">Satılık</a>
+                                <a href="#" class="btn-s5 gray2">Kiralık</a>
+                                <a href="#" class="btn-s5 gray2">Daire</a>
+                                <a href="#" class="btn-s5 gray2">Site</a>
+                                <a href="#" class="btn-s5 gray2">Kurtköy</a>
+                                <a href="#" class="btn-s5 gray2">Başarır</a>
+                                <a href="#" class="btn-s5 gray2">Gayrimenkul</a>
+                                <a href="#" class="btn-s5 gray2">Villa</a>
+                                <a href="#" class="btn-s5 gray2">Emlak</a>
+                                <a href="#" class="btn-s5 gray2">Konuş</a>
+                                <a href="#" class="btn-s5 gray2">Satış</a>
+                                <a href="#" class="btn-s5 gray2">Kurumsal</a>
+                                <a href="#" class="btn-s5 gray2">Proje</a>
+                            </p>
+                        </div>  <!--end box tab-->
+                    </div>
+                    <div class="col-sm-7 col-md-3">
+                        <!--box blog post-->
+                        <div class="footer2-box">
+                            <div class="piko-title4 widget">
+                                <h3><span class="line"></span><span class="text"><strong>İlgi Gören Projeler</strong></span></h3>
+                            </div><br>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                </div>
+                                <div class="media-body">
+                                    <a href="blog-single1.html">Proje İsim</a>
+                                    <p>10 Dec 2015</p>
+                                </div>
+                            </div>
+                            </br>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab2.jpg" alt="piko construciton">
+                                </div>
+                                <div class="media-body">
+                                    <a href="blog-single1.html">Proje İsim</a>
+                                    <p>10 Dec 2015</p>
+                                </div>
+                            </div>
+                            </br>
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab3.jpg" alt="piko construciton">
+                                </div>
+                                <div class="media-body">
+                                    <a href="blog-single1.html">Proje İsim</a>
+                                    <p>10 Dec 2015</p>
+                                </div>
+                            </div>
+                        </div> <!--box blog post-->
+                    </div>
+                    <div class="col-sm-5 col-md-3">
+                        <!--box working hour-->
+                        <div class="footer2-box">
+                            <div class="piko-title4 widget">
+                                <h3><span class="line"></span><span class="text"><strong>Çalışma Saatleri</strong></span></h3>
+                            </div>
+                            <p>Metin</p>
+                            <ol>
+                                <li>Pazartesi-Cuma:<span> 9:00 - 17:00</span></li>
+                                <li>Cumartesi:<span> 10:00 - 18:00</span></li>
+                                <li>Pazar:<span> Kapalı</span></li>
+                                <li>Yardım Masası:<span> 7/24 Açık</span></li>
+                            </ol>
+                        </div> <!--end box working hour-->
+                    </div>
+                </div> <!--end row-->
+            </div> <!--end container-->
+        </div> <!--end extra padding-->
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <!--copy right-->
+                <div class="col-md-6 col-sm-6">
+                    <p>&copy; 2016 by <a href="http://www.cizgitech.com/" target="_blank">Cizgi Tech</a> Her Hakkı Saklıdır </p>
+                </div>   <!--end copy right-->
+                <!--sublink-->
+                <div class="col-md-6 col-sm-6">
+                    <div class="link">
+                        <a href="renovation.html"> Site Haritası </a>
+                        <a href="construction.html"> İnsan Kaynakları </a>
+                        <a href="architecture.html"> Müşteri Memnuniyeti </a>
+                    </div>
+                </div> <!-- end sublink-->
+            </div>   <!--end of row-->
+        </div>  <!-- end container -->
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="//Content/assets/plugin/jquery/jquery.min.js"><\/script>')</script>
+    <script src="/Content/pikocon_html/assets/plugin/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/Content/pikocon_html/assets/plugin/plugin.min.js"></script>
+    <!-- ////IMPORTANT carousel owl//// -->
+    <script type="text/javascript" src="/Content/pikocon_html/assets/plugin/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script type="text/javascript" src="/Content/pikocon_html/assets/plugin/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="/Content/pikocon_html/assets/plugin/rs-plugin/js/jquery.revolution-int.js"></script>
+    <!-- /////IMPORTANT all plugin here/// -->
+    <script src="/Content/pikocon_html/assets/js/plugins.js"></script>
+</body>
+
+
+
+</html>

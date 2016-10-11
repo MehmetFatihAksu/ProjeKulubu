@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "QuestionRequest";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+<style>
+    #Question, #Answer {
+        margin-left: 20px;
+        height: 250px;
+        width: 500px;
+        border-radius: 15px;
+        border: solid 1px #EB5E28;
+    }
+
+
+    #Answer {
+        margin-top: 20px;
+        margin-left: 7px;
+    }
+
+
+    #SendQuestion {
+        float: right;
+        margin-right: 15px;
+        width: 200px;
+        height: 50px;
+        font-size: 18px;
+        border-radius: 25px;
+        border: none;
+        background-color: #EB5E28;
+        color: cornsilk;
+    }
+
+    #LblQuestion, #LblAnswer {
+        float: left;
+        color: #EB5E28;
+        font-size: 20px;
+    }
+
+
+</style>
+<h3 style="margin-top: -15px;padding-bottom: 20px;">Sık Sorulan Sorular</h3>
+
+<input type="button" id="SendQuestion" value="Kaydet" />
+
+
+<table>
+    <tbody>
+        <tr>
+            <td>
+                <label id="LblQuestion">Soru : </label>
+                <input type="text" id="Question" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label id="LblAnswer" style="float: left;margin-top: 20px;">Cevap : </label>
+                <input type="text" id="Answer" />
+            </td>
+        </tr>
+
+    </tbody>
+
+
+</table>
+
+
+
+

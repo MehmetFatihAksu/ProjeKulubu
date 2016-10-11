@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "MusteriYorumlari";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner margin-t150">
+    <div class="container page-banner">
+        <div class="col-sm-6 col-md-6">
+            <h1>Müşteri Yorumları</h1>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <ol class="breadcrumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
+                <li><a href="@Url.Action("Vizyonumuz","Home")">Hakkımızda</a></li>
+                <li><a href="@Url.Action("MusteriMemnuniyeti","Home")">Bireysel</a></li>
+                <li class="active">Musteri Yorumlari</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <div class="row padding-tb50">
+        <div class="col-md-9 col-sm-3 col-md-push-3 col-sm-push-4 padding-b20-media">
+            <div class="container">
+                <div class="row" style="margin-top:-25px">
+                    <div class="piko-divider1 three"></div>
+                    <!--product-->
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                        <div class="thumbnail piko-thub shop" style="max-height:290px">
+                            
+                            <div class="caption">
+                                <div class="piko-title5">
+                                    <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><a href="shop-single.html"><strong>İsim Soyİsim</strong></a></span></h3>
+                                    <img src="/Content/pikocon_html/images/yeliz.jpg" style="max-height:220px" alt="product construction" class="piko-thub-img ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>  <!--end product-->
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                        <div class="thumbnail piko-thub shop" style="max-height:290px">
+
+                            <div class="caption">
+                                <div class="piko-title5">
+                                    <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><a href="shop-single.html"><strong>İsim Soyİsim</strong></a></span></h3>
+                                    <img src="/Content/pikocon_html/images/yeliz.jpg" style="max-height:220px" alt="product construction" class="piko-thub-img ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>  <!--end product-->
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                        <div class="thumbnail piko-thub shop" style="max-height:290px">
+
+                            <div class="caption">
+                                <div class="piko-title5">
+                                    <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><a href="shop-single.html"><strong>İsim Soyİsim</strong></a></span></h3>
+                                    <img src="/Content/pikocon_html/images/yeliz.jpg" style="max-height:220px" alt="product construction" class="piko-thub-img ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>  <!--end product-->
+
+                </div>
+            </div>  <!--end container-->
+            <div class="margin-tb25">
+                <!--start pagination-->
+                <div class="container">
+                    <div class="custom-pagi">
+                        <ul class="pagination">
+                            <li class="disabled">
+                                <a href="#">Önceki</a>
+                            </li>
+                            <li class="active">
+                                <a href="#">1</a>
+                            </li>
+                            <li>
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+                            <li>
+                                <a href="#">4</a>
+                            </li>
+                            <li>
+                                <a href="#">Sonraki</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end of pagination-->
+            </div>
+            <!--right side menu-->
+        </div>
+            <div class="col-md-3 col-sm-4 col-md-pull-9 col-sm-pull-8">
+                @Html.Partial("HakkimizdaMenu")
+            </div> <!--end side menu-->
+        </div> <!-- end of row-->
+</section>
+

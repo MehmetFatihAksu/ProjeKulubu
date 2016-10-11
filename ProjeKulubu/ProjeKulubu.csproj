@@ -1,0 +1,987 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0B03057F-D402-43EA-BF3F-D0AAF8088CCF}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProjeKulubu</RootNamespace>
+    <AssemblyName>ProjeKulubu</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.30506.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.30506.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\AdminContent\assets\css\animate.min.css" />
+    <Content Include="Content\AdminContent\assets\css\bootstrap.min.css" />
+    <Content Include="Content\AdminContent\assets\css\demo.css" />
+    <Content Include="Content\AdminContent\assets\css\paper-dashboard.css" />
+    <Content Include="Content\AdminContent\assets\css\themify-icons.css" />
+    <Content Include="Content\AdminContent\assets\fonts\themify.svg" />
+    <Content Include="Content\AdminContent\assets\img\apple-icon.png" />
+    <Content Include="Content\AdminContent\assets\img\background.jpg" />
+    <Content Include="Content\AdminContent\assets\img\faces\face-0.jpg" />
+    <Content Include="Content\AdminContent\assets\img\faces\face-1.jpg" />
+    <Content Include="Content\AdminContent\assets\img\faces\face-2.jpg" />
+    <Content Include="Content\AdminContent\assets\img\faces\face-3.jpg" />
+    <Content Include="Content\AdminContent\assets\img\favicon.png" />
+    <Content Include="Content\AdminContent\assets\img\new_logo.png" />
+    <Content Include="Content\AdminContent\assets\img\tim_80x80.png" />
+    <Content Include="Content\AdminContent\assets\js\bootstrap-checkbox-radio.js" />
+    <Content Include="Content\AdminContent\assets\js\bootstrap-notify.js" />
+    <Content Include="Content\AdminContent\assets\js\bootstrap.min.js" />
+    <Content Include="Content\AdminContent\assets\js\chartist.min.js" />
+    <Content Include="Content\AdminContent\assets\js\demo.js" />
+    <Content Include="Content\AdminContent\assets\js\jquery-1.10.2.js" />
+    <Content Include="Content\AdminContent\assets\js\paper-dashboard.js" />
+    <Content Include="Content\AdminContent\changelog.txt" />
+    <Content Include="Content\AdminContent\dashboard.html" />
+    <Content Include="Content\AdminContent\icons.html" />
+    <Content Include="Content\AdminContent\maps.html" />
+    <Content Include="Content\AdminContent\notifications.html" />
+    <Content Include="Content\AdminContent\table.html" />
+    <Content Include="Content\AdminContent\template.html" />
+    <Content Include="Content\AdminContent\typography.html" />
+    <Content Include="Content\AdminContent\upgrade.html" />
+    <Content Include="Content\AdminContent\user.html" />
+    <Content Include="Content\AdminContent\__MACOSX\._changelog.txt" />
+    <Content Include="Content\pikocon_html\404.html" />
+    <Content Include="Content\pikocon_html\about.html" />
+    <Content Include="Content\pikocon_html\apple-touch-icon.png" />
+    <Content Include="Content\pikocon_html\architecture.html" />
+    <Content Include="Content\pikocon_html\assets\css\skins\color-light-green.css" />
+    <Content Include="Content\pikocon_html\assets\css\skins\color-orange.css" />
+    <Content Include="Content\pikocon_html\assets\css\skins\color-red.css" />
+    <Content Include="Content\pikocon_html\assets\css\skins\color-yellow.css" />
+    <Content Include="Content\pikocon_html\assets\css\skins\color.css" />
+    <Content Include="Content\pikocon_html\assets\css\style.css" />
+    <Content Include="Content\pikocon_html\assets\css\style.min.css" />
+    <Content Include="Content\pikocon_html\assets\fonts\Roboto-Regular-webfont.svg" />
+    <Content Include="Content\pikocon_html\assets\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg1%402x.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg1-100x50%402x.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg1-100x50.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg1.1%402x.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg1.1.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg1.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg2%402x.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg2-100x50%402x.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg2-100x50.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg2.1%402x.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg2.1.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg2.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg3%402x.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg3-100x50%402x.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg3-100x50.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg3.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg4%402x.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg4.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg5%402x.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg5.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg8%402x.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg8.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg9%402x.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\bg9.jpg" />
+    <Content Include="Content\pikocon_html\assets\images\slider\slider-hline%402x.png" />
+    <Content Include="Content\pikocon_html\assets\images\slider\slider-hline.png" />
+    <Content Include="Content\pikocon_html\assets\images\slider\slider-strip_green%402x.png" />
+    <Content Include="Content\pikocon_html\assets\images\slider\slider-strip_green.png" />
+    <Content Include="Content\pikocon_html\assets\images\slider\slider-vline%402x.png" />
+    <Content Include="Content\pikocon_html\assets\images\slider\slider-vline.png" />
+    <Content Include="Content\pikocon_html\assets\js\maintenace.js" />
+    <Content Include="Content\pikocon_html\assets\js\plugins.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\aminate-wow\animate.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\aminate-wow\wow.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\charts\chart.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\chosen\chosen-sprite%402x.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\chosen\chosen-sprite.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\chosen\chosen.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\chosen\chosen.jquery.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\chosen\chosen.jquery.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\chosen\chosen.min.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\chosen\chosen.proto.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\chosen\chosen.proto.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\fitvid\jquery.fitvids.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\flipclick\flipclock.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\flipclick\flipclock.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Content\pikocon_html\assets\plugin\jquery.easing\jquery.easing.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\jquery\jquery.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\Magnific-Popup\jquery.magnific-popup.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\Magnific-Popup\jquery.magnific-popup.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\Magnific-Popup\magnific-popup.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\nicescroll\jquery.nicescroll.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\owl-carousel\AjaxLoader.gif" />
+    <Content Include="Content\pikocon_html\assets\plugin\owl-carousel\grabbing.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\owl-carousel\owl.carousel.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\owl-carousel\owl.carousel.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\owl-carousel\owl.theme.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\owl-carousel\owl.transitions.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\plugin-css\AjaxLoader.gif" />
+    <Content Include="Content\pikocon_html\assets\plugin\plugin-css\chosen-sprite%402x.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\plugin-css\chosen-sprite.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\plugin-css\grabbing.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\plugin-css\plugin.min.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\plugin.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\retina\retina.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\arrowleft.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\arrowright.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\arrow_large_left.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\arrow_large_right.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\arrow_left.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\arrow_left2.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\arrow_right.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\arrow_right2.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\black50.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\boxed_bgtile.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\bullet.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\bullets.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\bullets2.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\bullet_boxed.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\coloredbg.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\grain.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\gridtile.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\gridtile_3x3.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\gridtile_3x3_white.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\gridtile_white.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\large_left.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\large_right.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\loader.gif" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\loader2.gif" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\navigdots.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\navigdots_bgtile.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\shadow1.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\shadow2.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\shadow3.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\small_left.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\small_left_boxed.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\small_right.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\small_right_boxed.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\timer.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\timerdot.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\transparent.jpg" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\white50.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\css\extralayers.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\css\settings-ie8.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\css\settings.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\font\revicons.svg" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\images\check.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\images\decor_inside.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\images\decor_inside_white.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\images\decor_testimonial.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\images\dummy.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\images\gradient\g30.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\images\gradient\g40.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\js\jquery.revolution-int.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\js\jquery.themepunch.plugins.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\js\jquery.themepunch.revolution.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\js\jquery.themepunch.revolution.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\Shuffle\jquery.shuffle.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\simple-line-icon\simple-line-icons.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\vegas\overlays\01.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\vegas\overlays\02.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\vegas\overlays\03.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\vegas\overlays\04.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\vegas\overlays\05.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\vegas\overlays\06.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\vegas\overlays\07.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\vegas\overlays\08.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\vegas\overlays\09.png" />
+    <Content Include="Content\pikocon_html\assets\plugin\vegas\vegas.min.css" />
+    <Content Include="Content\pikocon_html\assets\plugin\vegas\vegas.min.js" />
+    <Content Include="Content\pikocon_html\assets\plugin\whypoints\waypoints.min.js" />
+    <Content Include="Content\pikocon_html\big-project.html" />
+    <Content Include="Content\pikocon_html\blog-single1.html" />
+    <Content Include="Content\pikocon_html\blog1.html" />
+    <Content Include="Content\pikocon_html\blog2.html" />
+    <Content Include="Content\pikocon_html\buttons.html" />
+    <Content Include="Content\pikocon_html\charts.html" />
+    <Content Include="Content\pikocon_html\concrete-transport.html" />
+    <Content Include="Content\pikocon_html\construction.html" />
+    <Content Include="Content\pikocon_html\consulting.html" />
+    <Content Include="Content\pikocon_html\contact.html" />
+    <Content Include="Content\pikocon_html\contact2.html" />
+    <Content Include="Content\pikocon_html\corevalue.html" />
+    <Content Include="Content\pikocon_html\counters.html" />
+    <Content Include="Content\pikocon_html\faqs.html" />
+    <Content Include="Content\pikocon_html\favicon.ico" />
+    <Content Include="Content\pikocon_html\header1-footer1.html" />
+    <Content Include="Content\pikocon_html\header2-footer2.html" />
+    <Content Include="Content\pikocon_html\header3-footer3.html" />
+    <Content Include="Content\pikocon_html\history.html" />
+    <Content Include="Content\pikocon_html\home-box.html" />
+    <Content Include="Content\pikocon_html\home2.html" />
+    <Content Include="Content\pikocon_html\home3.html" />
+    <Content Include="Content\pikocon_html\images\atilla.jpg" />
+    <Content Include="Content\pikocon_html\images\banner-question.jpg" />
+    <Content Include="Content\pikocon_html\images\banner-vacant.jpg" />
+    <Content Include="Content\pikocon_html\images\banner1.jpg" />
+    <Content Include="Content\pikocon_html\images\banner12.jpg" />
+    <Content Include="Content\pikocon_html\images\banner2.jpg" />
+    <Content Include="Content\pikocon_html\images\bg\01.png" />
+    <Content Include="Content\pikocon_html\images\bg\02.png" />
+    <Content Include="Content\pikocon_html\images\bg\03.png" />
+    <Content Include="Content\pikocon_html\images\bg\04.png" />
+    <Content Include="Content\pikocon_html\images\bg\05.png" />
+    <Content Include="Content\pikocon_html\images\bg\06.png" />
+    <Content Include="Content\pikocon_html\images\bg\07.png" />
+    <Content Include="Content\pikocon_html\images\bg\08.png" />
+    <Content Include="Content\pikocon_html\images\bg\09.png" />
+    <Content Include="Content\pikocon_html\images\bg\404%402x.png" />
+    <Content Include="Content\pikocon_html\images\bg\404.png" />
+    <Content Include="Content\pikocon_html\images\bg\background.png" />
+    <Content Include="Content\pikocon_html\images\bg\bg2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\bg\bg2.jpg" />
+    <Content Include="Content\pikocon_html\images\bg\bg3%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\bg\bg3.jpg" />
+    <Content Include="Content\pikocon_html\images\bg\car_arrows.png" />
+    <Content Include="Content\pikocon_html\images\bg\close.png" />
+    <Content Include="Content\pikocon_html\images\bg\cross.png" />
+    <Content Include="Content\pikocon_html\images\bg\dark-pattern.jpg" />
+    <Content Include="Content\pikocon_html\images\bg\gradient.jpg" />
+    <Content Include="Content\pikocon_html\images\bg\gridtile_3x3.png" />
+    <Content Include="Content\pikocon_html\images\bg\gridtile_3x3_white.png" />
+    <Content Include="Content\pikocon_html\images\bg\h-line.jpg" />
+    <Content Include="Content\pikocon_html\images\bg\hcross-lines.jpg" />
+    <Content Include="Content\pikocon_html\images\bg\line-1.png" />
+    <Content Include="Content\pikocon_html\images\bg\page-title%402x.png" />
+    <Content Include="Content\pikocon_html\images\bg\page-title.png" />
+    <Content Include="Content\pikocon_html\images\bg\pattern.png" />
+    <Content Include="Content\pikocon_html\images\bg\pattern1.png" />
+    <Content Include="Content\pikocon_html\images\bg\pattern4.png" />
+    <Content Include="Content\pikocon_html\images\bg\pattern_white.png" />
+    <Content Include="Content\pikocon_html\images\bg\shadow3.png" />
+    <Content Include="Content\pikocon_html\images\bg\statistics%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\bg\statistics.jpg" />
+    <Content Include="Content\pikocon_html\images\bg\white.gif" />
+    <Content Include="Content\pikocon_html\images\bg\white_brick_wall.png" />
+    <Content Include="Content\pikocon_html\images\bg\white_brick_wall_%402X.png" />
+    <Content Include="Content\pikocon_html\images\bg\wrapper_bg.png" />
+    <Content Include="Content\pikocon_html\images\blog01.jpg" />
+    <Content Include="Content\pikocon_html\images\blog02.jpg" />
+    <Content Include="Content\pikocon_html\images\blog03.jpg" />
+    <Content Include="Content\pikocon_html\images\blog04.jpg" />
+    <Content Include="Content\pikocon_html\images\blog05.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner-joinus%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner-joinus.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner-question%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner-question.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner-vacant%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner-vacant.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner1%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner1.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner12%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner12.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner2.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner3%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner3.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner4%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner4.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner5%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\banner5.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-single1%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-single1.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-single2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-single2.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-single4%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-single4.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-tab%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-tab-big%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-tab-big.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-tab-big2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-tab-big2.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-tab.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-tab2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-tab2.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-tab3%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-tab3.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-tab4%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog-tab4.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog01%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog01.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog02%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog02.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog03%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog03.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog04%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog04.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog05%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\blog05.jpg" />
+    <Content Include="Content\pikocon_html\images\body\brochure%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\brochure.jpg" />
+    <Content Include="Content\pikocon_html\images\body\career-banner%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\career-banner.jpg" />
+    <Content Include="Content\pikocon_html\images\body\choose03%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\choose03.jpg" />
+    <Content Include="Content\pikocon_html\images\body\choose05%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\choose05.jpg" />
+    <Content Include="Content\pikocon_html\images\body\con-01%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\con-01.jpg" />
+    <Content Include="Content\pikocon_html\images\body\con-02%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\con-02.jpg" />
+    <Content Include="Content\pikocon_html\images\body\con-03%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\con-03.jpg" />
+    <Content Include="Content\pikocon_html\images\body\feature01%402x.png" />
+    <Content Include="Content\pikocon_html\images\body\feature01.png" />
+    <Content Include="Content\pikocon_html\images\body\future-8%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\future-8.jpg" />
+    <Content Include="Content\pikocon_html\images\body\history1%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\history1.jpg" />
+    <Content Include="Content\pikocon_html\images\body\history2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\history2.jpg" />
+    <Content Include="Content\pikocon_html\images\body\history3%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\history3.jpg" />
+    <Content Include="Content\pikocon_html\images\body\history4%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\history4.jpg" />
+    <Content Include="Content\pikocon_html\images\body\joinus%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\joinus.jpg" />
+    <Content Include="Content\pikocon_html\images\body\service01%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\service01.jpg" />
+    <Content Include="Content\pikocon_html\images\body\service02%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\service02.jpg" />
+    <Content Include="Content\pikocon_html\images\body\service03%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\service03.jpg" />
+    <Content Include="Content\pikocon_html\images\body\service04%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\service04.jpg" />
+    <Content Include="Content\pikocon_html\images\body\service05%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\service05.jpg" />
+    <Content Include="Content\pikocon_html\images\body\service06%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\service06.jpg" />
+    <Content Include="Content\pikocon_html\images\body\vacant-table%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\body\vacant-table.jpg" />
+    <Content Include="Content\pikocon_html\images\body\world-map.png" />
+    <Content Include="Content\pikocon_html\images\career-banner.jpg" />
+    <Content Include="Content\pikocon_html\images\choose03.jpg" />
+    <Content Include="Content\pikocon_html\images\choose05.jpg" />
+    <Content Include="Content\pikocon_html\images\history1.jpg" />
+    <Content Include="Content\pikocon_html\images\history2.jpg" />
+    <Content Include="Content\pikocon_html\images\history3.jpg" />
+    <Content Include="Content\pikocon_html\images\history4.jpg" />
+    <Content Include="Content\pikocon_html\images\icon\engineer%402x.png" />
+    <Content Include="Content\pikocon_html\images\icon\engineer.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-awards%402x-150x150.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-awards%402x-180x180.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-awards%402x.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-awards.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-building%402x-150x150.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-building%402x-180x180.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-building%402x.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-building.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-machine%402x-150x150.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-machine%402x-180x170.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-machine%402x.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-machine.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-vision%402x.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-vision.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-worker%402x-150x150.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-worker%402x-180x180.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-worker%402x.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-worker.png" />
+    <Content Include="Content\pikocon_html\images\icon\map%402x.png" />
+    <Content Include="Content\pikocon_html\images\icon\marker.png" />
+    <Content Include="Content\pikocon_html\images\icon\menubg.png" />
+    <Content Include="Content\pikocon_html\images\icon\preloader-small.GIF" />
+    <Content Include="Content\pikocon_html\images\icon\preloader-small2.GIF" />
+    <Content Include="Content\pikocon_html\images\icon\preloader.GIF" />
+    <Content Include="Content\pikocon_html\images\icon\preloader2.GIF" />
+    <Content Include="Content\pikocon_html\images\icon\preloader4.GIF" />
+    <Content Include="Content\pikocon_html\images\icon\process01%402x.png" />
+    <Content Include="Content\pikocon_html\images\icon\process01.png" />
+    <Content Include="Content\pikocon_html\images\icon\process06%402x.png" />
+    <Content Include="Content\pikocon_html\images\icon\process06.png" />
+    <Content Include="Content\pikocon_html\images\icon\quality%402x.png" />
+    <Content Include="Content\pikocon_html\images\icon\quality.png" />
+    <Content Include="Content\pikocon_html\images\icon\safety.png" />
+    <Content Include="Content\pikocon_html\images\icon\worker%402x.png" />
+    <Content Include="Content\pikocon_html\images\icon\worker.png" />
+    <Content Include="Content\pikocon_html\images\kazim.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\arab-flag.png" />
+    <Content Include="Content\pikocon_html\images\logo\client01%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\client01.png" />
+    <Content Include="Content\pikocon_html\images\logo\client02%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\client02.png" />
+    <Content Include="Content\pikocon_html\images\logo\client03%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\client03.png" />
+    <Content Include="Content\pikocon_html\images\logo\client04%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\client04.png" />
+    <Content Include="Content\pikocon_html\images\logo\client05%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\client05.png" />
+    <Content Include="Content\pikocon_html\images\logo\client06%402x-.png" />
+    <Content Include="Content\pikocon_html\images\logo\client06%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\client06.png" />
+    <Content Include="Content\pikocon_html\images\logo\client07%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\client07.png" />
+    <Content Include="Content\pikocon_html\images\logo\client08%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\client08.png" />
+    <Content Include="Content\pikocon_html\images\logo\client09%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\client09.png" />
+    <Content Include="Content\pikocon_html\images\logo\eng-flag%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\eng-flag.png" />
+    <Content Include="Content\pikocon_html\images\logo\fra-flag%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\fra-flag.png" />
+    <Content Include="Content\pikocon_html\images\logo\ger-flag%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\ger-flag.png" />
+    <Content Include="Content\pikocon_html\images\logo\logo%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\logo-inverse%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\logo-inverse.png" />
+    <Content Include="Content\pikocon_html\images\logo\logo.png" />
+    <Content Include="Content\pikocon_html\images\logo\menubg - Copy.png" />
+    <Content Include="Content\pikocon_html\images\logo\menubg%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\p.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner1%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner1.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner2%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner2.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner3%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner3.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner4%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner4.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner5%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner5.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner6%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner6.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner7%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner7.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner8%402x.png" />
+    <Content Include="Content\pikocon_html\images\logo\partner8.png" />
+    <Content Include="Content\pikocon_html\images\logo\piko.png" />
+    <Content Include="Content\pikocon_html\images\logo\por-flag.png" />
+    <Content Include="Content\pikocon_html\images\logo\projekulubulogo.png" />
+    <Content Include="Content\pikocon_html\images\logo\projekulubulogomobil.png" />
+    <Content Include="Content\pikocon_html\images\logo\projekulubulogosmall.png" />
+    <Content Include="Content\pikocon_html\images\logo\team01%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team01.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team02%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team02.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team03%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team03.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team04%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team04.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team1%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team1.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team2.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team3%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team3.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team4%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team4.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team5%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\team5.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\textimonial%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\textimonial.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\textimonial1%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\textimonial1.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\textimonial2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\textimonial2.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\textimonial3%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\textimonial3.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\textimonial4%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\textimonial4.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\thumb1.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\thumb2.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\thumb3.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\thumb4.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\thumb5.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\thumb6.jpg" />
+    <Content Include="Content\pikocon_html\images\logo\thumb7.jpg" />
+    <Content Include="Content\pikocon_html\images\neleryapioz1.png" />
+    <Content Include="Content\pikocon_html\images\partner1.png" />
+    <Content Include="Content\pikocon_html\images\partner2.png" />
+    <Content Include="Content\pikocon_html\images\partner3.png" />
+    <Content Include="Content\pikocon_html\images\partner4.png" />
+    <Content Include="Content\pikocon_html\images\partner5.png" />
+    <Content Include="Content\pikocon_html\images\partner6.png" />
+    <Content Include="Content\pikocon_html\images\partner7.png" />
+    <Content Include="Content\pikocon_html\images\partner8.png" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\banner2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\banner2.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-1%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-1.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-2.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-3%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-3.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-4%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-4.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-5%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-5.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-6%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-6.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-7%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-7.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-8%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\img-8.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-1%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-1.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-2.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-3%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-3.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-5%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-5.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-6%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-6.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-7%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-7.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-8%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\project-details\thumb-8.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\1%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\1.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\10%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\10.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\11%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\11.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\12%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\12.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\2.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\3%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\3.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\4%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\4.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\5%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\5.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\6%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\6.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\7%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\7.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\8%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\8.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\9%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\portfolio\thumbnails\9.jpg" />
+    <Content Include="Content\pikocon_html\images\satis1.jpg" />
+    <Content Include="Content\pikocon_html\images\satis2.jpg" />
+    <Content Include="Content\pikocon_html\images\satis3.jpg" />
+    <Content Include="Content\pikocon_html\images\satis5.jpg" />
+    <Content Include="Content\pikocon_html\images\satis6.jpg" />
+    <Content Include="Content\pikocon_html\images\shop\1%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\1.png" />
+    <Content Include="Content\pikocon_html\images\shop\10%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\10.png" />
+    <Content Include="Content\pikocon_html\images\shop\2%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\2.png" />
+    <Content Include="Content\pikocon_html\images\shop\3%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\3.png" />
+    <Content Include="Content\pikocon_html\images\shop\4%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\4.png" />
+    <Content Include="Content\pikocon_html\images\shop\5%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\5.png" />
+    <Content Include="Content\pikocon_html\images\shop\6%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\6.png" />
+    <Content Include="Content\pikocon_html\images\shop\7%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\7.png" />
+    <Content Include="Content\pikocon_html\images\shop\8%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\8.png" />
+    <Content Include="Content\pikocon_html\images\shop\9%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\9.png" />
+    <Content Include="Content\pikocon_html\images\shop\thumb\1%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\shop\thumb\1.jpg" />
+    <Content Include="Content\pikocon_html\images\shop\thumb\2%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\shop\thumb\2.jpg" />
+    <Content Include="Content\pikocon_html\images\shop\thumb\3%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\shop\thumb\3.jpg" />
+    <Content Include="Content\pikocon_html\images\shop\thumb\4%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\shop\thumb\4.jpg" />
+    <Content Include="Content\pikocon_html\images\shop\thumb\5%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\shop\thumb\5.jpg" />
+    <Content Include="Content\pikocon_html\images\shop\thumb\6%402x.jpg" />
+    <Content Include="Content\pikocon_html\images\shop\thumb\6.jpg" />
+    <Content Include="Content\pikocon_html\images\statictics.png" />
+    <Content Include="Content\pikocon_html\images\statistics.jpg" />
+    <Content Include="Content\pikocon_html\images\statistics2.jpg" />
+    <Content Include="Content\pikocon_html\images\yeliz.jpg" />
+    <Content Include="Content\pikocon_html\index.html" />
+    <Content Include="Content\pikocon_html\life-of-piko.html" />
+    <Content Include="Content\pikocon_html\maintenance.html" />
+    <Content Include="Content\pikocon_html\portfolio1.html" />
+    <Content Include="Content\pikocon_html\portfolio2.html" />
+    <Content Include="Content\pikocon_html\pricing.html" />
+    <Content Include="Content\pikocon_html\progress-bars.html" />
+    <Content Include="Content\pikocon_html\project-details1.html" />
+    <Content Include="Content\pikocon_html\renovation.html" />
+    <Content Include="Content\pikocon_html\service.html" />
+    <Content Include="Content\pikocon_html\shop-grid.html" />
+    <Content Include="Content\pikocon_html\shop-single.html" />
+    <Content Include="Content\pikocon_html\team.html" />
+    <Content Include="Content\pikocon_html\tile-wide.png" />
+    <Content Include="Content\pikocon_html\tile.png" />
+    <Content Include="Content\pikocon_html\vacant-position.html" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\pikocon_html\.htaccess" />
+    <Content Include="Content\pikocon_html\assets\fonts\Roboto-Regular-webfont.eot" />
+    <Content Include="Content\pikocon_html\assets\fonts\Roboto-Regular-webfont.ttf" />
+    <Content Include="Content\pikocon_html\assets\fonts\Roboto-Regular-webfont.woff" />
+    <Content Include="Content\pikocon_html\assets\fonts\Simple-Line-Icons.eot" />
+    <Content Include="Content\pikocon_html\assets\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="Content\pikocon_html\assets\fonts\Simple-Line-Icons.woff" />
+    <Content Include="Content\pikocon_html\assets\fonts\Simple-Line-Icons.woff2" />
+    <Content Include="Content\pikocon_html\assets\plugin\chosen\bower.json" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\animated.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\core.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\fixed-width.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\font-awesome.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\icons.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\larger.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\list.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\mixins.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\path.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\screen-reader.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\stacked.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\less\variables.less" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_animated.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_core.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_icons.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_larger.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_list.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_mixins.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_path.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_stacked.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\font-awesome\scss\_variables.scss" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\arrows.psd" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\bullets.psd" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\assets\small_arrows.psd" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\css\.DS_Store" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\font\revicons.eot" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\font\revicons.ttf" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\font\revicons.woff" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\images\.DS_Store" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\js\.DS_Store" />
+    <Content Include="Content\pikocon_html\assets\plugin\rs-plugin\js\index.php" />
+    <Content Include="Content\AdminContent\assets\.DS_Store" />
+    <Content Include="Content\AdminContent\assets\css\.DS_Store" />
+    <Content Include="Content\AdminContent\assets\fonts\.DS_Store" />
+    <Content Include="Content\AdminContent\assets\fonts\themify.eot" />
+    <Content Include="Content\AdminContent\assets\fonts\themify.ttf" />
+    <Content Include="Content\AdminContent\assets\fonts\themify.woff" />
+    <Content Include="Content\AdminContent\assets\img\.DS_Store" />
+    <Content Include="Content\AdminContent\assets\img\faces\.DS_Store" />
+    <Content Include="Content\AdminContent\assets\js\.DS_Store" />
+    <Content Include="Content\AdminContent\assets\sass\.DS_Store" />
+    <Content Include="Content\AdminContent\assets\sass\paper-dashboard.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\mixins\_buttons.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\mixins\_cards.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\mixins\_chartist.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\mixins\_icons.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\mixins\_inputs.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\mixins\_labels.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\mixins\_navbars.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\mixins\_sidebar.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\mixins\_tabs.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\mixins\_transparency.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\mixins\_vendor-prefixes.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_alerts.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_buttons.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_cards.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_chartist.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_checkbox-radio.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_dropdown.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_footers.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_inputs.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_misc.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_mixins.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_navbars.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_responsive.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_sidebar-and-main-panel.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_tables.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_typography.scss" />
+    <Content Include="Content\AdminContent\assets\sass\paper\_variables.scss" />
+    <Content Include="Content\AdminContent\License.pdf" />
+    <Content Include="Content\AdminContent\__MACOSX\assets\._.DS_Store" />
+    <Content Include="Content\AdminContent\__MACOSX\assets\css\._.DS_Store" />
+    <Content Include="Content\AdminContent\__MACOSX\assets\fonts\._.DS_Store" />
+    <Content Include="Content\AdminContent\__MACOSX\assets\img\._.DS_Store" />
+    <Content Include="Content\AdminContent\__MACOSX\assets\img\faces\._.DS_Store" />
+    <Content Include="Content\AdminContent\__MACOSX\assets\js\._.DS_Store" />
+    <Content Include="Content\AdminContent\__MACOSX\assets\sass\._.DS_Store" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\HakkimizdaMenu.cshtml" />
+    <Content Include="Views\Home\AldigimizEgitimler.cshtml" />
+    <Content Include="Views\Home\BizKimiz.cshtml" />
+    <Content Include="Views\Home\Egitimlerimiz.cshtml" />
+    <Content Include="Views\Home\Iletisim.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Misyonumuz.cshtml" />
+    <Content Include="Views\Home\MusteriMemnuniyeti.cshtml" />
+    <Content Include="Views\Home\MusteriYorumlari.cshtml" />
+    <Content Include="Views\Home\NelerYapariz.cshtml" />
+    <Content Include="Views\Home\Referanslar.cshtml" />
+    <Content Include="Views\Home\SikSorular.cshtml" />
+    <Content Include="Views\Home\VerdigimizEgitimler.cshtml" />
+    <Content Include="Views\Home\Vizyonumuz.cshtml" />
+    <Content Include="Views\AdminShared\_Layout.cshtml" />
+    <Content Include="Views\Admin\Comment.cshtml" />
+    <Content Include="Views\Admin\Content.cshtml" />
+    <Content Include="Views\Admin\Education.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Project.cshtml" />
+    <Content Include="Views\Admin\QuestionRequest.cshtml" />
+    <Content Include="Views\Admin\Reference.cshtml" />
+    <Content Include="Views\Admin\Team.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53435</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:53435/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

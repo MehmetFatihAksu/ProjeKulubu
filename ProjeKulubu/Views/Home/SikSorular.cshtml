@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "SikSorular";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner margin-t150">
+    <div class="container page-banner">
+        <div class="col-sm-6 col-md-6">
+            <h1>Sık Sorulan Sorular</h1>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <ol class="breadcrumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
+                <li><a href="@Url.Action("Vizyonumuz","Home")">Hakkımızda</a></li>
+                <li><a href="@Url.Action("MusteriMemnuniyeti","Home")">Bireysel</a></li>
+                <li class="active">Sık Sorulan Sorular</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <div class="row padding-tb50">
+        <div class="col-md-9 col-sm-8 col-md-push-3 col-sm-push-4 padding-b20-media">
+            <!--start body content-->
+            <img src="/Content/pikocon_html/images/banner-question.jpg" class="img-responsive" alt="carer banner" />
+            <div class="padding-t25">
+                <!--start careers -->
+                <h4>Başlık 1</h4>
+                <p>Metin1</p>
+                <br>
+                <h4>Başlık 2</h4>
+                <!-- start of accordion -->
+                <div class="panel-group" id="accordion">
+                    <!--panel info-->
+                    <div class="panel panel-info">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
+                            <h4 class="panel-title accordion-toggle">
+                                1. Soru
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>1.Soru 1.Cevap</p>
+                                <p>2.Soru 2.Cevap</p>
+                            </div>
+                        </div>
+                    </div> <!--end panel info-->
+                    <!--panel info-->
+                    <div class="panel panel-info">
+                        <div class="panel-heading active" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
+                            <h4 class="panel-title accordion-toggle">
+                                2. Soru
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>2.Soru 1.Cevap</p>
+                                <p>2.Soru 2.Cevap</p>
+                            </div>
+                        </div>
+                    </div> <!--end panel info-->
+                    <!--panel info-->
+                    <div class="panel panel-info">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree">
+                            <h4 class="panel-title accordion-toggle">
+                                3. Soru
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>3.Soru 1.Cevap</p>
+                                <p>3.Soru 2.Cevap</p>
+                            </div>
+                        </div>
+                    </div> <!--end panel info-->
+                    <!--panel info-->
+                    <div class="panel panel-info">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFour">
+                            <h4 class="panel-title accordion-toggle">
+                                4. Soru
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>1.Cevap</p>
+                                <ul class="fa-ul">
+                                    <li><i class="fa-li fa fa-check-square"></i>Liste 1</li>
+                                    <li><i class="fa-li fa fa-check-square"></i>Liste 2</li>
+                                    <li><i class="fa-li fa fa-check-square"></i>Liste 3</li>
+                                    <li><i class="fa-li fa fa-check-square"></i>Liste 4</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> <!--end panel info-->
+                    <!--panel info-->
+                    <div class="panel panel-info">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive">
+                            <h4 class="panel-title accordion-toggle">
+                                5. Soru
+                            </h4>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>5.Soru 1.Cevap</p>
+                                <p>5.Soru 2.Cevap</p>
+                            </div>
+                        </div>
+                    </div> <!--end panel info-->
+                    <!--panel info-->
+                    <div class="panel panel-info">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseSix">
+                            <h4 class="panel-title accordion-toggle">
+                                6. Soru
+                            </h4>
+                        </div>
+                        <div id="collapseSix" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>Mail <a href="mailto:recruitment@themepiko.com"><strong>recruitment@themepiko.com</strong></a> the following:<br></p>
+                                <p>Complete CV, highlighting your interest area, achievements (if any), experience and extracurricular activities (if any), and a cover letter in the email body explaining your interest for Internship at Piko Ltd.</p>
+                                <p>Please mention Internship application for Session (January/May/September)</p>
+                            </div>
+                        </div>
+                    </div> <!--panel info-->
+                </div> <!-- end of accordion -->
+            </div> <!--end padding 25-->
+        </div> <!--end of col9-->
+        <!--right side menu-->
+        <div class="col-md-3 col-sm-4 col-md-pull-9 col-sm-pull-8">
+            @Html.Partial("HakkimizdaMenu")
+        </div> <!--end side menu-->
+    </div> <!-- end of row-->
+</section>
+

@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "Vizyonumuz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="banner margin-t150">
+    <div class="container page-banner">
+        <div class="col-sm-6 col-md-6">
+            <h1>Vizyonumuz</h1>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <ol class="breadcrumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
+                <li><a href="@Url.Action("Vizyonumuz","Home")">Hakkımızda</a></li>
+                <li><a href="@Url.Action("Vizyonumuz","Home")">Kurumsal</a></li>
+                <li class="active">Vizyonumuz</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <div class="row padding-tb50">
+        <div class="col-md-9 col-sm-8  col-md-push-3 col-sm-push-4 padding-b20-media">
+            <!--start body content-->
+            <div class="padding-b25">
+                <div class="piko-title4 widget nom">
+                    <h3><span class="line"></span><span class="text">Hakkımızda</span></h3>
+                </div>
+              <p>Hakkımızda Paragraf</p>
+            </div>
+            <div class="padding-t25">
+                <div class="row">
+                    <!--start count-up project-->
+                    <div class="margin-t25">
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="block">
+                                <div class="count-icon-box"><img src="/Content/pikocon_html/images/icon/icon-building.png" alt="complete building" /></div>
+                                <div class="count-box"><h2 class="count">1500</h2></div>
+                                <div class="count-text">PROJE BİTTİ</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="block">
+                                <div class="count-icon-box"><img src="/Content/pikocon_html/images/icon/icon-machine.png" alt="your machine" /></div>
+                                <div class="count-box"><h2 class="count">500</h2></div>
+                                <div class="count-text"><h6>ÇALIŞAN</h6></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="block">
+                                <div class="count-icon-box"><img src="/Content/pikocon_html/images/icon/icon-awards.png" alt="awards woning" /></div>
+                                <div class="count-box"><h2 class="count">200</h2></div>
+                                <div class="count-text"><h6>ÖDÜL</h6></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="block">
+                                <div class="count-icon-box"><img src="/Content/pikocon_html/images/icon/icon-worker.png" alt="qualified workers" /></div>
+                                <div class="count-box"><h2 class="count">1200</h2></div>
+                                <div class="count-text"><h6>YÖNETİCİ</h6></div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!--end count-up project-->
+            </div>
+            <!--our mission-->
+            <div class="padding-t25 team1 service">
+                <div class="piko-title4 widget margin-b25">
+                    <h3><span class="line"></span><span class="text">Vizyonumuz</span></h3>
+                </div>
+                <div class="row padding-t20">
+                    <div class="col-sm-6 col-md-6">
+                        <div class="box">
+                            <figure>
+                                <img src="/Content/pikocon_html/images/choose03.jpg" alt="grouping works" />
+                            </figure>
+                            <!--caption-->
+                            <div class="caption">
+                                <h5>BAŞLIK 1</h5>
+                                <p> BAŞLIK 1 PARAGRAF</p>
+                                <ul class="arrow">
+                                    <li>LİSTE METİN 1</li>
+                                    <li>LİSTE METİN 2</li>
+                                    <li>LİSTE METİN 3</li>
+                                    <li>LİSTE METİN 4</li>
+                                </ul>
+                            </div>  <!--end caption-->
+                        </div>  <!--end box-->
+                    </div> <!-- end of col -->
+                    <div class="col-sm-6 col-md-6">
+                        <div class="box">
+                            <figure>
+                                <img src="/Content/pikocon_html/images/choose05.jpg" alt="grouping works" />
+                            </figure>
+                            <!--caption-->
+                            <div class="caption">
+                                <h5>BAŞLIK 2</h5>
+                                <p> BAŞLIK 2 PARAGRAF</p>
+                                <ul class="arrow">
+                                    <li>LİSTE METİN 1</li>
+                                    <li>LİSTE METİN 2</li>
+                                    <li>LİSTE METİN 3</li>
+                                    <li>LİSTE METİN 4</li>
+                                </ul>
+                            </div>  <!--end caption-->
+                        </div>  <!--end box-->
+                    </div> <!-- end of col -->
+                </div> <!-- end row-->
+            </div>
+        </div>
+        <!--right side menu-->
+        <div class="col-md-3 col-sm-4 col-md-pull-9 col-sm-pull-8">
+            @Html.Partial("HakkimizdaMenu")
+        </div> <!--end side menu-->
+    </div> <!-- end of row-->
+</section>
+
+
+

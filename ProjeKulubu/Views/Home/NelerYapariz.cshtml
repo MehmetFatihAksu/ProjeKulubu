@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "NelerYapariz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner margin-t150">
+    <div class="container page-banner">
+        <div class="col-sm-6 col-md-6">
+            <h1>Neler Yaparız ?</h1>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <ol class="breadcrumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
+                <li><a href="@Url.Action("Vizyonumuz","Home")">Hakkımızda</a></li>
+                <li class="active">Neler Yaparız ?</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <div class="row padding-tb50">
+        <div class="col-md-9 col-sm-8 col-md-push-3 col-sm-push-4 padding-b20-media">
+            <!--start body content-->
+            <img src="/Content/pikocon_html/images/banner-vacant.jpg" class="img-responsive" alt="carer banner" />
+            <div class="padding-t25">
+                <!--start careers -->
+                <h4>Başlık 1</h4>
+                <p>Metin 1</p>
+                <ul class="nav nav-tabs padding-t25">
+                    <li class="active"><a data-toggle="tab" href="#sectionA"> Liste Başlık 1</a></li>
+                    <li><a data-toggle="tab" href="#sectionB"> Liste Başlık 2</a></li>
+                    <li><a data-toggle="tab" href="#sectionC"> Liste Başlık 3</a></li>
+                </ul>
+                <div class="tab-content tab-widget">
+                    <div id="sectionA" class="tab-pane fade in active">
+                        <!-- text for each callout -->
+                        <!-- Vaccinations -->
+                        <p>Başlık 1 Metin </p>
+                        <div class="panel-group top-margin2" id="accordion">
+                            <div class="panel panel-info">
+                                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
+                                    <h4 class="panel-title accordion-toggle">
+                                        1. Başlık
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>1. Başlık Metin 1</p>
+                                        <p>1. Başlık Metin 2</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-info">
+                                <div class="panel-heading active" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
+                                    <h4 class="panel-title accordion-toggle">
+                                        2. Başlık
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>2. Başlık Alt Başlık</p>
+                                        <ul class="fa-ul">
+                                            <li><i class="fa-li fa fa-check-square"></i><a href="#">Liste Metin 1</a></li>
+                                            <li><i class="fa-li fa fa-check-square"></i><a href="#">Liste Metin 2</a></li>
+                                            <li><i class="fa-li fa fa-check-square"></i><a href="#">Liste Metin 3</a></li>
+                                            <li><i class="fa-li fa fa-check-square"></i><a href="#">Liste Metin 4</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-info">
+                                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFour">
+                                    <h4 class="panel-title accordion-toggle">
+                                        3. Başlık
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>3.Başlık Alt Başlık</p>
+                                        <ul class="fa-ul">
+                                            <li><i class="fa-li fa fa-check-square"></i>Liste Metin 1</li>
+                                            <li><i class="fa-li fa fa-check-square"></i>Liste Metin 2</li>
+                                            <li><i class="fa-li fa fa-check-square"></i>Liste Metin 3</li>
+                                            <li><i class="fa-li fa fa-check-square"></i>Liste Metin 4</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-info">
+                                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseSix">
+                                    <h4 class="panel-title accordion-toggle">
+                                        4. Başlık
+                                    </h4>
+                                </div>
+                                <div id="collapseSix" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>Mail To <a href="mailto:recruitment@themepiko.com"><strong>recruitment@themepiko.com</strong></a> the following:<br></p>
+                                        <p>Complete CV, highlighting your interest area, achievements (if any), experience and extracurricular activities (if any), and a cover letter in the email body explaining your interest for Internship at PIKO Ltd.</p>
+                                        <p>Please mention Internship application for Session (January/May/September)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sectionB" class="tab-pane fade">
+                        <p>2.Başlık Paragraf</p>
+                        <div class="internship">
+                            <h4>Liste Başlık</h4>
+                            <ul class="arrow no-border">
+                                <li>Liste Metin 1</li>
+                                <li>Liste Metin 2</li>
+                                <li>Liste Metin 3</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="sectionC" class="tab-pane fade">
+                        <p>Paragraf 1</p>
+                        <p>Paragraf 2</p>
+                        <p>Mail To <a href="mailto:recruitment@themepiko.com"><strong>recruitment@themepiko.com</strong></a>
+                    </div>
+                </div> <!--End tabs-->
+            </div>
+            </div>
+            <!--right side menu-->
+            <div class="col-md-3 col-sm-4 col-md-pull-9 col-sm-pull-8">
+                @Html.Partial("HakkimizdaMenu")
+            </div> <!--end side menu-->
+        </div> <!-- end of row-->
+</section>

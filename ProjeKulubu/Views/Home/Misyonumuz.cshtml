@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Misyonumuz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner margin-t150">
+    <div class="container page-banner">
+        <div class="col-sm-6 col-md-6">
+            <h1>Misyonumuz</h1>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <ol class="breadcrumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
+                <li><a href="@Url.Action("Vizyonumuz","Home")">Hakkımızda</a></li>
+                <li><a href="@Url.Action("Vizyonumuz","Home")">Kurumsal</a></li>
+                <li class="active">Misyonumuz</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <div class="row padding-tb50">
+        <div class="col-md-9 col-sm-8 col-md-push-3 col-sm-push-4 padding-b20-media">
+            <!--start body content-->
+            <div class="padding-b25">
+                <div class="piko-title4 widget nom">
+                    <h3><span class="line"></span><span class="text">Misyonumuz</span></h3>
+                </div>
+            <p>Misynumuz Hakkında Paragraf</p>
+            </div>
+            <!--carousel-->
+            <div id="shop-slide" class="owl-carousel owl-nav-show-hover margin-t20 zoomiN popup-gallery"
+                 data-autoplay="ture"
+                 data-margin="30"
+                 data-smartspeed="250"
+                 data-loop="true"
+                 data-autoheight="false"
+                 data-nav="true"
+                 data-dots="true"
+                 data-items="1">
+                <div class="item">
+                    <a href="/Content/pikocon_html/images/history1.jpg" title="How is the description on that one">
+                        <img src="/Content/pikocon_html/images/history1.jpg" alt="constructin" class="img-responsive">
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="/Content/pikocon_html/images/history2.jpg" title="How is the description on that one">
+                        <img src="/Content/pikocon_html/images/history2.jpg" alt="constructin" class="img-responsive">
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="/Content/pikocon_html/images/history3.jpg" title="How is the description on that one">
+                        <img src="/Content/pikocon_html/images/history3.jpg" alt="constructin" class="img-responsive">
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="/Content/pikocon_html/images/history4.jpg" title="How is the description on that one">
+                        <img src="/Content/pikocon_html/images/history4.jpg" alt="constructin" class="img-responsive">
+                    </a>
+                </div>
+            </div> <!--end carousel-->
+        </div> <!--end col 9-->
+        <!--right side menu-->
+        <div class="col-md-3 col-sm-4 col-md-pull-9 col-sm-pull-8">
+            @Html.Partial("HakkimizdaMenu")
+        </div> <!--end side menu-->
+    </div> <!-- end of row-->
+</section>
+
