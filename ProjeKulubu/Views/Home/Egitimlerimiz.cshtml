@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Egitimlerimiz";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -18,4 +17,64 @@
     </div>
 </section>
 
+<section class="padding-tb50">
+    <div class="container">
+        <div class="col-md-4 col-sm-12">
+            <div class="piko-title1">
+                <h4><span class="text">Eğitimlerimiz</span></h4>
+                <p>Eğitimlerimiz Paragraf 1</p>
+            </div><!-- end title 1 -->
+            <p>Eğitimlerimiz Hakkında Bilgilendirme Metni</p>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="charts-pie">
+                <h3>BAŞLIK 2</h3>
+                <p>BAŞLIK 2 PARAGRAF</p>
+                <div id="canvas-holder">
+                    <canvas id="chart-area" width="300" height="300" style="width:300px;height:300px" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="charts-pie-body">
+                <div class="content">
+                    <p><a href="@Url.Action("AldigimizEgitimler","Home")"><i class="fa fa-square"></i>Aldığımız Eğitimler </a></p>
+                    <p><a href="@Url.Action("VerdigimizEgitimler","Home")"><i class="fa fa-square"></i>Verdiğimiz Eğitimler </a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/plugin/jquery/jquery.min.js"><\/script>')</script>
+<script src="/Content/pikocon_html/assets/plugin/plugin.min.js"></script>
+<!-- /////IMPORTANT all plugin here/// -->
+<script src="/Content/pikocon_html/assets/plugin/charts/chart.min.js"></script>
+<script src="/Content/pikocon_html/assets/js/plugins.js"></script>
+
+<script>
+            //pie chart data
+            var pieData = [
+                {
+                    value: 2,
+                    color: "#a6c3a0",
+                    highlight: "#98b792",
+                    label: "Aldığımız Eğitim Sayısı"
+                },
+                {
+                    value: 3,
+                    color: "#40C5E6",
+                    highlight: "#8eb187",
+                    label: "Verdiğimiz Eğitim Sayısı"
+
+                }
+
+            ];
+
+            window.onload = function () {
+                var ctx = document.getElementById("chart-area").getContext("2d");
+                window.myPie = new Chart(ctx).Pie(pieData);
+            };
+
+</script>
