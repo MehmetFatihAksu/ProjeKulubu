@@ -109,5 +109,9 @@ namespace ProjeKulubu.Controllers
         //Genel Not 
 
         //Model Admin Paneldeki sayfaların ihtiyaçlarına göre eksiksiz şekilde oluşturulacak..
+
+
+
+        //Bu bir Github takım çalışması denemesidir...
     }
 }
