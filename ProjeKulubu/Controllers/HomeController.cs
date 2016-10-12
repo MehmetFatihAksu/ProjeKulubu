@@ -59,6 +59,10 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
+        public ActionResult Deneme()
+        {
+            return View();
+        }
 
     }
 }
