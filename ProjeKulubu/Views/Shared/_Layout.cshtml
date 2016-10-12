@@ -6,13 +6,13 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" />Content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" /Content="IE=edge">
     <title>Ana Sayfa | Proje Kulubu Turkiye</title>
     <!--put your company information-->
-    <meta name="keywords" />Content="HTML5 Template" />
-    <meta name="description" />Content="Pikocon — A Construction Company Template" />
-    <meta name="author" />Content="themepiko.com" />
-    <meta name="viewport" />Content="width=device-width, initial-scale=1">
+    <meta name="keywords" /Content="HTML5 Template" />
+    <meta name="description" /Content="Pikocon — A Construction Company Template" />
+    <meta name="author" /Content="themepiko.com" />
+    <meta name="viewport" /Content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="shortcut icon" href="/favicon.ico" type="/Content/pikocon_html/images/icon/marker.png">
     <link rel="shortcut icon" href="apple-touch-icon.png">
@@ -166,19 +166,18 @@
                                 </ul>
                             </li> <!--end sub menu style-->
                             <li class="piko-menu-type-classic">
-                                <a class="piko-link dropdown-toggle">Projelerimiz</a>
+                                <a href="@Url.Action("Projeler","Home")" class="piko-link dropdown-toggle">Projelerimiz</a>
                                 <ul class="dropdown-menu piko-menu-type-classic piko-pull-left">
-                                    <li><a href="portfolio1.html">Tamamlanan Projeler</a></li>
-                                    <li><a href="portfolio2.html">Satışı Devam Eden Projeler</a></li>
-                                    <li><a href="project-details1.html">Yakındaki Projeler</a></li>
+                                    <li><a href="@Url.Action("Projeler","Home")">Tamamlanan Projeler</a></li>
+                                    <li><a href="@Url.Action("Projeler","Home")">Satışı Devam Eden Projeler</a></li>
+                                    <li><a href="@Url.Action("Projeler","Home")">Yakındaki Projeler</a></li>
                                 </ul>
                             </li>
                             <li class="piko-menu-type-classic">
                                 <a href="service.html" class="piko-link dropdown-toggle">Ekibimiz</a>
                                 <ul class="dropdown-menu piko-menu-type-classic piko-pull-left">
                                     <li><a href="consulting.html">Satış Ofislerimiz</a></li>
-                                    <li><a href="architecture.html">Ekip Üyelerimiz</a></li>
-                                    <li><a href="construction.html">Çalışanlarımız</a></li>
+                                    <li><a href="@Url.Action("Ekip","Home")">Ekip Üyelerimiz</a></li>
                                 </ul>
                             </li>
                             <li class="piko-menu-type-classic">
@@ -331,7 +330,7 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="//Content/assets/plugin/jquery/jquery.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="/Content/assets/plugin/jquery/jquery.min.js"><\/script>')</script>
     <script src="/Content/pikocon_html/assets/plugin/owl-carousel/owl.carousel.min.js"></script>
     <script src="/Content/pikocon_html/assets/plugin/plugin.min.js"></script>
     <!-- ////IMPORTANT carousel owl//// -->

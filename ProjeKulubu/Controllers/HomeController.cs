@@ -59,14 +59,23 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
-        public ActionResult Deneme()
+        public ActionResult Egitim()
         {
             return View();
         }
-        public ActionResult Deneme2()
+        public ActionResult Projeler()
         {
             return View();
         }
+        public ActionResult SingleProject()
+        {
+            return View();
+        }
+        public ActionResult Ekip()
+        {
+            return View();
+        }
+
 
     }
 }

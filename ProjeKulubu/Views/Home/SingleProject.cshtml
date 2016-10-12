@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "SingleProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="project-view margin-t150">
+    <div class="img-pattern">
+        <img src='/Content/pikocon_html/images/bg/bg3.jpg' alt='' class='top-img' />
+        <div class="social-share">
+            <div class="container">
+                <ul class='hidden-xs'>
+                    <li class="btn-bounce-top"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li class="btn-bounce-top"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li class="btn-bounce-top"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li class="btn-bounce-top"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li class="btn-bounce-top"><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                </ul>
+                <ol class="breadcrumb">
+                    <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
+                    <li><a href="@Url.Action("Projeler","Home")">Projelerimiz</a></li>
+                    <li class="active">Proje İsmi</li>
+                </ol>
+            </div>
+        </div>
+    </div>  <!--end project top image-->
+    <!--project details-->
+    <div class="container">
+        <div class="row padding-t20">
+            <div class="col-sm-8 col-md-8 col-md-push-4 col-sm-push-4">
+                <div id="shop-slide" class="owl-carousel owl-nav-show-hover margin-t20 fadeiN popup-gallery"
+                     data-autoplay="ture"
+                     data-margin="30"
+                     data-smartspeed="250"
+                     data-loop="true"
+                     data-autoheight="false"
+                     data-nav="true"
+                     data-dots="true"
+                     data-items="1">
+                    <div class="item">
+                        <a href="/Content/pikocon_html/images/portfolio/project-details/img-1.jpg" title="How is the description on that one">
+                            <img src="/Content/pikocon_html/images/portfolio/project-details/img-1.jpg" alt="constructin" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="/Content/pikocon_html/images/portfolio/project-details/img-2.jpg" title="How is the description on that one">
+                            <img src="/Content/pikocon_html/images/portfolio/project-details/img-2.jpg" alt="constructin" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="/Content/pikocon_html/images/portfolio/project-details/img-3.jpg" title="How is the description on that one">
+                            <img src="/Content/pikocon_html/images/portfolio/project-details/img-3.jpg" alt="constructin" class="img-responsive">
+                        </a>
+                    </div>
+                </div> <!--end carousel-->
+                <!--start text-->
+                <div class="padding-tb25">
+                    <div class="piko-title4 widget">
+                        <h3><span class="line"></span><span class="text">PROJE BİLGİ BAŞLIK</span></h3>
+                    </div>
+                    <p class="padding-t10">Let's proceed on the assumption that you're taking out an individual construction loan. Such loans, which can be tough to get without a previous banking history because of the lack of collateral (a finished home), have special guidelines and include monitoring to ensure timely completion so your repayment can begin promptly.</p>
+                    <P>construction loans are typically short term with a <mark>maximum of 10 year</mark>, and have variable rates that move up and down with the prime rate.</P>
+                </div> <!--end text -->
+                <!--title-->
+                <div class="piko-title4 widget">
+                    <h3><span class="line"></span><span class="text">PROJE BİLGİ BAŞLIK 2</span></h3>
+                </div> <!-- title -->
+                <p class="padding-t10">Let's proceed on the assumption that you're taking out an individual construction loan. Such loans, which can be tough to get without a previous banking history because of the lack of collateral (a finished home),</p>
+                <!-- end paragraph title -->
+                <!--text block-->
+                <div class="row padding-b100">
+                    <div class="col-md-6">
+                        <ul class="arrow">
+                            <li>Optimize materials, construction method and cost. </li>
+                            <li>Replace  buttresses for improved working space.</li>
+                            <li>Limit subsequent structural movement.</li>
+                            <li>Each Anchor is tested well above design load</li>
+                            <li>Only relatively small-diameter holes need to be drilled.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="arrow">
+                            <li>Optimize materials, construction method and cost. </li>
+                            <li>Replace  buttresses for improved working space.</li>
+                            <li>Limit subsequent structural movement.</li>
+                            <li>Each Anchor is tested well above design load</li>
+                            <li>Only relatively small-diameter holes need to be drilled.</li>
+                        </ul>
+                    </div>
+                </div> <!--text block-->
+            </div>
+            <!--project details-->
+            <div class="col-sm-4 col-md-4 col-md-pull-8 col-sm-pull-8">
+                <div class="info left-side">
+                    <h3>PROJE İSMİ</h3>
+                    KONUMU, TURKEY
+                    <ul class="margin-t15">
+                        <li><i class="fa fa-home"></i>Tip: Site</li>
+                        <li><i class="fa fa-info-circle"></i>Durum: Tamamlandı</li>
+                        <li><i class="fa fa-building-o"></i>Metin: </li>
+                        <li><i class="fa fa-usd"></i> Fiyat Aralığı: $5000-$7000</li>
+                        <li><i class="fa fa-calendar"></i>Yıl: 2015</li>
+                    </ul>
+                    <h4>Proje Ekibi</h4>
+                    <ul class="margin-t15">
+                        <li><img src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="construciton"><span>İsim Soyisim</span> - Mevki</li>
+                        <li><img src="/Content/pikocon_html/images/logo/team02.jpg" alt="construciton"><span>İsim Soyisim</span> - Mevki</li>
+                        <li><img src="/Content/pikocon_html/images/logo/team03.jpg" alt="construciton"><span>İsim Soyisim</span> - Mevki</li>
+                        <li><img src="/Content/pikocon_html/images/logo/textimonial.jpg" alt="construciton"><span>İsim Soyisim</span> - Mevki</li>
+                    </ul>
+                </div>
+                <div class="info2 hidden-sm left-side">
+                    <address>
+                        <h4>Proje Kulübü , Ltd Sti</h4>
+                        <ul>
+                            <li><i class="fa fa-map-marker"></i>Adres, Turkey</li>
+                            <li><i class="fa fa-phone"></i>(541) 557 36 10</li>
+                            <li><i class="fa fa-envelope-o"></i>info@projekulubu.com</li>
+                            <li><i class="fa fa-clock-o"></i>Pazartesi-Cuma : 09:00 -- 18:00</li>
+                        </ul>
+                    </address>
+                </div>
+            </div> <!--end project details-->
+        </div><!-- end of row -->
+    </div> <!--end container-->
+</section>
+
