@@ -711,12 +711,15 @@
     <Content Include="Content\pikocon_html\images\satis5.jpg" />
     <Content Include="Content\pikocon_html\images\satis6.jpg" />
     <Content Include="Content\pikocon_html\images\shop\1%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\1.jpg" />
     <Content Include="Content\pikocon_html\images\shop\1.png" />
     <Content Include="Content\pikocon_html\images\shop\10%402x.png" />
     <Content Include="Content\pikocon_html\images\shop\10.png" />
     <Content Include="Content\pikocon_html\images\shop\2%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\2.jpg" />
     <Content Include="Content\pikocon_html\images\shop\2.png" />
     <Content Include="Content\pikocon_html\images\shop\3%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\3.jpg" />
     <Content Include="Content\pikocon_html\images\shop\3.png" />
     <Content Include="Content\pikocon_html\images\shop\4%402x.png" />
     <Content Include="Content\pikocon_html\images\shop\4.png" />
@@ -953,7 +956,6 @@
     <Content Include="Views\Home\Referanslar.cshtml" />
     <Content Include="Views\Home\SikSorular.cshtml" />
     <Content Include="Views\Home\VerdigimizEgitimler.cshtml" />
-    <Content Include="Views\Home\Vizyonumuz.cshtml" />
     <Content Include="Views\AdminShared\_Layout.cshtml" />
     <Content Include="Views\Admin\Comment.cshtml" />
     <Content Include="Views\Admin\Content.cshtml" />
@@ -970,6 +972,9 @@
     <Content Include="Views\Home\Egitimlerimiz.cshtml" />
     <Content Include="Views\Home\AldigimizEgitimler.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Vizyonumuz.cshtml" />
+    <Content Include="Views\Home\SatisOfis.cshtml" />
+    <Content Include="Views\Home\SatisOfisSingle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
