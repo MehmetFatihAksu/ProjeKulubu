@@ -15,6 +15,10 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
+        public ActionResult Vizyonumuz()
+        {
+            return View();
+        }
         public ActionResult Misyonumuz()
         {
             return View();
@@ -69,9 +73,17 @@ namespace ProjeKulubu.Controllers
         }
         public ActionResult SingleProject()
         {
-            return View();
+            return View(); 
         }
         public ActionResult Ekip()
+        {
+            return View();
+        }
+        public ActionResult SatisOfis()
+        {
+            return View();
+        }
+        public ActionResult SatisOfisSingle()
         {
             return View();
         }
