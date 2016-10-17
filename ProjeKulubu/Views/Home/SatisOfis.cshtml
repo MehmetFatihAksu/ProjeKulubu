@@ -1,0 +1,183 @@
+﻿@@ -0,0 +1,183 @@
+﻿@{
+    ViewBag.Title = "SatisOfis";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner margin-t150">
+    <div class="container page-banner">
+        <div class="col-sm-6 col-md-6">
+            <h1>SATIŞ OFİSLERİMİZ</h1>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <ol class="breadcrumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
+                <li class="active">Satış Ofislerimiz</li>
+            </ol>
+        </div>
+    </div>
+</section> <!--end page sub titile-->
+<!--start shop gird project-->
+<section class="padding-t50">
+    <div class="container">
+        <div class="row">
+            <div class="piko-divider1 three"></div>
+            <!--product-->
+            <!--product-->
+            <!--product 3 col-->
+            <div class="row">
+                <div class="piko-divider1 three"></div>
+                <!--product-->
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="thumbnail piko-thub shop">
+                        <div class="quick-view">
+                            <a href="#" data-toggle="modal" data-target=".shop-quick"><i class="fa fa-gg"></i> İncele</a>
+                        </div>
+                        <img src="/Content/pikocon_html/images/shop/3.jpg" alt="product construction" class="piko-thub-img " style="max-height:250px;">
+                        <div class="caption">
+                            <div class="piko-title5">
+                                <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><a href="shop-single.html"><strong>OFİS İSMİ</strong></a></span></h3>
+                                <a href="#">Kısa Metin</a>
+                            </div>
+                            <div class="cart-button">
+                                @*<strong>$100 <del>$130</del></strong>*@
+                                <strong>Konum , TURKEY</strong>
+                                <a href="@Url.Action("SatisOfisSingle","Home")" class="btn-xs3 pull-right"> Ofis Detay</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>  <!--end product-->
+                <!--product-->
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="thumbnail piko-thub shop">
+                        <!--ribbin-->
+                        <div class="ribbon-corner">
+                            <span>Yeni</span>
+                        </div> <!--end of ribbin-->
+                        <div class="quick-view">
+                            <a href="#" data-toggle="modal" data-target=".shop-quick"><i class="fa fa-gg"></i> İncele</a>
+                        </div>
+                        <img src="/Content/pikocon_html/images/shop/2.jpg" alt="product construction" class="piko-thub-img" style="max-height:250px;">
+                        <div class="caption">
+                            <div class="piko-title5">
+                                <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><a href="shop-single.html"><strong>OFİS İSMİ</strong></a></span></h3>
+                                <a href="#">Kısa Metin</a>
+                            </div>
+                            <div class="cart-button">
+                                <strong>Konum , TURKEY</strong>
+                                <a href="@Url.Action("SatisOfisSingle","Home")" class="btn-xs3 pull-right"> Ofis Detay</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>  <!--end product-->
+                <!--product-->
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="thumbnail piko-thub shop">
+                        <div class="quick-view">
+                            <a href="#" data-toggle="modal" data-target=".shop-quick"><i class="fa fa-gg"></i> İncele</a>
+                        </div>
+                        <img src="/Content/pikocon_html/images/shop/1.jpg" alt="product construction" class="piko-thub-img " style="max-height:250px;">
+                        <div class="caption">
+                            <div class="piko-title5">
+                                <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><a href="shop-single.html"><strong>OFİS İSMİ</strong></a></span></h3>
+                                <a href="#">Kısa Metin</a>
+                            </div>
+                            <div class="cart-button">
+                                <strong>Konum , Turkey</strong>
+                                <a href="@Url.Action("SatisOfisSingle","Home")" class="btn-xs3 pull-right"> Ofis Detay</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>  <!--end product-->
+            </div>  <!--end of row-->
+            <!--product 4 iteam-->
+            <!--end 4 tiem row-->
+        </div>  <!--end container-->
+</section>
+<!--pagination-->
+<div class="margin-tb25">
+    <!--start pagination-->
+    <div class="container">
+        <div class="custom-pagi">
+            <ul class="pagination">
+                <li class="disabled">
+                    <a href="#">Önceki</a>
+                </li>
+                <li class="active">
+                    <a href="#">1</a>
+                </li>
+                <li>
+                    <a href="#">2</a>
+                </li>
+                <li>
+                    <a href="#">3</a>
+                </li>
+                <li>
+                    <a href="#">4</a>
+                </li>
+                <li>
+                    <a href="#">Sonraki</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--end of pagination-->
+</div>
+<!--quick product view-->
+<div class="modal fade shop-quick" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+            <div class="row full">
+                <!--slider galary-->
+                <div class="col-lg-6 col-md-6 col-sm-12 ">
+                    <div class="owl-carousel owl-nav-show-hover fadeiN"
+                         data-autoplay="ture"
+                         data-margin="30"
+                         data-smartspeed="250"
+                         data-loop="true"
+                         data-autoheight="false"
+                         data-nav="true"
+                         data-dots="true"
+                         data-items="1">
+                        <img src="/Content/pikocon_html/images/shop/1.jpg" alt="constructin" class="img-responsive">
+                        <img src="/Content/pikocon_html/images/shop/2.jpg" alt="constructin" class="img-responsive">
+                        <img src="/Content/pikocon_html/images/shop/3.jpg" alt="constructin" class="img-responsive">
+                    </div>
+                </div> <!--end slider galary-->
+                <!--start product details-->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <!--title-->
+                    <div class="piko-title5">
+                        <h3 class="nmb"><span class="line2"></span><span class="line"></span><span class="text"><strong>OFİS İSMİ</strong></span></h3>
+                        <a href="#">Kısa Metin</a>
+                    </div>  <!--end title-->
+                    <!--product description-->
+                    <ul class="fa-ul">
+                        <li><i class="fa-li fa fa-long-arrow-right"></i>Liste Metin 1</li>
+                        <li><i class="fa-li fa fa-long-arrow-right"></i>Liste Metin 2</li>
+                        <li><i class="fa-li fa fa-long-arrow-right"></i>Liste Metin 3</li>
+                        <li><i class="fa-li fa fa-long-arrow-right"></i>Liste Metin 4</li>
+                    </ul>  <!--product description-->
+                    <div class="piko-divider1 three"></div>
+                    <div class="piko-divider1 three"></div>
+                    <a href="@Url.Action("SatisOfisSingle","Home")" class="btn-s3"><span><i class="fa fa-eye"></i></span> Ofis Detay</a>
+                    <div class="piko-divider1 three"></div>
+                    <!--social icon-->
+                    <div class="social-model">
+                        <ul>
+                            <li class="btn-bounce-top"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li class="btn-bounce-top"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li class="btn-bounce-top"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li class="btn-bounce-top"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li class="btn-bounce-top"><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                        </ul>
+                    </div>  <!--end social icon-->
+                </div> <!--start product details-->
+            </div> <!--end of row-->
+        </div> <!--end of model-->
+    </div> <!--end of model lg-->
+</div> <!--end of quick view-->
+\ No newline at end of file

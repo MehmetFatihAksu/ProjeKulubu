@@ -4,12 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace ProjeKulubu.Controllers
 {
     public class AdminController : Controller
     {
         //
         // GET: /Admin/
+
+
 
         public ActionResult Index()
         {
@@ -109,5 +112,8 @@ namespace ProjeKulubu.Controllers
         //Genel Not 
 
         //Model Admin Paneldeki sayfaların ihtiyaçlarına göre eksiksiz şekilde oluşturulacak..
+
+
+            
     }
 }

@@ -90,6 +90,8 @@
       <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Threading.Tasks, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
       <Private>True</Private>
@@ -171,6 +173,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AdminContent\AdminLogin\css\style.css" />
+    <Content Include="Content\AdminContent\AdminLogin\js\index.js" />
     <Content Include="Content\AdminContent\assets\css\animate.min.css" />
     <Content Include="Content\AdminContent\assets\css\bootstrap.min.css" />
     <Content Include="Content\AdminContent\assets\css\demo.css" />
@@ -217,6 +221,8 @@
     <Content Include="Content\pikocon_html\assets\css\style.min.css" />
     <Content Include="Content\pikocon_html\assets\fonts\Roboto-Regular-webfont.svg" />
     <Content Include="Content\pikocon_html\assets\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Content\pikocon_html\images\banner1.jpg" />
+    <Content Include="Content\pikocon_html\images\bg_header.jpg" />
     <Content Include="Content\pikocon_html\assets\images\slider\bg1%402x.jpg" />
     <Content Include="Content\pikocon_html\assets\images\slider\bg1-100x50%402x.jpg" />
     <Content Include="Content\pikocon_html\assets\images\slider\bg1-100x50.jpg" />
@@ -379,7 +385,6 @@
     <Content Include="Content\pikocon_html\images\atilla.jpg" />
     <Content Include="Content\pikocon_html\images\banner-question.jpg" />
     <Content Include="Content\pikocon_html\images\banner-vacant.jpg" />
-    <Content Include="Content\pikocon_html\images\banner1.jpg" />
     <Content Include="Content\pikocon_html\images\banner12.jpg" />
     <Content Include="Content\pikocon_html\images\banner2.jpg" />
     <Content Include="Content\pikocon_html\images\bg\01.png" />
@@ -421,6 +426,7 @@
     <Content Include="Content\pikocon_html\images\bg\white_brick_wall.png" />
     <Content Include="Content\pikocon_html\images\bg\white_brick_wall_%402X.png" />
     <Content Include="Content\pikocon_html\images\bg\wrapper_bg.png" />
+    <Content Include="Content\pikocon_html\images\bg_hero.jpg" />
     <Content Include="Content\pikocon_html\images\blog01.jpg" />
     <Content Include="Content\pikocon_html\images\blog02.jpg" />
     <Content Include="Content\pikocon_html\images\blog03.jpg" />
@@ -521,6 +527,7 @@
     <Content Include="Content\pikocon_html\images\career-banner.jpg" />
     <Content Include="Content\pikocon_html\images\choose03.jpg" />
     <Content Include="Content\pikocon_html\images\choose05.jpg" />
+    <Content Include="Content\pikocon_html\images\header1.png" />
     <Content Include="Content\pikocon_html\images\history1.jpg" />
     <Content Include="Content\pikocon_html\images\history2.jpg" />
     <Content Include="Content\pikocon_html\images\history3.jpg" />
@@ -534,6 +541,7 @@
     <Content Include="Content\pikocon_html\images\icon\icon-building%402x-150x150.png" />
     <Content Include="Content\pikocon_html\images\icon\icon-building%402x-180x180.png" />
     <Content Include="Content\pikocon_html\images\icon\icon-building%402x.png" />
+    <Content Include="Content\pikocon_html\images\icon\icon-building.jpg" />
     <Content Include="Content\pikocon_html\images\icon\icon-building.png" />
     <Content Include="Content\pikocon_html\images\icon\icon-machine%402x-150x150.png" />
     <Content Include="Content\pikocon_html\images\icon\icon-machine%402x-180x170.png" />
@@ -711,12 +719,15 @@
     <Content Include="Content\pikocon_html\images\satis5.jpg" />
     <Content Include="Content\pikocon_html\images\satis6.jpg" />
     <Content Include="Content\pikocon_html\images\shop\1%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\1.jpg" />
     <Content Include="Content\pikocon_html\images\shop\1.png" />
     <Content Include="Content\pikocon_html\images\shop\10%402x.png" />
     <Content Include="Content\pikocon_html\images\shop\10.png" />
     <Content Include="Content\pikocon_html\images\shop\2%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\2.jpg" />
     <Content Include="Content\pikocon_html\images\shop\2.png" />
     <Content Include="Content\pikocon_html\images\shop\3%402x.png" />
+    <Content Include="Content\pikocon_html\images\shop\3.jpg" />
     <Content Include="Content\pikocon_html\images\shop\3.png" />
     <Content Include="Content\pikocon_html\images\shop\4%402x.png" />
     <Content Include="Content\pikocon_html\images\shop\4.png" />
@@ -933,7 +944,11 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="video\1.mp4" />
+    <Content Include="video\2.mp4" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -954,7 +969,6 @@
     <Content Include="Views\Home\Referanslar.cshtml" />
     <Content Include="Views\Home\SikSorular.cshtml" />
     <Content Include="Views\Home\VerdigimizEgitimler.cshtml" />
-    <Content Include="Views\Home\Vizyonumuz.cshtml" />
     <Content Include="Views\AdminShared\_Layout.cshtml" />
     <Content Include="Views\Admin\Comment.cshtml" />
     <Content Include="Views\Admin\Content.cshtml" />
@@ -971,6 +985,9 @@
     <Content Include="Views\Home\Egitimlerimiz.cshtml" />
     <Content Include="Views\Home\AldigimizEgitimler.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Vizyonumuz.cshtml" />
+    <Content Include="Views\Home\SatisOfis.cshtml" />
+    <Content Include="Views\Home\SatisOfisSingle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -980,7 +997,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
