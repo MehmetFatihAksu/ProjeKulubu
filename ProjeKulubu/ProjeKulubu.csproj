@@ -917,6 +917,7 @@
     <Content Include="Content\AdminContent\__MACOSX\assets\js\._.DS_Store" />
     <Content Include="Content\AdminContent\__MACOSX\assets\sass\._.DS_Store" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Content\AdminContent\assets\js\document.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
