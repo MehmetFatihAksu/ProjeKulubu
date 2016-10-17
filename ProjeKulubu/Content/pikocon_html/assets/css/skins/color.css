@@ -98,7 +98,7 @@ li.event:nth-child(even)::before,
 .f-line, .f-line2,
 .recent-project .title hr,
 .recent-project figure .project-link{
-    background-color: #45bf55;
+    background-color: #284357;
 }
 /*========================================
     Font Color scream
@@ -145,7 +145,7 @@ footer .link.white a:hover,
 .blog-comment .media .media-body h4 a:hover,
 .page-banner .breadcrumb a:hover,
 .counter3 .one.two i, .counter3 .one.three i, .counter3 .one.two, .counter3 .one.four i, .counter3 .one.four, .counter3 .one{
-    color: #45bf55;
+    color: #253E51;
 }
 /*========================================
     Border Color scream
@@ -179,11 +179,11 @@ footer .link.white a:hover,
 .tp-bullets.preview4 .bullet,
 .tp-bullets.simplebullets .bullet:hover, .tp-bullets.simplebullets .bullet.selected,
 .btn-s5.orange{
-    border-color: #45bf55;
+    border-color: #284357;
 }
 
 .testimonials-03 p:after{
-    border-bottom-color: #45bf55;
+    border-bottom-color: #284357;
 }
 /* ======================================
         Dark Bankground Color(quote)
@@ -194,7 +194,7 @@ footer .link.white a:hover,
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover,
 .btn-xs3 span,
 .btn-s3 span{
-    background-color: #45bf55;
+    background-color: #284357;
 }
 
 /* =================================================
@@ -256,7 +256,7 @@ div.price2,
 ============================== */
 
 .box > .icon-box > .image {
-    box-shadow: 0 0 0 3px #45bf55;
+    box-shadow: 0 0 0 3px #253E51;
 }
 @media (max-width: 991px) {
     .piko-layout-header .piko-navbar .piko-mega-menu.piko-mega-menu-light-mobile > .nav.navbar-nav > li .dropdown-menu > li.piko-active > a,

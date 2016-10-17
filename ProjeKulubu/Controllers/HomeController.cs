@@ -39,7 +39,7 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
-        public ActionResult NelerYapariz()
+        public ActionResult NelerYapariz()//cfdbad
         {
             return View();
         }
