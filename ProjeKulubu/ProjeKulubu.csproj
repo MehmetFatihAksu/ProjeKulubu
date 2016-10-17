@@ -170,6 +170,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>ProjeKulubuModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjeKulubuModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjeKulubuModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjeKulubuModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjeKulubuModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjeKulubuModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjeKulubuModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ProjeKulubuModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -927,7 +948,24 @@
     <Content Include="Content\AdminContent\__MACOSX\assets\img\faces\._.DS_Store" />
     <Content Include="Content\AdminContent\__MACOSX\assets\js\._.DS_Store" />
     <Content Include="Content\AdminContent\__MACOSX\assets\sass\._.DS_Store" />
+    <EntityDeploy Include="Models\ProjeKulubuModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ProjeKulubuModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ProjeKulubuModel.edmx.diagram">
+      <DependentUpon>ProjeKulubuModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Models\ProjeKulubuModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProjeKulubuModel.edmx</DependentUpon>
+      <LastGenOutput>ProjeKulubuModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ProjeKulubuModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProjeKulubuModel.edmx</DependentUpon>
+      <LastGenOutput>ProjeKulubuModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
@@ -987,10 +1025,10 @@
     <Content Include="Views\Home\Vizyonumuz.cshtml" />
     <Content Include="Views\Home\SatisOfis.cshtml" />
     <Content Include="Views\Home\SatisOfisSingle.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

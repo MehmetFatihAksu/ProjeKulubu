@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ProjeKulubu.Models;
 
 
 namespace ProjeKulubu.Controllers
@@ -11,8 +12,8 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Admin/
-        
 
+        db2299D218BEEntities db = new db2299D218BEEntities();
 
         public ActionResult Index()
         {
@@ -113,6 +114,25 @@ namespace ProjeKulubu.Controllers
 
         //Model Admin Paneldeki sayfaların ihtiyaçlarına göre eksiksiz şekilde oluşturulacak..
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(Admin Model)
+        {
+            var kullanici = db.Admin.FirstOrDefault(x => x.UserName == Model.UserName && x.Password == Model.Password);
+            if(kullanici !=null)
+            {
+                Session["UserName"] = kullanici.UserName.ToString();
+                return RedirectToAction("Index", "Admin");
+            }
+            else
+            {
+                ViewBag.Hata = "Hatalı Verişi Girişi";
+                return View();
+            }
+        }
 
             
     }
