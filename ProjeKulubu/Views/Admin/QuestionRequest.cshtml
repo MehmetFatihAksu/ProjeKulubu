@@ -35,35 +35,85 @@
         color: #EB5E28;
         font-size: 20px;
     }
-
-
 </style>
 <h3 style="margin-top: -15px;padding-bottom: 20px;">Sık Sorulan Sorular</h3>
 
-<input type="button" id="SendQuestion" value="Kaydet" />
+<div class="col-lg-6 col-md-6">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Soru Ekleme</h4>
+        </div>
+        <div class="content">
+            <form>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Soru Başlığı</label>
+                            <input type="text" class="form-control border-input" placeholder="Soru İsmini Giriniz">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/Content/pikocon_html/images/sorular.png" style="height:100px;position:relative;left:60px" alt="Alternate Text" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Soru Cevabı</label>
+                            <textarea rows="5" class="form-control border-input" placeholder="Soru Cevabını Giriniz"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-info btn-fill btn-wd">Kaydet</button>
+                </div>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
-<table>
-    <tbody>
-        <tr>
-            <td>
-                <label id="LblQuestion">Soru : </label>
-                <input type="text" id="Question" />
-            </td>
-        </tr>
 
-        <tr>
-            <td>
-                <label id="LblAnswer" style="float: left;margin-top: 20px;">Cevap : </label>
-                <input type="text" id="Answer" />
-            </td>
-        </tr>
+<div class="content">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Mevcut Yayındaki Sorular</h4>
+                    <p class="category">Yayındaki sorularınızın silme ve düzenleme işlemlerini buradan yapabilirsiniz</p>
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-striped">
+                        <thead>
+                        <th>ID</th>
+                        <th>Soru Başlığı</th>
+                        <th>Soru Cevap</th>
+                        <th>Silme</th>
+                        <th>Düzenleme</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Soru 1</td>
+                                <td>Cevap 1</td>
+                                <td><a href="#"><span class="ti-trash"></span></a></td>
+                                <td><a href="#"><span class="ti-pencil-alt"></span></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-    </tbody>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
 
-
-</table>
-
+   
 
 
 

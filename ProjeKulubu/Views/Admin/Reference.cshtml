@@ -4,5 +4,198 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<h2>Referans Yönetimi</h2>
+<h3 style="margin-top: -15px;padding-bottom: 20px;">Referans Yönetimi</h3>
 
+
+<div class="col-lg-12 col-md-6">
+    <div class="card">
+        <div class="content">
+            <form>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Referans İsim</label>
+                            <input type="text" class="form-control border-input" placeholder="Referans İsmini Giriniz">
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Referans Adresi</label>
+                            <input type="text" class="form-control border-input" placeholder="Referans Adresini Giriniz">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div> @*İsim ve Adres Bilgisi*@
+
+<div class="col-lg-12 col-md-6" >
+    
+                <div class="card">
+                    
+        <div class="content">
+            <h4 class="title" style="margin-bottom:10px">Resim Seçimi</h4>
+            <div class="input-group image-preview">
+                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                <span class="input-group-btn">
+                    <!-- image-preview-clear button -->
+                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                        <span class="glyphicon glyphicon-remove"></span> Temizle
+                    </button>
+                    <!-- image-preview-input -->
+                    <div class="btn btn-default image-preview-input">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        <span class="image-preview-input-title">Gözat</span>
+                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" /> <!-- rename it -->
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div> @*Resim Seçim*@
+
+<div class="col-md-12" style="margin-bottom:25px">
+    <button type="submit" style="float:right" class="btn btn-info btn-fill btn-wd">Kaydet</button>
+
+</div>
+
+
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Mevcut Yayındaki Referanslar</h4>
+                        <p class="category">Yayındaki referanslarınızın silme ve düzenleme işlemlerini buradan yapabilirsiniz</p>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-striped">
+                            <thead>
+                            <th>ID</th>
+                            <th>Referans İsmi</th>
+                            <th>Resim</th>
+                            <th>Site Adresi</th>
+                            <th>Silme</th>
+                            <th>Düzenleme</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>İsim</td>
+                                    <td>URL</td>
+                                    <td>www.projekulubuturkiye.com.tr</td>
+                                    <td><a href="#"><span class="ti-trash"></span></a></td>
+                                    <td><a href="#"><span class="ti-pencil-alt"></span></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> @*List*@
+
+
+
+<style type="text/css">
+    .container{
+    margin-top:20px;
+}
+.image-preview-input {
+    position: relative;
+	overflow: hidden;
+	margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+</style> @*Resim Seçin Css'i*@
+
+<script type="text/javascript">
+    $(document).on('click', '#close-preview', function () {
+        $('.image-preview').popover('hide');
+        // Hover befor close the preview
+        $('.image-preview').hover(
+            function () {
+                $('.image-preview').popover('show');
+            },
+             function () {
+                 $('.image-preview').popover('hide');
+             }
+        );
+    });
+
+    $(function () {
+        // Create the close button
+        var closebtn = $('<button/>', {
+            type: "button",
+            text: 'x',
+            id: 'close-preview',
+            style: 'font-size: initial;',
+        });
+        closebtn.attr("class", "close pull-right");
+        // Set the popover default content
+        $('.image-preview').popover({
+            trigger: 'manual',
+            html: true,
+            title: "<strong>Önizleme</strong>" + $(closebtn)[0].outerHTML,
+            content: "Resim Seçilemedi",
+            placement: 'top'
+        });
+        // Clear event
+        $('.image-preview-clear').click(function () {
+            $('.image-preview').attr("data-content", "").popover('hide');
+            $('.image-preview-filename').val("");
+            $('.image-preview-clear').hide();
+            $('.image-preview-input input:file').val("");
+            $(".image-preview-input-title").text("Gözat");
+        });
+        // Create the preview image
+        $(".image-preview-input input:file").change(function () {
+            var img = $('<img/>', {
+                id: 'dynamic',
+                width: 250,
+                height: 200
+            });
+            var file = this.files[0];
+            var reader = new FileReader();
+            // Set preview image into the popover data-content
+            reader.onload = function (e) {
+                $(".image-preview-input-title").text("Değiştir");
+                $(".image-preview-clear").show();
+                $(".image-preview-filename").val(file.name);
+                img.attr('src', e.target.result);
+                $(".image-preview").attr("data-content", $(img)[0].outerHTML).popover("show");
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+</script> @*Resim Seçin JS'i*@
