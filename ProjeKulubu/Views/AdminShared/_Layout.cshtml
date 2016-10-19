@@ -3,204 +3,281 @@
 }
 
 
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/AdminContent/assets/img/apple-icon.png">
-
-    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/AdminContent/assets/img/favicon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Proje Kulübü Türkiye</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--base css styles-->
+    <link href="~/Content/AdminContent/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/AdminContent/assets/font-awesome/css/font-awesome.min.css">
+    <!--page specific css styles-->
+    <!--flaty css styles-->
+    <link href="~/Content/AdminContent/css/flaty.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/AdminContent/css/flaty-responsive.css">
 
-    <link href="~/Content/AdminContent/assets/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Bootstrap core CSS     -->
-    <!-- Animation library for notifications   -->
-    <link href="~/Content/AdminContent/assets/css/animate.min.css" rel="stylesheet" />
 
-    <!--  Paper Dashboard core CSS    -->
-
-    <link href="~/Content/AdminContent/assets/css/paper-dashboard.css" rel="stylesheet" />
-
-
-  
-   
-
-    <!--  Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <link href="~/Content/AdminContent/assets/css/themify-icons.css" rel="stylesheet">
-    @*Script Files*@
-
-  
-    <script src="~/Content/AdminContent/assets/js/jquery-1.10.2.js"></script>
-    <script src="~/Content/AdminContent/assets/js/bootstrap.min.js"></script>
-    <script src="~/Content/AdminContent/assets/js/bootstrap-notify.js"></script>
-    <script src="~/Content/AdminContent/assets/js/bootstrap-checkbox-radio.js"></script>
-    <script src="~/Content/AdminContent/assets/js/document.js"></script>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="sidebar" data-background-color="white" data-active-color="danger">
-            <!--
-                Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-                Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-            -->
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="@Url.Action("Index","Admin")" class="simple-text" style="font-size: 17px;">
-                        Proje Kulübü Türkiye
-                    </a>
-                </div>
-                <ul class="nav">
-                    <li class="active">
-                        <a href="@Url.Action("Index","Admin")">
-                            <i class="ti-panel"></i>
-                            <p>Ana Sayfa</p>
-                            @*SliderMetin Yönetimi
-                                SliderGörsel Yönetimi*@
-                        </a>
-                    </li>
-                    @*<li>
+    <!-- BEGIN Theme Setting -->
+    <div id="theme-setting">
+        <a href="#"><i class="fa fa-gears fa fa-2x"></i></a>
+        <ul>
+            <li>
+                <span>Skin</span>
+                <ul class="colors" data-target="body" data-prefix="skin-">
+                    <li class="active"><a class="blue" href="#"></a></li>
+                    <li><a class="red" href="#"></a></li>
+                    <li><a class="green" href="#"></a></li>
+                    <li><a class="orange" href="#"></a></li>
+                    <li><a class="yellow" href="#"></a></li>
+                    <li><a class="pink" href="#"></a></li>
+                    <li><a class="magenta" href="#"></a></li>
+                    <li><a class="gray" href="#"></a></li>
+                    <li><a class="black" href="#"></a></li>
+                </ul>
+            </li>
+            <li>
+                <span>Navbar</span>
+                <ul class="colors" data-target="#navbar" data-prefix="navbar-">
+                    <li class="active"><a class="blue" href="#"></a></li>
+                    <li><a class="red" href="#"></a></li>
+                    <li><a class="green" href="#"></a></li>
+                    <li><a class="orange" href="#"></a></li>
+                    <li><a class="yellow" href="#"></a></li>
+                    <li><a class="pink" href="#"></a></li>
+                    <li><a class="magenta" href="#"></a></li>
+                    <li><a class="gray" href="#"></a></li>
+                    <li><a class="black" href="#"></a></li>
+                </ul>
+            </li>
+            <li>
+                <span>Sidebar</span>
+                <ul class="colors" data-target="#main-container" data-prefix="sidebar-">
+                    <li class="active"><a class="blue" href="#"></a></li>
+                    <li><a class="red" href="#"></a></li>
+                    <li><a class="green" href="#"></a></li>
+                    <li><a class="orange" href="#"></a></li>
+                    <li><a class="yellow" href="#"></a></li>
+                    <li><a class="pink" href="#"></a></li>
+                    <li><a class="magenta" href="#"></a></li>
+                    <li><a class="gray" href="#"></a></li>
+                    <li><a class="black" href="#"></a></li>
+                </ul>
+            </li>
+            <li>
+                <span></span>
+                <a data-target="navbar" href="#"><i class="fa fa-square-o"></i> Fixed Navbar</a>
+                <a class="hidden-inline-xs" data-target="sidebar" href="#"><i class="fa fa-square-o"></i> Fixed Sidebar</a>
+            </li>
+        </ul>
+    </div>
+    <!-- END Theme Setting -->
+    <!-- BEGIN Navbar -->
+    <div id="navbar" class="navbar">
+        <button type="button" class="navbar-toggle navbar-btn collapsed" data-toggle="collapse" data-target="#sidebar">
+            <span class="fa fa-bars"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <small>
 
-                        <a  onclick="ShowDownMenulist()"/>
-                            
-                            <div class="icon-container" id="HideSettingsDown" style="float: right;margin-top: 6px;margin-right: 30px;">
-                                <span class="ti-angle-double-down" id=""></span>
-                            </div>
+                Proje Kulübü Türkiye
+            </small>
+        </a>
+        <!-- BEGIN Navbar Buttons -->
+        <ul class="nav flaty-nav pull-right">
+            <!-- BEGIN Button Tasks -->
+            <li class="hidden-xs">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <i class="fa fa-tasks"></i>
+                </a>
+                <!-- BEGIN Tasks Dropdown -->
 
-                            <i class="ti-user"></i>
-                            <p>Ekip Yönetimi</p>
-                            <ul id="downmenulist" style="list-style:none; text-align:center;">
-                                <li><a href="#">Ofis Yönetimi</a></li>
-                                <li><a href="#">Ekip Üye Yönetimi</a></li>
-                                <li><a href="#">Çalışan Yönetimi</a></li>
-                            </ul>
-                        </a>
-                    </li>*@
-                    <li>
-                        <a href="@Url.Action("Content","Admin")">
-                            <i class="ti-view-list-alt"></i>
-                            <p>Ofis Yönetimi</p>
-                            @*-Hakkımızda Metni Düzenle
-                                -Vizyon Metni Düzenle
-                                -Misyon Metni Düzenle
-                                -Biz Kimiz ? Metni Düzenle
-                                -Neler Yaparız ? Metni Düzenle*@
+            </li>
+            <!-- END Button Tasks -->
+            <!-- BEGIN Button Notifications -->
+            <li class="hidden-xs">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <i class="fa fa-bell"></i>
+                </a>
+                <!-- BEGIN Notifications Dropdown -->
+            </li>
+            <!-- END Button Notifications -->
+            <!-- BEGIN Button Messages -->
+            <li class="hidden-xs">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <i class="fa fa-envelope"></i>
+                </a>
+                <!-- BEGIN Messages Dropdown -->
+            </li>
+            <!-- END Button Messages -->
+            <!-- BEGIN Button User -->
+            <li class="user-profile">
+                <a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">
+                    <img class="nav-user-photo" src="~/Content/AdminContent/img/demo/avatar/avatar1.jpg" alt="Penny's Photo" />
+                    <span class="hhh" id="user_info">
+                        Penny
+                    </span>
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <!-- BEGIN User Dropdown -->
+                <ul class="dropdown-menu dropdown-navbar" id="user_menu">
 
-                            @*Bu Kısım Müşterinin durumuna göre kaldıracak yada sürdürülecektir.*@
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-cog"></i>
+                            Hesap Ayarları
                         </a>
                     </li>
+
                     <li>
-                        <a href="@Url.Action("Reference", "Admin")">
-                            <i class="ti-text"></i>
-                            <p>Referans Yönetimi</p>
+                        <a href="#">
+                            <i class="fa fa-question"></i>
+                            Yardım
                         </a>
                     </li>
-                    <li>
-                        <a href="@Url.Action("Comment", "Admin")">
-                            <i class="ti-pencil-alt2"></i>
-                            <p>Ekip Yönetimi</p>
+                    <li class="divider visible-xs"></li>
+                    <li class="visible-xs">
+                        <a href="#">
+                            <i class="fa fa-tasks"></i>
+                            Tasks
+                            <span class="badge badge-warning">4</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="@Url.Action("Education", "Admin")">
-                            <i class="ti-alarm-clock"></i>
-                            <p>Eğitim Yönetimi</p>
+                    <li class="visible-xs">
+                        <a href="#">
+                            <i class="fa fa-bell"></i>
+                            Notifications
+                            <span class="badge badge-important">8</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="@Url.Action("Project", "Admin")">
-                            <i class="ti-map"></i>
-                            <p>Proje Yönetimi</p>
-                            @*Tamamlanan Projeler
-                                Satışı Devam Eden Projeler
-                                Yakındaki Projeler*@
+                    <li class="visible-xs">
+                        <a href="#">
+                            <i class="fa fa-envelope"></i>
+                            Messages
+                            <span class="badge badge-success">5</span>
                         </a>
                     </li>
+                    <li class="divider"></li>
                     <li>
-                        <a href="@Url.Action("QuestionRequest", "Admin")">
-                            <i class="ti-bell"></i>
-                            <p>S.S.S Yönetimi</p>
+                        <a href="#">
+                            <i class="fa fa-off"></i>
+                            Çıkış Yap !
                         </a>
                     </li>
                 </ul>
-            </div>
-        </div>
-        <div class="main-panel">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar bar1"></span>
-                            <span class="icon-bar bar2"></span>
-                            <span class="icon-bar bar3"></span>
-                        </button>
-                        <a class="navbar-brand" href="@Url.Action("Index","Admin")">Yönetim Paneli</a>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            @*<li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="ti-panel"></i>
-                                        <p>Stats</p>
-                                    </a>
-                                </li>*@
-                            <li class="dropdown">
-                                <a href="@Url.Action("Settings","Admin")">
-                                    <i class="ti-settings"></i>
-                                    <p>Ayarlar</p>
-
-                                </a>
-                                @*<ul class="dropdown-menu">
-                                        <li><a href="#">Notification 1</a></li>
-                                        <li><a href="#">Notification 2</a></li>
-                                        <li><a href="#">Notification 3</a></li>
-                                        <li><a href="#">Notification 4</a></li>
-                                        <li><a href="#">Another notification</a></li>
-                                    </ul>*@
-                            </li>
-                            <li>
-                                <a href="@Url.Action("LogOut","Admin")">
-                                    <i class="ti-lock"></i>
-                                    <p>Çıkış Yap</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            <div class="content">@RenderBody()</div>
-
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="@Url.Action("Index","Admin")">
-                                    Proje Kulübü Türkiye
-                                </a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("HelpDetail","Admin")">
-                                    Yardım Klavuzu
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="copyright pull-right">
-                        &copy;
-                        2016 , Powered <i class="fa fa-heart heart"></i> by <a href="http://cizgitech.com/"> Çizgi-Tech</a>
-                    </div>
-                </div>
-            </footer>
-        </div>
+                <!-- BEGIN User Dropdown -->
+            </li>
+            <!-- END Button User -->
+        </ul>
+        <!-- END Navbar Buttons -->
     </div>
+    <!-- END Navbar -->
+    <!-- BEGIN Container -->
+    <div class="container" id="main-container">
+        <!-- BEGIN Sidebar -->
+        <div id="sidebar" class="navbar-collapse collapse">
+            <!-- BEGIN Navlist -->
+            <ul class="nav nav-list">
+                <!-- BEGIN Search Form -->
+                <li>
+                    <form target="#" method="GET" class="search-form">
+                        <span class="search-pan">
+                            <button type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <input type="text" name="search" placeholder="Arama Yapınız ..." autocomplete="off" />
+                        </span>
+                    </form>
+                </li>
+                <!-- END Search Form -->
+                <li class="active">
+                    <a href="index.html">
+                        <i class="fa fa-dashboard"></i>
+                        <span>AnaSayfa</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Reference", "Admin")">
+                        <i class="fa fa-text-width"></i>
+                        <span>Referans Yönetimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-desktop"></i>
+                        <span>Proje Yönetimi</span>
+                        <b class="arrow fa fa-angle-right"></b>
+                    </a>
+                    <!-- BEGIN Submenu -->
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("CompletedProjects", "Admin")">Tamamlanan Projeler</a></li>
+                        <li><a href="@Url.Action("OnGoingSaleProjects", "Admin")">Satışı Devam Eden Projeler</a></li>
+                        <li><a href="@Url.Action("SoonProjects", "Admin")">Yakındaki Projeler</a></li>
+                    </ul>
+                    <!-- END Submenu -->
+                </li>
 
+                <li>
+                    <a href="@Url.Action("Office", "Admin")">
+                        <i class="fa fa-list-alt"></i>
+                        <span>Ofis Yönetimi</span>
+                    </a>
+                </li>
+               
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-file-text-o"></i>
+                        <span>Eğitim Yönetimi</span>
+                        <b class="arrow fa fa-angle-right"></b>
+                    </a>
+                    <!-- BEGIN Submenu -->
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("ReceivedEducations", "Admin")">Alınan Eğitimler</a></li>
+                        <li><a href="@Url.Action("GrandtedEducations", "Admin")">Verilen Eğitimler</a></li>
+                    </ul>
+                    <!-- END Submenu -->
+                </li>
+                <li>
+                    <a href="@Url.Action("QuestionRequest", "Admin")">
+                        <i class="fa fa-calendar"></i>
+                        <span>S.S.S Yönetimi</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- END Navlist -->
+            <!-- BEGIN Sidebar Collapse Button -->
+            <div id="sidebar-collapse" class="visible-lg">
+                <i class="fa fa-angle-double-left"></i>
+            </div>
+            <!-- END Sidebar Collapse Button -->
+        </div>
+        <!-- END Sidebar -->
+        <!-- BEGIN Content -->
+        <div id="main-content">@RenderBody()</div>
+        <!-- END Content -->
+    </div>
+    <!-- END Container -->
+    <!--basic scripts-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/jquery/jquery-2.1.4.min.js"><\/script>')</script>
+    <script src="~/Content/AdminContent/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/AdminContent/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/AdminContent/assets/jquery-cookie/jquery.cookie.js"></script>
+    <!--page specific plugin scripts-->
+    <script src="~/Content/AdminContent/assets/flot/jquery.flot.js"></script>
+    <script src="~/Content/AdminContent/assets/flot/jquery.flot.resize.js"></script>
+    <script src="~/Content/AdminContent/assets/flot/jquery.flot.pie.js"></script>
+    <script src="~/Content/AdminContent/assets/flot/jquery.flot.stack.js"></script>
+    <script src="~/Content/AdminContent/assets/flot/jquery.flot.crosshair.js"></script>
+    <script src="~/Content/AdminContent/assets/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="~/Content/AdminContent/assets/sparkline/jquery.sparkline.min.js"></script>
+    <!--flaty scripts-->
+    <script src="~/Content/AdminContent/js/flaty.js"></script>
+    <script src="~/Content/AdminContent/js/flaty-demo-codes.js"></script>
 </body>
-
 </html>
