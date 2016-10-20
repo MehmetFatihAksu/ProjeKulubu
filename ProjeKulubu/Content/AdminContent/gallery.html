@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Typography - FLATY Admin</title>
+        <title>Gallery - FLATY Admin</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,7 +14,8 @@
         <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
 
         <!--page specific css styles-->
-        <link rel="stylesheet" href="assets/code-prettify/code-prettify.css">
+        <link rel="stylesheet" href="assets/prettyPhoto/css/prettyPhoto.css">
+        <link rel="stylesheet" type="text/css" href="assets/chosen-bootstrap/chosen.min.css" />
 
         <!--flaty css styles-->
         <link rel="stylesheet" href="css/flaty.css">
@@ -395,7 +396,7 @@
                         </a>
                     </li>
 
-                    <li class="active">
+                    <li>
                         <a href="typography.html">
                             <i class="fa fa-text-width"></i>
                             <span>Typography</span>
@@ -487,7 +488,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="active">
                         <a href="gallery.html">
                             <i class="fa fa-picture-o"></i>
                             <span>Gallery</span>
@@ -564,8 +565,8 @@
                 <!-- BEGIN Page Title -->
                 <div class="page-title">
                     <div>
-                        <h1><i class="fa fa-file-o"></i> Typography</h1>
-                        <h4>headings, texts, lists and more</h4>
+                        <h1><i class="fa fa-file-o"></i> Gallery</h1>
+                        <h4>Responsive photo gallery using colorbox</h4>
                     </div>
                 </div>
                 <!-- END Page Title -->
@@ -578,381 +579,209 @@
                             <a href="index.html">Home</a>
                             <span class="divider"><i class="fa fa-angle-right"></i></span>
                         </li>
-                        <li class="active">Typography</li>
+                        <li class="active">Gallery</li>
                     </ul>
                 </div>
                 <!-- END Breadcrumb -->
 
                 <!-- BEGIN Main Content -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="box">
                             <div class="box-title">
-                                <h3><i class="fa fa-text-height"></i>Heading</h3>
+                                <h3><i class="fa fa-picture-o"></i> Gallery</h3>
                                 <div class="box-tool">
                                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
                                 </div>
                             </div>
                             <div class="box-content">
-                                <h1>H1. Heading 1</h1>
-                                <h2>H2. Heading 2</h2>
-                                <h3>H3. Heading 3</h3>
-                                <h4>H4. Heading 4</h4>
-                                <h5>H5. Heading 5</h5>
-                                <h6>H6. Heading 6</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box box-green">
-                            <div class="box-title">
-                                <h3><i class="fa fa-font"></i>Paragraph</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="box box-magenta">
-                            <div class="box-title">
-                                <h3><i class="fa fa-quote-left"></i>Blockquotes</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <blockquote>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Duis mollis, est non commodo luctus, nisi erat porttitor ligula integer posuere erat a ante.</p>
-                                </blockquote>
-                                <blockquote>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                    <small>Someone famous <cite title="Source Title">Source Title</cite></small>
-                                </blockquote>
                                 <div class="clearfix">
-                                    <blockquote class="pull-right">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                        <small>Someone famous <cite title="Source Title">Source Title</cite></small>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box box-yellow">
-                            <div class="box-title">
-                                <h3><i class="fa fa-pencil"></i>Paragraph Styling & Lead</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <p>Lorem ipsum <strong>dolor sit amet</strong>, consectetur <em>adipisicing elit</em>, <span class="pink">sed do eiusmod</span> <small>tempor incididunt</small>ut labore et dolore magna aliqua. <span class="red">Ut enim ad minim veniam</span>, quis <span class="orange">nostrud exercitation</span> ullamco laboris <span class="lime">nisi ut aliquip</span> ex ea commodo <abbr title="attribute example">attribute</abbr> consequat. <span class="green">Duis aute irure</span> dolor in reprehenderit in voluptate <span class="yellow">velit esse cillum</span> dolore eu fugiat nulla pariatur. <span class="gray">Excepteur sint</span> occaecat cupidatat non proident, <span class="blue">sunt in culpa</span> qui officia <span class="magenta">deserunt mollit anim id</span> est laborum.</p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="box box-pink">
-                            <div class="box-title">
-                                <h3><i class="fa fa-list"></i>Lists</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <h4>Unordered</h4>
-                                        <ul>
-                                            <li>List Item 1</li>
-                                            <li>List Item 2</li>
-                                            <li>List Item 3</li>
-                                            <li>List Item 4</li>
-                                        </ul>
+                                    <div class="pull-left">
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                                <select name="cat" class="chosen gallery-cat col-xs-12" data-placeholder="Filter category">
+                                                    <option value=""> </option>
+                                                    <option value="opt-1">Category-1</option>
+                                                    <option value="opt-2">Category-2</option>
+                                                    <option value="opt-3">Category-3</option>
+                                                    <option value="opt-4">Category-4</option>
+                                                    <option value="opt-5">Category-5</option>
+                                                </select>
+                                            </div>
+                                            <div class="btn-group">
+                                                <select name="sort" class="chosen gallery-sort" data-placeholder="Sort by" data-nosearch="true">
+                                                    <option value=""> </option>
+                                                    <option value="sort-1">Date</option>
+                                                    <option value="sort-2">Author</option>
+                                                    <option value="sort-3">Category</option>
+                                                </select>
+                                            </div>
+                                            <div class="btn-group">
+                                                <a href="#" class="btn btn-success show-tooltip" title="Apply filter"><i class="fa fa-check"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <h4>Ordered</h4>
-                                        <ol>
-                                            <li>List Item 1</li>
-                                            <li>List Item 2</li>
-                                            <li>List Item 3</li>
-                                            <li>List Item 4</li>
-                                        </ol>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h4>Unstyled</h4>
-                                        <ul class="list-unstyled">
-                                            <li>List Item 1</li>
-                                            <li>List Item 2</li>
-                                            <li>List Item 3</li>
-                                            <li>List Item 4</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h4>Inline</h4>
-                                        <ul class="list-inline">
-                                            <li>List Item 1</li>
-                                            <li>List Item 2</li>
-                                            <li>List Item 3</li>
-                                            <li>List Item 4</li>
-                                        </ul>
+                                    <div class="pull-right">
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                                <a href="#" class="btn btn-primary show-tooltip" title="Upload new images"><i class="fa fa-cloud-upload"></i> Upload</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="box box-gray">
-                            <div class="box-title">
-                                <h3><i class="fa fa-list"></i>Advance Lists</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <h4>Styling</h4>
-                                        <ul>
-                                            <li><strong>List item in strong tag</strong></li>
-                                            <li><small>List item in small tag</small></li>
-                                            <li>List item with longer text that may show in 2 line</li>
-                                            <li><i>List item in italic tag</i></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h4>Colorfull</h4>
-                                        <ol>
-                                            <li>Normal list item</li>
-                                            <li class="text-success">List Item in .text-success class</li>
-                                            <li class="text-error">List Item in .text-error class</li>
-                                            <li class="text-warning">List Item in .text-warning class</li>
-                                            <li class="text-info">List Item in .text-info class</li>
-                                            <li class="muted">List Item in .muted class</li>
-                                        </ol>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h4>Custom Icon</h4>
-                                        <ul class="iconic">
-                                            <li><i class="fa fa-star yellow"></i>List Item 1</li>
-                                            <li><i class="fa fa-check green"></i>List Item 2</li>
-                                            <li><i class="fa fa-bell orange"></i>List Item 3</li>
-                                            <li>List Item 4, without icon</li>
-                                            <li><i class="fa fa-times red"></i>List Item 5</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h4>Inline & Custom Icon</h4>
-                                        <ul class="iconic list-inline">
-                                            <li><i class="fa fa-star yellow"></i>Item 1</li>
-                                            <li><i class="fa fa-check green"></i>Item 2</li>
-                                            <li><i class="fa fa-bell orange"></i>Item 3</li>
-                                            <li>Item 4, without icon</li>
-                                            <li><i class="fa fa-times red"></i>Item 5</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="box box-red">
-                            <div class="box-title">
-                                <h3><i class="fa fa-th-list"></i>Description</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h4>Default Description</h4>
-                                        <dl>
-                                            <dt>Description lists</dt>
-                                            <dd>A description list is perfect for defining terms.</dd>
-                                            <dt>Euismod</dt>
-                                            <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                                            <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                                            <dt>Malesuada porta</dt>
-                                            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                                        </dl>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h4>Horizontal Description</h4>
-                                        <dl class="dl-horizontal">
-                                            <dt>Description lists</dt>
-                                            <dd>A description list is perfect for defining terms.</dd>
-                                            <dt>Euismod</dt>
-                                            <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                                            <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                                            <dt>Malesuada porta</dt>
-                                            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                                            <dt>Felis euismod semper eget lacinia</dt>
-                                            <dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
-                                        </dl>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="box box-magenta">
-                            <div class="box-title">
-                                <h3><i class="fa fa-font"></i>Abbreviations</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <p>For expanded text on long hover of an abbreviation, include the <code>title</code> attribute.</p>
-                                <div>
-                                    <pre>An abbreviation of the word attribute is <abbr title="attribute">attr</abbr>.</pre>
-                                </div>
-                                <p>Add <code>.initialism</code> to an abbreviation for a slightly smaller font-size.</p>
-                                <div>
-                                    <pre><abbr title="HyperText Markup Language" class="initialism">HTML</abbr> is the best thing since sliced bread.</pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box box-black">
-                            <div class="box-title">
-                                <h3><i class="fa fa-building-o"></i>Address</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <address>
-                                    <strong>Your, Inc.</strong><br>
-                                    795 Folsom Ave, Suite 600<br>
-                                    San Francisco, CA 94107<br>
-                                    <abbr title="Phone">P:</abbr> (123) 456-7890
-                                </address>
-
-                                <address>
-                                    <strong>Full Name</strong><br>
-                                    <a href="mailto:#">first.last@example.com</a>
-                                </address>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="box box-orange">
-                            <div class="box-title">
-                                <h3><i class="fa fa-file-text-o"></i>Pre</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box">
-                            <div class="box-title">
-                                <h3><i class="fa fa-file"></i>Code</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <p><code>Inline Code</code></p>
-                                <p>Embeded <code>Inline Code</code> in <code>&lt;p&gt;</code> tag</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="box box-magenta">
-                            <div class="box-title">
-                                <h3><i class="fa fa-code"></i>Syntax Highlighter</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-<pre class="prettyprint linenums">
-&lt;div class="modal hide fade"&gt;
-  &lt;div class="modal-header"&gt;
-    &lt;button type="button" class="close" &gt;&amp;times;&lt;/button&gt;
-    &lt;h3&gt;Modal header&lt;/h3&gt;
-  &lt;/div&gt;
-  &lt;div class="modal-body"&gt;
-    &lt;p&gt;One fine body&hellip;&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class="modal-footer"&gt;
-    &lt;a href="#" class="btn"&gt;Close&lt;/a&gt;
-    &lt;a href="#" class="btn btn-primary"&gt;Save changes&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</pre>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box box-pink">
-                            <div class="box-title">
-                                <h3><i class="fa fa-font"></i>Well Block</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <div class="well">
-                                    <h4>Default Well</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                </div>
-                                <div class="well well-lg">
-                                    <h4>Large Well</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                </div>
-                                <div class="well well-sm">
-                                    <h4>Small Well</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                <hr>
+                                <ul class="gallery">
+                                    <li>
+                                        <a href="img/demo/gallery/1.jpg" rel="prettyPhoto" title="Description of image">
+                                            <div>
+                                                <img src="img/demo/gallery/1_thumb.jpg" alt="" />
+                                                <i></i>
+                                            </div>
+                                        </a>
+                                        <div class="gallery-tools">
+                                            <a href="#"><i class="fa fa-link"></i></a>
+                                            <a href="#"><i class="fa fa-paperclip"></i></a>
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="img/demo/gallery/2.jpg" rel="prettyPhoto" title="Description of image">
+                                            <div>
+                                                <img src="img/demo/gallery/2_thumb.jpg" alt="" />
+                                                <i></i>
+                                            </div>
+                                        </a>
+                                        <div class="gallery-tools">
+                                            <a href="#"><i class="fa fa-link"></i></a>
+                                            <a href="#"><i class="fa fa-paperclip"></i></a>
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="img/demo/gallery/3.jpg" rel="prettyPhoto" title="Description of image">
+                                            <div>
+                                                <img src="img/demo/gallery/3_thumb.jpg" alt="" />
+                                                <i></i>
+                                            </div>
+                                        </a>
+                                        <div class="gallery-tools">
+                                            <a href="#"><i class="fa fa-link"></i></a>
+                                            <a href="#"><i class="fa fa-paperclip"></i></a>
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="img/demo/gallery/4.jpg" rel="prettyPhoto" title="Description of image">
+                                            <div>
+                                                <img src="img/demo/gallery/4_thumb.jpg" alt="" />
+                                                <i></i>
+                                            </div>
+                                        </a>
+                                        <div class="gallery-tools">
+                                            <a href="#"><i class="fa fa-link"></i></a>
+                                            <a href="#"><i class="fa fa-paperclip"></i></a>
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="img/demo/gallery/5.jpg" rel="prettyPhoto" title="Description of image">
+                                            <div>
+                                                <img src="img/demo/gallery/5_thumb.jpg" alt="" />
+                                                <i></i>
+                                            </div>
+                                        </a>
+                                        <div class="gallery-tools">
+                                            <a href="#"><i class="fa fa-link"></i></a>
+                                            <a href="#"><i class="fa fa-paperclip"></i></a>
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="img/demo/gallery/6.jpg" rel="prettyPhoto" title="Description of image">
+                                            <div>
+                                                <img src="img/demo/gallery/6_thumb.jpg" alt="" />
+                                                <i></i>
+                                            </div>
+                                        </a>
+                                        <div class="gallery-tools">
+                                            <a href="#"><i class="fa fa-link"></i></a>
+                                            <a href="#"><i class="fa fa-paperclip"></i></a>
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="img/demo/gallery/7.jpg" rel="prettyPhoto" title="Description of image">
+                                            <div>
+                                                <img src="img/demo/gallery/7_thumb.jpg" alt="" />
+                                                <i></i>
+                                            </div>
+                                        </a>
+                                        <div class="gallery-tools">
+                                            <a href="#"><i class="fa fa-link"></i></a>
+                                            <a href="#"><i class="fa fa-paperclip"></i></a>
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="img/demo/gallery/8.jpg" rel="prettyPhoto" title="Description of image">
+                                            <div>
+                                                <img src="img/demo/gallery/8_thumb.jpg" alt="" />
+                                                <i></i>
+                                            </div>
+                                        </a>
+                                        <div class="gallery-tools">
+                                            <a href="#"><i class="fa fa-link"></i></a>
+                                            <a href="#"><i class="fa fa-paperclip"></i></a>
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="img/demo/gallery/9.jpg" rel="prettyPhoto" title="Description of image">
+                                            <div>
+                                                <img src="img/demo/gallery/9_thumb.jpg" alt="" />
+                                                <i></i>
+                                            </div>
+                                        </a>
+                                        <div class="gallery-tools">
+                                            <a href="#"><i class="fa fa-link"></i></a>
+                                            <a href="#"><i class="fa fa-paperclip"></i></a>
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="img/demo/gallery/10.jpg" rel="prettyPhoto" title="Description of image">
+                                            <div>
+                                                <img src="img/demo/gallery/10_thumb.jpg" alt="" />
+                                                <i></i>
+                                            </div>
+                                        </a>
+                                        <div class="gallery-tools">
+                                            <a href="#"><i class="fa fa-link"></i></a>
+                                            <a href="#"><i class="fa fa-paperclip"></i></a>
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-trash-o"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="text-center">
+                                    <ul class="pagination pagination-bullet">
+                                        <li class="active"><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                        <li><a href="#"></a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -970,6 +799,13 @@
         </div>
         <!-- END Container -->
 
+
+
+
+
+
+
+
         <!--basic scripts-->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="assets/jquery/jquery-2.1.4.min.js"><\/script>')</script>
@@ -978,7 +814,8 @@
         <script src="assets/jquery-cookie/jquery.cookie.js"></script>
 
         <!--page specific plugin scripts-->
-        <script src="assets/code-prettify/code-prettify.js"></script>
+        <script src="assets/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+        <script src="assets/chosen-bootstrap/chosen.jquery.min.js"></script>
 
         <!--flaty scripts-->
         <script src="js/flaty.js"></script>

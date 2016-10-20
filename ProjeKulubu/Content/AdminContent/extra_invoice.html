@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Typography - FLATY Admin</title>
+        <title>Invoice - FLATY Admin</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,7 +14,6 @@
         <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
 
         <!--page specific css styles-->
-        <link rel="stylesheet" href="assets/code-prettify/code-prettify.css">
 
         <!--flaty css styles-->
         <link rel="stylesheet" href="css/flaty.css">
@@ -395,7 +394,7 @@
                         </a>
                     </li>
 
-                    <li class="active">
+                    <li>
                         <a href="typography.html">
                             <i class="fa fa-text-width"></i>
                             <span>Typography</span>
@@ -501,7 +500,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    <li class="active">
                         <a href="#" class="dropdown-toggle">
                             <i class="fa fa-file-text-o"></i>
                             <span>Sample Pages</span>
@@ -519,7 +518,7 @@
                                 </ul>
                             </li>
                             <li><a href="extra_profile.html">User Profile</a></li>
-                            <li><a href="extra_invoice.html">Invoice</a></li>
+                            <li class="active"><a href="extra_invoice.html">Invoice</a></li>
                             <li><a href="extra_search.html">Search Results</a></li>
                         </ul>
                         <!-- END Submenu -->
@@ -564,8 +563,8 @@
                 <!-- BEGIN Page Title -->
                 <div class="page-title">
                     <div>
-                        <h1><i class="fa fa-file-o"></i> Typography</h1>
-                        <h4>headings, texts, lists and more</h4>
+                        <h1><i class="fa fa-file-o"></i> Invoice</h1>
+                        <h4>Customer invoice template</h4>
                     </div>
                 </div>
                 <!-- END Page Title -->
@@ -578,381 +577,117 @@
                             <a href="index.html">Home</a>
                             <span class="divider"><i class="fa fa-angle-right"></i></span>
                         </li>
-                        <li class="active">Typography</li>
+                        <li class="active">Invoice</li>
                     </ul>
                 </div>
                 <!-- END Breadcrumb -->
 
                 <!-- BEGIN Main Content -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="box">
-                            <div class="box-title">
-                                <h3><i class="fa fa-text-height"></i>Heading</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
                             <div class="box-content">
-                                <h1>H1. Heading 1</h1>
-                                <h2>H2. Heading 2</h2>
-                                <h3>H3. Heading 3</h3>
-                                <h4>H4. Heading 4</h4>
-                                <h5>H5. Heading 5</h5>
-                                <h6>H6. Heading 6</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box box-green">
-                            <div class="box-title">
-                                <h3><i class="fa fa-font"></i>Paragraph</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                <div class="invoice">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h2>Company Name</h2>
+                                        </div>
+                                        <div class="col-md-6 invoice-info">
+                                            <p class="font-size-17"><strong>Invoice</strong> # 7628-16</p>
+                                            <p>31 July 2013</p>
+                                        </div>
+                                    </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="box box-magenta">
-                            <div class="box-title">
-                                <h3><i class="fa fa-quote-left"></i>Blockquotes</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <blockquote>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Duis mollis, est non commodo luctus, nisi erat porttitor ligula integer posuere erat a ante.</p>
-                                </blockquote>
-                                <blockquote>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                    <small>Someone famous <cite title="Source Title">Source Title</cite></small>
-                                </blockquote>
-                                <div class="clearfix">
-                                    <blockquote class="pull-right">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                        <small>Someone famous <cite title="Source Title">Source Title</cite></small>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box box-yellow">
-                            <div class="box-title">
-                                <h3><i class="fa fa-pencil"></i>Paragraph Styling & Lead</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <p>Lorem ipsum <strong>dolor sit amet</strong>, consectetur <em>adipisicing elit</em>, <span class="pink">sed do eiusmod</span> <small>tempor incididunt</small>ut labore et dolore magna aliqua. <span class="red">Ut enim ad minim veniam</span>, quis <span class="orange">nostrud exercitation</span> ullamco laboris <span class="lime">nisi ut aliquip</span> ex ea commodo <abbr title="attribute example">attribute</abbr> consequat. <span class="green">Duis aute irure</span> dolor in reprehenderit in voluptate <span class="yellow">velit esse cillum</span> dolore eu fugiat nulla pariatur. <span class="gray">Excepteur sint</span> occaecat cupidatat non proident, <span class="blue">sunt in culpa</span> qui officia <span class="magenta">deserunt mollit anim id</span> est laborum.</p>
+                                    <hr class="margin-0" />
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                    <div class="row">
+                                        <div class="col-md-6 company-info">
+                                            <h4>Your Company Name</h4>
+                                            <p>Third and second street 16,<br/>7853 New Road, LA, USA</p>
+                                            <p><i class="fa fa-phone"></i> +1 (0) 123 456 7</p>
+                                            <p><i class="fa fa-print"></i> +1 (0) 123 456 8</p>
+                                            <p><i class="fa fa-globe"></i> www.yourdomain.com</p>
+                                            <p><i class="fa fa-envelope"></i> sale@yourdomain.com</p>
+                                        </div>
+                                        <div class="col-md-6 company-info">
+                                            <h4>Your Client Company Name</h4>
+                                            <p>First and second street 16,<br/>7853 New Road, LA, USA</p>
+                                            <p><i class="fa fa-phone"></i> +1 (0) 123 456 7</p>
+                                            <p><i class="fa fa-print"></i> +1 (0) 123 456 8</p>
+                                            <p><i class="fa fa-globe"></i> www.clientdomain.com</p>
+                                            <p><i class="fa fa-envelope"></i> info@clientdomain.com</p>
+                                        </div>
+                                    </div>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="box box-pink">
-                            <div class="box-title">
-                                <h3><i class="fa fa-list"></i>Lists</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <h4>Unordered</h4>
-                                        <ul>
-                                            <li>List Item 1</li>
-                                            <li>List Item 2</li>
-                                            <li>List Item 3</li>
-                                            <li>List Item 4</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h4>Ordered</h4>
-                                        <ol>
-                                            <li>List Item 1</li>
-                                            <li>List Item 2</li>
-                                            <li>List Item 3</li>
-                                            <li>List Item 4</li>
-                                        </ol>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h4>Unstyled</h4>
-                                        <ul class="list-unstyled">
-                                            <li>List Item 1</li>
-                                            <li>List Item 2</li>
-                                            <li>List Item 3</li>
-                                            <li>List Item 4</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h4>Inline</h4>
-                                        <ul class="list-inline">
-                                            <li>List Item 1</li>
-                                            <li>List Item 2</li>
-                                            <li>List Item 3</li>
-                                            <li>List Item 4</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                    <br/><br/>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="box box-gray">
-                            <div class="box-title">
-                                <h3><i class="fa fa-list"></i>Advance Lists</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <h4>Styling</h4>
-                                        <ul>
-                                            <li><strong>List item in strong tag</strong></li>
-                                            <li><small>List item in small tag</small></li>
-                                            <li>List item with longer text that may show in 2 line</li>
-                                            <li><i>List item in italic tag</i></li>
-                                        </ul>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="center">#</th>
+                                                    <th>Product</th>
+                                                    <th class="hidden-sm">Description</th>
+                                                    <th class="hidden-480">Discount</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="center">1</td>
+                                                    <td>
+                                                        <a href="http://themeforest.net/item/flaty-premium-responsive-admin-template/5247864">FLATY</a>
+                                                    </td>
+                                                    <td class="hidden-sm">Premium Responsive Admin Template</td>
+                                                    <td>---</td>
+                                                    <td>$16</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="center">2</td>
+                                                    <td>
+                                                        <a href="#">Chloe</a>
+                                                    </td>
+                                                    <td class="hidden-sm">One Page Responsive Template</td>
+                                                    <td> 5% </td>
+                                                    <td>$34</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="center">4</td>
+                                                    <td>Design</td>
+                                                    <td class="hidden-sm">Theme customization</td>
+                                                    <td>50%</td>
+                                                    <td>$250</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="center">3</td>
+                                                    <td>Hosting</td>
+                                                    <td class="hidden-sm">1 year basic hosting</td>
+                                                    <td>10%</td>
+                                                    <td>$60</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="col-md-3">
-                                        <h4>Colorfull</h4>
-                                        <ol>
-                                            <li>Normal list item</li>
-                                            <li class="text-success">List Item in .text-success class</li>
-                                            <li class="text-error">List Item in .text-error class</li>
-                                            <li class="text-warning">List Item in .text-warning class</li>
-                                            <li class="text-info">List Item in .text-info class</li>
-                                            <li class="muted">List Item in .muted class</li>
-                                        </ol>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h4>Custom Icon</h4>
-                                        <ul class="iconic">
-                                            <li><i class="fa fa-star yellow"></i>List Item 1</li>
-                                            <li><i class="fa fa-check green"></i>List Item 2</li>
-                                            <li><i class="fa fa-bell orange"></i>List Item 3</li>
-                                            <li>List Item 4, without icon</li>
-                                            <li><i class="fa fa-times red"></i>List Item 5</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h4>Inline & Custom Icon</h4>
-                                        <ul class="iconic list-inline">
-                                            <li><i class="fa fa-star yellow"></i>Item 1</li>
-                                            <li><i class="fa fa-check green"></i>Item 2</li>
-                                            <li><i class="fa fa-bell orange"></i>Item 3</li>
-                                            <li>Item 4, without icon</li>
-                                            <li><i class="fa fa-times red"></i>Item 5</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="box box-red">
-                            <div class="box-title">
-                                <h3><i class="fa fa-th-list"></i>Description</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h4>Default Description</h4>
-                                        <dl>
-                                            <dt>Description lists</dt>
-                                            <dd>A description list is perfect for defining terms.</dd>
-                                            <dt>Euismod</dt>
-                                            <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                                            <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                                            <dt>Malesuada porta</dt>
-                                            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                                        </dl>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p>Some extra information</p>
+                                            <ul>
+                                                <li>Maybe it's need list style</li>
+                                                <li>In several list item</li>
+                                                <li>In several list item</li>
+                                                <li>In several list item</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6 invoice-amount">
+                                            <p><strong>Subtotal:</strong> <span>$360</span></p>
+                                            <p><strong>Tax (10%):</strong> <span>$36</span></p>
+                                            <p><strong>Shipping:</strong> <span>$0</span></p>
+                                            <p><strong>Total:</strong> <span class="green font-size-17"><strong>$396</strong></span></p>
+                                            <p><br/><a class="btn btn-success btn-xlarge" href="#">Start Payment Process</a></p>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <h4>Horizontal Description</h4>
-                                        <dl class="dl-horizontal">
-                                            <dt>Description lists</dt>
-                                            <dd>A description list is perfect for defining terms.</dd>
-                                            <dt>Euismod</dt>
-                                            <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                                            <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                                            <dt>Malesuada porta</dt>
-                                            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                                            <dt>Felis euismod semper eget lacinia</dt>
-                                            <dd>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
-                                        </dl>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="box box-magenta">
-                            <div class="box-title">
-                                <h3><i class="fa fa-font"></i>Abbreviations</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <p>For expanded text on long hover of an abbreviation, include the <code>title</code> attribute.</p>
-                                <div>
-                                    <pre>An abbreviation of the word attribute is <abbr title="attribute">attr</abbr>.</pre>
-                                </div>
-                                <p>Add <code>.initialism</code> to an abbreviation for a slightly smaller font-size.</p>
-                                <div>
-                                    <pre><abbr title="HyperText Markup Language" class="initialism">HTML</abbr> is the best thing since sliced bread.</pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box box-black">
-                            <div class="box-title">
-                                <h3><i class="fa fa-building-o"></i>Address</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <address>
-                                    <strong>Your, Inc.</strong><br>
-                                    795 Folsom Ave, Suite 600<br>
-                                    San Francisco, CA 94107<br>
-                                    <abbr title="Phone">P:</abbr> (123) 456-7890
-                                </address>
-
-                                <address>
-                                    <strong>Full Name</strong><br>
-                                    <a href="mailto:#">first.last@example.com</a>
-                                </address>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="box box-orange">
-                            <div class="box-title">
-                                <h3><i class="fa fa-file-text-o"></i>Pre</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box">
-                            <div class="box-title">
-                                <h3><i class="fa fa-file"></i>Code</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <p><code>Inline Code</code></p>
-                                <p>Embeded <code>Inline Code</code> in <code>&lt;p&gt;</code> tag</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="box box-magenta">
-                            <div class="box-title">
-                                <h3><i class="fa fa-code"></i>Syntax Highlighter</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-<pre class="prettyprint linenums">
-&lt;div class="modal hide fade"&gt;
-  &lt;div class="modal-header"&gt;
-    &lt;button type="button" class="close" &gt;&amp;times;&lt;/button&gt;
-    &lt;h3&gt;Modal header&lt;/h3&gt;
-  &lt;/div&gt;
-  &lt;div class="modal-body"&gt;
-    &lt;p&gt;One fine body&hellip;&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class="modal-footer"&gt;
-    &lt;a href="#" class="btn"&gt;Close&lt;/a&gt;
-    &lt;a href="#" class="btn btn-primary"&gt;Save changes&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</pre>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box box-pink">
-                            <div class="box-title">
-                                <h3><i class="fa fa-font"></i>Well Block</h3>
-                                <div class="box-tool">
-                                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <div class="box-content">
-                                <div class="well">
-                                    <h4>Default Well</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                </div>
-                                <div class="well well-lg">
-                                    <h4>Large Well</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                </div>
-                                <div class="well well-sm">
-                                    <h4>Small Well</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                 </div>
                             </div>
                         </div>
@@ -970,6 +705,7 @@
         </div>
         <!-- END Container -->
 
+
         <!--basic scripts-->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="assets/jquery/jquery-2.1.4.min.js"><\/script>')</script>
@@ -978,7 +714,7 @@
         <script src="assets/jquery-cookie/jquery.cookie.js"></script>
 
         <!--page specific plugin scripts-->
-        <script src="assets/code-prettify/code-prettify.js"></script>
+
 
         <!--flaty scripts-->
         <script src="js/flaty.js"></script>

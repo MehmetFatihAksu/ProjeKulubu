@@ -134,6 +134,20 @@ namespace ProjeKulubu.Controllers
             }
         }
 
+        public ActionResult BitmisProjeler()
+        {
+            return View();
+        }
+        public ActionResult DevamEdenProjeler()
+        {
+            return View();
+
+        }
+        public ActionResult YakindakiProjeler()
+        {
+            return View();
+        }
+
             
     }
 }
