@@ -15,105 +15,101 @@ namespace ProjeKulubu.Controllers
 
         db2299D218BEEntities db = new db2299D218BEEntities();
 
+        #region Projeler
+        public ActionResult CompletedProjects()
+        {
+            return View();
+        }
+
+        public ActionResult OnGoingSaleProjects()
+        {
+            return View();
+        }
+
+        public ActionResult SoonProjects()
+        {
+            return View();
+        }
+        
+        #endregion
+
+        #region AnaSayfa
         public ActionResult Index()
         {
             return View();
         }
-        //Index sayfası direkt olarak slider yönetimi sayfasına yönlendirilebilir..Bu Opsiyonlu olarak gerçekleştirilecek...
+        
+        #endregion
 
+        #region S.S.S
         public ActionResult QuestionRequest()
         {
             return View();
-        }
+        } 
+        #endregion
 
-        //Sadece kendine ait tek bir alan olacak..
+        #region Ofis
+        public ActionResult Office()
+        {
+            return View();
+        } 
+        #endregion
 
-        public ActionResult Team()
+        #region Eğitim
+        public ActionResult ReceivedEducations()
         {
             return View();
         }
 
-        //Ekip arkadaşlarımız 
-        //Çalışanlarımız 
-        //Satış Ofislerimiz 
-
-
-        //şeklinde listelenecek...
-
-        public ActionResult Project()
+        public ActionResult GrandtedEducations()
         {
             return View();
         }
 
-        //Tamamlanan Projeler 
-        // Satışı Devam Eden Projeler
-        //Yakındaki Projeler
-
-        //şeklinde listelenecek....
-
-        public ActionResult Content()
-        {
-            return View();
-        }
-
-        //İçerik yönetim kısmı müşterinin istekleri doğrultusunda şekillendirilecek...
-        //Biz Kimiz ? 
-        //Hakkımızda 
-        //Müşteri Memnuniyeti 
+        #endregion
 
 
-        public ActionResult Comment()
-        {
-            return View();
-        }
-        //Yorum yönetimi tek sayfa halinde olacak... Ve sadece müşteri yorumları eklenip kaldırılacak..
-
-
-
-        public ActionResult Education()
-        {
-            return View();
-        }
-
-        //Aldığımız eğitimler 
-        //Verdiğimiz eğitimler 
-        //şeklinde listelenecek....
+        #region Referans
 
         public ActionResult Reference()
         {
             return View();
         }
 
-        //Referans yönetimi 
+        //Referans yönetimi  
+        #endregion
 
-        //Referans adı ve referans firmasının logosu şeklinde listelenecek...
 
-        //View Henüz Eklenmedi...
+        #region Yardim
         public ActionResult HelpDetail()
         {
             return View();
-        }
+        } 
+        #endregion
 
-        //Help Detail için ayrıca bir dökümantasyon hazırlanacak...
-        //View Henüz Eklenmedi...
+        #region CikisYap
         public ActionResult LogOut()
         {
             return View();
-        }
+        } 
+        #endregion
 
-        //LogOut güvenli çıkış şeklinde programlanacak...
-        //View Henüz Eklenmedi...
+        #region Ayarlar
         public ActionResult Settings()
         {
             return View();
         }
 
-        //Duruma göre eklenip kaldırılabilir... (Karar Aşamasında)
+        #endregion
 
-        //Genel Not 
+        #region Takvim
+        public ActionResult Takvim()
+        {
+            return View();
+        }
+        #endregion
 
-        //Model Admin Paneldeki sayfaların ihtiyaçlarına göre eksiksiz şekilde oluşturulacak..
-
+        #region Login
         public ActionResult Login()
         {
             return View();
@@ -133,21 +129,8 @@ namespace ProjeKulubu.Controllers
                 return View();
             }
         }
+        #endregion
 
-        public ActionResult BitmisProjeler()
-        {
-            return View();
-        }
-        public ActionResult DevamEdenProjeler()
-        {
-            return View();
 
-        }
-        public ActionResult YakindakiProjeler()
-        {
-            return View();
-        }
-
-            
     }
 }

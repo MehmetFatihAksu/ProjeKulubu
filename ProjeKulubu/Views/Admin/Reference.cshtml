@@ -1,201 +1,152 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Reference";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<h3 style="margin-top: -15px;padding-bottom: 20px;">Referans Yönetimi</h3>
 
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 
-<div class="col-lg-12 col-md-6">
-    <div class="card">
-        <div class="content">
-            <form>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Referans İsim</label>
-                            <input type="text" class="form-control border-input" placeholder="Referans İsmini Giriniz">
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Referans Adresi</label>
-                            <input type="text" class="form-control border-input" placeholder="Referans Adresini Giriniz">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="clearfix"></div>
-            </form>
-        </div>
+<div class="page-title">
+    <div>
+        <h1><i class="fa fa-star"></i> Referanslar</h1>
+        <h4>Bu kısımda mevcut referanslarınızı düzenleyebilir veya referans ekleyebilirsiniz</h4>
     </div>
-</div> @*İsim ve Adres Bilgisi*@
-
-<div class="col-lg-12 col-md-6" >
-    
-                <div class="card">
-                    
-        <div class="content">
-            <h4 class="title" style="margin-bottom:10px">Resim Seçimi</h4>
-            <div class="input-group image-preview">
-                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
-                <span class="input-group-btn">
-                    <!-- image-preview-clear button -->
-                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-                        <span class="glyphicon glyphicon-remove"></span> Temizle
-                    </button>
-                    <!-- image-preview-input -->
-                    <div class="btn btn-default image-preview-input">
-                        <span class="glyphicon glyphicon-folder-open"></span>
-                        <span class="image-preview-input-title">Gözat</span>
-                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" /> <!-- rename it -->
-                    </div>
-                </span>
-            </div>
-        </div>
-    </div>
-</div> @*Resim Seçim*@
-
-<div class="col-md-12" style="margin-bottom:25px">
-    <button type="submit" style="float:right" class="btn btn-info btn-fill btn-wd">Kaydet</button>
-
 </div>
 
+<div id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li class="active">Referans Yönetimi</li>
+    </ul>
+</div> 
 
-
-
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title">Mevcut Yayındaki Referanslar</h4>
-                        <p class="category">Yayındaki referanslarınızın silme ve düzenleme işlemlerini buradan yapabilirsiniz</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-title">
+                <h3><i class="fa fa-star-half-full"></i> Referans Ekleme Formu</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form action="#" class="form-horizontal" id="validation-form" method="post">
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label" for="username">Referans Başlığı:</label>
+                        <div class="col-sm-6 col-lg-4 controls">
+                            <input type="text" name="username" id="username" class="form-control" data-rule-required="true" data-rule-minlength="3" />
+                        </div>
                     </div>
-                    <div class="content table-responsive table-full-width">
-                        <table class="table table-striped">
-                            <thead>
-                            <th>ID</th>
-                            <th>Referans İsmi</th>
-                            <th>Resim</th>
-                            <th>Site Adresi</th>
-                            <th>Silme</th>
-                            <th>Düzenleme</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>İsim</td>
-                                    <td>URL</td>
-                                    <td>www.projekulubuturkiye.com.tr</td>
-                                    <td><a href="#"><span class="ti-trash"></span></a></td>
-                                    <td><a href="#"><span class="ti-pencil-alt"></span></a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
+                    <div class="form-group">
+                        <label for="urlfield" class="col-sm-3 col-lg-2 control-label">URL:</label>
+                        <div class="col-sm-6 col-lg-4 controls">
+                            <input type="text" class="form-control" placeholder="Site Adresini Girin" name="urlfield" id="urlfield" data-rule-url="true" data-rule-required="true">
+                        </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label">Resim Yükleme:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileupload-new">Resim Seç</span>
+                                        <span class="fileupload-exists">Değiştir</span>
+                                        <input type="file" class="file-input" />
+                                    </span>
+                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
+                                </div>
+                            </div>
+                            @*<span class="label label-important">NOTE!</span>
+                            <span>Attached image img-thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only</span>*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <input type="submit" class="btn btn-primary" value="Kaydet">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> @*Referans Ekleme*@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-black">
+            <div class="box-title">
+                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Referanslar</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="btn-toolbar pull-right">
+                    <div class="btn-group">
+                        <a class="btn btn-circle show-tooltip" title="Yeni" href="#"><i class="fa fa-plus"></i></a>
+                        <a class="btn btn-circle show-tooltip" title="Düzenle" href="#"><i class="fa fa-edit"></i></a>
+                        <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-circle show-tooltip" title="Yenile" href="#"><i class="fa fa-repeat"></i></a>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="table-responsive">
+                    <table class="table table-advance">
+                        <thead>
+                            <tr>
+                                <th style="width:18px"><input type="checkbox" /></th>
+                                <th>ID</th>
+                                <th>Referans Başlığı</th>
+                                <th>Referans Adresi</th>
+                                <th>Referans Resim URL</th>
+                                <th>Silme</th>
+                                <th>Düzenleme</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-flag-blue">
+                                <td><input type="checkbox" /></td>
+                                <td>1</td>
+                                <td>Soru</td>
+                                <td>Cevap</td>
+                                <td>www.deneme.com</td>
+                                <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="#"><i class="fa fa-edit"></i></a></td>
+                                <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a></td>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <ul class="pagination">
+                        <li><a href="#">← Önceki</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">Sonraki → </a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-</div> @*List*@
+</div> @*Referans Tablosu*@
 
+<footer>
+    <p>2015 © Cizgi Tech Admin Yönetimi.</p>
+</footer>
 
+<a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
 
-<style type="text/css">
-    .container{
-    margin-top:20px;
-}
-.image-preview-input {
-    position: relative;
-	overflow: hidden;
-	margin: 0px;    
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;    
-}
-.image-preview-input input[type=file] {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 0;
-	padding: 0;
-	font-size: 20px;
-	cursor: pointer;
-	opacity: 0;
-	filter: alpha(opacity=0);
-}
-.image-preview-input-title {
-    margin-left:2px;
-}
-</style> @*Resim Seçin Css'i*@
-
-<script type="text/javascript">
-    $(document).on('click', '#close-preview', function () {
-        $('.image-preview').popover('hide');
-        // Hover befor close the preview
-        $('.image-preview').hover(
-            function () {
-                $('.image-preview').popover('show');
-            },
-             function () {
-                 $('.image-preview').popover('hide');
-             }
-        );
-    });
-
-    $(function () {
-        // Create the close button
-        var closebtn = $('<button/>', {
-            type: "button",
-            text: 'x',
-            id: 'close-preview',
-            style: 'font-size: initial;',
-        });
-        closebtn.attr("class", "close pull-right");
-        // Set the popover default content
-        $('.image-preview').popover({
-            trigger: 'manual',
-            html: true,
-            title: "<strong>Önizleme</strong>" + $(closebtn)[0].outerHTML,
-            content: "Resim Seçilemedi",
-            placement: 'top'
-        });
-        // Clear event
-        $('.image-preview-clear').click(function () {
-            $('.image-preview').attr("data-content", "").popover('hide');
-            $('.image-preview-filename').val("");
-            $('.image-preview-clear').hide();
-            $('.image-preview-input input:file').val("");
-            $(".image-preview-input-title").text("Gözat");
-        });
-        // Create the preview image
-        $(".image-preview-input input:file").change(function () {
-            var img = $('<img/>', {
-                id: 'dynamic',
-                width: 250,
-                height: 200
-            });
-            var file = this.files[0];
-            var reader = new FileReader();
-            // Set preview image into the popover data-content
-            reader.onload = function (e) {
-                $(".image-preview-input-title").text("Değiştir");
-                $(".image-preview-clear").show();
-                $(".image-preview-filename").val(file.name);
-                img.attr('src', e.target.result);
-                $(".image-preview").attr("data-content", $(img)[0].outerHTML).popover("show");
-            }
-            reader.readAsDataURL(file);
-        });
-    });
-</script> @*Resim Seçin JS'i*@
+<script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>

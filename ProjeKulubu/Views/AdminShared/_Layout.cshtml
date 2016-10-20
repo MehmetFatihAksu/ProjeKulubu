@@ -3,3 +3,294 @@
 }
 
 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Proje Kulübü Türkiye</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--base css styles-->
+    <link href="~/Content/AdminContent/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/AdminContent/assets/font-awesome/css/font-awesome.min.css">
+    <!--page specific css styles-->
+    <!--flaty css styles-->
+    <link href="~/Content/AdminContent/css/flaty.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/AdminContent/css/flaty-responsive.css">
+
+
+</head>
+<body>
+    <!-- BEGIN Theme Setting -->
+    <div id="theme-setting">
+        <a href="#"><i class="fa fa-gears fa fa-2x"></i></a>
+        <ul>
+            <li>
+                <span>Skin</span>
+                <ul class="colors" data-target="body" data-prefix="skin-">
+                    <li class="active"><a class="blue" href="#"></a></li>
+                    <li><a class="red" href="#"></a></li>
+                    <li><a class="green" href="#"></a></li>
+                    <li><a class="orange" href="#"></a></li>
+                    <li><a class="yellow" href="#"></a></li>
+                    <li><a class="pink" href="#"></a></li>
+                    <li><a class="magenta" href="#"></a></li>
+                    <li><a class="gray" href="#"></a></li>
+                    <li><a class="black" href="#"></a></li>
+                </ul>
+            </li>
+            <li>
+                <span>Navbar</span>
+                <ul class="colors" data-target="#navbar" data-prefix="navbar-">
+                    <li class="active"><a class="blue" href="#"></a></li>
+                    <li><a class="red" href="#"></a></li>
+                    <li><a class="green" href="#"></a></li>
+                    <li><a class="orange" href="#"></a></li>
+                    <li><a class="yellow" href="#"></a></li>
+                    <li><a class="pink" href="#"></a></li>
+                    <li><a class="magenta" href="#"></a></li>
+                    <li><a class="gray" href="#"></a></li>
+                    <li><a class="black" href="#"></a></li>
+                </ul>
+            </li>
+            <li>
+                <span>Sidebar</span>
+                <ul class="colors" data-target="#main-container" data-prefix="sidebar-">
+                    <li class="active"><a class="blue" href="#"></a></li>
+                    <li><a class="red" href="#"></a></li>
+                    <li><a class="green" href="#"></a></li>
+                    <li><a class="orange" href="#"></a></li>
+                    <li><a class="yellow" href="#"></a></li>
+                    <li><a class="pink" href="#"></a></li>
+                    <li><a class="magenta" href="#"></a></li>
+                    <li><a class="gray" href="#"></a></li>
+                    <li><a class="black" href="#"></a></li>
+                </ul>
+            </li>
+            <li>
+                <span></span>
+                <a data-target="navbar" href="#"><i class="fa fa-square-o"></i> Fixed Navbar</a>
+                <a class="hidden-inline-xs" data-target="sidebar" href="#"><i class="fa fa-square-o"></i> Fixed Sidebar</a>
+            </li>
+        </ul>
+    </div>
+    <!-- END Theme Setting -->
+    <!-- BEGIN Navbar -->
+    <div id="navbar" class="navbar">
+        <button type="button" class="navbar-toggle navbar-btn collapsed" data-toggle="collapse" data-target="#sidebar">
+            <span class="fa fa-bars"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <small>
+
+                Proje Kulübü Türkiye
+            </small>
+        </a>
+        <!-- BEGIN Navbar Buttons -->
+        <ul class="nav flaty-nav pull-right">
+            <!-- BEGIN Button Tasks -->
+            <li class="hidden-xs">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <i class="fa fa-tasks"></i>
+                </a>
+                <!-- BEGIN Tasks Dropdown -->
+
+            </li>
+            <!-- END Button Tasks -->
+            <!-- BEGIN Button Notifications -->
+            <li class="hidden-xs">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <i class="fa fa-bell"></i>
+                </a>
+                <!-- BEGIN Notifications Dropdown -->
+            </li>
+            <!-- END Button Notifications -->
+            <!-- BEGIN Button Messages -->
+            <li class="hidden-xs">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <i class="fa fa-envelope"></i>
+                </a>
+                <!-- BEGIN Messages Dropdown -->
+            </li>
+            <!-- END Button Messages -->
+            <!-- BEGIN Button User -->
+            <li class="user-profile">
+                <a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">
+                    <img class="nav-user-photo" src="~/Content/AdminContent/img/demo/avatar/avatar1.jpg" alt="Penny's Photo" />
+                    <span class="hhh" id="user_info">
+                        Penny
+                    </span>
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <!-- BEGIN User Dropdown -->
+                <ul class="dropdown-menu dropdown-navbar" id="user_menu">
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-cog"></i>
+                            Hesap Ayarları
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-question"></i>
+                            Yardım
+                        </a>
+                    </li>
+                    <li class="divider visible-xs"></li>
+                    <li class="visible-xs">
+                        <a href="#">
+                            <i class="fa fa-tasks"></i>
+                            Tasks
+                            <span class="badge badge-warning">4</span>
+                        </a>
+                    </li>
+                    <li class="visible-xs">
+                        <a href="#">
+                            <i class="fa fa-bell"></i>
+                            Notifications
+                            <span class="badge badge-important">8</span>
+                        </a>
+                    </li>
+                    <li class="visible-xs">
+                        <a href="#">
+                            <i class="fa fa-envelope"></i>
+                            Messages
+                            <span class="badge badge-success">5</span>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-off"></i>
+                            Çıkış Yap !
+                        </a>
+                    </li>
+                </ul>
+                <!-- BEGIN User Dropdown -->
+            </li>
+            <!-- END Button User -->
+        </ul>
+        <!-- END Navbar Buttons -->
+    </div>
+    <!-- END Navbar -->
+    <!-- BEGIN Container -->
+    <div class="container" id="main-container">
+        <!-- BEGIN Sidebar -->
+        <div id="sidebar" class="navbar-collapse collapse"">
+            <!-- BEGIN Navlist -->
+            <ul class="nav nav-list">
+                <!-- BEGIN Search Form -->
+                <li>
+                    <form target="#" method="GET" class="search-form">
+                        <span class="search-pan">
+                            <button type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <input type="text" name="search" placeholder="Arama Yapınız ..." autocomplete="off" />
+                        </span>
+                    </form>
+                </li>
+                <!-- END Search Form -->
+                <li class="active">
+                    <a href="@Url.Action("Index")">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Ana Sayfa</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Reference", "Admin")">
+                        <i class="fa fa-star-o"></i>
+                        <span>Referans Yönetimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-desktop"></i>
+                        <span>Proje Yönetimi</span>
+                        <b class="arrow fa fa-angle-right"></b>
+                    </a>
+                    <!-- BEGIN Submenu -->
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("CompletedProjects", "Admin")">Tamamlanan Projeler</a></li>
+                        <li><a href="@Url.Action("OnGoingSaleProjects", "Admin")">Satışı Devam Eden Projeler</a></li>
+                        <li><a href="@Url.Action("SoonProjects", "Admin")">Yakındaki Projeler</a></li>
+                    </ul>
+                    <!-- END Submenu -->
+                </li>
+
+                <li>
+                    <a href="@Url.Action("Office", "Admin")">
+                        <i class="fa fa-list-alt"></i>
+                        <span>Ofis Yönetimi</span>
+                    </a>
+                </li>
+               
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-file-text-o"></i>
+                        <span>Eğitim Yönetimi</span>
+                        <b class="arrow fa fa-angle-right"></b>
+                    </a>
+                    <!-- BEGIN Submenu -->
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("ReceivedEducations", "Admin")">Alınan Eğitimler</a></li>
+                        <li><a href="@Url.Action("GrandtedEducations", "Admin")">Verilen Eğitimler</a></li>
+                    </ul>
+                    <!-- END Submenu -->
+                </li>
+                <li>
+                    <a href="@Url.Action("QuestionRequest", "Admin")">
+                        <i class="fa fa-question-circle"></i>
+                        <span>S.S.S Yönetimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Takvim", "Admin")">
+                        <i class="fa fa-calendar"></i>
+                        <span>Takvim</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- END Navlist -->
+            <!-- BEGIN Sidebar Collapse Button -->
+            <div id="sidebar-collapse" class="visible-lg">
+                <i class="fa fa-angle-double-left"></i>
+            </div>
+            <!-- END Sidebar Collapse Button -->
+
+        </div>
+        <!-- END Sidebar -->
+      
+        <!-- BEGIN Content -->
+        <div id="main-content">@RenderBody()</div>
+
+
+        
+        <!-- END Content -->
+    </div>
+
+
+    <!-- END Container -->
+    <!--basic scripts-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/jquery/jquery-2.1.4.min.js"><\/script>')</script>
+    <script src="~/Content/AdminContent/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/AdminContent/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/AdminContent/assets/jquery-cookie/jquery.cookie.js"></script>
+    <!--page specific plugin scripts-->
+    <script src="~/Content/AdminContent/assets/flot/jquery.flot.js"></script>
+    <script src="~/Content/AdminContent/assets/flot/jquery.flot.resize.js"></script>
+    <script src="~/Content/AdminContent/assets/flot/jquery.flot.pie.js"></script>
+    <script src="~/Content/AdminContent/assets/flot/jquery.flot.stack.js"></script>
+    <script src="~/Content/AdminContent/assets/flot/jquery.flot.crosshair.js"></script>
+    <script src="~/Content/AdminContent/assets/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="~/Content/AdminContent/assets/sparkline/jquery.sparkline.min.js"></script>
+    <!--flaty scripts-->
+    <script src="~/Content/AdminContent/js/flaty.js"></script>
+    <script src="~/Content/AdminContent/js/flaty-demo-codes.js"></script>
+</body>
+</html>
