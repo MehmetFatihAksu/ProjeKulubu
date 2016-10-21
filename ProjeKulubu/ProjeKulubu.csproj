@@ -1864,7 +1864,6 @@
     <Content Include="Content\AdminContent\assets\font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\AdminContent\assets\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\AdminContent\assets\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\AdminContent\assets\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\AdminContent\assets\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="Content\AdminContent\assets\font-awesome\less\animated.less" />
     <Content Include="Content\AdminContent\assets\font-awesome\less\bordered-pulled.less" />
@@ -1993,6 +1992,7 @@
     <Content Include="Views\Admin\Takvim.cshtml" />
     <Content Include="Views\Admin\QuestionRequest.cshtml" />
     <Content Include="Views\Admin\Reference.cshtml" />
+    <Content Include="Views\Admin\Ofis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
