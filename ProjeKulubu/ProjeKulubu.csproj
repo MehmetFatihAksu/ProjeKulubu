@@ -1993,6 +1993,7 @@
     <Content Include="Views\Admin\QuestionRequest.cshtml" />
     <Content Include="Views\Admin\Reference.cshtml" />
     <Content Include="Views\Admin\Ofis.cshtml" />
+    <Content Include="Views\Admin\YProjeler.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

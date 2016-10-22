@@ -26,7 +26,7 @@ namespace ProjeKulubu.Controllers
             return View();
         }
 
-        public ActionResult SoonProjects()
+        public ActionResult YProjeler()
         {
             return View();
         }
