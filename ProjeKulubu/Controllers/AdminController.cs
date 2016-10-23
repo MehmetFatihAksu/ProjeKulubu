@@ -26,11 +26,7 @@ namespace ProjeKulubu.Controllers
             return View();
         }
 
-        public ActionResult YProjeler()
-        {
-            return View();
-        }
-        
+
         #endregion
 
         #region AnaSayfa
