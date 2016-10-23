@@ -57,15 +57,12 @@ namespace ProjeKulubu.Controllers
         #endregion
 
         #region Ofis
-        //public ActionResult Office()
-        //{
-        //    return View();
-        //} 
-
-        public ActionResult Ofis()
+     
+        public ActionResult YOfis()
         {
             return View();
         }
+    
 
 
         //Ofis Action'ı eklendi..
