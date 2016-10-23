@@ -170,26 +170,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Admin.cs">
-      <DependentUpon>ProjeKulubuModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProjeKulubuModel.Context.cs">
+    <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProjeKulubuModel.Context.tt</DependentUpon>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProjeKulubuModel.cs">
+    <Compile Include="Models\Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProjeKulubuModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProjeKulubuModel.Designer.cs">
+    <Compile Include="Models\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProjeKulubuModel.edmx</DependentUpon>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>ProjeKulubuModel.tt</DependentUpon>
+    <Compile Include="Models\Proje.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjeModel.cs" />
+    <Compile Include="Models\ProjeResimler.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1779,13 +1780,6 @@
     <Content Include="Content\AdminContent\__MACOSX\assets\img\faces\._.DS_Store" />
     <Content Include="Content\AdminContent\__MACOSX\assets\js\._.DS_Store" />
     <Content Include="Content\AdminContent\__MACOSX\assets\sass\._.DS_Store" />
-    <EntityDeploy Include="Models\ProjeKulubuModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ProjeKulubuModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ProjeKulubuModel.edmx.diagram">
-      <DependentUpon>ProjeKulubuModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\AdminContent\assets\bootstrap-colorpicker\less\colorpicker.less" />
     <Content Include="Content\AdminContent\assets\bootstrap-datepicker\less\datepicker.less" />
     <Content Include="Content\AdminContent\assets\bootstrap-daterangepicker\README.md" />
@@ -1947,16 +1941,23 @@
     <Content Include="Content\AdminContent\assets\password-strength\README.md" />
     <Content Include="Content\AdminContent\assets\prettyPhoto\images\.DS_Store" />
     <Content Include="Content\AdminContent\assets\prettyPhoto\README" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Models\ProjeKulubuModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProjeKulubuModel.edmx</DependentUpon>
-      <LastGenOutput>ProjeKulubuModel.Context.cs</LastGenOutput>
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\ProjeKulubuModel.tt">
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProjeKulubuModel.edmx</DependentUpon>
-      <LastGenOutput>ProjeKulubuModel.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

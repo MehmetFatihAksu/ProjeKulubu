@@ -13,10 +13,10 @@ namespace ProjeKulubu.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class db2299D218BEEntities : DbContext
+    public partial class db2299D218BEEntities2 : DbContext
     {
-        public db2299D218BEEntities()
-            : base("name=db2299D218BEEntities")
+        public db2299D218BEEntities2()
+            : base("name=db2299D218BEEntities2")
         {
         }
     
@@ -25,7 +25,7 @@ namespace ProjeKulubu.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Admin> Admin { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<Proje> Proje { get; set; }
+        public DbSet<ProjeResimler> ProjeResimler { get; set; }
     }
 }

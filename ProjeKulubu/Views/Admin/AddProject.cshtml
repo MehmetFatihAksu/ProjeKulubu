@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<ProjeKulubu.Models.Proje>
+
+@{
     ViewBag.Title = "AddProject";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
@@ -11,6 +13,29 @@
 <script type="text/javascript" src="~/Content/AdminContent/js/flaty.js"></script>
 <link href="~/Content/AdminContent/css/flaty.css" rel="stylesheet" />
 
+<script type="text/javascript">
+    function savedata(){
+        var Data = {
+            Isim: $("#name").val(),
+            Konum: $("#konum").val()
+        };
+        alert("tıklandı");
+        $.ajax({
+            type: "POST",
+            url: "Admin/AddProject",
+            data: Data,
+            dataType: "JSON",
+            traditional: true,
+            success: function (response) {
+                console.log("başarılı");
+            }, error: function (response) {
+                console.log("Hata OLuştu");
+            }
+
+        });
+    }
+
+</script>
 
 <div id="main-content">
 
@@ -310,6 +335,18 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
+                                                    <label for="textfield1" class="col-xs-3 col-lg-2 control-label">İsim : </label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <input id="name" type="text" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma proje ismini giriniz..." data-original-title="Proje İsmi" data-placement="top" placeholder="Proje İsim">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="textfield1" class="col-xs-3 col-lg-2 control-label">Konum : </label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <input id="konum" type="text" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma proje ismini giriniz..." data-original-title="Proje İsmi" data-placement="top" placeholder="Proje İsim">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label class="col-sm-3 col-lg-2 control-label">İsim :</label>
                                                     <div class="col-sm-5 col-lg-3 controls">
                                                         <span class="text">Penny</span>
@@ -445,7 +482,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                                <button type="submit" class="btn btn-primary" id="button-save" style="float:right; margin-right: 50px;"><i class="fa fa-save" style="padding-right: 10px;"></i>  Onayla & Kaydet</button>
+                                                <input onclick="savedata()" value="Onayla" type="submit" class="btn btn-primary" id="button-save" style="float:right; margin-right: 50px;"/>
                                             </div>
                                         </div>
                                     </div>

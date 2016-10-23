@@ -12,12 +12,17 @@ namespace ProjeKulubu.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class ProjeResimler
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public ProjeResimler()
+        {
+            this.Proje = new HashSet<Proje>();
+        }
+    
+        public int ID { get; set; }
+        public string ResimURL { get; set; }
+        public string ResimSEO { get; set; }
+    
+        public virtual ICollection<Proje> Proje { get; set; }
     }
 }

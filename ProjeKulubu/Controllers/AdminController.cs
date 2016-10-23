@@ -13,8 +13,6 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /Admin/
 
-        db2299D218BEEntities db = new db2299D218BEEntities();
-
         #region Projeler
         public ActionResult CompletedProjects()
         {
@@ -28,6 +26,14 @@ namespace ProjeKulubu.Controllers
 
         public ActionResult AddProject()
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddProject(Models.Proje Model)
+        {
+            Repository<Proje> rpstryproje = new Repository<Proje>();
+            proje add = new proje();
+            
             return View();
         }
        
@@ -123,27 +129,27 @@ namespace ProjeKulubu.Controllers
         }
         #endregion
 
-        #region Login
-        public ActionResult Login()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Login(Admin Model)
-        {
-            var kullanici = db.Admin.FirstOrDefault(x => x.UserName == Model.UserName && x.Password == Model.Password);
-            if(kullanici !=null)
-            {
-                Session["UserName"] = kullanici.UserName.ToString();
-                return RedirectToAction("Index", "Admin");
-            }
-            else
-            {
-                ViewBag.Hata = "Hatalı Verişi Girişi";
-                return View();
-            }
-        }
-        #endregion
+        //#region Login
+        //public ActionResult Login()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult Login(Admin Model)
+        //{
+        //    var kullanici = db.Admin.FirstOrDefault(x => x.UserName == Model.UserName && x.Password == Model.Password);
+        //    if(kullanici !=null)
+        //    {
+        //        Session["UserName"] = kullanici.UserName.ToString();
+        //        return RedirectToAction("Index", "Admin");
+        //    }
+        //    else
+        //    {
+        //        ViewBag.Hata = "Hatalı Verişi Girişi";
+        //        return View();
+        //    }
+        //}
+        //#endregion
 
 
     }
