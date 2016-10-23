@@ -26,10 +26,11 @@ namespace ProjeKulubu.Controllers
             return View();
         }
 
-        public ActionResult YProjeler()
+        public ActionResult AddProject()
         {
             return View();
         }
+       
         
         #endregion
 
