@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ProjeKulubu.Models.Proje
+@{
     ViewBag.Title = "YOfis";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
@@ -48,12 +49,25 @@
                         <div class="row">
                             <div class="col-md-6 ">
                                 <!-- BEGIN Left Side -->
-                                <div class="form-group">
-                                    <label for="textfield1" class="col-xs-3 col-lg-2 control-label">İsim : </label>
-                                    <div class="col-sm-9 col-lg-10 controls">
-                                        <input type="text" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin ismini giriniz..." data-original-title="Ofis İsmi" data-placement="top" placeholder="Ofis İsim">
+                                @using (Html.BeginForm())
+                                {
+                                    <div class="form-group">
+                                        <label for="textfield1" class="col-xs-3 col-lg-2 control-label">İsim : </label>
+                                        <div class="col-sm-9 col-lg-10 controls">
+                                            @*<input type="text" name="name" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin ismini giriniz..." data-original-title="Ofis İsmi" data-placement="top" placeholder="Ofis İsim">*@
+                                            @Html.TextBoxFor(a=>a.Isim)
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="textfield1" class="col-xs-3 col-lg-2 control-label">Konum : </label>
+                                        <div class="col-sm-9 col-lg-10 controls">
+                                            @*<input type="text" name="name" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin ismini giriniz..." data-original-title="Ofis İsmi" data-placement="top" placeholder="Ofis İsim">*@
+                                            @Html.TextBoxFor(a => a.Konum)
+                                        </div>
+                                    </div>
+                                    <input type="submit" class="btn btn-primary" value="ekle" />
+                                }
+                                
                                 <div class="form-group">
                                     <label for="password1" class="col-xs-3 col-lg-2 control-label" style=" margin-top: -9px;">İlgilendiği Proje :</label>
                                     <div class="col-sm-9 col-lg-10 controls">
@@ -95,7 +109,7 @@
                                 <div class="form-group">
                                     <label for="textfield2" class="col-xs-3 col-lg-2 control-label">Başlık :</label>
                                     <div class="col-sm-9 col-lg-10 controls">
-                                        <input type="text" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin sayfada görünecek başlığını giriniz..." data-original-title="Ofis Başlığı" data-placement="top" placeholder="Ofis Başlık">
+                                        <input type="text" name="durum" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin sayfada görünecek başlığını giriniz..." data-original-title="Ofis Başlığı" data-placement="top" placeholder="Ofis Başlık">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -125,7 +139,6 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Kaydet</button>
                                         <button type="button" class="btn" style=" margin-left: 10px;"><i class="fa fa-bomb"></i> İptal Et</button>
                                     </div>
                                 </div>

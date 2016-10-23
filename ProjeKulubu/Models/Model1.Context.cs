@@ -13,10 +13,10 @@ namespace ProjeKulubu.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class db2299D218BEEntities2 : DbContext
+    public partial class db2299D218BEEntities3 : DbContext
     {
-        public db2299D218BEEntities2()
-            : base("name=db2299D218BEEntities2")
+        public db2299D218BEEntities3()
+            : base("name=db2299D218BEEntities3")
         {
         }
     
@@ -25,7 +25,6 @@ namespace ProjeKulubu.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Proje> Proje { get; set; }
-        public DbSet<ProjeResimler> ProjeResimler { get; set; }
+        public DbSet<Referanslar> Referanslar { get; set; }
     }
 }

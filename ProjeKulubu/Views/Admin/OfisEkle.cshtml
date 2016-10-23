@@ -1,0 +1,149 @@
+﻿@model ProjeKulubu.Models.Proje
+
+@{
+    ViewBag.Title = "OfisEkle";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+<h2>OfisEkle</h2>
+
+@using (Html.BeginForm("OfisEkle","Admin",FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Proje</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Isim)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Isim)
+            @Html.ValidationMessageFor(model => model.Isim)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Konum)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Konum)
+            @Html.ValidationMessageFor(model => model.Konum)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tip)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Tip)
+            @Html.ValidationMessageFor(model => model.Tip)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Durum)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Durum)
+            @Html.ValidationMessageFor(model => model.Durum)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Butce)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Butce)
+            @Html.ValidationMessageFor(model => model.Butce)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Yil)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Yil)
+            @Html.ValidationMessageFor(model => model.Yil)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Aciklama)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Aciklama)
+            @Html.ValidationMessageFor(model => model.Aciklama)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SeoAlt)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SeoAlt)
+            @Html.ValidationMessageFor(model => model.SeoAlt)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Adres)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Adres)
+            @Html.ValidationMessageFor(model => model.Adres)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telefon)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Telefon)
+            @Html.ValidationMessageFor(model => model.Telefon)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CalismaSAAT)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CalismaSAAT)
+            @Html.ValidationMessageFor(model => model.CalismaSAAT)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BegeniSayisi)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BegeniSayisi)
+            @Html.ValidationMessageFor(model => model.BegeniSayisi)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ResimAciklama)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ResimAciklama)
+            @Html.ValidationMessageFor(model => model.ResimAciklama)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ResimListID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ResimListID)
+            @Html.ValidationMessageFor(model => model.ResimListID)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

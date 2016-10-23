@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProjeKulubu.Models;
-
+using System.IO;
 
 namespace ProjeKulubu.Controllers
 {
@@ -12,6 +12,8 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Admin/
+
+        db2299D218BEEntities3 db = new db2299D218BEEntities3();
 
         #region Projeler
         public ActionResult CompletedProjects()
@@ -28,14 +30,7 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult AddProject(Models.Proje Model)
-        {
-            Repository<Proje> rpstryproje = new Repository<Proje>();
-            proje add = new proje();
-            
-            return View();
-        }
+        
        
         
         #endregion
@@ -57,19 +52,32 @@ namespace ProjeKulubu.Controllers
         //[HttpPost]
         //public ActionResult AddQuestion()
         //{
-            
+
         //}
 
 
         #endregion
 
         #region Ofis
-     
-        public ActionResult YOfis()
-        {
-            return View();
-        }
-    
+
+        //public ActionResult YOfis()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult YOfis(Proje Model)
+        //{
+        //   if(ModelState.IsValid)
+        //    {
+
+        //    }
+
+        //    return View();
+
+        //}
+
+
+
 
 
         //Ofis Action'ı eklendi..
@@ -90,14 +98,29 @@ namespace ProjeKulubu.Controllers
 
 
         #region Referans
-
         public ActionResult Reference()
         {
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Reference([Bind(Include = "ID,LogoURL,Baslik,SeoAlt")] Referanslar referans)
+        {
 
+
+            if (ModelState.IsValid)
+            {
+                    db.Referanslar.Add(referans);
+                    db.SaveChanges();
+                    return RedirectToAction("Reference", "Admin");
+            }
+
+
+            return View();
+        }
         //Referans yönetimi  
         #endregion
+
 
 
         #region Yardim

@@ -4,10 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6599df87ecf84642882aca436f64b4a7" Name="Diagram1">
-        <EntityTypeShape EntityType="db2299D218BEModel.Proje" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="db2299D218BEModel.ProjeResimler" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
-        <AssociationConnector Association="db2299D218BEModel.FK_Proje_ProjeResimler" ManuallyRouted="false" />
+      <Diagram DiagramId="ba3c334538214130af18576610b31179" Name="Diagram1">
+        <EntityTypeShape EntityType="db2299D218BEModel.Referanslar" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
