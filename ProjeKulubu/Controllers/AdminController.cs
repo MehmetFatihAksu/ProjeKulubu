@@ -26,7 +26,12 @@ namespace ProjeKulubu.Controllers
             return View();
         }
 
-
+        public ActionResult AddProject()
+        {
+            return View();
+        }
+       
+        
         #endregion
 
         #region AnaSayfa
