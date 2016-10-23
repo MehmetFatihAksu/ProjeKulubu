@@ -1076,6 +1076,28 @@
     <Content Include="Content\AdminContent\ui_tabs.html" />
     <Content Include="Content\AdminContent\ui_tile.html" />
     <Content Include="Content\AdminContent\ui_timeline.html" />
+    <Content Include="Content\img\a07.png" />
+    <Content Include="Content\img\find-out-more-bt.png" />
+    <Content Include="Content\img\loading.gif" />
+    <Content Include="Content\img\main_bg.jpg" />
+    <Content Include="Content\img\s2.png" />
+    <Content Include="Content\img\s2t.jpg" />
+    <Content Include="Content\img\s3.png" />
+    <Content Include="Content\img\s3t.jpg" />
+    <Content Include="Content\img\s4.png" />
+    <Content Include="Content\img\s4t.jpg" />
+    <Content Include="Content\img\s5.png" />
+    <Content Include="Content\img\s5t.jpg" />
+    <Content Include="Content\img\s6.png" />
+    <Content Include="Content\img\s6t.jpg" />
+    <Content Include="Content\img\s7.png" />
+    <Content Include="Content\img\s7t.jpg" />
+    <Content Include="Content\img\s8.png" />
+    <Content Include="Content\img\s8t.jpg" />
+    <Content Include="Content\js\jquery-1.11.3.min.js" />
+    <Content Include="Content\js\jssor.slider-21.1.6.debug.js" />
+    <Content Include="Content\js\jssor.slider-21.1.6.min.js" />
+    <Content Include="Content\js\jssor.slider-21.1.6.mini.js" />
     <Content Include="Content\pikocon_html\404.html" />
     <Content Include="Content\pikocon_html\about.html" />
     <Content Include="Content\pikocon_html\apple-touch-icon.png" />
@@ -1993,6 +2015,14 @@
     <Content Include="Views\Admin\Takvim.cshtml" />
     <Content Include="Views\Admin\QuestionRequest.cshtml" />
     <Content Include="Views\Admin\Reference.cshtml" />
+    <Content Include="Views\Home\Blog.cshtml" />
+    <Content Include="Views\Home\BlogSingle.cshtml" />
+    <Content Include="Views\Home\Avantajlarimiz.cshtml" />
+    <Content Include="Views\Home\SatisSonuHizmetlerimiz.cshtml" />
+    <Content Include="Views\Home\IkinciElSatis.cshtml" />
+    <Content Include="Views\Home\ProjeGelistirme.cshtml" />
+    <Content Include="Views\Home\ProjeSatis.cshtml" />
+    <Content Include="Views\Home\ProjePazarlama.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

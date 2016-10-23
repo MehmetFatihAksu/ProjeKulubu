@@ -1,0 +1,236 @@
+﻿@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner margin-t150">
+    <div class="container page-banner">
+        <div class="col-sm-6 col-md-6">
+            <h1>MAKALELE YAZILARIMIZ</h1>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <ol class="breadcrumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
+                <li class="active">Makaleler</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section class="padding-tb50">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-7">
+                <div class="row team1">
+                    <div class="col-sm-12 col-md-12">
+                        <!--post box-->
+                        <div class="box">
+                            <!--blog date-->
+                            <div class="blog_date2">
+                                <p><span>27 ŞUBAT</span> 2015</p>
+                                @*<p>03 <span>omments</span></p>*@
+                            </div>
+                            <!--blog image-->
+                            <figure>
+                                <img src="/Content/pikocon_html/images/body/blog-single1.jpg" alt="service" class="img-responsive">
+                            </figure> <!--end blog image-->
+                            <!--blog caption-->
+                            <div class="caption">
+                                <h2>BAŞLIK 1</h2>
+                                <ul class="piko-li">
+                                    <li><i class="fa fa-user"></i>Yazar:</li>
+                                    <li><i class="fa fa-tags"></i><a href="#">Etiketler</a> <a href="#"></a></li>
+                                    <li><i class="fa fa-search"></i>10</li>
+                                </ul>
+                                <p>Makale Hakkında Kısa Metin</p>
+                                <a href="@Url.Action("BlogSingle","Home")">Devamını Oku</a>
+                            </div> <!--end blog caption-->
+                        </div>  <!--end post box-->
+                    </div> <!--end post-->
+                 <!--end post-->
+                </div>  <!--end of row-->
+                <!--start pagination-->
+                <div class="custom-pagi">
+                    <ul class="pagination">
+                        <li class="disabled">
+                            <a href="#">Önceki</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">1</a>
+                        </li>
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+                        <li>
+                            <a href="#">3</a>
+                        </li>
+                        <li>
+                            <a href="#">4</a>
+                        </li>
+                        <li>
+                            <a href="#">Sonraki</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--end of pagination-->
+            </div>
+            <div class="col-md-4 col-sm-5">
+                <!--tab content-->
+                <!--tab content-->
+                <!--tab filter-->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#sectionA"> Popüler</a></li>
+                    <li><a data-toggle="tab" href="#sectionB"> Yeni</a></li>
+                </ul>  <!--tab filter-->
+                <!--tab body content-->
+                <div class="tab-content tab-widget">
+                    <div id="sectionA" class="tab-pane fade in active">
+                        <!--tab post-->
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="@Url.Action("BlogSingle","Home")">
+                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="@Url.Action("BlogSingle","Home")">Popüler Makale Başlık 1</a><br>
+                                <p>10 ŞUBAT 2015</p>
+                            </div>
+                        </div>   <!--end tab post-->
+                        <!--tab post-->
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="@Url.Action("BlogSingle","Home")">
+                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="@Url.Action("BlogSingle","Home")">Popüler Makale Başlık 2</a><br>
+                                <p>10 ŞUBAT 2015</p>
+                            </div>
+                        </div>   <!--end tab post-->
+                        <!--tab post-->
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="@Url.Action("BlogSingle","Home")">
+                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="@Url.Action("BlogSingle","Home")">Popüler Makale Başlık 3</a><br>
+                                <p>10 ŞUBAT 2015</p>
+                            </div>
+                        </div>   <!--tab post-->
+                    </div>   <!--end of section a-->
+                    <!--section b-->
+                    <div id="sectionB" class="tab-pane fade">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="@Url.Action("BlogSingle","Home")">
+                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="@Url.Action("BlogSingle","Home")">Yeni Makale Başlık 1</a><br>
+                                <p>10 ŞUBAT 2015</p>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="@Url.Action("BlogSingle","Home")">
+                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="@Url.Action("BlogSingle","Home")">Yeni Makale Başlık 2</a><br>
+                                <p>10 ŞUBAT 2015</p>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="@Url.Action("BlogSingle","Home")">
+                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="@Url.Action("BlogSingle","Home")">Yeni Makale Başlık 3</a><br>
+                                <p>10 ŞUBAT 2015</p>
+                            </div>
+                        </div>
+                    </div> <!--end section b-->
+                    <!--section c-->
+                    <div id="sectionC" class="tab-pane fade">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="@Url.Action("BlogSingle","Home")">
+                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="@Url.Action("BlogSingle","Home")">Yeni Makale Başlık 4</a><br>
+                                <p>10 ŞUBAT 2015</p>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="#">How To Build A Team Works Plan</a><br>
+                                <p>10 Dec 2015</p>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <a href="#">How To Build A Team Works Plan</a><br>
+                                <p>10 Dec 2015</p>
+                            </div>
+                        </div>
+                    </div> <!--end section c-->
+                </div> <!--End tabs-->
+                <!--start archive-->
+                <div class="margin-b30">
+                    <div class="piko-title4 widget">
+                        <h3><span class="line"></span><span class="text">Arşiv</span></h3>
+                    </div><br>
+                    <div class="archive">
+                        <a href="#">Ocak 2015</a>
+                        <a href="#">Şubat 2015</a>
+                        <a href="#">Mart 2015</a>
+                        <a href="#">Nisan 2014</a>
+                        <a href="#">Mayıs  2014</a>
+                    </div>
+                </div>
+                <!--start tag-->
+                <div class="margin-b30">
+                    <div class="piko-title4 widget">
+                        <h3><span class="line"></span><span class="text">Etiketler</span></h3>
+                    </div><br>
+                    <div class="footer2-box">
+                        <a href="#" class="btn-s5 gray3">İnşaat</a>
+                        <a href="#" class="btn-s5 gray3">Yapı</a>
+                        <a href="#" class="btn-s5 gray3">Satılık</a>
+                        <a href="#" class="btn-s5 gray3">Kiralık</a>
+                        <a href="#" class="btn-s5 gray3">Daire</a>
+                        <a href="#" class="btn-s5 gray3">Komisyon</a>
+                        <a href="#" class="btn-s5 gray3">Ders</a>
+                        <a href="#" class="btn-s5 gray3">Satış</a>
+                        <a href="#" class="btn-s5 gray3">Pazarlama</a>
+                        <a href="#" class="btn-s5 gray3">Kurumsal</a>
+                        <a href="#" class="btn-s5 gray3">Şirket</a>
+                        <a href="#" class="btn-s5 gray3">Gayrimenkul</a>
+                        <a href="#" class="btn-s5 gray3">Villa</a>
+                        <a href="#" class="btn-s5 gray3">Emlak</a>
+                    </div>
+                </div>  <!--end start tag-->
+            </div>  <!--end of col-->
+        </div> <!--end of row-->
+    </div> <!--end of container-->
+</section>

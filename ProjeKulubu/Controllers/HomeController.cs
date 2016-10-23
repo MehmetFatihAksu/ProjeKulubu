@@ -88,6 +88,40 @@ namespace ProjeKulubu.Controllers
             return View();
         }
 
+        public ActionResult Blog()
+        {
+            return View();
+        }
+        public ActionResult BlogSingle()
+        {
+            return View();
+        }
+
+
+        public ActionResult Avantajlarimiz()
+        {
+            return View();
+        }
+        public ActionResult SatisSonuHizmetlerimiz()
+        {
+            return View();
+        }
+        public ActionResult IkinciElSatis()
+        {
+            return View();
+        }
+        public ActionResult ProjeGelistirme()
+        {
+            return View();
+        }
+        public ActionResult ProjeSatis()
+        {
+            return View();
+        }
+        public ActionResult ProjePazarlama()
+        {
+            return View();
+        }
 
     }
 }
