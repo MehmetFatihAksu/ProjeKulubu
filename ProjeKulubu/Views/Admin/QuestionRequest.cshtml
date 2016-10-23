@@ -3,6 +3,33 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
+@*<script type="text/javascript">
+
+    function DataSave() {
+
+        if ($("#textfield3").val() == null || $("#Answer").val() == null) {
+            alert("Lütfen Soru Yada Cevap Metni Giriniz..");
+        } else {
+
+            $.ajax({
+                url:"Home/"
+
+
+            });
+
+
+
+        }
+
+
+    }
+
+
+
+
+</script>*@
+
+
 
 
 <div class="page-title">
@@ -47,7 +74,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 col-lg-2 control-label">Soru Cevap</label>
                                 <div class="col-sm-9 col-lg-10 controls">
-                                    <textarea class="form-control col-md-12 ckeditor" name="editor1" rows="6"></textarea>
+                                    <textarea class="form-control col-md-12 ckeditor" id="Answer" name="editor1" rows="6"></textarea>
                                 </div>
                             </div>
                       
@@ -55,7 +82,7 @@
 
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
                         </div>
                     </div>
                 </form>

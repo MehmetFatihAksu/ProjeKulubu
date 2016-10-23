@@ -26,7 +26,7 @@ namespace ProjeKulubu.Controllers
             return View();
         }
 
-        public ActionResult SoonProjects()
+        public ActionResult YProjeler()
         {
             return View();
         }
@@ -45,14 +45,27 @@ namespace ProjeKulubu.Controllers
         public ActionResult QuestionRequest()
         {
             return View();
-        } 
+        }
+
+        //[HttpPost]
+        //public ActionResult AddQuestion()
+        //{
+            
+        //}
+
+
         #endregion
 
         #region Ofis
-        public ActionResult Office()
+        //public ActionResult Office()
+        //{
+        //    return View();
+        //} 
+
+        public ActionResult Ofis()
         {
             return View();
-        } 
+        }
         #endregion
 
         #region Eğitim

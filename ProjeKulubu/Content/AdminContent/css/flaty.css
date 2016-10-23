@@ -3952,6 +3952,7 @@ div.tagsinput .not_valid {
 .form-wizard .steps > li {
     margin-top: 3px;
     margin-bottom: 3px;
+    list-style:none;
 }
 .form-wizard .steps .step {
     padding: 0;
