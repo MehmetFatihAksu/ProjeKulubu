@@ -2022,6 +2022,9 @@
     <Content Include="Views\Admin\YOfis.cshtml" />
     <Content Include="Views\Admin\AddProject.cshtml" />
     <Content Include="Views\Admin\OfisEkle.cshtml" />
+    <Content Include="Views\Admin\ReferansList.cshtml" />
+    <Content Include="Views\Admin\ReferansDelete.cshtml" />
+    <Content Include="Views\Admin\ReferansEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

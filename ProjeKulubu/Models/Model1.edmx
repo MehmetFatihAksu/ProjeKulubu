@@ -10,9 +10,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LogoURL" Type="nvarchar" MaxLength="150" />
+          <Property Name="SiteURL" Type="nvarchar" MaxLength="150" />
           <Property Name="Baslik" Type="nvarchar" MaxLength="50" />
           <Property Name="SeoAlt" Type="nvarchar" MaxLength="20" />
+          <Property Name="LogoURL" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="db2299D218BEModelStoreContainer">
           <EntitySet Name="Referanslar" EntityType="Self.Referanslar" Schema="dbo" store:Type="Tables" />
@@ -27,11 +28,12 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LogoURL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SiteURL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Baslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SeoAlt" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LogoURL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="db2299D218BEEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="db2299D218BEEntities6" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Referanslar" EntityType="Self.Referanslar" />
         </EntityContainer>
       </Schema>
@@ -39,14 +41,15 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="db2299D218BEModelStoreContainer" CdmEntityContainer="db2299D218BEEntities3">
+        <EntityContainerMapping StorageEntityContainer="db2299D218BEModelStoreContainer" CdmEntityContainer="db2299D218BEEntities6">
           <EntitySetMapping Name="Referanslar">
             <EntityTypeMapping TypeName="db2299D218BEModel.Referanslar">
               <MappingFragment StoreEntitySet="Referanslar">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="LogoURL" ColumnName="LogoURL" />
+                <ScalarProperty Name="SiteURL" ColumnName="SiteURL" />
                 <ScalarProperty Name="Baslik" ColumnName="Baslik" />
                 <ScalarProperty Name="SeoAlt" ColumnName="SeoAlt" />
+                <ScalarProperty Name="LogoURL" ColumnName="LogoURL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

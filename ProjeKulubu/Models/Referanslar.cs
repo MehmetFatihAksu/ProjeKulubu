@@ -15,8 +15,9 @@ namespace ProjeKulubu.Models
     public partial class Referanslar
     {
         public int ID { get; set; }
-        public string LogoURL { get; set; }
+        public string SiteURL { get; set; }
         public string Baslik { get; set; }
         public string SeoAlt { get; set; }
+        public string LogoURL { get; set; }
     }
 }

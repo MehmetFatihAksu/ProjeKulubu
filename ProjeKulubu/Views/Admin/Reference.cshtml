@@ -51,6 +51,13 @@
                             @*<input type="text" name="username" id="username" class="form-control" data-rule-required="true" data-rule-minlength="3" />*@
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label" for="username">Resim Site Adresi:</label>
+                        <div class="col-sm-6 col-lg-4 controls">
+                            @Html.TextBoxFor(model => model.SiteURL, new { @class = "form-control" })
+                            @*<input type="text" name="username" id="username" class="form-control" data-rule-required="true" data-rule-minlength="3" />*@
+                        </div>
+                    </div>
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">Resim Yükleme:</label>
                             <div class="col-sm-9 col-lg-10 controls">
@@ -71,7 +78,7 @@
                             </div>
                      </div>
                         <div class="form-group">
-                            <label for="urlfield" class="col-sm-3 col-lg-2 control-label">SeoAlt:</label>
+                            <label for="urlfield" class="col-sm-3 col-lg-2 control-label">Resim SEO:</label>
                             <div class="col-sm-6 col-lg-4 controls">
                                 @Html.TextBoxFor(model =>model.SeoAlt, new { @class = "form-control" })
                                 @*<input type="text" class="form-control" placeholder="Site Adresini Girin" name="urlfield" id="urlfield" data-rule-url="true" data-rule-required="true">*@
@@ -98,70 +105,7 @@
         </div>
     </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-black">
-            <div class="box-title">
-                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Referanslar</h3>
-                <div class="box-tool">
-                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                </div>
-            </div>
-            <div class="box-content">
-                <div class="btn-toolbar pull-right">
-                    <div class="btn-group">
-                        <a class="btn btn-circle show-tooltip" title="Yeni" href="#"><i class="fa fa-plus"></i></a>
-                        <a class="btn btn-circle show-tooltip" title="Düzenle" href="#"><i class="fa fa-edit"></i></a>
-                        <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn btn-circle show-tooltip" title="Yenile" href="#"><i class="fa fa-repeat"></i></a>
-                    </div>
-                </div>
-                <br /><br />
-                <div class="table-responsive">
-                    <table class="table table-advance">
-                        <thead>
-                            <tr>
-                                <th style="width:18px"><input type="checkbox" /></th>
-                                <th>ID</th>
-                                <th>Referans Başlığı</th>
-                                <th>Referans Adresi</th>
-                                <th>Referans Resim URL</th>
-                                <th>Silme</th>
-                                <th>Düzenleme</th>
-                            </tr>
-                        </thead>
-
-
-                            <tbody>
-                                <tr class="table-flag-blue">
-                                    <td><input type="checkbox" /></td>
-                                    <td>asdsa</td>
-                                    <td>Soru</td>
-                                    <td>Cevap</td>
-                                    <td>www.deneme.com</td>
-                                    <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="#"><i class="fa fa-edit"></i></a></td>
-                                    <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
-                            </tbody>
-
-
-                    </table>
-                </div>
-                <div class="text-center">
-                    <ul class="pagination">
-                        <li><a href="#">← Önceki</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">Sonraki → </a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Action("ReferansList")
 
 <footer>
     <p>2015 © Cizgi Tech Admin Yönetimi.</p>
