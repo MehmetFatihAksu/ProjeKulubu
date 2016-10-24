@@ -12,17 +12,12 @@ namespace ProjeKulubu.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProjeResimler
+    public partial class Referanslar
     {
-        public ProjeResimler()
-        {
-            this.Proje = new HashSet<Proje>();
-        }
-    
         public int ID { get; set; }
-        public string ResimURL { get; set; }
-        public string ResimSEO { get; set; }
-    
-        public virtual ICollection<Proje> Proje { get; set; }
+        public string SiteURL { get; set; }
+        public string Baslik { get; set; }
+        public string SeoAlt { get; set; }
+        public string LogoURL { get; set; }
     }
 }

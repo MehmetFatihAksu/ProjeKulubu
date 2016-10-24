@@ -1,5 +1,4 @@
-﻿@model IEnumerable<ProjeKulubu.Models.Proje>
-
+﻿
 @{
     ViewBag.Title = "AddProject";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
@@ -315,13 +314,13 @@
                                                 <div class="form-group">
                                                     <label for="textfield1" class="col-xs-3 col-lg-2 control-label">İsim : </label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <input id="name" type="text" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma proje ismini giriniz..." data-original-title="Proje İsmi" data-placement="top" placeholder="Proje İsim">
+                                                        <input name="name" type="text" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma proje ismini giriniz..." data-original-title="Proje İsmi" data-placement="top" placeholder="Proje İsim">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="textfield1" class="col-xs-3 col-lg-2 control-label">Konum : </label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <input id="konum" type="text" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma proje ismini giriniz..." data-original-title="Proje İsmi" data-placement="top" placeholder="Proje İsim">
+                                                        <input name="konum" type="text" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma proje ismini giriniz..." data-original-title="Proje İsmi" data-placement="top" placeholder="Proje İsim">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -460,7 +459,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                                <input value="Onayla" type="submit" class="btn btn-primary" id="button-save" onclick="savedata()" style="float:right; margin-right: 50px;" />
+                                                <input value="Onayla" type="submit" class="btn btn-primary" id="button-save" style="float:right; margin-right: 50px;"/>
                                             </div>
                                         </div>
                                     </div>

@@ -1,0 +1,94 @@
+﻿@model ProjeKulubu.Models.Referanslar
+
+@{
+    ViewBag.Title = "ReferansEdit";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-title">
+                <h3><i class="fa fa-star-half-full"></i>Seçilen Referansın Düzenlenme Ekranı</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("ReferansEdit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label" for="username">Referans ID:</label>
+                        <div class="col-sm-6 col-lg-4 controls">
+                            @Html.TextBoxFor(model => model.ID, new { @class = "form-control",disabled="true" })
+                            @*<input type="text" name="username" id="username" class="form-control" data-rule-required="true" data-rule-minlength="3" />*@
+                        </div>
+                    </div>
+                            <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label" for="username">Referans Başlığı:</label>
+                        <div class="col-sm-6 col-lg-4 controls">
+                            @Html.TextBoxFor(model => model.Baslik, new { @class = "form-control" })
+                            @*<input type="text" name="username" id="username" class="form-control" data-rule-required="true" data-rule-minlength="3" />*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label" for="username">Resim Site Adresi:</label>
+                        <div class="col-sm-6 col-lg-4 controls">
+                            @Html.TextBoxFor(model => model.SiteURL, new { @class = "form-control" })
+                            @*<input type="text" name="username" id="username" class="form-control" data-rule-required="true" data-rule-minlength="3" />*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label">Resim Yükleme:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileupload-new">Resim Seç</span>
+                                        <span class="fileupload-exists">Değiştir</span>
+                                        <input type="file" name="UyeResimAdi" id="Dosya" class="file-input" />
+                                    </span>
+                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="urlfield" class="col-sm-3 col-lg-2 control-label">Resim SEO:</label>
+                        <div class="col-sm-6 col-lg-4 controls">
+                            @Html.TextBoxFor(model => model.SeoAlt, new { @class = "form-control" })
+                            @*<input type="text" class="form-control" placeholder="Site Adresini Girin" name="urlfield" id="urlfield" data-rule-url="true" data-rule-required="true">*@
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                <input type="submit"  value="Kaydet" class="btn btn-primary" />
+                            </div>
+                        </div>
+                }
+                <a class="btn btn-danger show-tooltip" title="Geri Dön" href="@Url.Action("Reference","Admin")">Geri Dön</a>
+
+                </div>
+            
+            </div>
+        
+        </div>
+    
+    </div>
+
+<footer>
+    <p>2015 © Cizgi Tech Admin Yönetimi.</p>
+</footer>
+
+<a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
+
+               
