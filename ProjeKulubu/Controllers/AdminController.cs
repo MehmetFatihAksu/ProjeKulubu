@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProjeKulubu.Models;
+using System.Web.Services;
+using System.Web.Script.Services;
+using System.Configuration;
 
 
 namespace ProjeKulubu.Controllers
@@ -12,6 +15,8 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Admin/
+
+        db2299D218BEEntities2 Db = new db2299D218BEEntities2();
 
         #region Projeler
         public ActionResult CompletedProjects()
@@ -28,14 +33,8 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult AddProject(Models.Proje Model)
-        {
-            Repository<Proje> rpstryproje = new Repository<Proje>();
-            proje add = new proje();
-            
-            return View();
-        }
+
+
        
         
         #endregion

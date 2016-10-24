@@ -13,29 +13,7 @@
 <script type="text/javascript" src="~/Content/AdminContent/js/flaty.js"></script>
 <link href="~/Content/AdminContent/css/flaty.css" rel="stylesheet" />
 
-<script type="text/javascript">
-    function savedata(){
-        var Data = {
-            Isim: $("#name").val(),
-            Konum: $("#konum").val()
-        };
-        alert("tıklandı");
-        $.ajax({
-            type: "POST",
-            url: "Admin/AddProject",
-            data: Data,
-            dataType: "JSON",
-            traditional: true,
-            success: function (response) {
-                console.log("başarılı");
-            }, error: function (response) {
-                console.log("Hata OLuştu");
-            }
 
-        });
-    }
-
-</script>
 
 <div id="main-content">
 
@@ -482,7 +460,7 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                                <input onclick="savedata()" value="Onayla" type="submit" class="btn btn-primary" id="button-save" style="float:right; margin-right: 50px;"/>
+                                                <input value="Onayla" type="submit" class="btn btn-primary" id="button-save" onclick="savedata()" style="float:right; margin-right: 50px;" />
                                             </div>
                                         </div>
                                     </div>
