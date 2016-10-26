@@ -41,7 +41,21 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
-        
+
+        #endregion
+
+        #region Ekip
+        public ActionResult Ekip()
+        {
+            return View();
+        }
+        #endregion
+
+        #region AnaSayfa Resimler 
+       public ActionResult BizdenResimler()
+        {
+            return View();
+        }
         #endregion
 
         #region S.S.S
@@ -50,32 +64,15 @@ namespace ProjeKulubu.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult AddQuestion()
-        //{
-            
-        //}
-
 
         #endregion
 
         #region Ofis
      
-        //public ActionResult YOfis()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult YOfis(Proje Model)
-        //{
-        //   if(ModelState.IsValid)
-        //    {
-    
-        //    }
-
-        //    return View();
-
-        //}
+        public ActionResult Ofis()
+        {
+            return View();
+        }
 
 
 
@@ -85,12 +82,11 @@ namespace ProjeKulubu.Controllers
         #endregion
 
         #region Eğitim
-        public ActionResult ReceivedEducations()
+        public ActionResult AlinanEgitimler()
         {
             return View();
         }
-
-        public ActionResult GrandtedEducations()
+        public ActionResult VerilenEgitimler()
         {
             return View();
         }
@@ -201,12 +197,6 @@ namespace ProjeKulubu.Controllers
 
         #endregion
 
-        #region Takvim
-        public ActionResult Takvim()
-        {
-            return View();
-        }
-        #endregion
 
         //#region Login
         //public ActionResult Login()
@@ -229,6 +219,22 @@ namespace ProjeKulubu.Controllers
         //    }
         //}
         //#endregion
+
+        #region etiket
+            public ActionResult Etiket()
+        {
+            return View();
+        }
+        #endregion
+
+
+
+        #region makale
+        public ActionResult Makale()
+        {
+            return View();
+        }
+        #endregion
 
 
     }

@@ -1073,6 +1073,7 @@
     <Content Include="Content\AdminContent\ui_tabs.html" />
     <Content Include="Content\AdminContent\ui_tile.html" />
     <Content Include="Content\AdminContent\ui_timeline.html" />
+    <Content Include="Content\cizgitech.png" />
     <Content Include="Content\img\a07.png" />
     <Content Include="Content\img\find-out-more-bt.png" />
     <Content Include="Content\img\loading.gif" />
@@ -2008,7 +2009,6 @@
     <Content Include="Views\Home\SatisOfis.cshtml" />
     <Content Include="Views\Home\SatisOfisSingle.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Admin\Takvim.cshtml" />
     <Content Include="Views\Admin\QuestionRequest.cshtml" />
     <Content Include="Views\Admin\Reference.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
@@ -2019,12 +2019,17 @@
     <Content Include="Views\Home\ProjeGelistirme.cshtml" />
     <Content Include="Views\Home\ProjeSatis.cshtml" />
     <Content Include="Views\Home\ProjePazarlama.cshtml" />
-    <Content Include="Views\Admin\YOfis.cshtml" />
     <Content Include="Views\Admin\AddProject.cshtml" />
-    <Content Include="Views\Admin\OfisEkle.cshtml" />
     <Content Include="Views\Admin\ReferansList.cshtml" />
     <Content Include="Views\Admin\ReferansDelete.cshtml" />
     <Content Include="Views\Admin\ReferansEdit.cshtml" />
+    <Content Include="Views\Admin\Makale.cshtml" />
+    <Content Include="Views\Admin\AlinanEgitimler.cshtml" />
+    <Content Include="Views\Admin\VerilenEgitimler.cshtml" />
+    <Content Include="Views\Admin\Ofis.cshtml" />
+    <Content Include="Views\Admin\Ekip.cshtml" />
+    <Content Include="Views\Admin\BizdenResimler.cshtml" />
+    <Content Include="Views\Admin\Etiket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

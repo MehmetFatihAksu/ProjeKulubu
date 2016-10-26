@@ -221,7 +221,7 @@ $(function() {
         $('#tag-input-1').tagsInput({
             width: 'auto',
             'onAddTag': function (tag) {
-                alert('New tag added: ' + tag);
+                alert('Yeni Etiket Eklendi: ' + tag);
             },
         });
         $('#tag-input-2').tagsInput({
