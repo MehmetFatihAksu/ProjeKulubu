@@ -17,12 +17,13 @@ namespace ProjeKulubu.Controllers
         db2299D218BEEntities6 db = new db2299D218BEEntities6();
 
         #region Projeler
-        public ActionResult CompletedProjects()
+
+        public ActionResult TProje()
         {
             return View();
         }
 
-        public ActionResult OnGoingSaleProjects()
+        public ActionResult SProje()
         {
             return View();
         }

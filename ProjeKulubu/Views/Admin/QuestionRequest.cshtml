@@ -3,33 +3,6 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-@*<script type="text/javascript">
-
-    function DataSave() {
-
-        if ($("#textfield3").val() == null || $("#Answer").val() == null) {
-            alert("Lütfen Soru Yada Cevap Metni Giriniz..");
-        } else {
-
-            $.ajax({
-                url:"Home/"
-
-
-            });
-
-
-
-        }
-
-
-    }
-
-
-
-
-</script>*@
-
-
 
 
 <div class="page-title">
@@ -66,7 +39,7 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Soru Başlığı</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="textfield3" id="textfield3" placeholder="Soru Başlığını Giriniz" class="form-control">
+                            <input type="text" name="textfield3" id="textfield3" placeholder="Soru Başlığını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma soru metni giriniz..." data-original-title="Soru Metni" data-placement="top">
                         </div>
                     </div>
                     <div class="box-content">
