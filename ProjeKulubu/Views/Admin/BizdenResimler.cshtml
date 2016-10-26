@@ -1,41 +1,16 @@
 ﻿@{
-    ViewBag.Title = "QuestionRequest";
+    ViewBag.Title = "BizdenResimler";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-@*<script type="text/javascript">
-
-    function DataSave() {
-
-        if ($("#textfield3").val() == null || $("#Answer").val() == null) {
-            alert("Lütfen Soru Yada Cevap Metni Giriniz..");
-        } else {
-
-            $.ajax({
-                url:"Home/"
 
 
-            });
-
-
-
-        }
-
-
-    }
-
-
-
-
-</script>*@
-
-
-
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 
 <div class="page-title">
     <div>
-        <h1><i class="fa fa-bars"></i> Sık Sorulan Sorular</h1>
-        <h4>Bu kısımda soru ve cevap ekleyip silebilir veya düzenleyebilirsiniz</h4>
+        <h1><i class="fa fa-bars"></i> Bizden Resimler Yönetimi</h1>
+        <h4>Bu kısımda ana sayfadaki bizden resimler kısmına resim ekleyip silebilir veya düzenleyebilirsiniz</h4>
     </div>
 </div>
 
@@ -46,16 +21,15 @@
             <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
-        <li class="active">Sık Sorulan Sorular</li>
+        <li class="active">Bizden Resimler Yönetimi</li>
     </ul>
 </div> 
-
 
 <div class="row">
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-question-circle"></i> Soru Ekleme Formu</h3>
+                <h3><i class="fa fa-image"></i> Resim Ekleme Formu</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
@@ -64,21 +38,31 @@
             <div class="box-content">
                 <form action="#" class="form-horizontal form-row-separated">
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Soru Başlığı</label>
+                        <label class="col-sm-3 col-lg-2 control-label">Resim Yükleme:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="textfield3" id="textfield3" placeholder="Soru Başlığını Giriniz" class="form-control">
-                        </div>
-                    </div>
-                    <div class="box-content">
-
-                            <div class="form-group">
-                                <label class="col-sm-3 col-lg-2 control-label">Soru Cevap</label>
-                                <div class="col-sm-9 col-lg-10 controls">
-                                    <textarea class="form-control col-md-12 ckeditor" id="Answer" name="editor1" rows="6"></textarea>
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileupload-new">Resim Seç</span>
+                                        <span class="fileupload-exists">Değiştir</span>
+                                        <input type="file" name="UyeResimAdi" id="Dosya" class="file-input" />
+                                    </span>
+                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
                             </div>
-                      
+                        </div>
                     </div>
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Resim SEO:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="textfield3" id="textfield3" placeholder="SEO Kelimenizi Giriniz" class="form-control">
+                        </div>
+                    </div>
+                    
 
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
@@ -89,13 +73,13 @@
             </div>
         </div>
     </div>
-</div> @* Soru EKLEME *@
+</div>
 
 <div class="row">
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Sorular</h3>
+                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Resimler</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
@@ -105,7 +89,6 @@
                 <div class="btn-toolbar pull-right">
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" title="Yeni" href="#"><i class="fa fa-plus"></i></a>
-                        <a class="btn btn-circle show-tooltip" title="Düzenle" href="#"><i class="fa fa-edit"></i></a>
                         <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
                     </div>
                     <div class="btn-group">
@@ -119,24 +102,20 @@
                             <tr>
                                 <th style="width:18px"><input type="checkbox" /></th>
                                 <th>ID</th>
-                                <th>Soru Başlığı</th>
-                                <th>Soru Cevabı</th>
-                                <th>İnceleme</th>
-                                <th>Silme</th>
+                                <th>Resim</th>
+                                <th>Resim SEO</th>
                                 <th>Düzenleme</th>
+                                <th>Silme</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-flag-blue">
                                 <td><input type="checkbox" /></td>
                                 <td>1</td>
-                                <td>Soru</td>
-                                <td>Cevap</td>
-                                <td><a class="btn btn-sm show-tooltip" title="İncele" href="#"><i class="fa fa-search"></i></a></td>
+                                <td>Resim</td>
+                                <td>SEO</td>
                                 <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="#"><i class="fa fa-edit"></i></a></td>
                                 <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a></td>
-
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -152,12 +131,13 @@
             </div>
         </div>
     </div>
-</div> @* Soru Tablosu *@
+</div>@*BizdenResimler*@
 
 <footer>
     <p>2015 © Cizgi Tech Admin Yönetimi.</p>
-</footer> 
+</footer>
 
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
 
-<script type="text/javascript" src="/Content/AdminContent/assets/ckeditor/ckeditor.js"></script>
+
+<script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>

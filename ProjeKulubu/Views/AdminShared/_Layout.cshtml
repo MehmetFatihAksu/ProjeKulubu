@@ -24,58 +24,7 @@
 </head>
 <body>
     <!-- BEGIN Theme Setting -->
-    <div id="theme-setting">
-        <a href="#"><i class="fa fa-gears fa fa-2x"></i></a>
-        <ul>
-            <li>
-                <span>Skin</span>
-                <ul class="colors" data-target="body" data-prefix="skin-">
-                    <li class="active"><a class="blue" href="#"></a></li>
-                    <li><a class="red" href="#"></a></li>
-                    <li><a class="green" href="#"></a></li>
-                    <li><a class="orange" href="#"></a></li>
-                    <li><a class="yellow" href="#"></a></li>
-                    <li><a class="pink" href="#"></a></li>
-                    <li><a class="magenta" href="#"></a></li>
-                    <li><a class="gray" href="#"></a></li>
-                    <li><a class="black" href="#"></a></li>
-                </ul>
-            </li>
-            <li>
-                <span>Navbar</span>
-                <ul class="colors" data-target="#navbar" data-prefix="navbar-">
-                    <li class="active"><a class="blue" href="#"></a></li>
-                    <li><a class="red" href="#"></a></li>
-                    <li><a class="green" href="#"></a></li>
-                    <li><a class="orange" href="#"></a></li>
-                    <li><a class="yellow" href="#"></a></li>
-                    <li><a class="pink" href="#"></a></li>
-                    <li><a class="magenta" href="#"></a></li>
-                    <li><a class="gray" href="#"></a></li>
-                    <li><a class="black" href="#"></a></li>
-                </ul>
-            </li>
-            <li>
-                <span>Sidebar</span>
-                <ul class="colors" data-target="#main-container" data-prefix="sidebar-">
-                    <li class="active"><a class="blue" href="#"></a></li>
-                    <li><a class="red" href="#"></a></li>
-                    <li><a class="green" href="#"></a></li>
-                    <li><a class="orange" href="#"></a></li>
-                    <li><a class="yellow" href="#"></a></li>
-                    <li><a class="pink" href="#"></a></li>
-                    <li><a class="magenta" href="#"></a></li>
-                    <li><a class="gray" href="#"></a></li>
-                    <li><a class="black" href="#"></a></li>
-                </ul>
-            </li>
-            <li>
-                <span></span>
-                <a data-target="navbar" href="#"><i class="fa fa-square-o"></i> Fixed Navbar</a>
-                <a class="hidden-inline-xs" data-target="sidebar" href="#"><i class="fa fa-square-o"></i> Fixed Sidebar</a>
-            </li>
-        </ul>
-    </div>
+    
     <!-- END Theme Setting -->
     <!-- BEGIN Navbar -->
     <div id="navbar" class="navbar">
@@ -85,42 +34,17 @@
         <a class="navbar-brand" href="#">
             <small>
 
-                Proje Kulübü Türkiye
+                Proje Kulübü Türkiye Admin Paneli
             </small>
         </a>
         <!-- BEGIN Navbar Buttons -->
         <ul class="nav flaty-nav pull-right">
-            <!-- BEGIN Button Tasks -->
-            <li class="hidden-xs">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <i class="fa fa-tasks"></i>
-                </a>
-                <!-- BEGIN Tasks Dropdown -->
-
-            </li>
-            <!-- END Button Tasks -->
-            <!-- BEGIN Button Notifications -->
-            <li class="hidden-xs">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <i class="fa fa-bell"></i>
-                </a>
-                <!-- BEGIN Notifications Dropdown -->
-            </li>
-            <!-- END Button Notifications -->
-            <!-- BEGIN Button Messages -->
-            <li class="hidden-xs">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <i class="fa fa-envelope"></i>
-                </a>
-                <!-- BEGIN Messages Dropdown -->
-            </li>
-            <!-- END Button Messages -->
-            <!-- BEGIN Button User -->
+            
             <li class="user-profile">
                 <a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">
-                    <img class="nav-user-photo" src="~/Content/AdminContent/img/demo/avatar/avatar1.jpg" alt="Penny's Photo" />
+                    <img class="nav-user-photo" src="~/Content/pikocon_html/images/atilla.jpg" />
                     <span class="hhh" id="user_info">
-                        Penny
+                        Admin
                     </span>
                     <i class="fa fa-caret-down"></i>
                 </a>
@@ -130,7 +54,7 @@
                     <li>
                         <a href="#">
                             <i class="fa fa-cog"></i>
-                            Hesap Ayarları
+                            Hesap Bilgisi
                         </a>
                     </li>
 
@@ -140,33 +64,11 @@
                             Yardım
                         </a>
                     </li>
-                    <li class="divider visible-xs"></li>
-                    <li class="visible-xs">
-                        <a href="#">
-                            <i class="fa fa-tasks"></i>
-                            Tasks
-                            <span class="badge badge-warning">4</span>
-                        </a>
-                    </li>
-                    <li class="visible-xs">
-                        <a href="#">
-                            <i class="fa fa-bell"></i>
-                            Notifications
-                            <span class="badge badge-important">8</span>
-                        </a>
-                    </li>
-                    <li class="visible-xs">
-                        <a href="#">
-                            <i class="fa fa-envelope"></i>
-                            Messages
-                            <span class="badge badge-success">5</span>
-                        </a>
-                    </li>
                     <li class="divider"></li>
                     <li>
                         <a href="#">
                             <i class="fa fa-off"></i>
-                            Çıkış Yap !
+                            Çıkış Yap
                         </a>
                     </li>
                 </ul>
@@ -223,11 +125,18 @@
                 </li>
 
                 <li>
-                    <a href="@Url.Action("YOfis", "Admin")">
+                    <a href="@Url.Action("Ofis", "Admin")">
                         <i class="fa fa-list-alt"></i>
                         <span>Ofis Yönetimi</span>
                     </a>
                 </li>
+                <li>
+                    <a href="@Url.Action("Etiket", "Admin")">
+                        <i class="fa fa-tags"></i>
+                        <span>Etiket Yönetimi</span>
+                    </a>
+                </li>
+                
                
                 <li>
                     <a href="#" class="dropdown-toggle">
@@ -237,8 +146,8 @@
                     </a>
                     <!-- BEGIN Submenu -->
                     <ul class="submenu">
-                        <li><a href="@Url.Action("ReceivedEducations", "Admin")">Alınan Eğitimler</a></li>
-                        <li><a href="@Url.Action("GrandtedEducations", "Admin")">Verilen Eğitimler</a></li>
+                        <li><a href="@Url.Action("AlinanEgitimler", "Admin")">Alınan Eğitimler</a></li>
+                        <li><a href="@Url.Action("VerilenEgitimler", "Admin")">Verilen Eğitimler</a></li>
                     </ul>
                     <!-- END Submenu -->
                 </li>
@@ -249,11 +158,25 @@
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Takvim", "Admin")">
-                        <i class="fa fa-calendar"></i>
-                        <span>Takvim</span>
+                    <a href="@Url.Action("Ekip", "Admin")">
+                        <i class="fa fa-users"></i>
+                        <span>Ekip Yönetimi</span>
                     </a>
                 </li>
+                <li>
+                    <a href="@Url.Action("Makale", "Admin")">
+                        <i class="fa fa-tasks"></i>
+                        <span>Makale Yönetimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("BizdenResimler", "Admin")">
+                        <i class="fa fa-image"></i>
+                        <span>Bizden Resimler</span>
+                    </a>
+                </li>
+
+                
             </ul>
             <!-- END Navlist -->
             <!-- BEGIN Sidebar Collapse Button -->
@@ -306,7 +229,9 @@
     <script src="~/Content/AdminContent/assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
     <script src="~/Content/AdminContent/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
     <script src="~/Content/AdminContent/assets/ckeditor/ckeditor.js"></script> 
-  
+
+
+
     <!--flaty scripts-->
     <script src="~/Content/AdminContent/js/flaty.js"></script>
     <script src="~/Content/AdminContent/js/flaty-demo-codes.js"></script>
