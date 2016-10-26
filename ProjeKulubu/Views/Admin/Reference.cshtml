@@ -5,8 +5,6 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-
-
 <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 
 <div class="page-title">
@@ -25,7 +23,7 @@
         </li>
         <li class="active">Referans Yönetimi</li>
     </ul>
-</div> 
+</div>
 
 <div class="row">
     <div class="col-md-12">
@@ -58,52 +56,45 @@
                             @*<input type="text" name="username" id="username" class="form-control" data-rule-required="true" data-rule-minlength="3" />*@
                         </div>
                     </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-lg-2 control-label">Resim Yükleme:</label>
-                            <div class="col-sm-9 col-lg-10 controls">
-                                <div class="fileupload fileupload-new" data-provides="fileupload">
-                                    <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
-                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
-                                    </div>
-                                    <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                                    <div>
-                                        <span class="btn btn-default btn-file">
-                                            <span class="fileupload-new">Resim Seç</span>
-                                            <span class="fileupload-exists">Değiştir</span>
-                                            <input type="file" name="UyeResimAdi" id="Dosya" class="file-input" />
-                                        </span>
-                                        <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
-                                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label">Resim Yükleme:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileupload-new">Resim Seç</span>
+                                        <span class="fileupload-exists">Değiştir</span>
+                                        @Html.HiddenFor(x=>Model.ID)
+                                        <input type="file" multiple name="uploadFile" id="uploadFile" class="file-input" />
+                                    </span>
+                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
                             </div>
-                     </div>
-                        <div class="form-group">
-                            <label for="urlfield" class="col-sm-3 col-lg-2 control-label">Resim SEO:</label>
-                            <div class="col-sm-6 col-lg-4 controls">
-                                @Html.TextBoxFor(model =>model.SeoAlt, new { @class = "form-control" })
-                                @*<input type="text" class="form-control" placeholder="Site Adresini Girin" name="urlfield" id="urlfield" data-rule-url="true" data-rule-required="true">*@
-                            </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                <input type="submit" value="Kaydet" class="btn btn-primary" />
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="urlfield" class="col-sm-3 col-lg-2 control-label">Resim SEO:</label>
+                        <div class="col-sm-6 col-lg-4 controls">
+                            @Html.TextBoxFor(model => model.SeoAlt, new { @class = "form-control" })
+                            @*<input type="text" class="form-control" placeholder="Site Adresini Girin" name="urlfield" id="urlfield" data-rule-url="true" data-rule-required="true">*@
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <input type="submit" value="Kaydet" class="btn btn-primary" id="SaveButton"/>
+                        </div>
+                    </div>
 
 
                 }
             </div>
-
-
-
-
-
-
-
-                    
-                    </div>
         </div>
     </div>
+</div>
 
 @Html.Action("ReferansList")
 

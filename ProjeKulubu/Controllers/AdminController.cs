@@ -105,14 +105,18 @@ namespace ProjeKulubu.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Reference([Bind(Include = "ID,SiteURL,Baslik,SeoAlt,LogoURL")] Referanslar referans)
+        public ActionResult Reference([Bind(Include = "ID,SiteURL,Baslik,SeoAlt,LogoURL")] Referanslar referans, HttpPostedFileBase uploadFile , int ID)
         {
-
-
             if (ModelState.IsValid)
             {
                     db.Referanslar.Add(referans);
                     db.SaveChanges();
+                    if (uploadFile !=null && uploadFile.ContentLength > 0)
+                    {
+                        
+                    }
+
+
                     return RedirectToAction("Reference", "Admin");
             }
 
