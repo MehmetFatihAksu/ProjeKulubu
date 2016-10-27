@@ -18,17 +18,17 @@ namespace ProjeKulubu.Controllers
 
         #region Projeler
 
-        public ActionResult TProje()
-        {
-            return View();
-        }
-
-        public ActionResult SProje()
-        {
-            return View();
-        }
-
         public ActionResult AddProject()
+        {
+            return View();
+        }
+
+        public ActionResult SatisiDevamEdenProjeler()
+        {
+            return View();
+        }
+
+        public ActionResult TamamlananProjeler()
         {
             return View();
         }

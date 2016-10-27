@@ -2030,8 +2030,8 @@
     <Content Include="Views\Admin\Ekip.cshtml" />
     <Content Include="Views\Admin\BizdenResimler.cshtml" />
     <Content Include="Views\Admin\Etiket.cshtml" />
-    <Content Include="Views\Admin\TProje.cshtml" />
-    <Content Include="Views\Admin\SProje.cshtml" />
+    <Content Include="Views\Admin\SatisiDevamEdenProjeler.cshtml" />
+    <Content Include="Views\Admin\TamamlananProjeler.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
