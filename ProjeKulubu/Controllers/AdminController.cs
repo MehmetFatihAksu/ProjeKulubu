@@ -241,6 +241,14 @@ namespace ProjeKulubu.Controllers
         }
         #endregion
 
+        #region MusteriYorumlari
+
+        public ActionResult MusteriYorumlari()
+        {
+            return View();
+        } 
+        #endregion
+
 
     }
 }

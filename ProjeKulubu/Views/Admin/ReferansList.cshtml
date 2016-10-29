@@ -4,6 +4,8 @@
     Layout = null;
 }
 
+<script src="~/Content/AdminContent/js/buttonActions.js"></script>
+
 <div class="row">
     <div class="col-md-12">
         <div class="box box-black">
@@ -17,7 +19,7 @@
             <div class="box-content">
                 <div class="btn-toolbar pull-right">
                     <div class="btn-group">
-                        <a class="btn btn-circle show-tooltip" title="Yeni" href="#"><i class="fa fa-plus"></i></a>
+                        <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
                         <a class="btn btn-circle show-tooltip" title="Düzenle" href="#"><i class="fa fa-edit"></i></a>
                         <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
                     </div>

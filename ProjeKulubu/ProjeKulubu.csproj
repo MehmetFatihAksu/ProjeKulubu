@@ -1004,6 +1004,7 @@
     <Content Include="Content\AdminContent\calendar.html" />
     <Content Include="Content\AdminContent\css\flaty-responsive.css" />
     <Content Include="Content\AdminContent\css\flaty.css" />
+    <Content Include="Content\AdminContent\css\FooterStyle.css" />
     <Content Include="Content\AdminContent\extra_invoice.html" />
     <Content Include="Content\AdminContent\extra_login.html" />
     <Content Include="Content\AdminContent\extra_mail-compose.html" />
@@ -1047,6 +1048,7 @@
     <Content Include="Content\AdminContent\img\demo\profile-picture.jpg" />
     <Content Include="Content\AdminContent\img\demo\wp-logo.png" />
     <Content Include="Content\AdminContent\index.html" />
+    <Content Include="Content\AdminContent\js\buttonActions.js" />
     <Content Include="Content\AdminContent\js\flaty-demo-codes.js" />
     <Content Include="Content\AdminContent\js\flaty.js" />
     <Content Include="Content\AdminContent\map_google.html" />
@@ -2032,6 +2034,7 @@
     <Content Include="Views\Admin\Etiket.cshtml" />
     <Content Include="Views\Admin\SatisiDevamEdenProjeler.cshtml" />
     <Content Include="Views\Admin\TamamlananProjeler.cshtml" />
+    <Content Include="Views\Admin\MusteriYorumlari.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

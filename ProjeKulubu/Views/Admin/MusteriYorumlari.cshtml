@@ -1,17 +1,16 @@
 ﻿@{
-    ViewBag.Title = "Makale";
+    ViewBag.Title = "MusteriYorumlari";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
-<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/jquery-tags-input/jquery.tagsinput.css" />
-<script src="~/Content/AdminContent/js/buttonActions.js"></script>
 
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+<script src="~/Content/AdminContent/js/buttonActions.js"></script>
 
 <div class="page-title">
     <div>
-        <h1><i class="fa fa-bars"></i> Makale Yönetimi</h1>
-        <h4>Bu kısımda makale ekleyip silebilir veya düzenleyebilirsiniz</h4>
+        <h1><i class="fa fa-bars"></i> Müşteri Yorumları Yönetimi</h1>
+        <h4>Bu kısımda müşterileriniz ait yorumları ekleyip silebilir veya düzenleyebilirsiniz</h4>
     </div>
 </div>
 
@@ -22,15 +21,15 @@
             <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
-        <li class="active">Makale Yönetimi</li>
+        <li class="active">Müşteri Yorumları Yönetimi</li>
     </ul>
-</div> 
+</div>
 
 <div class="row">
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-tasks"></i> Makale Ekleme Formu</h3>
+                <h3><i class="fa fa-tags"></i> Müşteri Yorumları Ekleme Formu</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
@@ -39,19 +38,13 @@
             <div class="box-content">
                 <form action="#" class="form-horizontal form-row-separated">
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Makale Başlığı:</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Müşteri İsmi</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="textfield3" id="textfield3" placeholder="Makale Başlığını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma makale başlığını giriniz..." data-original-title="Makale Başlığı" data-placement="top">
+                            <input type="text" name="textfield3" id="textfield3" placeholder="Müşteri İsmini Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma müşterinizin adını giriniz..." data-original-title="Müşteri İsmi" data-placement="top">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Etiket Ekle:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input id="tag-input-1" type="text" class="form-control tags show-popover" value="" data-trigger="hover" data-content="Bu kısıma etiket kelimeler giriniz..." data-original-title="Etiket Ekle" data-placement="top" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Makale Resim Yükleme:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">Yorum Resmi:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
@@ -62,46 +55,25 @@
                                     <span class="btn btn-default btn-file">
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
-                                        <input type="file" name="UyeResimAdi" id="Dosya" class="file-input" />
+                                      
+                                        <input type="file" multiple name="uploadFile" id="uploadFile" class="file-input" />
                                     </span>
                                     <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Makale Resim SEO:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="textfield3" id="textfield3" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma maksimum 3 anahtar kelime giriniz..." data-original-title="Makale Resim Seo Anahtarı" data-placement="top">
-                        </div>
-                    </div>
-                    <div class="box-content">
-
-                        <div class="form-group">
-                            <label class="col-sm-3 col-lg-2 control-label">Makale İçeriği:</label>
-                            <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control col-md-12 ckeditor" id="Answer" name="editor1" rows="6"></textarea>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group last">
-                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
-</div>@*Makale Ekleme Formu*@
+</div>
 
 <div class="row">
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Makaleler</h3>
+                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Müşteri Yorumları</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
@@ -124,32 +96,18 @@
                             <tr>
                                 <th style="width:18px"><input type="checkbox" /></th>
                                 <th>ID</th>
-                                <th>Makale Başlığı</th>
-                                <th>Makale Etiket</th>
-                                <th>Makale Resim</th>
-                                <th>Makale Tarih</th>
-                                <th>Görüntülenme Sayısı</th>
-                                <th>Makale İçerik</th>
-                                <th>Makale Resim SEO</th>
-                                <th>İnceleme</th>
-                                <th>Düzenleme</th>
-                                <th>Silme</th>
+                                <th>Müşteri İsmi</th>
+                                <th>Müşteri Yorumu</th>
+                                <th>İşlemler</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-flag-blue">
                                 <td><input type="checkbox" /></td>
                                 <td>1</td>
-                                <td>Başlık</td>
-                                <td>Etiketler</td>
+                                <td>İsim</td>
                                 <td>Resim</td>
-                                <td>07.11.15</td>
-                                <td>21</td>
-                                <td>İçerik</td>
-                                <td>SEO</td>
-                                <td><a class="btn btn-sm show-tooltip" title="İncele" href="#"><i class="fa fa-search"></i></a></td>
                                 <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="#"><i class="fa fa-edit"></i></a></td>
-                                <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -165,16 +123,10 @@
             </div>
         </div>
     </div>
-</div>@*Makale List*@
+</div>@*Etiket List*@
 
 <footer>
     <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
 </footer>
 
-<script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
-
-
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
-
-<script type="text/javascript" src="/Content/AdminContent/assets/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="/Content/AdminContent/assets/jquery-tags-input/jquery.tagsinput.min.js"></script>

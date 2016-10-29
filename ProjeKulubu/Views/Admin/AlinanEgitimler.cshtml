@@ -4,6 +4,7 @@
 }
 
 <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+<script src="~/Content/AdminContent/js/buttonActions.js"></script>
 
 
 <div class="page-title">
@@ -39,7 +40,7 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim Başlığı</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="textfield3" id="textfield3" placeholder="Eğitim Başlığını Giriniz" class="form-control">
+                            <input type="text" name="textfield3" id="textfield3" placeholder="Eğitim Başlığını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma eğitiminizin başlığını giriniz..." data-original-title="Eğitim İçerik Başlığı" data-placement="top">
                         </div>
                     </div>
                     <div class="form-group">
@@ -64,7 +65,7 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim Resim SEO:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="textfield3" id="textfield3" placeholder="SEO Kelimenizi Giriniz" class="form-control">
+                            <input type="text" name="textfield3" id="textfield3" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma eğitime ait olan resim için maksimum üç anahtar kelime giriniz..." data-original-title="Eğitim Resim SEO" data-placement="top">
                         </div>
                     </div>
                     <div class="box-content">
@@ -102,7 +103,7 @@
             <div class="box-content">
                 <div class="btn-toolbar pull-right">
                     <div class="btn-group">
-                        <a class="btn btn-circle show-tooltip" title="Yeni" href="#"><i class="fa fa-plus"></i></a>
+                        <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
                         <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
                     </div>
                     <div class="btn-group">
@@ -158,7 +159,7 @@
 </div> @*Eğitim Listeleme Formu*@
 
 <footer>
-    <p>2015 © Cizgi Tech Admin Yönetimi.</p>
+    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
 </footer>
 
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>

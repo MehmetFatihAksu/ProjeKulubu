@@ -3,6 +3,8 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
+<script src="~/Content/AdminContent/js/buttonActions.js"></script>
+
 <div class="page-title">
     <div>
         <h1><i class="fa fa-bars"></i> Etiket Yönetimi</h1>
@@ -71,7 +73,7 @@
             <div class="box-content">
                 <div class="btn-toolbar pull-right">
                     <div class="btn-group">
-                        <a class="btn btn-circle show-tooltip" title="Yeni" href="#"><i class="fa fa-plus"></i></a>
+                        <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
                         <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
                     </div>
                     <div class="btn-group">
@@ -117,8 +119,7 @@
 </div>@*Etiket List*@
 
 <footer>
-    <p>2015 © Cizgi Tech Admin Yönetimi.</p>
+    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
 </footer>
-
 
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
