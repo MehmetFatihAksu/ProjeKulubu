@@ -12,12 +12,12 @@ namespace ProjeKulubu.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Referanslar
+    public partial class sysdiagrams
     {
-        public int ID { get; set; }
-        public string SiteURL { get; set; }
-        public string Baslik { get; set; }
-        public string SeoAlt { get; set; }
-        public string LogoURL { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

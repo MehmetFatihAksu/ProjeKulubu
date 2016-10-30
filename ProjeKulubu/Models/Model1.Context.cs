@@ -13,10 +13,10 @@ namespace ProjeKulubu.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class db2299D218BEEntities6 : DbContext
+    public partial class db2299D218BEEntities7 : DbContext
     {
-        public db2299D218BEEntities6()
-            : base("name=db2299D218BEEntities6")
+        public db2299D218BEEntities7()
+            : base("name=db2299D218BEEntities7")
         {
         }
     
@@ -25,6 +25,22 @@ namespace ProjeKulubu.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Referanslar> Referanslar { get; set; }
+        public DbSet<Admin> Admin { get; set; }
+        public DbSet<AskedQuestions> AskedQuestions { get; set; }
+        public DbSet<Blog> Blog { get; set; }
+        public DbSet<CustomerComments> CustomerComments { get; set; }
+        public DbSet<Education> Education { get; set; }
+        public DbSet<EducationType> EducationType { get; set; }
+        public DbSet<LoginList> LoginList { get; set; }
+        public DbSet<Office> Office { get; set; }
+        public DbSet<OfficePictures> OfficePictures { get; set; }
+        public DbSet<OurPictures> OurPictures { get; set; }
+        public DbSet<Project> Project { get; set; }
+        public DbSet<ProjectPicture> ProjectPicture { get; set; }
+        public DbSet<ProjectType> ProjectType { get; set; }
+        public DbSet<Reference> Reference { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<Tags> Tags { get; set; }
+        public DbSet<Team> Team { get; set; }
     }
 }
