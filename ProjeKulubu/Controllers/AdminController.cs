@@ -123,10 +123,10 @@ namespace ProjeKulubu.Controllers
         //Referans yönetimi  
       
 
-        public ActionResult ReferansList()
-        {
-            return View(db.Referanslar.ToList());
-        }
+        //public ActionResult ReferansList()
+        //{
+        //    return View(db.Referanslar.ToList());
+        //}
 
 
         public ActionResult ReferansDelete(int? id)
