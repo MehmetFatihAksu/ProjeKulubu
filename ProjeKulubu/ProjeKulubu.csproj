@@ -1123,6 +1123,7 @@
     <Content Include="Content\AdminContent\ui_tabs.html" />
     <Content Include="Content\AdminContent\ui_tile.html" />
     <Content Include="Content\AdminContent\ui_timeline.html" />
+    <Content Include="Content\banner12.jpg" />
     <Content Include="Content\cizgitech.png" />
     <Content Include="Content\img\a07.png" />
     <Content Include="Content\img\find-out-more-bt.png" />

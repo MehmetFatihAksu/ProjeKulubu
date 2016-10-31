@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ProjeKulubu.Models.AskedQuestions
+
+@{
     ViewBag.Title = "QuestionRequest";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
@@ -35,22 +37,26 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="#" class="form-horizontal form-row-separated">
+                @using (Html.BeginForm("QuestionRequest","Admin",FormMethod.Post,new { @class = "form-horizontal form-row-separated" }))
+                {
+
+                    @Html.AntiForgeryToken()
+
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Soru Başlığı</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Soru Başlığı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="textfield3" id="textfield3" placeholder="Soru Başlığını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma soru metni giriniz..." data-original-title="Soru Metni" data-placement="top">
+                            @Html.TextBoxFor(model => model.Question,new { @class="form-control show-popover",@placeholder="Soru Başlığını Giriniz",@data_trigger="hover",@data_content="Bu kısıma soru metni giriniz...",@data_original_title="Soru Metni",@data_placement="top",@id="textfield3",@name="textfield3"})
                         </div>
                     </div>
                     <div class="box-content">
 
-                            <div class="form-group">
-                                <label class="col-sm-3 col-lg-2 control-label">Soru Cevap</label>
-                                <div class="col-sm-9 col-lg-10 controls">
-                                    <textarea class="form-control col-md-12 ckeditor" id="Answer" name="editor1" rows="6"></textarea>
-                                </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Soru Cevap:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                @Html.TextAreaFor(model =>model.QuestionAnswer,new { @class="form-control col-md-12 ckeditor",@id="Answer",@name="editor1",@rows="6"})
                             </div>
-                      
+                        </div>
+
                     </div>
 
                     <div class="form-group last">
@@ -58,7 +64,8 @@
                             <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
                         </div>
                     </div>
-                </form>
+                }
+
             </div>
         </div>
     </div>

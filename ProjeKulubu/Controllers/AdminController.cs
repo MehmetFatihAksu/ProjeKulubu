@@ -13,12 +13,12 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Admin/
-
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
     
 
         #region Projeler
 
-        public ActionResult AddProject()
+        public ActionResult newProject()
         {
             return View();
         }
@@ -60,8 +60,18 @@ namespace ProjeKulubu.Controllers
         #endregion
 
         #region S.S.S
+        [ValidateInput(false)]
         public ActionResult QuestionRequest()
         {
+            if(ModelState.IsValid)
+            {
+                AskedQuestions addNewQuestion = new AskedQuestions();
+                addNewQuestion.Question = Request.Form["Question"];
+                addNewQuestion.QuestionAnswer = Request.Form["QuestionAnswer"];
+                db.AskedQuestions.Add(addNewQuestion);
+                db.SaveChanges();
+                
+            }
             return View();
         }
 
@@ -106,7 +116,7 @@ namespace ProjeKulubu.Controllers
         //{
         //    if (ModelState.IsValid)
         //    {
-        //            db.Referanslar.Add(referans);
+        //            db.Referanslar.new(referans);
         //            db.SaveChanges();
         //            if (uploadFile !=null && uploadFile.ContentLength > 0)
         //            {

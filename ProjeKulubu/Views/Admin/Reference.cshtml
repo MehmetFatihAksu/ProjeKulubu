@@ -1,4 +1,4 @@
-﻿@model ProjeKulubu.Models.Referanslar
+﻿
 
 @{
     ViewBag.Title = "Reference";
@@ -68,7 +68,7 @@
                                         <span class="btn btn-default btn-file">
                                             <span class="fileupload-new">Resim Seç</span>
                                             <span class="fileupload-exists">Değiştir</span>
-                                        @Html.HiddenFor(x=>Model.ID)
+                                        @*@Html.HiddenFor(x=>Model.ID)*@
                                             <input type="file" multiple name="uploadFile" id="uploadFile" class="file-input"/>
                                         </span>
                                         <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
@@ -79,7 +79,7 @@
                         <div class="form-group">
                             <label for="urlfield" class="col-sm-3 col-lg-2 control-label">Resim SEO:</label>
                             <div class="col-sm-6 col-lg-4 controls">
-                                @*@Html.TextBoxFor(model =>model.SeoAlt, new { @class = "form-control", @placeholder = "SEO Kelimenizi Giriniz" })*@
+                                @*@Html.TextBoxFor(model =>model.SeoAlt, new { @class = "form-control", @placeholder = "SEO Kelimenizi*@
                                 <input type="text" class="form-control show-popover" id="ReferenceSeo" placeholder="SEO Kelimenizi Giriniz..." data-trigger="hover" data-content="Bu kısıma referansa ait maksimum üç anahtar kelime giriniz..." data-original-title="Referans Resim SEO" data-placement="top" />
                             </div>
                         </div>
