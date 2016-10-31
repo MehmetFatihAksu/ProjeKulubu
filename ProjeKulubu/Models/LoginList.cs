@@ -17,6 +17,6 @@ namespace ProjeKulubu.Models
         public int ID { get; set; }
         public string IPAdress { get; set; }
         public string SoftwareType { get; set; }
-        public Nullable<System.DateTime> GirisTarih { get; set; }
+        public Nullable<System.DateTime> LoginDate { get; set; }
     }
 }

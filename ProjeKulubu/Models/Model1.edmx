@@ -11,7 +11,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
-          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="41" />
           <Property Name="UserEmail" Type="nvarchar" MaxLength="50" />
           <Property Name="UserPictureURL" Type="nvarchar(max)" />
         </EntityType>
@@ -71,7 +71,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IPAdress" Type="varchar" MaxLength="15" />
           <Property Name="SoftwareType" Type="nvarchar" MaxLength="50" />
-          <Property Name="GirisTarih" Type="smalldatetime" />
+          <Property Name="LoginDate" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="Office">
           <Key>
@@ -326,7 +326,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="41" FixedLength="false" Unicode="true" />
           <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserPictureURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -389,7 +389,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IPAdress" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="SoftwareType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="GirisTarih" Type="DateTime" Precision="0" />
+          <Property Name="LoginDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Office">
           <Key>
@@ -597,7 +597,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="db2299D218BEEntities7" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="db2299D218BEEntities8" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admin" EntityType="Self.Admin" />
           <EntitySet Name="AskedQuestions" EntityType="Self.AskedQuestions" />
           <EntitySet Name="Blog" EntityType="Self.Blog" />
@@ -649,7 +649,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="db2299D218BEModelStoreContainer" CdmEntityContainer="db2299D218BEEntities7">
+        <EntityContainerMapping StorageEntityContainer="db2299D218BEModelStoreContainer" CdmEntityContainer="db2299D218BEEntities8">
           <EntitySetMapping Name="Admin">
             <EntityTypeMapping TypeName="db2299D218BEModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
@@ -721,7 +721,7 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="IPAdress" ColumnName="IPAdress" />
                 <ScalarProperty Name="SoftwareType" ColumnName="SoftwareType" />
-                <ScalarProperty Name="GirisTarih" ColumnName="GirisTarih" />
+                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
