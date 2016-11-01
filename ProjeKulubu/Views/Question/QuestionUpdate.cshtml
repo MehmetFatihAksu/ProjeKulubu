@@ -1,0 +1,103 @@
+﻿@using ProjeKulubu.Models
+@model AskedQuestions
+
+
+@{
+    ViewBag.Title = "QuestionUpdate";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    function DataUpdate() {
+
+        if ($("#QuestionNewContent").val() == null || $("#AnswerNewContent").val() == null) {
+            
+            alert("Soru yada cevap metinini eksiksiz giriniz...");
+        } else {
+
+            var Model = {
+                ID: $("#dataId").val(),
+                Question: $("#QuestionNewContent").val(),
+                QuestionAnswer: $("#AnswerNewContent").val()
+            }
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Question/QuestionDataUpdate/",
+                data: Model,
+                ajaxasync: true,
+                traditional: true,
+                success: function (response) {
+                    alert("Soru Başarıyla Güncellendi");
+
+                    window.location.href = "/Question";
+                },
+                error: function (response) {
+                    console.log("Hata Oluştu");
+                }
+
+            });
+        }
+
+    }
+
+
+</script>
+
+<h2>Yayımda Olan Soruya Güncelleme İşlemi Yapmaktasınız?</h2>
+
+<aside id="QuesionUpdateDetail" class="QuestionContent">
+
+    <form action="/Question/QuestionUpdate">
+
+        <div class="box-content">
+
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">Soru Başlığı:</label>
+
+                <div class="col-sm-6 col-lg-4 controls">
+                    <input type="text" disabled value="@Model.Question" id="QuestionContent" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">Soru Cevabı:</label>
+
+                <div class="col-sm-6 col-lg-4 controls">
+                    <input type="text" disabled value="@Model.QuestionAnswer" id="AnswerContent" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">Soru Başlığı:</label>
+
+                <div class="col-sm-6 col-lg-4 controls">
+                    <input type="text" placeholder="Sorunun güncel değerini giriniz..." id="QuestionNewContent" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">Soru Cevabı:</label>
+
+                <div class="col-sm-6 col-lg-4 controls">
+                    <input type="text" placeholder="Cevabın güncel değerini giriniz..." id="AnswerNewContent" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                    <input type="hidden" id="dataId" value="@Model.ID" />
+                    <input type="button" class="btn btn-primary" style="float:right" value="Güncelle" onclick="DataUpdate()" />
+                    @ViewBag.Error
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+</aside>

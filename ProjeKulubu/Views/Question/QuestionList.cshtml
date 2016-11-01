@@ -48,9 +48,9 @@
                                 <td>@item.ID</td>
                                 <td>@item.Question</td>
                                 <td>@item.QuestionAnswer</td>
-                                <td><a class="btn btn-sm show-tooltip" title="İncele" href="#"><i class="fa fa-search"></i></a></td>
-                                <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="#"><i class="fa fa-edit"></i></a></td>
-                                <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("QuestionDetail", "Question")/@item.ID"><i class="fa fa-trash-o"></i></a></td>
+                                <td><a class="btn btn-sm show-tooltip" title="İncele" href="@Url.Action("QuestionDetail","Question")/@item.ID"><i class="fa fa-search"></i></a></td>
+                                <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("QuestionUpdate","Question")/@item.ID"><i class="fa fa-edit"></i></a></td>
+                                <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("QuestionDelete", "Question")/@item.ID"><i class="fa fa-trash-o"></i></a></td>
                               
                             </tr>
                            }

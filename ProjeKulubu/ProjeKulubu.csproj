@@ -1100,6 +1100,7 @@
     <Content Include="Content\AdminContent\js\buttonActions.js" />
     <Content Include="Content\AdminContent\js\flaty-demo-codes.js" />
     <Content Include="Content\AdminContent\js\flaty.js" />
+    <Content Include="Content\AdminContent\js\SlideAction.js" />
     <Content Include="Content\AdminContent\map_google.html" />
     <Content Include="Content\AdminContent\map_vector.html" />
     <Content Include="Content\AdminContent\more_blank.html" />
@@ -2087,6 +2088,8 @@
     <Content Include="Views\Question\QuestionList.cshtml" />
     <Content Include="Views\Question\Index.cshtml" />
     <Content Include="Views\Question\QuestionDetail.cshtml" />
+    <Content Include="Views\Question\QuestionDelete.cshtml" />
+    <Content Include="Views\Question\QuestionUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

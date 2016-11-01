@@ -1,0 +1,71 @@
+﻿@using ProjeKulubu.Models
+@model AskedQuestions
+
+
+<script type="text/javascript">
+
+    function DataDelete() {
+
+        $.ajax({
+            
+            type: "POST",
+            url: "/Question/QuestionDataDelete/",
+            data: { id : $("#dataId").val()},
+            ajaxasync: true,
+            traditional: true,
+            success: function (response) {
+                alert("Soru Başarıyla Silindi");
+                
+                window.location.href = "/Question";
+            },
+            error: function (response) {
+                console.log("Hata Oluştu");
+            }
+
+        });
+    }
+
+</script>
+
+@{
+    ViewBag.Title = "QuestionDelete";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+<h2>Yayımda Olan Soruyu Silmek İstediğinizden Emin Misiniz?</h2>
+
+<aside id="QuesionDeleteDetail" class="QuestionContent">
+
+    <form action="/Question/QuestionDelete">
+
+        <div class="box-content">
+            
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">Soru Başlığı:</label>
+
+                <div class="col-sm-6 col-lg-4 controls">
+                    <input type="text" disabled value="@Model.Question" id="QuestionContent"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-2 control-label">Soru Cevabı:</label>
+
+                <div class="col-sm-6 col-lg-4 controls">
+                    <input type="text" disabled value="@Model.QuestionAnswer" id="AnswerContent" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                    <input  type="hidden" id="dataId" value="@Model.ID" />
+                    <input type="button" class="btn btn-primary" style="float:right" value="Sil" onclick="DataDelete()" />
+                    @ViewBag.Error
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+</aside>
