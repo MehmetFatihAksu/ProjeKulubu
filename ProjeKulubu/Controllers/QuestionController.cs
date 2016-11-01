@@ -45,5 +45,13 @@ namespace ProjeKulubu.Controllers
         }
 
 
+        public ActionResult QuestionDelete(int id)
+        {
+            var data = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
+
+            return View(data);
+        }
+
+
     }
 }
