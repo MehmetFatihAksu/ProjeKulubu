@@ -37,12 +37,12 @@ namespace ProjeKulubu.Controllers
             return Json(new { Model = Model });
         }
 
-        //public ActionResult QuestionDetail(int id)
-        //{
-        //    Viewdata["Data"]= db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
+        public ActionResult QuestionDetail(int id)
+        {
+            var data = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
 
-        //    return View();
-        //}
+            return View("QuestionList","Question",data);
+        }
 
 
     }
