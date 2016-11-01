@@ -59,24 +59,15 @@ namespace ProjeKulubu.Controllers
         }
         #endregion
 
-        #region S.S.S
-        [ValidateInput(false)]
-        public ActionResult QuestionRequest()
-        {
-            if(ModelState.IsValid)
-            {
-                AskedQuestions addNewQuestion = new AskedQuestions();
-                addNewQuestion.Question = Request.Form["Question"];
-                addNewQuestion.QuestionAnswer = Request.Form["QuestionAnswer"];
-                db.AskedQuestions.Add(addNewQuestion);
-                db.SaveChanges();
-                
-            }
-            return View();
-        }
+    
+       
+     
+
+     
 
 
-        #endregion
+  
+
 
         #region Ofis
      

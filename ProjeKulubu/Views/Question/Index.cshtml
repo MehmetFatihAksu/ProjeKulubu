@@ -1,0 +1,112 @@
+﻿@model ProjeKulubu.Models.AskedQuestions
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+<script src="~/Content/AdminContent/js/buttonActions.js"></script>
+<script type="text/javascript" src="/Content/AdminContent/assets/ckeditor/ckeditor.js"></script>
+
+<script type="text/javascript">
+
+    function DataSave() {
+        if ($("#QuestionContent").val() == null || $("#Answer").val() == null) {
+            alert("Soru yada cevap metinini eksiksiz giriniz...");
+        } else {
+
+            var Model = {
+                Question: $("#QuestionContent").val(),
+                QuestionAnswer: $("#Answer").val()
+            }
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Question/AddQuestion/",
+                data: Model,
+                dataType: "JSON",
+                traditional: true,
+                success: function (response) {
+                    console.log(response);
+                    console.log("Başarılı");
+                },
+                error: function (response) {
+                    console.log("Hata Oluştu");
+                }
+
+            });
+        }
+    }
+
+</script>
+
+
+<div class="page-title">
+    <div>
+        <h1><i class="fa fa-bars"></i> Sık Sorulan Sorular</h1>
+        <h4>Bu kısımda soru ve cevap ekleyip silebilir veya düzenleyebilirsiniz</h4>
+    </div>
+</div>
+
+<div id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li class="active">Sık Sorulan Sorular</li>
+    </ul>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-black">
+            <div class="box-title">
+                <h3><i class="fa fa-question-circle"></i> Soru Ekleme Formu</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="form-group">
+                    <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Soru Başlığı:</label>
+                    <div class="col-sm-9 col-lg-10 controls">
+                     
+                        <input type="text" class="form-control show-popover" id="QuestionContent" placeholder="Soru Başlığını Giriniz" data_trigger="hover" data_content="Bu kısıma soru metni giriniz..." data_original_title="Soru Metni" data_placement="top" name="textfield3" />
+                    </div>
+                </div>
+                <div class="box-content">
+
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label">Soru Cevap:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                        
+                            <input type="text" class="form-control col-md-12 ckeditor" id="Answer" rows="6" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group last">
+                    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                        <input type="button" class="btn btn-primary" style="float:right" value="Kaydet" onclick="DataSave()" />
+                    </div>
+                </div>
+           
+            </div>
+        </div>
+    </div>
+</div> @* Soru EKLEME *@
+
+@Html.Partial("QuestionList", "Question")
+
+
+<footer>
+    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer>
+
+<a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
+

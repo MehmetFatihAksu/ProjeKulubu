@@ -167,6 +167,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2060,7 +2061,6 @@
     <Content Include="Views\Home\SatisOfis.cshtml" />
     <Content Include="Views\Home\SatisOfisSingle.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Admin\QuestionRequest.cshtml" />
     <Content Include="Views\Admin\Reference.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\BlogSingle.cshtml" />
@@ -2084,6 +2084,9 @@
     <Content Include="Views\Admin\SatisiDevamEdenProjeler.cshtml" />
     <Content Include="Views\Admin\TamamlananProjeler.cshtml" />
     <Content Include="Views\Admin\MusteriYorumlari.cshtml" />
+    <Content Include="Views\Question\QuestionList.cshtml" />
+    <Content Include="Views\Question\Index.cshtml" />
+    <Content Include="Views\Question\QuestionDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
