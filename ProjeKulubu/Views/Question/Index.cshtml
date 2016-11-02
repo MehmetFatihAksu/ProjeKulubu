@@ -1,4 +1,5 @@
 ﻿@model ProjeKulubu.Models.AskedQuestions
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
@@ -28,7 +29,7 @@
                 dataType: "JSON",
                 traditional: true,
                 success: function (response) {
-                    window.location.href = 'Index';
+                    window.location.href = '/Question';
                 },
                 error: function (response) {
                     console.log("Hata Oluştu");
@@ -80,22 +81,18 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Soru Cevap:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            @*<input type="text"   class="form-control col-md-12 ckeditor" id="Answer" name="editor1" rows="6" />*@
-                            <textarea class="form-control col-md-12 ckeditor" id="Answer" name="editor1" rows="6"></textarea>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-3 col-lg-2 control-label">Soru Cevap:</label>
+                    <div class="col-sm-9 col-lg-10 controls">
+                        <textarea class="form-control col-md-12" id="Answer" rows="6"></textarea>
                     </div>
-                    
-                   
+                </div>
 
-                    <div class="form-group last">
-                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <input type="button" class="btn btn-primary" style="float:right" value="Kaydet" onclick="DataSave()" />
-                        </div>
-                    </div>
-                    </form>
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                    <input type="button" class="btn btn-primary" style="float:right" value="Kaydet" onclick="DataSave()" />
+                </div>
+            </div>
 
 </div>
     </div>
