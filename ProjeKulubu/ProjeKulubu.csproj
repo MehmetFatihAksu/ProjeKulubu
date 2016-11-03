@@ -166,6 +166,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
@@ -2079,10 +2080,8 @@
     <Content Include="Views\Admin\Ofis.cshtml" />
     <Content Include="Views\Admin\Ekip.cshtml" />
     <Content Include="Views\Admin\BizdenResimler.cshtml" />
-    <Content Include="Views\Admin\Etiket.cshtml" />
     <Content Include="Views\Admin\SatisiDevamEdenProjeler.cshtml" />
     <Content Include="Views\Admin\TamamlananProjeler.cshtml" />
-    <Content Include="Views\Admin\MusteriYorumlari.cshtml" />
     <Content Include="Views\Question\QuestionList.cshtml" />
     <Content Include="Views\Question\QuestionDelete.cshtml" />
     <Content Include="Views\Question\QuestionUpdate.cshtml" />
@@ -2092,8 +2091,11 @@
     <Content Include="Views\Tags\TagsDelete.cshtml" />
     <Content Include="Views\Tags\TagsUpdate.cshtml" />
     <Content Include="Views\Tags\TagsList.cshtml" />
+    <Content Include="Views\Customer\CustomerIndex.cshtml" />
+    <Content Include="Views\Customer\CustomerList.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="addFiles\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\AdminContent\assets\ckeditor\samples\plugins\htmlwriter\assets\" />
     <Folder Include="Dosyalar\" />
