@@ -59,16 +59,6 @@ namespace ProjeKulubu.Controllers
         }
         #endregion
 
-    
-       
-     
-
-     
-
-
-  
-
-
         #region Ofis
      
         public ActionResult Ofis()
@@ -203,7 +193,7 @@ namespace ProjeKulubu.Controllers
 
         #endregion
 
-
+        #region Login
         //#region Login
         //public ActionResult Login()
         //{
@@ -225,15 +215,7 @@ namespace ProjeKulubu.Controllers
         //    }
         //}
         //#endregion
-
-        #region etiket
-            public ActionResult Etiket()
-        {
-            return View();
-        }
         #endregion
-
-
 
         #region makale
         public ActionResult Makale()

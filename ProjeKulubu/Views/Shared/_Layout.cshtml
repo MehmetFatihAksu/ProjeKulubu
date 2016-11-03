@@ -1,4 +1,14 @@
-﻿@{
+﻿@using ProjeKulubu.Models
+@model Tags
+
+@{ 
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    var showtag = from x in db.Tags.Take(15)
+              orderby x.ID descending
+              select x;
+}
+
+@{
     Layout = null;
 }
 
@@ -236,20 +246,11 @@
                                 <h3><span class="line"></span><span class="text"><strong>Etiketler</strong></span></h3>
                             </div>
                             <p>
-                                <a href="#" class="btn-s5 gray2">İnşaat</a>
-                                <a href="#" class="btn-s5 gray2">Satılık</a>
-                                <a href="#" class="btn-s5 gray2">Kiralık</a>
-                                <a href="#" class="btn-s5 gray2">Daire</a>
-                                <a href="#" class="btn-s5 gray2">Site</a>
-                                <a href="#" class="btn-s5 gray2">Kurtköy</a>
-                                <a href="#" class="btn-s5 gray2">Başarır</a>
-                                <a href="#" class="btn-s5 gray2">Gayrimenkul</a>
-                                <a href="#" class="btn-s5 gray2">Villa</a>
-                                <a href="#" class="btn-s5 gray2">Emlak</a>
-                                <a href="#" class="btn-s5 gray2">Konuş</a>
-                                <a href="#" class="btn-s5 gray2">Satış</a>
-                                <a href="#" class="btn-s5 gray2">Kurumsal</a>
-                                <a href="#" class="btn-s5 gray2">Proje</a>
+                                @foreach (Tags item in showtag)
+                                {
+                                    <a href="#" class="btn-s5 gray2">@item.TagsName</a>
+                                }
+                                
                             </p>
                         </div>  <!--end box tab-->
                     </div>

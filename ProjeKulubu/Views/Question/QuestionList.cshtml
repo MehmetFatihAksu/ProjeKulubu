@@ -19,11 +19,10 @@
                 <div class="btn-toolbar pull-right">
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
-                        <a class="btn btn-circle show-tooltip" title="Düzenle" href="#"><i class="fa fa-edit"></i></a>
                         <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
                     </div>
                     <div class="btn-group">
-                        <a class="btn btn-circle show-tooltip" title="Yenile" href="#"><i class="fa fa-repeat"></i></a>
+                        <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("QuestionIndex","Question")"><i class="fa fa-repeat"></i></a>
                     </div>
                 </div>
                 <br /><br />
@@ -36,8 +35,8 @@
                                 <th>Soru Başlığı</th>
                                 <th>Soru Cevabı</th>
                                 <th>İnceleme</th>
-                                <th>Silme</th>
                                 <th>Düzenleme</th>
+                                <th>Silme</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,7 +47,7 @@
                                 <td>@item.ID</td>
                                 <td>@item.Question</td>
                                 <td>@item.QuestionAnswer</td>
-                                <td><a class="btn btn-sm show-tooltip" title="İncele" href="@Url.Action("QuestionDetail","Question")/@item.ID"><i class="fa fa-search"></i></a></td>
+                                <td><a class="btn btn-sm show-tooltip" title="İncele" href="@Url.Action("QuestionView","Question")/@item.ID"><i class="fa fa-search"></i></a></td>
                                 <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("QuestionUpdate","Question")/@item.ID"><i class="fa fa-edit"></i></a></td>
                                 <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("QuestionDelete", "Question")/@item.ID"><i class="fa fa-trash-o"></i></a></td>
                               

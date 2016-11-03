@@ -1,7 +1,7 @@
 ﻿@model ProjeKulubu.Models.AskedQuestions
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "QuestionIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
@@ -14,9 +14,8 @@
         if ($("#QuestionContent").val() == null || $("#Answer").val() == null) {
             alert("Soru yada cevap metinini eksiksiz giriniz...");
         } else {
-            //var x = document.getElementById("Answer").select().val();
             var Model = {
-                
+
                 Question: $("#QuestionContent").val(),
                 QuestionAnswer: $("#Answer").val()
             }
@@ -29,9 +28,11 @@
                 dataType: "JSON",
                 traditional: true,
                 success: function (response) {
-                    window.location.href = '/Question';
+                    alert("Soru Başarıyla Eklendi");
+                    window.location.href = '/Question/QuestionIndex';
                 },
                 error: function (response) {
+                    alert("Belirli Bir Sebepten Dolayı Soru Eklenemedi");
                     console.log("Hata Oluştu");
                 }
 
@@ -77,26 +78,26 @@
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Soru Başlığı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
 
-                            <input type="text" class="form-control show-popover" id="QuestionContent" placeholder="Soru Başlığını Giriniz" data_trigger="hover" data_content="Bu kısıma soru metni giriniz..." data_original_title="Soru Metni" data_placement="top" name="textfield3" />
+                            <input type="text" class="form-control show-popover" id="QuestionContent" placeholder="Soru Başlığını Giriniz" maxlength="100" data_trigger="hover" data_content="Bu kısıma soru metni giriniz..." data_original_title="Soru Metni" data_placement="top" name="textfield3" />
                         </div>
                     </div>
 
-                <div class="form-group">
-                    <label class="col-sm-3 col-lg-2 control-label">Soru Cevap:</label>
-                    <div class="col-sm-9 col-lg-10 controls">
-                        <textarea class="form-control col-md-12" id="Answer" rows="6"></textarea>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label">Soru Cevap:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <textarea class="form-control col-md-12" id="Answer" rows="6"></textarea>
+                        </div>
                     </div>
-                </div>
+                    <div class="form-group">
 
-            <div class="form-group">
-                <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                    <input type="button" class="btn btn-primary" style="float:right" value="Kaydet" onclick="DataSave()" />
-                </div>
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <input type="button" class="btn btn-primary" style="float:right" value="Kaydet" onclick="DataSave()" />
+                        </div>
+                    </div>
+                </form>
             </div>
-
-</div>
+        </div>
     </div>
-</div>
 </div> @* Soru EKLEME *@
 
 @Html.Partial("QuestionList", "Question")

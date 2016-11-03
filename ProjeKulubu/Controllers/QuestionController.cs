@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.IO;
 using System.Net;
 using ProjeKulubu.Models;
 using System.Data.Entity.Infrastructure;
@@ -17,7 +16,7 @@ namespace ProjeKulubu.Controllers
 
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
-        public ActionResult Index()
+        public ActionResult QuestionIndex()
         {
             return View();
         }
@@ -42,7 +41,7 @@ namespace ProjeKulubu.Controllers
         [HttpPost]
         public ActionResult QuestionDataUpdate(AskedQuestions Model)
         {
-            if (Model.ID !=null)
+            if (Model.ID != null)
             {
                 var Query = from question in db.AskedQuestions
                             where question.ID == Model.ID
@@ -75,13 +74,6 @@ namespace ProjeKulubu.Controllers
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
 
-        public ActionResult QuestionDetail(int id)
-        {
-            var data = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
-
-            return View("QuestionList","Question",data);
-        }
-
 
         public ActionResult QuestionDelete(int id)
         {
@@ -92,6 +84,12 @@ namespace ProjeKulubu.Controllers
 
 
         public ActionResult QuestionUpdate(int id)
+        {
+            var data = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        public ActionResult QuestionView(int id)
         {
             var data = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
             return View(data);

@@ -1,9 +1,8 @@
 ﻿@using ProjeKulubu.Models
-@model AskedQuestions
-
+@model Tags
 
 @{
-    ViewBag.Title = "QuestionUpdate";
+    ViewBag.Title = "TagsUpdate";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
@@ -11,28 +10,27 @@
 
     function DataUpdate() {
 
-        if ($("#QuestionNewContent").val() == null || $("#AnswerNewContent").val() == null) {
-            
-            alert("Soru yada cevap metinini eksiksiz giriniz...");
+        if ($("#TagsNewName").val() == null) {
+
+            alert("Etiket ismini boş geçmeyiniz");
         } else {
 
             var Model = {
                 ID: $("#dataId").val(),
-                Question: $("#QuestionNewContent").val(),
-                QuestionAnswer: $("#AnswerNewContent").val()
+                TagsName : $("#TagsNewName").val()
             }
 
             $.ajax({
 
                 type: "POST",
-                url: "/Question/QuestionDataUpdate/",
+                url: "/Tags/TagsDataUpdate/",
                 data: Model,
                 ajaxasync: true,
                 traditional: true,
                 success: function (response) {
-                    alert("Soru Başarıyla Güncellendi");
+                    alert("Etiket Başarıyla Güncellendi");
 
-                    window.location.href = "/Question/QuestionIndex";
+                    window.location.href = "/Tags/TagsIndex";
                 },
                 error: function (response) {
                     console.log("Hata Oluştu");
@@ -54,24 +52,24 @@
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
         <li>
-            <i class="fa fa-question-circle"></i>
-            <a href="@Url.Action("QuestionIndex","Question")">S.S.S Yönetimi</a>
+            <i class="fa fa-tags"></i>
+            <a href="@Url.Action("TagsIndex","Tags")">Etiket Yönetimi</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
-        <li class="active"><i class="fa fa-edit"></i>Soru Düzenleme Ekranı</li>  
+        <li class="active"><i class="fa fa-edit"></i>Etiket Düzenleme Ekranı</li>
     </ul>
 </div>
 
 
 <aside id="QuesionUpdateDetail" class="QuestionContent">
 
-    <form action="/Question/QuestionUpdate" class="form-horizontal form-row-seperated" >
+    <form action="/Tags/TagsUpdate" class="form-horizontal form-row-seperated">
 
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-black">
                     <div class="box-title">
-                        <h3><i class="fa fa-edit"></i> Mevcut Sorunun Düzenlenme Ekranı</h3>
+                        <h3><i class="fa fa-edit"></i> Mevcut Etiketin Düzenlenme Ekranı</h3>
                         <div class="box-tool">
                             <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                             <a data-action="close" href="#"><i class="fa fa-times"></i></a>
@@ -79,16 +77,9 @@
                     </div>
                     <div class="box-content">
                         <div class="form-group">
-                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Soru Başlığı:</label>
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Etiket İsmi:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" class="form-control show-popover" value="@Model.Question" id="QuestionNewContent" name="textfield3" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 col-lg-2 control-label">Soru Cevap:</label>
-                            <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" class="form-control col-md-12" id="AnswerNewContent" value="@Model.QuestionAnswer" rows="6">
+                                <input type="text" class="form-control show-popover" value="@Model.TagsName" id="TagsNewName" name="TagsNewName" />
                             </div>
                         </div>
 
@@ -97,7 +88,7 @@
                                 <input type="hidden" id="dataId" value="@Model.ID" />
                                 <input type="button" class="btn btn-primary" style="float:right" value="Düzenle" onclick="DataUpdate()" />
                                 @ViewBag.Error
-                                <a class="btn btn-danger" style="float:left" href="@Url.Action("QuestionIndex","Question")">Geri Dön</a>
+                                <a class="btn btn-danger" style="float:left" href="@Url.Action("TagsIndex","Tags")">Geri Dön</a>
                             </div>
 
                         </div>
@@ -113,3 +104,4 @@
 <footer>
     <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
 </footer>
+
