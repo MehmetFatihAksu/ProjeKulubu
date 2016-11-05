@@ -1,0 +1,111 @@
+﻿@using ProjeKulubu.Models
+@model OurPictures
+
+@{
+    ViewBag.Title = "PicturesDelete";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    function DataDelete() {
+
+        $.ajax({
+
+            type: "POST",
+            url: "/Pictures/PicturesDataDelete/",
+            data: { id : $("#dataId").val()},
+            ajaxasync: true,
+            traditional: true,
+            success: function (response) {
+                alert("Resim Başarıyla Silindi");
+                window.location.href = "/Pictures/PicturesIndex";
+            },
+            error: function (response) {
+                console.log("Hata Oluştu");
+            }
+
+        });
+    }
+
+</script>
+
+<div id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li>
+            <i class="fa fa-image"></i>
+            <a href="@Url.Action("PicturesIndex","Pictures")">Bizden Resimler</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li class="active"><i class="fa fa-trash-o"></i>Resim Silme Ekranı</li>
+    </ul>
+</div>
+
+<aside id="QuesionDeleteDetail" class="QuestionContent">
+
+    <form action="/Customer/CustomerDelete" class="form-horizontal form-row-separated">
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-black">
+                    <div class="box-title">
+                        <h3><i class="fa fa-trash-o"></i> Mevcut Resmi Silmek İstediğinizden Eminmisiniz ?</h3>
+                        <div class="box-tool">
+                            <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                            <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Resim ID:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+
+                                <input type="text" class="form-control show-popover" disabled value="@Model.ID" id="ID" name="textfield3" />
+                            </div>
+                        </div>
+                      
+
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Resim:</label>
+                            <div class="col-sm-9 col-lg-10 control">
+                                <img src="~/Dosyalar/@Model.PictureURL" alt="Alternate Text" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Resim SEO:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" class="form-control show-popover" value="@Model.PictureSEO" disabled id="QuestionContent" name="textfield3" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                <input type="hidden" id="dataId" value="@Model.ID" />
+                                <input type="button" class="btn btn-primary" style="float:right" value="Sil" onclick="DataDelete()" />
+                                @ViewBag.Error
+                                <a class="btn btn-danger" style="float:left" href="@Url.Action("PicturesIndex","Pictures")">Geri Dön</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </form>
+
+</aside>
+
+<footer>
+    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer>

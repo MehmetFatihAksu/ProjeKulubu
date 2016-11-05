@@ -1,7 +1,7 @@
 ﻿@using ProjeKulubu.Models
 @{ 
     db2299D218BEEntities8 db = new db2299D218BEEntities8();
-    var data = db.CustomerComments.Where(x => x.Name != null && x.CommentsPictureURL != null).ToList();
+    var query = db.Reference.Where(x => x.ReferenceLink != null && x.ReferencePictureSEO != null && x.ReferencePictureURL != null && x.ReferenceTitle != null).ToList();
 }
 
 
@@ -9,7 +9,7 @@
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Müşteri Yorumları</h3>
+                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Referanslar</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
@@ -22,7 +22,7 @@
                         <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
                     </div>
                     <div class="btn-group">
-                        <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("CustomerIndex","Customer")"><i class="fa fa-repeat"></i></a>
+                        <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("ReferenceIndex","Reference")"><i class="fa fa-repeat"></i></a>
                     </div>
                 </div>
                 <br /><br />
@@ -32,27 +32,31 @@
                             <tr>
                                 <th style="width:18px"><input type="checkbox" /></th>
                                 <th>ID</th>
-                                <th>Müşteri İsmi</th>
-                                <th>Müşteri Yorum Resmi</th>
-                                <th>İncele</th>
+                                <th>Referans Başlığı</th>
+                                <th>Referans Adres</th>
+                                <th>Referans Resim</th>
+                                <th>Referans Resim SEO</th>
+                                <th>İnceleme</th>
                                 <th>Düzenleme</th>
                                 <th>Silme</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (CustomerComments item in data)
+                            @foreach (Reference item in query)
                             {
                                 <tr class="table-flag-blue">
                                     <td><input type="checkbox" /></td>
                                     <td>@item.ID</td>
-                                    <td>@item.Name</td>
-                                    <td>@item.CommentsPictureURL</td>
-                                    <td><a class="btn btn-sm show-tooltip" title="İnceleme" href="@Url.Action("CustomerView","Customer")/@item.ID"><i class="fa fa-search"></i></a></td>
-                                    <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("CustomerUpdate","Customer")/@item.ID"><i class="fa fa-edit"></i></a></td>
-                                    <td><a class="btn btn-danger show-tooltip" title="Silme" href="@Url.Action("CustomerDelete","Customer")/@item.ID"><i class="fa fa-trash"></i></a></td>
+                                    <td>@item.ReferenceTitle</td>
+                                    <td>@item.ReferenceLink</td>
+                                    <td>@item.ReferencePictureURL</td>
+                                    <td>@item.ReferencePictureSEO</td>
+                                    <td><a class="btn btn-sm show-tooltip" title="İncele" href="@Url.Action("ReferenceView","Reference")/@item.ID"><i class="fa fa-search"></i></a></td>
+                                    <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("ReferenceUpdate","Reference")/@item.ID"><i class="fa fa-edit"></i></a></td>
+                                    <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("ReferenceDelete", "Reference")/@item.ID"><i class="fa fa-trash-o"></i></a></td>
+
                                 </tr>
                             }
-                            
                         </tbody>
                     </table>
                 </div>
@@ -67,4 +71,4 @@
             </div>
         </div>
     </div>
-</div>@*Customer List*@
+</div>

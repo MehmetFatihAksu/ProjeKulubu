@@ -22,27 +22,6 @@ namespace ProjeKulubu.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult ResimEkle(HttpPostedFileBase file)
-        //{
-        //    string imagename = Path.GetFileName(file.FileName);
-        //    string path = Server.MapPath("~/addFiles/" + imagename);
-        //    file.SaveAs(path);
-        //    return View();
-        //}
-
-        //public ActionResult AddImage(HttpPostedFileBase uploadFile)
-        //{
-        //    string imagename = Path.GetFileName(uploadFile.FileName);
-        //    string path = Server.MapPath("~/addFiles/" + imagename);
-        //    uploadFile.SaveAs(path);
-        //    return Json(new { uploadFile = uploadFile });
-        //}
-
-       
-
-      
-
         [HttpPost]
         public ActionResult AddCustomer(HttpPostedFileBase CommentPicture, string CustomerName)
         {
@@ -62,27 +41,10 @@ namespace ProjeKulubu.Controllers
         }
 
         [HttpPost]
-        public ActionResult CustomerDataUpdate(CustomerComments Model)
+        public ActionResult CustomerDataUpdate(HttpPostedFileBase CommentPicture,string CustomerName)
         {
-            if(Model.ID !=null)
-            {
-                var Query = from customer in db.CustomerComments
-                            where customer.ID == Model.ID
-                            select customer;
-
-                foreach (CustomerComments item in Query)
-                {
-                    item.Name = Model.Name;
-                    item.CommentsPictureURL = Model.Name;
-                }
-                db.SaveChanges();
-                
-            }
-            else
-            {
-                ViewBag.Error = "Güncelleme Sırasında Hata Oluştu";
-            }
-            return Json(new { Model = Model });
+            // Doldurulcak
+            return View();
         }
 
         [HttpPost]
