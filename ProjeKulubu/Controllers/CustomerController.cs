@@ -32,21 +32,26 @@ namespace ProjeKulubu.Controllers
         //    return View();
         //}
 
-        public ActionResult AddImage(HttpPostedFileBase uploadFile)
-        {
-            string imagename = Path.GetFileName(uploadFile.FileName);
-            string path = Server.MapPath("~/addFiles/" + imagename);
-            uploadFile.SaveAs(path);
-            return Json(new { uploadFile = uploadFile });
-        }
+        //public ActionResult AddImage(HttpPostedFileBase uploadFile)
+        //{
+        //    string imagename = Path.GetFileName(uploadFile.FileName);
+        //    string path = Server.MapPath("~/addFiles/" + imagename);
+        //    uploadFile.SaveAs(path);
+        //    return Json(new { uploadFile = uploadFile });
+        //}
 
         [HttpPost]
-        public ActionResult AddCustomer(CustomerComments Model)
+        public ActionResult AddCustomer(HttpPostedFileBase file)
         {
-                db.CustomerComments.Add(Model);
-                db.SaveChanges();
-           
-            return Json(new { Model = Model });
+            string imagename = Path.GetFileName(file.FileName);
+            string path = Server.MapPath("~/addFiles/" + imagename);
+            file.SaveAs(path);
+            CustomerComments add = new CustomerComments();
+            add.Name = Request.Form["Name"];
+            add.CommentsPictureURL = Request.Form["CommentsPictureURL"];
+            db.CustomerComments.Add(add);
+            db.SaveChanges();
+            return Json(new { file = file });
         }
 
         [HttpPost]
