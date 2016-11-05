@@ -5,26 +5,41 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<script type="text/javascript">
+@*<script type="text/javascript">
+
+
+    function SaveFile() {
+
+        var CommentPicture = $("#uploadFile").val();
+
+        $.ajax({
+
+            type: "POST",
+            url: "/Customer/LoadFile/",
+            data: CommentPicture,
+            dataType: "JSON",
+            traditional: true,
+
+            success: function (response) {
+                console.log(response.data);
+            }, error: function () {
+                alert("Hata Oluştu");
+            }
+        });
+    }
 
     function DataSave() {
-        //var formData = new FormData();
-        //formData.append('file', $('input[type=file]')[0].files[0]);
-        //var yol = formData;
-        //if ($("#CustomerName").val() == null || $("#uploadFile").val() == null) {
-        //    alert("Müşteri ismini yada yorum resmini eksiksiz giriniz...");
-        //} else {
-        var file = {
+       
+            var Model = {
                 Name: $("#CustomerName").val(),
-                CommentsPictureURL: $("#file").val()
-
+                CommentsPictureURL: $("#uploadFile").val()
             }
-
+          
             $.ajax({
 
                 type: "POST",
                 url: "/Customer/AddCustomer/",
-                data: file,
+                data: Model,
                 dataType: "JSON",
                 traditional: true,
                 success: function (response) {
@@ -35,15 +50,9 @@
                     alert("Belirli Bir Sebepten Dolayı Soru Eklenemedi");
                     console.log("Hata Oluştu");
                 }
-                 
-
             });
-
-           
         }
-    
-
-</script>
+</script>*@
 
 
 <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
@@ -78,7 +87,7 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="#" class="form-horizontal form-row-separated" enctype="multipart/form-data">
+                <form action="/Customer/AddCustomer" class="form-horizontal form-row-separated" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Müşteri İsmi</label>
                         <div class="col-sm-9 col-lg-10 controls">
@@ -86,12 +95,31 @@
                         </div>
                     </div>
                     <div class="form-group">
-                       <input type="file" name="file" id="file" style="width:100%"/>
+                        <label class="col-sm-3 col-lg-2 control-label">Yorum Resmi:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileupload-new">Resim Seç</span>
+                                        <span class="fileupload-exists">Değiştir</span>
+
+                                        <input type="file" id="uploadFile" name="CommentPicture" class="file-input" />
+                                    </span>
+                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
+                                </div>
+                            </div>
+
+                        </div>
 
                     </div>
+
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
                         </div>
                     </div>
                 </form>

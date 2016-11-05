@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using ProjeKulubu.Models;
 using System.IO;
-using static System.Net.WebRequestMethods;
 using System.Web.Security;
 
 namespace ProjeKulubu.Controllers
@@ -40,18 +39,26 @@ namespace ProjeKulubu.Controllers
         //    return Json(new { uploadFile = uploadFile });
         //}
 
+       
+
+      
+
         [HttpPost]
-        public ActionResult AddCustomer(HttpPostedFileBase file)
+        public ActionResult AddCustomer(HttpPostedFileBase CommentPicture, string CustomerName)
         {
-            string imagename = Path.GetFileName(file.FileName);
-            string path = Server.MapPath("~/addFiles/" + imagename);
-            file.SaveAs(path);
-            CustomerComments add = new CustomerComments();
-            add.Name = Request.Form["Name"];
-            add.CommentsPictureURL = Request.Form["CommentsPictureURL"];
-            db.CustomerComments.Add(add);
-            db.SaveChanges();
-            return Json(new { file = file });
+            CustomerComments customerModel = new CustomerComments();
+            if (CommentPicture != null)
+            {
+                string fileMap = Path.GetFileName(CommentPicture.FileName);
+                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                CommentPicture.SaveAs(loadLocation);
+                customerModel.CommentsPictureURL = fileMap;
+                customerModel.Name = CustomerName;
+                db.CustomerComments.Add(customerModel);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("CustomerIndex", "Customer");
         }
 
         [HttpPost]
