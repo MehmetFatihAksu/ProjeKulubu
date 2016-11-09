@@ -52,13 +52,6 @@ namespace ProjeKulubu.Controllers
         }
         #endregion
 
-        #region AnaSayfa Resimler 
-       public ActionResult BizdenResimler()
-        {
-            return View();
-        }
-        #endregion
-
         #region Ofis
      
         public ActionResult Ofis()
@@ -83,92 +76,6 @@ namespace ProjeKulubu.Controllers
             return View();
         }
 
-        #endregion
-
-
-        #region Referans
-        public ActionResult Reference()
-        {
-            return View();
-        }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Reference([Bind(Include = "ID,SiteURL,Baslik,SeoAlt,LogoURL")] Referanslar referans, HttpPostedFileBase uploadFile , int ID)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //            db.Referanslar.new(referans);
-        //            db.SaveChanges();
-        //            if (uploadFile !=null && uploadFile.ContentLength > 0)
-        //            {
-                        
-        //            }
-
-
-        //            return RedirectToAction("Reference", "Admin");
-        //    }
-
-
-        //    return View();
-        //}
-        ////Referans yönetimi  
-      
-
-        //public ActionResult ReferansList()
-        //{
-        //    return View(db.Referanslar.ToList());
-        //}
-
-
-        //public ActionResult ReferansDelete(int? id)
-        //{
-        //    if(id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Referanslar referans = db.Referanslar.Find(id);
-        //    if(referans == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(referans);
-        //}
-
-        //[HttpPost,ActionName("ReferansDelete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Referanslar referans = db.Referanslar.Find(id);
-        //    db.Referanslar.Remove(referans);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Reference","Admin");
-        //}
-
-        //public ActionResult ReferansEdit(int? id)
-        //{
-        //    if(id==null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Referanslar referans = db.Referanslar.Find(id);
-        //    if(referans ==null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(referans);
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult ReferansEdit([Bind(Include ="ID,SiteURL,Baslik,SeoAlt,LogoURL")]Referanslar referans)
-        //{
-        //    if(ModelState.IsValid)
-        //    {
-        //        db.Entry(referans).State = System.Data.EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Reference", "Admin");
-        //    }
-        //    return View(referans);
-        //}
         #endregion
 
         #region Yardim
@@ -224,13 +131,6 @@ namespace ProjeKulubu.Controllers
         }
         #endregion
 
-        #region MusteriYorumlari
-
-        public ActionResult MusteriYorumlari()
-        {
-            return View();
-        } 
-        #endregion
 
 
     }

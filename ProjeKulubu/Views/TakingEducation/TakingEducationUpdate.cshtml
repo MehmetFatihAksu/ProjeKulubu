@@ -1,0 +1,98 @@
+﻿@model ProjeKulubu.Models.Education
+
+@{
+    ViewBag.Title = "TakingEducationUpdate";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+
+<div id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li>
+            <i class="fa fa-file-text-o"></i>
+            <a href="@Url.Action("TakingEducationIndex","TakingEducation")">Alınan Eğitim Yönetimi</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li class="active"><i class="fa fa-edit"></i>Eğitim Düzenleme Ekranı</li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-black">
+            <div class="box-title">
+                <h3><i class="fa fa-edit"></i> Mevcut Eğitimin Düzenlenme Formu</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form action="/TakingEducation/AddTakingEducation" method="post"
+                      enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim Başlığı:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="title" id="title" value="@Model.EducationTitle" class="form-control show-popover" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label">Eğitim Resim/Video Yükleme:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="~/Dosyalar/@Model.EducationFileURL" alt="" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileupload-new">Resim/Video Seç</span>
+                                        <span class="fileupload-exists">Değiştir</span>
+                                        <input type="file" name="file" id="file" class="file-input" />
+                                    </span>
+                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim Resim SEO:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="seo" id="seo" value="@Model.EducationFileSEO" class="form-control show-popover">
+                        </div>
+                    </div>
+                    <div class="box-content">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Eğitim İçeriği:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <textarea class="form-control col-md-12" id="content" name="content" rows="6">@Model.EducationContent</textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group last">
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <a class="btn btn-danger" style="float:left" href="@Url.Action("TakingEducationIndex","TakingEducation")">Geri Dön</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer>
+    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer>
+
+<script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>

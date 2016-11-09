@@ -51,25 +51,25 @@ namespace ProjeKulubu.Controllers
         [HttpPost]
         public ActionResult ReferenceDataDelete(int id)
         {
-            OurPictures picture = db.OurPictures.Find(id);
-            db.OurPictures.Remove(picture);
+            Reference deleteReference = db.Reference.Find(id);
+            db.Reference.Remove(deleteReference);
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
 
         public ActionResult ReferenceDelete(int id)
         {
-            var data = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
+            var data = db.Reference.Where(x => x.ID == id).FirstOrDefault();
+               return View(data);
         }
         public ActionResult ReferenceUpdate(int id)
         {
-            var data = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
+            var data = db.Reference.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
         public ActionResult ReferenceView(int id)
         {
-            var data = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
+            var data = db.Reference.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
 

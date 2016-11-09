@@ -166,12 +166,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\GivingEducationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PicturesController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\ReferenceController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
+    <Compile Include="Controllers\TakingEducationController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2028,8 +2032,6 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="video\1.mp4" />
-    <Content Include="video\2.mp4" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -2066,7 +2068,6 @@
     <Content Include="Views\Home\SatisOfis.cshtml" />
     <Content Include="Views\Home\SatisOfisSingle.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Admin\Reference.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\BlogSingle.cshtml" />
     <Content Include="Views\Home\Avantajlarimiz.cshtml" />
@@ -2076,11 +2077,8 @@
     <Content Include="Views\Home\ProjeSatis.cshtml" />
     <Content Include="Views\Home\ProjePazarlama.cshtml" />
     <Content Include="Views\Admin\AddProject.cshtml" />
-    <Content Include="Views\Admin\Makale.cshtml" />
-    <Content Include="Views\Admin\AlinanEgitimler.cshtml" />
     <Content Include="Views\Admin\VerilenEgitimler.cshtml" />
     <Content Include="Views\Admin\Ofis.cshtml" />
-    <Content Include="Views\Admin\Ekip.cshtml" />
     <Content Include="Views\Admin\SatisiDevamEdenProjeler.cshtml" />
     <Content Include="Views\Admin\TamamlananProjeler.cshtml" />
     <Content Include="Views\Question\QuestionList.cshtml" />
@@ -2107,6 +2105,20 @@
     <Content Include="Views\Reference\ReferenceUpdate.cshtml" />
     <Content Include="Views\Reference\ReferenceView.cshtml" />
     <Content Include="Views\Reference\ReferenceDelete.cshtml" />
+    <Content Include="Views\Team\TeamIndex.cshtml" />
+    <Content Include="Views\Team\TeamList.cshtml" />
+    <Content Include="Views\Team\TeamDelete.cshtml" />
+    <Content Include="Views\Team\TeamView.cshtml" />
+    <Content Include="Views\Team\TeamUpdate.cshtml" />
+    <Content Include="Views\Blog\BlogIndex.cshtml" />
+    <Content Include="Views\Blog\BlogList.cshtml" />
+    <Content Include="Views\Blog\BlogDelete.cshtml" />
+    <Content Include="Views\Blog\BlogUpdate.cshtml" />
+    <Content Include="Views\TakingEducation\TakingEducationIndex.cshtml" />
+    <Content Include="Views\TakingEducation\TakingEducationList.cshtml" />
+    <Content Include="Views\TakingEducation\TakingEducationDelete.cshtml" />
+    <Content Include="Views\TakingEducation\TakingEducationUpdate.cshtml" />
+    <Content Include="Views\TakingEducation\TakingEducationView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

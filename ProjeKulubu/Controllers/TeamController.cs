@@ -1,0 +1,81 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using ProjeKulubu.Models;
+using System.IO;
+
+namespace ProjeKulubu.Controllers
+{
+    public class TeamController : Controller
+    {
+        //
+        // GET: /Team/
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        public ActionResult TeamIndex()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddTeamMember(string name,string position,string exp,int age,HttpPostedFileBase picture,string facebook,string twitter,string google,string linkedin,string biografi)
+        {
+            Team teamModel = new Team();
+            //if(name!=null && position !=null && exp!=null && age.ToString() !=null && picture!=null && biografi!=null )
+            //{
+                string fileMap = Path.GetFileName(picture.FileName);
+                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                picture.SaveAs(loadLocation);
+                teamModel.MemberAge = age;
+                teamModel.MemberBiografi = biografi;
+                teamModel.MemberExperience = exp;
+                teamModel.MemberFacebookURL = facebook;
+                teamModel.MemberGoogleURL = google;
+                teamModel.MemberLinkedinURL = linkedin;
+                teamModel.MemberName = name;
+                teamModel.MemberPictureURL = fileMap;
+                teamModel.MemberPozision = position;
+                teamModel.MemberTwitterURL = twitter;
+                db.Team.Add(teamModel);
+                db.SaveChanges();
+            
+            return RedirectToAction("TeamIndex", "Team");
+        }
+
+        [HttpPost]
+        public ActionResult TeamDataUpdate()
+        {
+            // doldurulcak
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult TeamDataDelete(int id)
+        {
+            Team teamMemberDelete = db.Team.Find(id);
+            db.Team.Remove(teamMemberDelete);
+            db.SaveChanges();
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+        }
+
+        public ActionResult TeamDelete(int id)
+        {
+            var data = db.Team.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        public ActionResult TeamView(int id)
+        {
+            var data = db.Team.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        public ActionResult TeamUpdate(int id)
+        {
+            var data = db.Team.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+    }
+}

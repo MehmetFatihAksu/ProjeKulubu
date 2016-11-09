@@ -98,7 +98,7 @@
                 </li>
                 <!-- END Search Form -->
                 <li class="active">
-                    <a href="@Url.Action("Index")">
+                    <a href="@Url.Action("Index","Admin")">
                         <i class="fa fa-dashboard"></i>
                         <span>Ana Sayfa</span>
                     </a>
@@ -146,7 +146,7 @@
                     </a>
                     <!-- BEGIN Submenu -->
                     <ul class="submenu">
-                        <li><a href="@Url.Action("AlinanEgitimler", "Admin")">Alınan Eğitimler</a></li>
+                        <li><a href="@Url.Action("TakingEducationIndex", "TakingEducation")">Alınan Eğitimler</a></li>
                         <li><a href="@Url.Action("VerilenEgitimler", "Admin")">Verilen Eğitimler</a></li>
                     </ul>
                     <!-- END Submenu -->
@@ -158,13 +158,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Ekip", "Admin")">
+                    <a href="@Url.Action("TeamIndex","Team")">
                         <i class="fa fa-users"></i>
                         <span>Ekip Yönetimi</span>
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Makale", "Admin")">
+                    <a href="@Url.Action("BlogIndex", "Blog")">
                         <i class="fa fa-tasks"></i>
                         <span>Makale Yönetimi</span>
                     </a>

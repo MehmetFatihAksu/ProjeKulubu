@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "BlogIndex";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/jquery-tags-input/jquery.tagsinput.css" />
+<script src="~/Content/AdminContent/js/buttonActions.js"></script>
+
+<div class="page-title">
+    <div>
+        <h1><i class="fa fa-bars"></i> Makale Yönetimi</h1>
+        <h4>Bu kısımda makale ekleyip silebilir veya düzenleyebilirsiniz</h4>
+    </div>
+</div>
+
+<div id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li class="active">Makale Yönetimi</li>
+    </ul>
+</div> 
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-black">
+            <div class="box-title">
+                <h3><i class="fa fa-tasks"></i> Makale Ekleme Formu</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form action="/Blog/AddBlog" method="post"  enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Makale Başlığı:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="title" id="title" placeholder="Makale Başlığını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma makale başlığını giriniz..." data-original-title="Makale Başlığı" data-placement="left">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label">Etiket Ekle:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input id="tag-input-1" name="tag" type="text" class="form-control tags show-popover" value="" data-trigger="hover" data-content="Bu kısıma etiket kelimeler giriniz..." data-original-title="Etiket Ekle" data-placement="left" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label">Makale Resim Yükleme:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileupload-new">Resim Seç</span>
+                                        <span class="fileupload-exists">Değiştir</span>
+                                        <input type="file" name="picture" id="picture" class="file-input" />
+                                    </span>
+                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Makale Resim SEO:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="seo" id="seo" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma makale resimle alakalı anahtar kelime giriniz" data-original-title="Makale Resim Seo Anahtarı" data-placement="left">
+                        </div>
+                    </div>
+                    <div class="box-content">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Makale İçeriği:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <textarea class="form-control col-md-12" name="content" rows="6"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group last">
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                         </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("BlogList", "Blog")
+
+
+<footer>
+    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer>
+
+<script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+
+
+<a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
+
+<script type="text/javascript" src="/Content/AdminContent/assets/jquery-tags-input/jquery.tagsinput.min.js"></script>
