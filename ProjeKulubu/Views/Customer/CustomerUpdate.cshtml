@@ -27,7 +27,7 @@
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-comments"></i> Müşteri Yorumu Düzenleme Formu</h3>
+                <h3><i class="fa fa-comments"></i> Mevcut Yorumu Düzenleme Formu</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
@@ -36,13 +36,13 @@
             <div class="box-content">
                 <form action="/Customer/CustomerDataUpdate" class="form-horizontal form-row-separated" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Müşteri İsmi:</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Müşteri İsmi:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="CustomerName" id="CustomerName" placeholder="Müşteri İsmini Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma müşterinizin adını giriniz..." data-original-title="Müşteri İsmi" value="@Model.Name" data-placement="left">
+                            <input type="text" name="CustomerName" style="color:#000000" required oninvalid="this.setCustomValidity('Müşteri İsmini Boş Geçemezsiniz')" oninput="setCustomValidity('')" id="CustomerName" placeholder="Müşteri İsmini Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma müşterinizin adını giriniz..." data-original-title="Müşteri İsmi" value="@Model.Name" data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Yorum Resmi:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">* Yorum Resmi:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
@@ -54,20 +54,27 @@
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
 
-                                        <input type="file" id="uploadFile" name="CommentPicture" class="file-input" />
+                                        <input type="file" required oninvalid="this.setCustomValidity('Müşteri Yorum Resmini Boş Geçemezsiniz')" accept="image/*" oninput="setCustomValidity('')" id="uploadFile" name="CommentPicture" class="file-input" />
                                     </span>
-                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
                             </div>
 
                         </div>
 
                     </div>
-
-                    <div class="form-group last">
+                    
+                    <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <input type="hidden" id="id" name="id" value="@Model.ID" />
                             <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
                             <a class="btn btn-danger" style="float:left" href="@Url.Action("CustomerIndex","Customer")">Geri Dön</a>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group last">
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <h6 style="float:right">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+
                         </div>
                     </div>
                 </form>

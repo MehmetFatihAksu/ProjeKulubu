@@ -22,6 +22,7 @@ namespace ProjeKulubu.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult AddTakingEducation(string title,HttpPostedFileBase file,string seo,string content)
         {
             Education eduModel = new Education();

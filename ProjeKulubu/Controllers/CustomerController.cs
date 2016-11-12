@@ -26,7 +26,7 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddCustomer(HttpPostedFileBase CommentPicture, string CustomerName)
         {
             CustomerComments customerModel = new CustomerComments();
-            if (CommentPicture != null)
+            if (CommentPicture != null && CustomerName!=null)
             {
                 string fileMap = Path.GetFileName(CommentPicture.FileName);
                 var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
@@ -36,14 +36,34 @@ namespace ProjeKulubu.Controllers
                 db.CustomerComments.Add(customerModel);
                 db.SaveChanges();
             }
-
+            else
+            {
+                ViewBag.Error("Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin");
+            }
             return RedirectToAction("CustomerIndex", "Customer");
+
+
         }
 
         [HttpPost]
-        public ActionResult CustomerDataUpdate(HttpPostedFileBase CommentPicture,string CustomerName)
+        public ActionResult CustomerDataUpdate(int id, HttpPostedFileBase CommentPicture,string CustomerName)
         {
-            // Doldurulcak
+            CustomerComments customerModel = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
+            if(CustomerName!=null && CommentPicture!=null)
+            {
+                string fileMap = Path.GetFileName(CommentPicture.FileName);
+                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                CommentPicture.SaveAs(loadLocation);
+                customerModel.CommentsPictureURL = fileMap;
+                customerModel.Name = CustomerName;
+                db.SaveChanges();
+                return RedirectToAction("CustomerIndex", "Customer");
+
+            }
+            else
+            {
+                ViewBag.Error("Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin");
+            }
             return View();
         }
 

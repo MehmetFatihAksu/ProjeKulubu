@@ -19,6 +19,7 @@ namespace ProjeKulubu.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult AddTeamMember(string name,string position,string exp,int age,HttpPostedFileBase picture,string facebook,string twitter,string google,string linkedin,string biografi)
         {
             Team teamModel = new Team();

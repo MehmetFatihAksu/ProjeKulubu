@@ -1157,6 +1157,7 @@
     <Content Include="Content\js\jssor.slider-21.1.6.debug.js" />
     <Content Include="Content\js\jssor.slider-21.1.6.min.js" />
     <Content Include="Content\js\jssor.slider-21.1.6.mini.js" />
+    <Content Include="Content\noimage.gif" />
     <Content Include="Content\pikocon_html\404.html" />
     <Content Include="Content\pikocon_html\about.html" />
     <Content Include="Content\pikocon_html\apple-touch-icon.png" />
@@ -2123,6 +2124,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\AdminContent\assets\ckeditor\samples\plugins\htmlwriter\assets\" />
+    <Folder Include="Content\Popup\css\" />
+    <Folder Include="Content\Popup\js\" />
     <Folder Include="Dosyalar\" />
   </ItemGroup>
   <ItemGroup>
