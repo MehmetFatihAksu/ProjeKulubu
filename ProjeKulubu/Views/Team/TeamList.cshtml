@@ -1,7 +1,7 @@
 ﻿@using ProjeKulubu.Models
 @{ 
     db2299D218BEEntities8 db = new db2299D218BEEntities8();
-    var query = db.Team.Where(x => x.MemberAge != null && x.MemberBiografi != null && x.MemberExperience != null && x.MemberName != null && x.MemberPozision != null && x.MemberPictureURL != null).ToList();
+    var query = db.Team.ToList();
 }
 
 <div class="row">

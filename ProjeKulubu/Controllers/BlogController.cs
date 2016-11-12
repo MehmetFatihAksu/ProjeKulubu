@@ -21,6 +21,7 @@ namespace ProjeKulubu.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult AddBlog(string title,string tag,HttpPostedFileBase picture,string seo,string content)
         {
             Blog addModel = new Blog();
