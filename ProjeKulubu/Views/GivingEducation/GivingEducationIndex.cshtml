@@ -1,11 +1,12 @@
 ﻿@{
-    ViewBag.Title = "VerilenEgitimler";
+    ViewBag.Title = "GivingEducationIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-
 <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 <script src="~/Content/AdminContent/js/buttonActions.js"></script>
+<script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+<script type="text/javascript" src="/Content/AdminContent/assets/ckeditor/ckeditor.js"></script>
 
 <div class="page-title">
     <div>
@@ -36,11 +37,11 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="#" class="form-horizontal form-row-separated">
+                <form action="/GivingEducation/AddGivingEducation" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim Başlığı</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="textfield3" id="textfield3" placeholder="Eğitim Başlığını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma eğitiminizin başlığını giriniz..." data-original-title="Eğitim İçerik Başlığı" data-placement="top">
+                            <input type="text" name="Title" id="title" placeholder="Eğitim Başlığını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma eğitiminizin başlığını giriniz..." data-original-title="Eğitim İçerik Başlığı" data-placement="top">
                         </div>
                     </div>
                     <div class="form-group">
@@ -55,7 +56,7 @@
                                     <span class="btn btn-default btn-file">
                                         <span class="fileupload-new">Resim/Video Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
-                                        <input type="file" name="UyeResimAdi" id="Dosya" class="file-input" />
+                                        <input type="file" name="Picture" id="Dosya" class="file-input" />
                                     </span>
                                     <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
@@ -65,7 +66,7 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim Resim SEO:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="textfield3" id="textfield3" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma eğitime ait olan resim için maksimum üç anahtar kelime giriniz..." data-original-title="Eğitim Resim SEO" data-placement="top">
+                            <input type="text" name="PictureSeo" id="pictureSeo" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma eğitime ait olan resim için maksimum üç anahtar kelime giriniz..." data-original-title="Eğitim Resim SEO" data-placement="top">
                         </div>
                     </div>
                     <div class="box-content">
@@ -73,7 +74,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">Eğitim İçeriği</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control col-md-12 ckeditor" id="Answer" name="editor1" rows="6"></textarea>
+                                <textarea class="form-control col-md-12 ckeditor" id="educationContent" name="Content" rows="6"></textarea>
                             </div>
                         </div>
 
@@ -161,10 +162,4 @@
 <footer>
     <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
 </footer>
-
-
-<script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
-
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
-<script type="text/javascript" src="/Content/AdminContent/assets/ckeditor/ckeditor.js"></script>
-
