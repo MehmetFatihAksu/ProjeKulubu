@@ -22,8 +22,7 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddTeamMember(string name,string position,string exp,int age,HttpPostedFileBase picture,string facebook,string twitter,string google,string linkedin,string biografi)
         {
             Team teamModel = new Team();
-            //if(name!=null && position !=null && exp!=null && age.ToString() !=null && picture!=null && biografi!=null )
-            //{
+          
                 string fileMap = Path.GetFileName(picture.FileName);
                 var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
                 picture.SaveAs(loadLocation);
@@ -44,10 +43,36 @@ namespace ProjeKulubu.Controllers
         }
 
         [HttpPost]
-        public ActionResult TeamDataUpdate()
+        public ActionResult TeamDataUpdate(int Id ,string name, string position, string exp, int age, HttpPostedFileBase picture, string facebook, string twitter, string google, string linkedin, string biografi)
         {
-            // doldurulcak
-            return View();
+            if (Id !=null)
+            {
+                var Query = from memberData in db.Team
+                            where
+                                memberData.ID == Id
+                            select memberData;
+
+
+                foreach (Team item in Query)
+                {
+                    item.MemberName = name;
+                    item.MemberPozision = position;
+                    item.MemberExperience = exp;
+                    item.MemberAge = age;
+                    item.MemberPictureURL = picture.FileName;
+                    item.MemberFacebookURL = facebook;
+                    item.MemberTwitterURL = twitter;
+                    item.MemberGoogleURL = google;
+                    item.MemberLinkedinURL = linkedin;
+                    item.MemberBiografi = biografi;
+                }
+                db.SaveChanges();
+            }
+            else
+            {
+                return View("ErrorPage", "Error");
+            }
+            return RedirectToAction("TeamIndex", "Team");
         }
 
         [HttpPost]

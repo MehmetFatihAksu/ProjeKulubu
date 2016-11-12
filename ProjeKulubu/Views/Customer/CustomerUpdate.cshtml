@@ -39,6 +39,7 @@
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Müşteri İsmi:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <input type="text" name="CustomerName" id="CustomerName" placeholder="Müşteri İsmini Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma müşterinizin adını giriniz..." data-original-title="Müşteri İsmi" value="@Model.Name" data-placement="left">
+                            <input type="hidden" name="id" value="@Model.ID" id="data-id" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -66,7 +67,8 @@
 
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <input type="hidden" name="id" id="commentId" value="@Model.ID" />
+                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Güncelle</button>
                             <a class="btn btn-danger" style="float:left" href="@Url.Action("CustomerIndex","Customer")">Geri Dön</a>
                         </div>
                     </div>
