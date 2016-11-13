@@ -26,7 +26,7 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddPictures(HttpPostedFileBase Picture,string PictureSEO)
         {
             OurPictures picturesModel = new OurPictures();
-            if(Picture !=null)
+            if(Picture !=null && PictureSEO!=null)
             {
                 string fileMap = Path.GetFileName(Picture.FileName);
                 var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
@@ -36,13 +36,31 @@ namespace ProjeKulubu.Controllers
                 db.OurPictures.Add(picturesModel);
                 db.SaveChanges();
             }
+            else
+            {
+                ViewBag.Error("Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin");
+            }
             return RedirectToAction("PicturesIndex", "Pictures");
         }
 
         [HttpPost]
-        public ActionResult PicturesDataUpdate()
+        public ActionResult PicturesDataUpdate(int id,HttpPostedFileBase Picture,string PictureSEO)
         {
-            // Doldurulcak..
+            OurPictures pictureModel = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
+            if(Picture!=null && PictureSEO!=null)
+            {
+                string fileMap = Path.GetFileName(Picture.FileName);
+                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                Picture.SaveAs(loadLocation);
+                pictureModel.PictureURL = fileMap;
+                pictureModel.PictureSEO = PictureSEO;
+                db.SaveChanges();
+                return RedirectToAction("PicturesIndex", "Pictures");
+            }
+            else
+            {
+                ViewBag.Error("Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin");
+            }
             return View();
         }
 

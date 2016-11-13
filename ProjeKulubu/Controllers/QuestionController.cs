@@ -9,6 +9,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace ProjeKulubu.Controllers
 {
+    [ValidateInput(false)]
     public class QuestionController : Controller
     {
         //
@@ -16,25 +17,25 @@ namespace ProjeKulubu.Controllers
 
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
+
         public ActionResult QuestionIndex()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddQuestion(AskedQuestions Model)
+        [ValidateInput(false)]
+        public ActionResult AddQuestion(string Question,string Answer)
         {
-            if (Model.Question != null && Model.QuestionAnswer != null)
+            AskedQuestions askModel = new AskedQuestions();
+            if(Question!=null && Answer!=null)
             {
-                db.AskedQuestions.Add(Model);
+                askModel.Question = Question;
+                askModel.QuestionAnswer = Answer;
+                db.AskedQuestions.Add(askModel);
                 db.SaveChanges();
             }
-            else
-            {
-                ViewBag.Error = "Lütfen alanları boş bırakmayınız";
-            }
-
-            return Json(new { Model = Model });
+            return RedirectToAction("QuestionIndex", "Question");
         }
 
 

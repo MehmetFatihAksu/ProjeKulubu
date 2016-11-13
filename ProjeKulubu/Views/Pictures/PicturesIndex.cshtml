@@ -10,8 +10,8 @@
 
 <div class="page-title">
     <div>
-        <h1><i class="fa fa-bars"></i> Bizden Resimler Yönetimi</h1>
-        <h4>Bu kısımda ana sayfadaki bizden resimler kısmına resim ekleyip silebilir veya düzenleyebilirsiniz</h4>
+        <h1><i class="fa fa-bars"></i> Bizden Resimler Alanı Yönetimi</h1>
+        <h4>Bu kısımda ana sayfadaki bizden resimler alanına resim ekleyip silebilir veya düzenleyebilirsiniz</h4>
     </div>
 </div>
 
@@ -39,18 +39,18 @@
             <div class="box-content">
                 <form action="/Pictures/AddPictures" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Resim Yükleme:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">* Resim Yükleme:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
-                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                    <img src="~/Content/noimage.gif" alt="" />
                                 </div>
                                 <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                 <div>
                                     <span class="btn btn-default btn-file">
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
-                                        <input type="file" name="Picture" id="Dosya" class="file-input" />
+                                        <input accept="image/*" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Resim Kısmını Boş Geçemezsiniz')" type="file" name="Picture" id="Dosya" class="file-input" />
                                     </span>
                                     <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
@@ -58,9 +58,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Resim SEO:</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Resim SEO:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="PictureSEO" id="PictureSEO" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma yukarıda yüklenen resim için anahtar kelime giriniz.." data-original-title="Resim SEO" data-placement="left">
+                            <input type="text" style="color:#000" required oninvalid="this.setCustomValidity('SEO Kısmını Boş Geçemezsiniz')" oninput="setCustomValidity('')"  name="PictureSEO" id="PictureSEO" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma yukarıda yüklenen resim için anahtar kelime giriniz.." data-original-title="Resim SEO" data-placement="left">
                         </div>
                     </div>
 
@@ -68,6 +68,8 @@
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
                             <button type="submit" class="btn btn-primary" style="float:right" ><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+
                         </div>
                     </div>
                 </form>
