@@ -25,14 +25,17 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddBlog(string title,string tag,HttpPostedFileBase picture,string seo,string content)
         {
             Blog addModel = new Blog();
-            if(title!=null && picture!=null && seo!=null && content!=null)
+            if(title!=null || content!=null)
             {
-                string fileMap = Path.GetFileName(picture.FileName);
-                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                picture.SaveAs(loadLocation);
+                if(picture!=null)
+                {
+                    string fileMap = Path.GetFileName(picture.FileName);
+                    var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                    picture.SaveAs(loadLocation);
+                    addModel.BlogPictureURL = fileMap;
+                }
                 addModel.BlogContent = content;
                 addModel.BlogPictureSEO = seo;
-                addModel.BlogPictureURL = fileMap;
                 addModel.BlogTitle = title;
                 db.Blog.Add(addModel);
                 db.SaveChanges();
@@ -46,10 +49,29 @@ namespace ProjeKulubu.Controllers
         }
 
         [HttpPost]
-        public ActionResult BlogDataUpdate()
+        [ValidateInput(false)]
+        public ActionResult BlogDataUpdate(int id,string title,string tag,HttpPostedFileBase picture,string content,string seo)
         {
-            // doldurulcak
-            return View();
+            Blog updateModel = db.Blog.Where(x => x.ID == id).FirstOrDefault();
+            if(title!=null && content!=null)
+            {
+                if(picture!=null)
+                {
+                    string fileMap = Path.GetFileName(picture.FileName);
+                    var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                    picture.SaveAs(loadLocation);
+                    updateModel.BlogPictureURL = fileMap;
+                }
+                updateModel.BlogContent = content;
+                updateModel.BlogPictureSEO = seo;
+                updateModel.BlogTitle = title;
+                db.SaveChanges();
+            }
+            else
+            {
+                ViewBag.Error("Hatalı Giriş");
+            }
+            return RedirectToAction("BlogIndex", "Blog");
         }
 
 

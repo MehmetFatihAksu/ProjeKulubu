@@ -21,37 +21,28 @@ namespace ProjeKulubu.Controllers
         }
 
        [HttpPost]
-       public ActionResult AddTags(Tags Model)
+       public ActionResult AddTags(string tagname)
         {
-            if(Model.TagsName != null)
+            Tags addTags = new Tags();
+            if(tagname!=null)
             {
-                db.Tags.Add(Model);
+                addTags.TagsName = tagname;
+                db.Tags.Add(addTags);
                 db.SaveChanges();
             }
-            else
-            {
-                ViewBag.Error = "Lütfen Boş Alanları Doldurun";
-            }
-            return Json(new { Model = Model });
+            return RedirectToAction("TagsIndex", "Tags");
         }
 
         [HttpPost]
-        public ActionResult TagsDataUpdate(Tags Model)
+        public ActionResult TagsDataUpdate(int id,string tagname)
         {
-            if(Model.ID != null)
+            Tags updateTags = db.Tags.Where(x => x.ID == id).FirstOrDefault();
+            if(tagname!=null)
             {
-                var Query = from tag in db.Tags where tag.ID == Model.ID select tag;
-                foreach (Tags item in Query)
-                {
-                    item.TagsName = Model.TagsName;
-                }
+                updateTags.TagsName = tagname;
                 db.SaveChanges();
             }
-            else
-            {
-                ViewBag.Error = "Güncelleme Sırasında Hata Oluştu,Lütfen Tekrar Deneyiniz";
-            }
-            return Json(new { Model = Model });
+            return RedirectToAction("TagsIndex", "Tags");
         }
 
         [HttpPost]

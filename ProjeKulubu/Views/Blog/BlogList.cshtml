@@ -2,7 +2,7 @@
 
 @{ 
     db2299D218BEEntities8 db = new db2299D218BEEntities8();
-    var query = db.Blog.Where(x => x.BlogContent != null && x.BlogPictureSEO != null && x.BlogPictureURL != null && x.BlogTitle != null).ToList();
+    var query = db.Blog.ToList();
 }
 
 <div class="row">
@@ -52,7 +52,15 @@
                                     <td>@item.ID</td>
                                     <td>@item.BlogTitle</td>
                                     <td>Etiket</td>
-                                    <td>@item.BlogPictureURL</td>
+                                    <td><ul class="gallery">
+    <li>
+        <a href="~/Dosyalar/@item.BlogPictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+            <div>
+                <span class="fa fa-image"></span>
+            </div>
+        </a>
+    </li>
+</ul></td>
                                     <td>@item.BlogPictureSEO</td>
                                     <td>@item.BlogContent</td>
                                     <td>Tarih</td>

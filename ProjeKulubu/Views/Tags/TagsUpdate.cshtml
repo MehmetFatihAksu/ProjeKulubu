@@ -6,43 +6,7 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<script type="text/javascript">
 
-    function DataUpdate() {
-
-        if ($("#TagsNewName").val() == null) {
-
-            alert("Etiket ismini boş geçmeyiniz");
-        } else {
-
-            var Model = {
-                ID: $("#dataId").val(),
-                TagsName : $("#TagsNewName").val()
-            }
-
-            $.ajax({
-
-                type: "POST",
-                url: "/Tags/TagsDataUpdate/",
-                data: Model,
-                ajaxasync: true,
-                traditional: true,
-                success: function (response) {
-                    alert("Etiket Başarıyla Güncellendi");
-
-                    window.location.href = "/Tags/TagsIndex";
-                },
-                error: function (response) {
-                    console.log("Hata Oluştu");
-                }
-
-            });
-        }
-
-    }
-
-
-</script>
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">
@@ -61,45 +25,43 @@
 </div>
 
 
-<aside id="QuesionUpdateDetail" class="QuestionContent">
-
-    <form action="/Tags/TagsUpdate" class="form-horizontal form-row-seperated">
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-black">
-                    <div class="box-title">
-                        <h3><i class="fa fa-edit"></i> Mevcut Etiketin Düzenlenme Ekranı</h3>
-                        <div class="box-tool">
-                            <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                            <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                        </div>
-                    </div>
-                    <div class="box-content">
-                        <div class="form-group">
-                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Etiket İsmi:</label>
-                            <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" class="form-control show-popover" value="@Model.TagsName" id="TagsNewName" name="TagsNewName" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                <input type="hidden" id="dataId" value="@Model.ID" />
-                                <input type="button" class="btn btn-primary" style="float:right" value="Düzenle" onclick="DataUpdate()" />
-                                @ViewBag.Error
-                                <a class="btn btn-danger" style="float:left" href="@Url.Action("TagsIndex","Tags")">Geri Dön</a>
-                            </div>
-
-                        </div>
-                    </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-black">
+            <div class="box-title">
+                <h3><i class="fa fa-edit"></i> Mevcut Etiketin Düzenlenme Formu</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
                 </div>
             </div>
+            <div class="box-content">
+                <form action="/Tags/TagsDataUpdate" class="form-horizontal form-row-separated" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Etiket İsmi:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="tagname" style="color:#000000" required oninvalid="this.setCustomValidity('Etiket İsmini Boş Geçemezsiniz')" oninput="setCustomValidity('')" id="tagname" placeholder="Etiket İsmini Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma etiket adını giriniz..." data-original-title="Etiket İsmi" value="@Model.TagsName" data-placement="left">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <input type="hidden" id="id" name="id" value="@Model.ID" />
+                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <a class="btn btn-danger" style="float:left" href="@Url.Action("TagsIndex","Tags")">Geri Dön</a>
+                        </div>
+
+                    </div>
+                    <div class="form-group last">
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <h6 style="float:right">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-
-    </form>
-
-</aside>
+    </div>
+</div>
 
 <footer>
     <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>

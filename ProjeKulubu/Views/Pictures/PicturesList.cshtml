@@ -1,7 +1,7 @@
 ﻿@using ProjeKulubu.Models
 @{ 
     db2299D218BEEntities8 db = new db2299D218BEEntities8();
-    var query = db.OurPictures.Where(x => x.PictureSEO != null && x.PictureURL!=null).ToList();
+    var query = db.OurPictures.ToList();
 }
 
 <div class="row">
@@ -31,8 +31,8 @@
                             <tr>
                                 <th style="width:18px"><input type="checkbox" /></th>
                                 <th>ID</th>
-                                <th>Resim</th>
                                 <th>Resim SEO</th>
+                                <th>Resim</th>
                                 <th>İnceleme</th>
                                 <th>Düzenleme</th>
                                 <th>Silme</th>
@@ -44,8 +44,16 @@
                                 <tr class="table-flag-blue">
                                     <td><input type="checkbox" /></td>
                                     <td>@item.ID</td>
-                                    <td>@item.PictureURL</td>
                                     <td>@item.PictureSEO</td>
+                                    <td>
+                                        <ul class="gallery">
+                                            <li>
+                                                <a href="~/Dosyalar/@item.PictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+                                                        <span class="fa fa-image"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
                                     <td><a class="btn btn-sm show-tooltip" title="İnceleme" href="@Url.Action("PicturesView","Pictures")/@item.ID"><i class="fa fa-search"></i></a></td>
                                     <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("PicturesUpdate","Pictures")/@item.ID"><i class="fa fa-edit"></i></a></td>
                                     <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("PicturesDelete","Pictures")/@item.ID"><i class="fa fa-trash-o"></i></a></td>

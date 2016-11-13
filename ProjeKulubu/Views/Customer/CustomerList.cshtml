@@ -5,10 +5,6 @@
 }
 
 
-
-
-
-
 <div class="row">
     <div class="col-md-12">
         <div class="box box-black">
@@ -50,9 +46,16 @@
                                     <td><input type="checkbox" /></td>
                                     <td>@item.ID</td>
                                     <td>@item.Name</td>
-                                    <td><a id="single_1" href="~/Dosyalar/@item.CommentsPictureURL" title="Morning on Camaret (Tony N.)">
-    tıkla
-</a></td>
+                                    <td><ul class="gallery">
+    <li>
+        <a href="~/Dosyalar/@item.CommentsPictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+            <div>
+                <span class="fa fa-image"></span>
+            </div>
+        </a>
+    </li>
+</ul>
+</td>
                                     <td><a class="btn btn-sm show-tooltip" title="İnceleme" href="@Url.Action("CustomerView","Customer")/@item.ID"><i class="fa fa-search"></i></a></td>
                                     <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("CustomerUpdate","Customer")/@item.ID"><i class="fa fa-edit"></i></a></td>
                                     <td><a class="btn btn-danger show-tooltip" title="Silme" href="@Url.Action("CustomerDelete","Customer")/@item.ID"><i class="fa fa-trash"></i></a></td>
@@ -74,3 +77,4 @@
         </div>
     </div>
 </div>@*Customer List*@
+

@@ -40,28 +40,21 @@ namespace ProjeKulubu.Controllers
 
 
         [HttpPost]
-        public ActionResult QuestionDataUpdate(AskedQuestions Model)
+        [ValidateInput(false)]
+        public ActionResult QuestionDataUpdate(int id,string Question,string Answer)
         {
-            if (Model.ID != null)
+            AskedQuestions updateModel = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
+            if(Question!=null && Answer!=null)
             {
-                var Query = from question in db.AskedQuestions
-                            where question.ID == Model.ID
-                            select question;
-
-
-                foreach (AskedQuestions item in Query)
-                {
-                    item.Question = Model.Question;
-                    item.QuestionAnswer = Model.QuestionAnswer;
-                }
+                updateModel.Question = Question;
+                updateModel.QuestionAnswer = Answer;
                 db.SaveChanges();
             }
             else
             {
-                ViewBag.Error = "Güncelle sırasında hata oluştu.Lütfen tekrar deneyiniz";
+                ViewBag.Error("işlem başarısız");
             }
-
-            return Json(new { Model = Model });
+            return RedirectToAction("QuestionIndex", "Question");
         }
 
 
