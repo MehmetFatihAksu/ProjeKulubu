@@ -29,14 +29,12 @@
                     <table class="table table-advance">
                         <thead>
                             <tr>
-                                <th style="width:18px"><input type="checkbox" /></th>
-                                <th>ID</th>
                                 <th>Eğitim Başlığı</th>
                                 <th>Eğitim Video/Resim</th>
                                 <th>Eğitim Video/Resim SEO</th>
                                 <th>Eğitim Tarihi</th>
                                 <th>Görüntülenme Sayısı</th>
-                                <th>Eğitim İçerik</th>
+                                @*<th>Eğitim İçerik</th>*@
                                 <th>İncele</th>
                                 <th>Düzenleme</th>
                                 <th>Silme</th>
@@ -46,14 +44,12 @@
                             <tr class="table-flag-blue">
                                 @foreach (Education item in query)
                                 {
-                                    <td><input type="checkbox" /></td>
-                                    <td>@item.ID</td>
                                     <td>@item.EducationTitle</td>
                                     <td>@item.EducationFileURL</td>
                                     <td>@item.EducationFileSEO</td>
-                                    <td>07.11.15</td>
-                                    <td>21</td>
-                                    <td>@item.EducationContent</td>
+                                    <td>@item.EducationDate</td>
+                                    <td>@item.EducationView</td>
+                                    @*<td>@item.EducationContent</td>*@
                                     <td><a class="btn btn-sm show-tooltip" title="İncele" href="@Url.Action("TakingEducationView","TakingEducation")/@item.ID"><i class="fa fa-search"></i></a></td>
                                     <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("TakingEducationUpdate","TakingEducation")/@item.ID"><i class="fa fa-edit"></i></a></td>
                                     <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("TakingEducationDelete","TakingEducation")/@item.ID"><i class="fa fa-trash-o"></i></a></td>

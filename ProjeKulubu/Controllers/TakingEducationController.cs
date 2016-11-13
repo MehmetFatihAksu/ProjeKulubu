@@ -41,10 +41,31 @@ namespace ProjeKulubu.Controllers
         }
 
         [HttpPost]
-        public ActionResult TakingEducationDataUpdate()
+        public ActionResult TakingEducationDataUpdate(int Id,string title, HttpPostedFileBase file, string seo, string content)
         {
-            // doldurulcak
-            return View();
+            if (Id!=null)
+            {
+                var Query = from takingEducationData in db.Education
+                            where
+                                takingEducationData.ID == Id
+                            select takingEducationData;
+
+
+                foreach (Education item in Query)
+                {
+                    item.EducationTitle = title;
+                    item.EducationFileURL = file.FileName;
+                    item.EducationFileSEO = seo;
+                    item.EducationContent = content;
+                }
+                db.SaveChanges();
+            }
+            else
+            {
+                return View("ErrorPage", "Error");
+            }
+
+            return RedirectToAction("TakingEducationIndex", "TakingEducation");
         }
 
         [HttpPost]

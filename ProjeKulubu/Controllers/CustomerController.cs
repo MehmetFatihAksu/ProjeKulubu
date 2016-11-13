@@ -41,10 +41,28 @@ namespace ProjeKulubu.Controllers
         }
 
         [HttpPost]
-        public ActionResult CustomerDataUpdate(HttpPostedFileBase CommentPicture,string CustomerName)
+        public ActionResult CustomerDataUpdate(HttpPostedFileBase CommentPicture,string CustomerName, int id)
         {
-            // Doldurulcak
-            return View();
+            if (id != null)
+            {
+                var Query = from customerdata in db.CustomerComments
+                            where
+                                customerdata.ID == id
+                            select customerdata;
+
+
+                foreach (CustomerComments item in Query)
+                {
+                    item.Name = CustomerName;
+                    item.CommentsPictureURL = CommentPicture.FileName;
+                }
+                db.SaveChanges();
+            }
+            else
+            {
+                return View("ErrorPage","Error");
+            }
+            return RedirectToAction("CustomerIndex","Customer");
         }
 
         [HttpPost]
@@ -72,9 +90,6 @@ namespace ProjeKulubu.Controllers
             var data = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
-
-
 
 
     }
