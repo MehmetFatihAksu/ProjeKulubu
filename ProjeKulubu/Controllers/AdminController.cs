@@ -66,17 +66,6 @@ namespace ProjeKulubu.Controllers
         //Ofis Action'ı eklendi..
         #endregion
 
-        #region Eğitim
-        public ActionResult AlinanEgitimler()
-        {
-            return View();
-        }
-        public ActionResult VerilenEgitimler()
-        {
-            return View();
-        }
-
-        #endregion
 
         #region Yardim
         public ActionResult HelpDetail()
@@ -130,7 +119,6 @@ namespace ProjeKulubu.Controllers
             return View();
         }
         #endregion
-
 
 
     }

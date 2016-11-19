@@ -179,6 +179,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\GivingEducationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OfficeController.cs" />
     <Compile Include="Controllers\PicturesController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\ReferenceController.cs" />
@@ -2091,7 +2092,6 @@
     <Content Include="Views\Home\ProjeSatis.cshtml" />
     <Content Include="Views\Home\ProjePazarlama.cshtml" />
     <Content Include="Views\Admin\AddProject.cshtml" />
-    <Content Include="Views\Admin\VerilenEgitimler.cshtml" />
     <Content Include="Views\Admin\Ofis.cshtml" />
     <Content Include="Views\Admin\SatisiDevamEdenProjeler.cshtml" />
     <Content Include="Views\Admin\TamamlananProjeler.cshtml" />
@@ -2120,7 +2120,8 @@
     <Content Include="Views\TakingEducation\TakingEducationDelete.cshtml" />
     <Content Include="Views\TakingEducation\TakingEducationUpdate.cshtml" />
     <Content Include="Views\TakingEducation\TakingEducationView.cshtml" />
-    <Content Include="Views\Tags\TagsIndex.cshtml" />
+    <Content Include="Views\GivingEducation\GivingEducationIndex.cshtml" />
+    <Content Include="Views\Office\OfficeIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="/Team/AddTeamMember" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                <form action="/Team/TeamDataUpdate" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Üye İsim ve Soyisim:</label>
                         <div class="col-sm-9 col-lg-10 controls">
@@ -125,7 +125,8 @@
 
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <input type="hidden" id="dataId" name="Id" value="@Model.ID" />
+                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i>Güncelle</button>
                             <a class="btn btn-danger" style="float:left" href="@Url.Action("TeamIndex","Team")">Geri Dön</a>
                         </div>
                     </div>

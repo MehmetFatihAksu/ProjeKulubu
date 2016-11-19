@@ -1,4 +1,14 @@
-﻿
+﻿@using ProjeKulubu.Models;
+
+@{
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    List<Team> teamMemberList = new List<Team>();
+
+    teamMemberList = db.Team.Where(x => x.MemberName != null && x.MemberPictureURL != null).ToList();
+}
+
+
+
 @{
     ViewBag.Title = "Ekip";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,109 +33,39 @@
     <div class="container">
         <!--heading-->
         <div class="piko-title9">
-            <h3>EKİBİMİZ</h3>
+            <h3>PROJE KULÜBÜ TÜRKİYE</h3>
             <hr>
-            <p>METİN</p>
+            <p>EKİBİMİZ</p>
         </div> <!--end heading-->
         <div id="team-member" class="row">
-            <!--start team 1-->
-            <div class="item col-sm-6 col-md-3">
-                <div class="box">
-                    <figure>
-                        <img src="/Content/pikocon_html/images/logo/team01.jpg" alt="piko team">
-                        <figcaption>
-                            <i>
-                                <a href="#" class="fa fa-facebook"></a>
-                                <a href="#" class="fa fa-google-plus"></a>
-                                <a href="#" class="fa fa-twitter"></a>
-                                <a href="#" class="fa fa-linkedin"></a>
-                            </i>
-                        </figcaption>
-                    </figure>
-                    <div class="caption">
-                        <div class="piko-title6 two">
-                            <h4><strong>İSİM SOYİSİM</strong></h4>
-                            <hr>
-                            <span>POZİSYON</span>
-                            <p>BİYOGRAFİ METNİ</p><br>
+            
+            @foreach (Team item in teamMemberList)
+            {
+                <div class="item col-sm-6 col-md-3">
+                    <div class="box">
+                        <figure>
+                            <img src="~/Dosyalar/@item.MemberPictureURL" alt="@item.MemberName">
+                            <figcaption>
+                                <i>
+                                    <a href="@item.MemberFacebookURL" class="fa fa-facebook"></a>
+                                    <a href="@item.MemberGoogleURL" class="fa fa-google-plus"></a>
+                                    <a href="@item.MemberTwitterURL" class="fa fa-twitter"></a>
+                                    <a href="@item.MemberLinkedinURL" class="fa fa-linkedin"></a>
+                                </i>
+                            </figcaption>
+                        </figure>
+                        <div class="caption">
+                            <div class="piko-title6 two">
+                                <h4><strong>@item.MemberName</strong></h4>
+                                <hr>
+                                <span>@item.MemberName</span>
+                                <p>@item.MemberBiografi</p><br>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--start team 2 -->
-            <div class="item col-sm-6 col-md-3">
-                <div class="box">
-                    <figure>
-                        <img src="/Content/pikocon_html/images/logo/team02.jpg" alt="piko team">
-                        <figcaption>
-                            <i>
-                                <a href="#" class="fa fa-facebook"></a>
-                                <a href="#" class="fa fa-google-plus"></a>
-                                <a href="#" class="fa fa-twitter"></a>
-                                <a href="#" class="fa fa-linkedin"></a>
-                            </i>
-                        </figcaption>
-                    </figure>
-                    <div class="caption">
-                        <div class="piko-title6 two">
-                            <h4><strong>İSİM SOYİSİM</strong></h4>
-                            <hr>
-                            <span>POZİSYON</span>
-                            <p>BİYOGRAFİ METNİ</p><br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--start team 3-->
-            <div class="item col-sm-6 col-md-3">
-                <div class="box">
-                    <figure>
-                        <img src="/Content/pikocon_html/images/logo/team03.jpg" alt="piko team">
-                        <figcaption>
-                            <i>
-                                <a href="#" class="fa fa-facebook"></a>
-                                <a href="#" class="fa fa-google-plus"></a>
-                                <a href="#" class="fa fa-twitter"></a>
-                                <a href="#" class="fa fa-linkedin"></a>
-                            </i>
-                        </figcaption>
-                    </figure>
-                    <div class="caption">
-                        <div class="piko-title6 two">
-                            <h4><strong>İSİM SOYİSİM</strong></h4>
-                            <hr>
-                            <span>POZİSYON</span>
-                            <p>BİYOGRAFİ METNİ</p><br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--start team 4-->
-            <div class="item col-sm-6 col-md-3">
-                <div class="box">
-                    <figure>
-                        <img src="/Content/pikocon_html/images/logo/team04.jpg" alt="piko team">
-                        <figcaption>
-                            <i>
-                                <a href="#" class="fa fa-facebook"></a>
-                                <a href="#" class="fa fa-google-plus"></a>
-                                <a href="#" class="fa fa-twitter"></a>
-                                <a href="#" class="fa fa-linkedin"></a>
-                            </i>
-                        </figcaption>
-                    </figure>
-                    <div class="caption">
-                        <div class="piko-title6 two">
-                            <h4><strong>İSİM SOYİSİM</strong></h4>
-                            <hr>
-                            <span>POZİSYON</span>
-                            <p>BİYOGRAFİ METNİ</p><br>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
             <div class="clearfix"></div>
-            <!--start team 6-->
         </div> <!--end of teammember-->
     </div> <!--end of container-->
 </section>

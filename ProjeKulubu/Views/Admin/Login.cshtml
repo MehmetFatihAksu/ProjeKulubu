@@ -44,11 +44,6 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
                 <h3 class="title">Giriş Formu</h3>
-
-               
-
-
-
                     <div class="form-group" id="username">
                         @*<input class="form-input" tooltip-class="username-tooltip" placeholder="Kullanıcı Adı" id="email" />*@
                         @Html.TextBoxFor(model=>model.UserName,new { @class = "form-input" })
@@ -61,17 +56,11 @@
                     <div class="form-group">
                         <button onclick="clickListener();" class="login-button">Giriş</button>
                     </div>
-                    
-
 }
             <div class="loading">
                 <div class="loading-spinner-large" style="display: none;"></div>
                 <div class="loading-spinner-small" style="display: none;"></div>
             </div>
-           
-
-            
-
         </div>
 
     </div>
