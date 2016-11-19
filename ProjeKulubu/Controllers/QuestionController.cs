@@ -6,20 +6,24 @@ using System.Web.Mvc;
 using System.Net;
 using ProjeKulubu.Models;
 using System.Data.Entity.Infrastructure;
+using PagedList;
 
 namespace ProjeKulubu.Controllers
 {
-    [ValidateInput(false)]
     public class QuestionController : Controller
     {
         //
         // GET: /Question/
 
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
 
 
-        public ActionResult QuestionIndex()
+        public ActionResult QuestionIndex(int ? page)
         {
+            var list = db.AskedQuestions.ToList();
+            var pageNumber = page ?? 1;
+            var onePageOfQuestion = list.ToPagedList(pageNumber, 7);
+            ViewBag.Show = onePageOfQuestion;
             return View();
         }
 
@@ -40,28 +44,21 @@ namespace ProjeKulubu.Controllers
 
 
         [HttpPost]
-        public ActionResult QuestionDataUpdate(AskedQuestions Model)
+        [ValidateInput(false)]
+        public ActionResult QuestionDataUpdate(int id,string Question,string Answer)
         {
-            if (Model.ID != null)
+            AskedQuestions updateModel = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
+            if(Question!=null && Answer!=null)
             {
-                var Query = from question in db.AskedQuestions
-                            where question.ID == Model.ID
-                            select question;
-
-
-                foreach (AskedQuestions item in Query)
-                {
-                    item.Question = Model.Question;
-                    item.QuestionAnswer = Model.QuestionAnswer;
-                }
+                updateModel.Question = Question;
+                updateModel.QuestionAnswer = Answer;
                 db.SaveChanges();
             }
             else
             {
-                ViewBag.Error = "Güncelle sırasında hata oluştu.Lütfen tekrar deneyiniz";
+                ViewBag.Error("işlem başarısız");
             }
-
-            return Json(new { Model = Model });
+            return RedirectToAction("QuestionIndex", "Question");
         }
 
 

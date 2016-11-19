@@ -5,8 +5,6 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
-
 <script type="text/javascript">
 
     function DataDelete() {
@@ -29,8 +27,7 @@
         });
     }
 
-</script>
-
+</script>@*Delete Scripts*@
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">
@@ -46,8 +43,7 @@
         </li>
         <li class="active"><i class="fa fa-trash-o"></i>Ekip Üyesi Silme Ekranı</li>
     </ul>
-</div>
-
+</div>@*Header*@
 
 <div class="row">
     <div class="col-md-12">
@@ -64,29 +60,29 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye İsim ve Soyisim:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="name" id="name" disabled value="@Model.MemberName" class="form-control show-popover">
+                            <input type="text" style="color:#000000" name="name" id="name" disabled value="@Model.MemberName" class="form-control show-popover">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 col-lg-2 control-label">Üye Pozisyon:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <select name="position" disabled id="position" class="form-control input-sm" tabindex="1">
-                                <option value="Pozisyon 1">@Model.MemberPozision</option>
-                            </select>
+                            <label class="radio-inline">
+                                <input type="radio" disabled name="position" value="Genel Müdür" /> @Model.MemberPozision
+                            </label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 col-lg-2 control-label">Üye Tecrübe:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <select name="exp" disabled id="exp" class="form-control input-sm" tabindex="1">
-                                <option value="Yıldız 1">@Model.MemberExperience</option>
+                                <option style="color:#000000" value="Yıldız 1">@Model.MemberExperience</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Yaşı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="age" id="age" value="@Model.MemberAge" disabled class="form-control show-popover">
+                            <input style="color:#000000" type="text" name="age" id="age" value="@Model.MemberAge" disabled class="form-control show-popover">
                         </div>
                     </div>
                     <div class="form-group">
@@ -103,25 +99,25 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Facebook:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="facebook" id="facebook" value="@Model.MemberFacebookURL" disabled class="form-control show-popover">
+                            <input type="text" name="facebook" id="facebook" style="color:#000000" value="@Model.MemberFacebookURL" disabled class="form-control show-popover">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Twitter:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="twitter" id="twitter" value="@Model.MemberTwitterURL" disabled class="form-control show-popover">
+                            <input type="text" name="twitter" id="twitter" style="color:#000000" value="@Model.MemberTwitterURL" disabled class="form-control show-popover">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye GooglePlus:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="google" id="google"  disabled value="@Model.MemberGoogleURL" class="form-control show-popover">
+                            <input type="text" name="google" id="google" style="color:#000000"  disabled value="@Model.MemberGoogleURL" class="form-control show-popover">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Linkedin:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="linkedin" id="linkedin" value="@Model.MemberLinkedinURL" class="form-control show-popover" disabled>
+                            <input type="text" name="linkedin" id="linkedin" style="color:#000000" value="@Model.MemberLinkedinURL" class="form-control show-popover" disabled>
                         </div>
                     </div>
                     <div class="box-content">
@@ -129,7 +125,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">Üye Biyografisi:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control col-md-12" name="biografi" id="biografi" disabled rows="6">@Model.MemberBiografi</textarea>
+                                <textarea class="form-control col-md-12" style="color:#000000" name="biografi" id="biografi" disabled rows="6">@Model.MemberBiografi</textarea>
                             </div>
                         </div>
 
@@ -147,15 +143,14 @@
             </div>
         </div>
     </div>
-</div>
-
+</div>@*Team Delete Form*@
 
 <footer>
-    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-</footer>
+    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer>@*Footer*@
 
+@*Scripts Down HERE*@
 
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
-
-
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>

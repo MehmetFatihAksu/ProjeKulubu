@@ -14,7 +14,7 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /TakingEducation/
 
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
 
         public ActionResult TakingEducationIndex()
         {

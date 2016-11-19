@@ -15,9 +15,10 @@ namespace ProjeKulubu.Models
     public partial class ProjectPicture
     {
         public int ID { get; set; }
-        public Nullable<int> PictureID { get; set; }
+        public Nullable<int> ProjectID { get; set; }
         public string PictureURL { get; set; }
         public string PictureSEO { get; set; }
+        public string PictureALT { get; set; }
     
         public virtual Project Project { get; set; }
     }

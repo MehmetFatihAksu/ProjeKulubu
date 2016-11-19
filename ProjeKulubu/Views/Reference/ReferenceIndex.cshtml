@@ -1,20 +1,18 @@
 ﻿@model ProjeKulubu.Models.Reference
+@using PagedList
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "ReferenceIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<script src="~/Content/AdminContent/js/buttonActions.js"></script>
-
-<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
-
 <div class="page-title">
     <div>
         <h1><i class="fa fa-star"></i> Referanslar</h1>
         <h4>Bu kısımda mevcut referanslarınızı düzenleyebilir veya referans ekleyebilirsiniz</h4>
     </div>
-</div>
+</div> @*Header 1*@
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">
@@ -25,7 +23,7 @@
         </li>
         <li class="active">Referans Yönetimi</li>
     </ul>
-</div>
+</div> @*Header 2*@
 
 <div class="row">
     <div class="col-md-12">
@@ -40,19 +38,19 @@
             <div class="box-content">
                 <form action="/Reference/AddReference" class="form-horizontal form-row-separated" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Referans Başlığı:</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Referans Başlığı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="ReferenceName" id="ReferenceName" placeholder="Referans Başlığı Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma referans başlığınızı giriniz" data-original-title="Referans Başlığı" data-placement="left">
+                            <input type="text" name="ReferenceName" id="ReferenceName" required oninvalid="this.setCustomValidity('Referans başlığını boş geçemezsiniz')" oninput="setCustomValidity('')" placeholder="Referans Başlığı Giriniz" class="form-control show-popover" data-trigger="hover" style="color:#000000" data-content="Bu kısıma referans başlığınızı giriniz" data-original-title="Referans Başlığı" data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Referans Site Adresi:</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Referans Site Adresi:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="ReferenceURL" id="ReferenceURL" placeholder="www." class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma referansınızın site adresini giriniz" data-original-title="Referans Site Adresi" data-placement="left">
+                            <input type="text" name="ReferenceURL" required  oninvalid="this.setCustomValidity('Yanlış Formatta giriş yaptınız')" oninput="setCustomValidity('')" style="color:#000000" id="ReferenceURL" placeholder="www." class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma referansınızın site adresini giriniz" data-original-title="Referans Site Adresi"  data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Referans Resmi:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">* Referans Resmi:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
@@ -64,7 +62,7 @@
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
 
-                                        <input type="file" id="uploadFile" name="ReferencePicture" class="file-input" />
+                                        <input required oninvalid="this.setCustomValidity('Referans resmini boş geçemezsiniz')" oninput="setCustomValidity('')" type="file" id="uploadFile" name="ReferencePicture" class="file-input" />
                                     </span>
                                     <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
@@ -74,29 +72,104 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Referans Resim SEO:</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Referans Resim SEO:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="ReferencePictureSEO" id="ReferencePictureSEO" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma referans resminiz için anahtar kelime giriniz" data-original-title="Referans Resim SEO" data-placement="left">
+                            <input type="text" name="ReferencePictureSEO" required oninvalid="this.setCustomValidity('SEO kısmını boş geçemezsiniz')" oninput="setCustomValidity('')" style="color:#000000" id="ReferencePictureSEO" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma referans resminiz için anahtar kelime giriniz" data-original-title="Referans Resim SEO" data-placement="left">
                         </div>
                     </div>
 
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
                             <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>    
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
+</div> @*Add Reference*@
 
-@Html.Partial("ReferenceList","Reference")
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-black">
+            <div class="box-title">
+                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Referanslar</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="btn-toolbar pull-right">
+                    <div class="btn-group">
+                        <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
+                        <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("ReferenceIndex","Reference")"><i class="fa fa-repeat"></i></a>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="table-responsive">
+                    <table class="table table-advance">
+                        <thead>
+                            <tr>
+                                <th style="width:18px"><input type="checkbox" /></th>
+                                <th>ID</th>
+                                <th>Referans Başlığı</th>
+                                <th>Referans Adres</th>
+                                <th>Referans Resim</th>
+                                <th>Referans Resim SEO</th>
+                                <th>Düzenleme</th>
+                                <th>Silme</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var list in ViewBag.Show)
+                            {
+                                <tr class="table-flag-blue">
+                                    <td><input type="checkbox" /></td>
+                                    <td>@list.ID</td>
+                                    <td>@list.ReferenceTitle</td>
+                                    <td>@list.ReferenceLink</td>
+                                    <td>
+                                        <ul class="gallery">
+                                            <li>
+                                                <a href="~/Dosyalar/@list.ReferencePictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+                                                    <div>
+                                                        <span class="fa fa-image"></span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>@list.ReferencePictureSEO</td>
+                                    <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("ReferenceUpdate","Reference")/@list.ID"><i class="fa fa-edit"></i></a></td>
+                                    <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("ReferenceDelete", "Reference")/@list.ID"><i class="fa fa-trash-o"></i></a></td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <ul class="pagination">
+                        @Html.PagedListPager((IPagedList)ViewBag.Show, page => Url.Action("ReferenceIndex", new { page }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> @*References List*@
 
 <footer>
-    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-</footer>
+    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer> @*Footer*@
+
+@*Scripts DOWN Here*@
 
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
-
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+<script src="~/Content/AdminContent/js/buttonActions.js"></script>
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />

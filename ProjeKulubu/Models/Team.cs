@@ -14,14 +14,7 @@ namespace ProjeKulubu.Models
     
     public partial class Team
     {
-        public Team()
-        {
-            this.Office = new HashSet<Office>();
-            this.Project = new HashSet<Project>();
-        }
-    
         public int ID { get; set; }
-        public Nullable<int> MemberID { get; set; }
         public string MemberName { get; set; }
         public string MemberPozision { get; set; }
         public string MemberExperience { get; set; }
@@ -32,8 +25,10 @@ namespace ProjeKulubu.Models
         public string MemberTwitterURL { get; set; }
         public string MemberGoogleURL { get; set; }
         public string MemberLinkedinURL { get; set; }
+        public Nullable<int> OfficeID { get; set; }
+        public Nullable<int> ProjectID { get; set; }
     
-        public virtual ICollection<Office> Office { get; set; }
-        public virtual ICollection<Project> Project { get; set; }
+        public virtual Office Office { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

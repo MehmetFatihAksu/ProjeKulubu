@@ -5,10 +5,6 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-
-<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/jquery-tags-input/jquery.tagsinput.css" />
-<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
-
 <script type="text/javascript">
 
     function DataDelete() {
@@ -31,7 +27,7 @@
         });
     }
 
-</script>
+</script>@*Delete Scripts*@
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">
@@ -47,7 +43,7 @@
         </li>
         <li class="active"><i class="fa fa-trash-o"></i>Makale Silme Ekranı</li>
     </ul>
-</div>
+</div>@*Header*@
 
 <aside id="QuesionDeleteDetail" class="QuestionContent">
 
@@ -67,23 +63,23 @@
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Makale ID:</label>
                             <div class="col-sm-9 col-lg-10 controls">
 
-                                <input type="text" class="form-control show-popover" disabled value="@Model.ID" id="ID" name="textfield3" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" disabled value="@Model.ID" id="ID" name="textfield3" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Makale Başlığı:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" class="form-control show-popover" value="@Model.BlogTitle" disabled id="QuestionContent" name="textfield3" />
+                                <input type="text" class="form-control show-popover" value="@Model.BlogTitle" style="color:#000000" disabled id="QuestionContent" name="textfield3" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 col-lg-2 control-label">Etiket Ekle:</label>
+                            <label class="col-sm-3 col-lg-2 control-label">Etiketler:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input id="tag-input-1" name="tag" disabled type="text" class="form-control tags show-popover" value="" />
+                                <input id="tag-input-1" style="color:#000000" name="tag" disabled type="text" class="form-control tags show-popover" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 col-lg-2 control-label">Makale Resim Yükleme:</label>
+                            <label class="col-sm-3 col-lg-2 control-label">Makale Resim:</label>
                             <div class="col-sm-9 col-lg-10 controls">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
@@ -96,7 +92,7 @@
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Makale Resim SEO:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" name="seo" id="seo" disabled value="@Model.BlogPictureSEO" class="form-control show-popover" >
+                                <input type="text" name="seo" id="seo" disabled value="@Model.BlogPictureSEO" style="color:#000000" class="form-control show-popover" >
                             </div>
                         </div>
                         <div class="box-content">
@@ -104,7 +100,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 col-lg-2 control-label">Makale İçeriği:</label>
                                 <div class="col-sm-9 col-lg-10 controls">
-                                    <textarea class="form-control col-md-12" disabled name="content" rows="6">@Model.BlogContent</textarea>
+                                    <textarea class="form-control col-md-12" style="color:#000000" disabled name="content" rows="6">@Model.BlogContent</textarea>
                                 </div>
                             </div>
 
@@ -123,14 +119,15 @@
             </div>
         </div>
 </form>
-</aside>
-
+</aside>@*Blog Delete Form*@
 
     <footer>
-        <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-    </footer>
+        <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+    </footer>@*Footer*@
 
+@*Scripts Down Here*@
 
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
-
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/jquery-tags-input/jquery.tagsinput.css" />
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 <script type="text/javascript" src="/Content/AdminContent/assets/jquery-tags-input/jquery.tagsinput.min.js"></script>

@@ -5,11 +5,6 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<script src="~/Content/AdminContent/js/buttonActions.js"></script>
-
-
-<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
-
 <div id="breadcrumbs">
     <ul class="breadcrumb">
         <li>
@@ -24,7 +19,7 @@
         </li>
         <li class="active"><i class="fa fa-edit"></i>Ekip Üyesi Düzenleme Ekranı</li>
     </ul>
-</div>
+</div>@*Header*@
 
 <div class="row">
     <div class="col-md-12">
@@ -39,24 +34,27 @@
             <div class="box-content">
                 <form action="/Team/TeamDataUpdate" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye İsim ve Soyisim:</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Üye İsim ve Soyisim:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="name" id="name" value="@Model.MemberName" class="form-control show-popover">
+                            <input type="text" required oninvalid="this.setCustomValidity('Üye ismini boş geçemezsiniz')" oninput="setCustomValidity('')" style="color:#000000" name="name" id="name" value="@Model.MemberName" class="form-control show-popover">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Üye Pozisyon:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">* Üyenin Pozisyonu:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <select name="position" id="position" class="form-control input-sm" tabindex="1">
-                                <option value="Pozisyon 1">Pozisyon 1</option>
-                                <option value="Pozisyon 2">Pozisyon 2</option>
-                                <option value="Pozisyon 3">Pozisyon 5</option>
-                                <option value="Pozisyon 4">Pozisyon 4</option>
-                            </select>
+                            <label class="radio-inline">
+                                <input type="radio" name="position" value="Genel Müdür" /> Genel Müdür
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="position" value="Yönetici" checked /> Yönetici
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="position" value="Çalışan" /> Çalışan
+                            </label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Üye Tecrübe:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">* Üye Tecrübe:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <select name="exp" id="exp" class="form-control input-sm" tabindex="1">
                                 <option value="Yıldız 1">1 Yıldız</option>
@@ -67,13 +65,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Yaşı:</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Üye Yaşı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="age" id="age" value="@Model.MemberAge" class="form-control show-popover">
+                            <input type="text" name="age" style="color:#000000" required oninvalid="this.setCustomValidity('Üye yaşını boş geçemezsiniz')" oninput="setCustomValidity('')" onkeypress="return isNumber(event)" id="age" value="@Model.MemberAge" class="form-control show-popover">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Üye Resim:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">* Üye Resim:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
@@ -84,9 +82,8 @@
                                     <span class="btn btn-default btn-file">
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
-                                        <input type="file" name="picture" id="picture" class="file-input" />
+                                        <input  type="file" required  oninvalid="this.setCustomValidity('Üye resmini boş geçemezsiniz')" oninput="setCustomValidity('')" name="picture" id="picture" class="file-input" />
                                     </span>
-                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
                             </div>
                         </div>
@@ -94,60 +91,77 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Facebook:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="facebook" id="facebook" value="@Model.MemberFacebookURL" class="form-control show-popover">
+                            <input type="text" name="facebook" style="color:#000000" id="facebook" value="@Model.MemberFacebookURL" class="form-control show-popover">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Twitter:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="twitter" id="twitter" value="@Model.MemberTwitterURL" class="form-control show-popover" ">
+                            <input type="text" name="twitter" style="color:#000000" id="twitter" value="@Model.MemberTwitterURL" class="form-control show-popover"">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye GooglePlus:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="google" id="google" value="@Model.MemberGoogleURL" class="form-control show-popover">
+                            <input type="text" name="google" style="color:#000000" id="google" value="@Model.MemberGoogleURL" class="form-control show-popover">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Linkedin:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="linkedin" id="linkedin" value="@Model.MemberLinkedinURL" class="form-control show-popover">
+                            <input type="text" name="linkedin" style="color:#000000" id="linkedin" value="@Model.MemberLinkedinURL"  class="form-control show-popover">
                         </div>
                     </div>
                     <div class="box-content">
 
                         <div class="form-group">
-                            <label class="col-sm-3 col-lg-2 control-label">Üye Biyografisi:</label>
+                            <label class="col-sm-3 col-lg-2 control-label">* Üye Biyografisi:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control col-md-12" name="biografi" id="biografi" rows="6">@Model.MemberBiografi</textarea>
+                                <textarea class="form-control col-md-12 ckeditor" style="color:#000000" name="biografi" id="biografi" rows="6">@Model.MemberBiografi</textarea>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="form-group last">
+                    <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
                             <input type="hidden" id="dataId" name="Id" value="@Model.ID" />
                             <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i>Güncelle</button>
                             <a class="btn btn-danger" style="float:left" href="@Url.Action("TeamIndex","Team")">Geri Dön</a>
                         </div>
                     </div>
+                    <div class="form-group last">
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <h6 style="float:right">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
-
-
+</div>@*Team Update Form*@
 
 <footer>
-    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-</footer>
+    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer>@*Footer*@
 
+@*Scripts Down HERE*@
+
+<script language="javascript" type="text/javascript">
+
+
+    function isNumber(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>@*Only Number Scripts*@
 
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
-
-
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+<script src="~/Content/AdminContent/js/buttonActions.js"></script>
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+
 

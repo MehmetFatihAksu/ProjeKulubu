@@ -36,6 +36,17 @@
           <Property Name="BlogViewCount" Type="int" />
           <Property Name="BlogTagsID" Type="int" />
         </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactPhone" Type="char" MaxLength="11" />
+          <Property Name="ContactSubject" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContantSubjectContent" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="CustomerComments">
           <Key>
             <PropertyRef Name="ID" />
@@ -85,16 +96,16 @@
           <Property Name="OfficeLocation" Type="nvarchar" MaxLength="50" />
           <Property Name="OfficeMail" Type="nvarchar" MaxLength="50" />
           <Property Name="OfficePhone" Type="char" MaxLength="11" />
-          <Property Name="OfficePictureID" Type="int" />
-          <Property Name="OfficeMemberID" Type="int" />
         </EntityType>
         <EntityType Name="OfficePictures">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PictureID" Type="int" />
+          <Property Name="OfficeID" Type="int" />
           <Property Name="PictureURL" Type="nvarchar(max)" />
+          <Property Name="PictureSEO" Type="nvarchar" MaxLength="50" />
+          <Property Name="PictureALT" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="OurPictures">
           <Key>
@@ -120,17 +131,16 @@
           <Property Name="ProjectMail" Type="nvarchar" MaxLength="50" />
           <Property Name="ProjectPhone" Type="char" MaxLength="11" />
           <Property Name="ProjectAltLocation" Type="nvarchar" MaxLength="50" />
-          <Property Name="ProjectPictureID" Type="int" />
-          <Property Name="ProjectTeamMemberID" Type="int" />
         </EntityType>
         <EntityType Name="ProjectPicture">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PictureID" Type="int" />
+          <Property Name="ProjectID" Type="int" />
           <Property Name="PictureURL" Type="nvarchar(max)" />
           <Property Name="PictureSEO" Type="nvarchar" MaxLength="50" />
+          <Property Name="PictureALT" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ProjectType">
           <Key>
@@ -172,7 +182,6 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MemberID" Type="int" />
           <Property Name="MemberName" Type="nvarchar" MaxLength="150" />
           <Property Name="MemberPozision" Type="nvarchar" MaxLength="50" />
           <Property Name="MemberExperience" Type="nvarchar" MaxLength="15" />
@@ -183,6 +192,8 @@
           <Property Name="MemberTwitterURL" Type="nvarchar" MaxLength="150" />
           <Property Name="MemberGoogleURL" Type="nvarchar" MaxLength="150" />
           <Property Name="MemberLinkedinURL" Type="nvarchar" MaxLength="150" />
+          <Property Name="OfficeID" Type="int" />
+          <Property Name="ProjectID" Type="int" />
         </EntityType>
         <Association Name="FK_Blog_Tags">
           <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
@@ -208,27 +219,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Office_OfficePictures">
-          <End Role="OfficePictures" Type="Self.OfficePictures" Multiplicity="0..1" />
-          <End Role="Office" Type="Self.Office" Multiplicity="*" />
+        <Association Name="FK_OfficePictures_Office">
+          <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
+          <End Role="OfficePictures" Type="Self.OfficePictures" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="OfficePictures">
+            <Principal Role="Office">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Office">
-              <PropertyRef Name="OfficePictureID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Office_Team">
-          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
-          <End Role="Office" Type="Self.Office" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Team">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Office">
-              <PropertyRef Name="OfficeMemberID" />
+            <Dependent Role="OfficePictures">
+              <PropertyRef Name="OfficeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -244,19 +243,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Project_Team">
-          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
-          <End Role="Project" Type="Self.Project" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Team">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Project">
-              <PropertyRef Name="ProjectTeamMemberID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProjectPicture_Project">
+        <Association Name="FK_ProjectPicture_Project1">
           <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
           <End Role="ProjectPicture" Type="Self.ProjectPicture" Multiplicity="*" />
           <ReferentialConstraint>
@@ -264,7 +251,31 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="ProjectPicture">
-              <PropertyRef Name="PictureID" />
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Office">
+          <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="ProjectID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -272,6 +283,7 @@
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AskedQuestions" EntityType="Self.AskedQuestions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Blog" EntityType="Self.Blog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerComments" EntityType="Self.CustomerComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EducationType" EntityType="Self.EducationType" Schema="dbo" store:Type="Tables" />
@@ -294,25 +306,25 @@
             <End Role="EducationType" EntitySet="EducationType" />
             <End Role="Education" EntitySet="Education" />
           </AssociationSet>
-          <AssociationSet Name="FK_Office_OfficePictures" Association="Self.FK_Office_OfficePictures">
+          <AssociationSet Name="FK_OfficePictures_Office" Association="Self.FK_OfficePictures_Office">
+            <End Role="Office" EntitySet="Office" />
             <End Role="OfficePictures" EntitySet="OfficePictures" />
-            <End Role="Office" EntitySet="Office" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Office_Team" Association="Self.FK_Office_Team">
-            <End Role="Team" EntitySet="Team" />
-            <End Role="Office" EntitySet="Office" />
           </AssociationSet>
           <AssociationSet Name="FK_Project_ProjectType" Association="Self.FK_Project_ProjectType">
             <End Role="ProjectType" EntitySet="ProjectType" />
             <End Role="Project" EntitySet="Project" />
           </AssociationSet>
-          <AssociationSet Name="FK_Project_Team" Association="Self.FK_Project_Team">
-            <End Role="Team" EntitySet="Team" />
-            <End Role="Project" EntitySet="Project" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectPicture_Project" Association="Self.FK_ProjectPicture_Project">
+          <AssociationSet Name="FK_ProjectPicture_Project1" Association="Self.FK_ProjectPicture_Project1">
             <End Role="Project" EntitySet="Project" />
             <End Role="ProjectPicture" EntitySet="ProjectPicture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Office" Association="Self.FK_Team_Office">
+            <End Role="Office" EntitySet="Office" />
+            <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Project" Association="Self.FK_Team_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Team" EntitySet="Team" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -351,6 +363,17 @@
           <Property Name="BlogViewCount" Type="Int32" />
           <Property Name="BlogTagsID" Type="Int32" />
           <NavigationProperty Name="Tags" Relationship="Self.FK_Blog_Tags" FromRole="Blog" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="ContactSubject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContantSubjectContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CustomerComments">
           <Key>
@@ -403,19 +426,19 @@
           <Property Name="OfficeLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OfficeMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OfficePhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
-          <Property Name="OfficePictureID" Type="Int32" />
-          <Property Name="OfficeMemberID" Type="Int32" />
-          <NavigationProperty Name="OfficePictures" Relationship="Self.FK_Office_OfficePictures" FromRole="Office" ToRole="OfficePictures" />
-          <NavigationProperty Name="Team" Relationship="Self.FK_Office_Team" FromRole="Office" ToRole="Team" />
+          <NavigationProperty Name="OfficePictures" Relationship="Self.FK_OfficePictures_Office" FromRole="Office" ToRole="OfficePictures" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Team_Office" FromRole="Office" ToRole="Team" />
         </EntityType>
         <EntityType Name="OfficePictures">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PictureID" Type="Int32" />
+          <Property Name="OfficeID" Type="Int32" />
           <Property Name="PictureURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Office" Relationship="Self.FK_Office_OfficePictures" FromRole="OfficePictures" ToRole="Office" />
+          <Property Name="PictureSEO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PictureALT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Office" Relationship="Self.FK_OfficePictures_Office" FromRole="OfficePictures" ToRole="Office" />
         </EntityType>
         <EntityType Name="OurPictures">
           <Key>
@@ -441,21 +464,20 @@
           <Property Name="ProjectMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProjectPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
           <Property Name="ProjectAltLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProjectPictureID" Type="Int32" />
-          <Property Name="ProjectTeamMemberID" Type="Int32" />
           <NavigationProperty Name="ProjectType1" Relationship="Self.FK_Project_ProjectType" FromRole="Project" ToRole="ProjectType" />
-          <NavigationProperty Name="Team" Relationship="Self.FK_Project_Team" FromRole="Project" ToRole="Team" />
-          <NavigationProperty Name="ProjectPicture" Relationship="Self.FK_ProjectPicture_Project" FromRole="Project" ToRole="ProjectPicture" />
+          <NavigationProperty Name="ProjectPicture" Relationship="Self.FK_ProjectPicture_Project1" FromRole="Project" ToRole="ProjectPicture" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Team_Project" FromRole="Project" ToRole="Team" />
         </EntityType>
         <EntityType Name="ProjectPicture">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PictureID" Type="Int32" />
+          <Property Name="ProjectID" Type="Int32" />
           <Property Name="PictureURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PictureSEO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_ProjectPicture_Project" FromRole="ProjectPicture" ToRole="Project" />
+          <Property Name="PictureALT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_ProjectPicture_Project1" FromRole="ProjectPicture" ToRole="Project" />
         </EntityType>
         <EntityType Name="ProjectType">
           <Key>
@@ -499,7 +521,6 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemberID" Type="Int32" />
           <Property Name="MemberName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="MemberPozision" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MemberExperience" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
@@ -510,8 +531,10 @@
           <Property Name="MemberTwitterURL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="MemberGoogleURL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="MemberLinkedinURL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Office" Relationship="Self.FK_Office_Team" FromRole="Team" ToRole="Office" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_Project_Team" FromRole="Team" ToRole="Project" />
+          <Property Name="OfficeID" Type="Int32" />
+          <Property Name="ProjectID" Type="Int32" />
+          <NavigationProperty Name="Office" Relationship="Self.FK_Team_Office" FromRole="Team" ToRole="Office" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_Team_Project" FromRole="Team" ToRole="Project" />
         </EntityType>
         <Association Name="FK_Blog_Tags">
           <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
@@ -537,27 +560,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Office_OfficePictures">
-          <End Role="OfficePictures" Type="Self.OfficePictures" Multiplicity="0..1" />
-          <End Role="Office" Type="Self.Office" Multiplicity="*" />
+        <Association Name="FK_OfficePictures_Office">
+          <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
+          <End Role="OfficePictures" Type="Self.OfficePictures" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="OfficePictures">
+            <Principal Role="Office">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Office">
-              <PropertyRef Name="OfficePictureID" />
+            <Dependent Role="OfficePictures">
+              <PropertyRef Name="OfficeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Office_Team">
-          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
-          <End Role="Office" Type="Self.Office" Multiplicity="*" />
+        <Association Name="FK_Team_Office">
+          <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Team">
+            <Principal Role="Office">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Office">
-              <PropertyRef Name="OfficeMemberID" />
+            <Dependent Role="Team">
+              <PropertyRef Name="OfficeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -573,19 +596,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Project_Team">
-          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
-          <End Role="Project" Type="Self.Project" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Team">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Project">
-              <PropertyRef Name="ProjectTeamMemberID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProjectPicture_Project">
+        <Association Name="FK_ProjectPicture_Project1">
           <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
           <End Role="ProjectPicture" Type="Self.ProjectPicture" Multiplicity="*" />
           <ReferentialConstraint>
@@ -593,14 +604,27 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="ProjectPicture">
-              <PropertyRef Name="PictureID" />
+              <PropertyRef Name="ProjectID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="db2299D218BEEntities8" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_Team_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db2299D218BEEntities9" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admin" EntityType="Self.Admin" />
           <EntitySet Name="AskedQuestions" EntityType="Self.AskedQuestions" />
           <EntitySet Name="Blog" EntityType="Self.Blog" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" />
           <EntitySet Name="CustomerComments" EntityType="Self.CustomerComments" />
           <EntitySet Name="Education" EntityType="Self.Education" />
           <EntitySet Name="EducationType" EntityType="Self.EducationType" />
@@ -623,25 +647,25 @@
             <End Role="EducationType" EntitySet="EducationType" />
             <End Role="Education" EntitySet="Education" />
           </AssociationSet>
-          <AssociationSet Name="FK_Office_OfficePictures" Association="Self.FK_Office_OfficePictures">
+          <AssociationSet Name="FK_OfficePictures_Office" Association="Self.FK_OfficePictures_Office">
+            <End Role="Office" EntitySet="Office" />
             <End Role="OfficePictures" EntitySet="OfficePictures" />
-            <End Role="Office" EntitySet="Office" />
           </AssociationSet>
-          <AssociationSet Name="FK_Office_Team" Association="Self.FK_Office_Team">
-            <End Role="Team" EntitySet="Team" />
+          <AssociationSet Name="FK_Team_Office" Association="Self.FK_Team_Office">
             <End Role="Office" EntitySet="Office" />
+            <End Role="Team" EntitySet="Team" />
           </AssociationSet>
           <AssociationSet Name="FK_Project_ProjectType" Association="Self.FK_Project_ProjectType">
             <End Role="ProjectType" EntitySet="ProjectType" />
             <End Role="Project" EntitySet="Project" />
           </AssociationSet>
-          <AssociationSet Name="FK_Project_Team" Association="Self.FK_Project_Team">
-            <End Role="Team" EntitySet="Team" />
-            <End Role="Project" EntitySet="Project" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectPicture_Project" Association="Self.FK_ProjectPicture_Project">
+          <AssociationSet Name="FK_ProjectPicture_Project1" Association="Self.FK_ProjectPicture_Project1">
             <End Role="Project" EntitySet="Project" />
             <End Role="ProjectPicture" EntitySet="ProjectPicture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Project" Association="Self.FK_Team_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Team" EntitySet="Team" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -649,7 +673,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="db2299D218BEModelStoreContainer" CdmEntityContainer="db2299D218BEEntities8">
+        <EntityContainerMapping StorageEntityContainer="db2299D218BEModelStoreContainer" CdmEntityContainer="db2299D218BEEntities9">
           <EntitySetMapping Name="Admin">
             <EntityTypeMapping TypeName="db2299D218BEModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
@@ -681,6 +705,18 @@
                 <ScalarProperty Name="BlogDate" ColumnName="BlogDate" />
                 <ScalarProperty Name="BlogViewCount" ColumnName="BlogViewCount" />
                 <ScalarProperty Name="BlogTagsID" ColumnName="BlogTagsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contact">
+            <EntityTypeMapping TypeName="db2299D218BEModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="ContactMail" ColumnName="ContactMail" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactSubject" ColumnName="ContactSubject" />
+                <ScalarProperty Name="ContantSubjectContent" ColumnName="ContantSubjectContent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -736,8 +772,6 @@
                 <ScalarProperty Name="OfficeLocation" ColumnName="OfficeLocation" />
                 <ScalarProperty Name="OfficeMail" ColumnName="OfficeMail" />
                 <ScalarProperty Name="OfficePhone" ColumnName="OfficePhone" />
-                <ScalarProperty Name="OfficePictureID" ColumnName="OfficePictureID" />
-                <ScalarProperty Name="OfficeMemberID" ColumnName="OfficeMemberID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -745,8 +779,10 @@
             <EntityTypeMapping TypeName="db2299D218BEModel.OfficePictures">
               <MappingFragment StoreEntitySet="OfficePictures">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
                 <ScalarProperty Name="PictureURL" ColumnName="PictureURL" />
+                <ScalarProperty Name="PictureSEO" ColumnName="PictureSEO" />
+                <ScalarProperty Name="PictureALT" ColumnName="PictureALT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -774,8 +810,6 @@
                 <ScalarProperty Name="ProjectMail" ColumnName="ProjectMail" />
                 <ScalarProperty Name="ProjectPhone" ColumnName="ProjectPhone" />
                 <ScalarProperty Name="ProjectAltLocation" ColumnName="ProjectAltLocation" />
-                <ScalarProperty Name="ProjectPictureID" ColumnName="ProjectPictureID" />
-                <ScalarProperty Name="ProjectTeamMemberID" ColumnName="ProjectTeamMemberID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -783,9 +817,10 @@
             <EntityTypeMapping TypeName="db2299D218BEModel.ProjectPicture">
               <MappingFragment StoreEntitySet="ProjectPicture">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
                 <ScalarProperty Name="PictureURL" ColumnName="PictureURL" />
                 <ScalarProperty Name="PictureSEO" ColumnName="PictureSEO" />
+                <ScalarProperty Name="PictureALT" ColumnName="PictureALT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -832,7 +867,6 @@
             <EntityTypeMapping TypeName="db2299D218BEModel.Team">
               <MappingFragment StoreEntitySet="Team">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="MemberName" ColumnName="MemberName" />
                 <ScalarProperty Name="MemberPozision" ColumnName="MemberPozision" />
                 <ScalarProperty Name="MemberExperience" ColumnName="MemberExperience" />
@@ -843,6 +877,8 @@
                 <ScalarProperty Name="MemberTwitterURL" ColumnName="MemberTwitterURL" />
                 <ScalarProperty Name="MemberGoogleURL" ColumnName="MemberGoogleURL" />
                 <ScalarProperty Name="MemberLinkedinURL" ColumnName="MemberLinkedinURL" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

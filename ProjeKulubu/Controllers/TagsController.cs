@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Net;
 using ProjeKulubu.Models;
 using System.Data.Entity.Infrastructure;
+using PagedList;
 
 namespace ProjeKulubu.Controllers
 {
@@ -13,45 +14,71 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Tags/
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
 
-        public ActionResult TagsIndex()
+        public ActionResult TagsIndex(string Sorting_Order,string SearchString,string currentFilter,int? page)
         {
-            return View();
-        }
+          ViewBag.TagName = string.IsNullOrEmpty(Sorting_Order)?"Ada_Gore":"";
 
-       [HttpPost]
-       public ActionResult AddTags(Tags Model)
-        {
-            if(Model.TagsName != null)
+            ViewBag.CurrentSort = Sorting_Order;
+            if(SearchString!=null)
             {
-                db.Tags.Add(Model);
-                db.SaveChanges();
+                page = 1;
             }
             else
             {
-                ViewBag.Error = "Lütfen Boş Alanları Doldurun";
+                SearchString = currentFilter;
             }
-            return Json(new { Model = Model });
+
+            ViewBag.CurrentFilter = SearchString;
+
+            var kayitlar = from x in db.Tags select x;
+
+            if(!String.IsNullOrEmpty(SearchString))
+            {
+                kayitlar = kayitlar.Where(x => x.TagsName.Contains(SearchString));
+            }
+
+            switch(Sorting_Order)
+            {
+                case "Ada_Gore":
+                    kayitlar = kayitlar.OrderBy(Tags => Tags.TagsName);
+                    break;
+                default:
+                    kayitlar = kayitlar.OrderByDescending(Tags => Tags.TagsName);
+                    break;
+            }
+
+            ViewBag.HtmlStr = kayitlar.Count();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(kayitlar.ToPagedList(pageNumber,pageSize));
+        }
+        
+        [HttpPost]
+       public ActionResult AddTags(string tagname)
+        {
+            Tags addTags = new Tags();
+            if(tagname!=null)
+            {
+                addTags.TagsName = tagname;
+                db.Tags.Add(addTags);
+                db.SaveChanges();
+            }
+            return RedirectToAction("TagsIndex", "Tags");
         }
 
         [HttpPost]
-        public ActionResult TagsDataUpdate(Tags Model)
+        public ActionResult TagsDataUpdate(int id,string tagname)
         {
-            if(Model.ID != null)
+            Tags updateTags = db.Tags.Where(x => x.ID == id).FirstOrDefault();
+            if(tagname!=null)
             {
-                var Query = from tag in db.Tags where tag.ID == Model.ID select tag;
-                foreach (Tags item in Query)
-                {
-                    item.TagsName = Model.TagsName;
-                }
+                updateTags.TagsName = tagname;
                 db.SaveChanges();
             }
-            else
-            {
-                ViewBag.Error = "Güncelleme Sırasında Hata Oluştu,Lütfen Tekrar Deneyiniz";
-            }
-            return Json(new { Model = Model });
+            return RedirectToAction("TagsIndex", "Tags");
         }
 
         [HttpPost]
@@ -74,6 +101,7 @@ namespace ProjeKulubu.Controllers
             var data = db.Tags.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
+
 
 
 

@@ -5,8 +5,6 @@
     ViewBag.Title = "ReferenceDelete";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
-
-
 <script type="text/javascript">
 
     function DataDelete() {
@@ -29,8 +27,7 @@
         });
     }
 
-</script>
-
+</script>@*Reference Delete Scripts*@
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">
@@ -46,7 +43,7 @@
         </li>
         <li class="active"><i class="fa fa-trash-o"></i>Referans Silme Ekranı</li>
     </ul>
-</div>
+</div>@*Header*@
 
 <aside id="QuesionDeleteDetail" class="QuestionContent">
 
@@ -68,21 +65,21 @@
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Resim ID:</label>
                             <div class="col-sm-9 col-lg-10 controls">
 
-                                <input type="text" class="form-control show-popover" disabled value="@Model.ID" id="ID" name="textfield3" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" disabled value="@Model.ID" id="ID" name="textfield3" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Referans Başlığı:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" class="form-control show-popover" value="@Model.ReferenceTitle" disabled id="QuestionContent" name="textfield3" />
+                                <input type="text" class="form-control show-popover" style="color:#000000" value="@Model.ReferenceTitle" disabled id="QuestionContent" name="textfield3" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Referans Site Adresi:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" class="form-control show-popover" value="@Model.ReferenceLink" disabled id="QuestionContent" name="textfield3" />
+                                <input type="text" class="form-control show-popover" style="color:#000000" value="@Model.ReferenceLink" disabled id="QuestionContent" name="textfield3" />
                             </div>
                         </div>
 
@@ -97,7 +94,7 @@
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Referans Resim SEO:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" class="form-control show-popover" value="@Model.ReferencePictureSEO" disabled id="QuestionContent" name="textfield3" />
+                                <input type="text" class="form-control show-popover" style="color:#000000" value="@Model.ReferencePictureSEO" disabled id="QuestionContent" name="textfield3" />
                             </div>
                         </div>
 
@@ -120,11 +117,10 @@
 
     </form>
 
-</aside>
-
+</aside>@*Reference Delete Form*@
 <footer>
-    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-</footer>
+    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer>@*Footer*@
 
 
 

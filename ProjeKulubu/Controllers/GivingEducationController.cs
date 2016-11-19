@@ -14,7 +14,7 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /GivingEducation/
 
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
 
         public ActionResult GivingEducationIndex()
         {
@@ -22,6 +22,7 @@ namespace ProjeKulubu.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult AddGivingEducation(string title,HttpPostedFileBase file,string seo,string content)
         {
             Education eduModel = new Education();
@@ -41,10 +42,30 @@ namespace ProjeKulubu.Controllers
         }
 
         [HttpPost]
-        public ActionResult GivingEducationDataUpdate()
+        [ValidateInput(false)]
+        public ActionResult GivingEducationDataUpdate(int id,string title,HttpPostedFileBase file,string seo,string content)
         {
-            // doldurulcak
-            return View();
+            Education updateModel = db.Education.Where(x => x.ID == id).FirstOrDefault();
+            if(title!=null && content!=null)
+            {
+                if(file!=null)
+                {
+                    string fileMap = Path.Combine(file.FileName);
+                    var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                    file.SaveAs(loadLocation);
+                    updateModel.EducationTitle = title;
+                    updateModel.EducationFileURL = fileMap;
+                    updateModel.EducationFileSEO = seo;
+                    updateModel.EducationContent = content;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    ViewBag.Error = "Belirlenemeyen bi hata oluştu";
+                }
+            }
+            return RedirectToAction("GivingEducationIndex", "GivingEducation");
+
         }
 
         [HttpPost]
