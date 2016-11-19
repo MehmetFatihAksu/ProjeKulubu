@@ -1,4 +1,13 @@
-﻿@model ProjeKulubu.Models.Team
+﻿@using ProjeKulubu.Models
+
+@{
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    
+    List<Office> officeList = new List<Office>();
+    
+    officeList = db.Office.Where(x=>x.OfficeName !=null).ToList();
+
+}
 
 @{
     ViewBag.Title = "TeamIndex";
@@ -46,6 +55,17 @@
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye İsim ve Soyisim:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <input type="text" name="name" id="name" placeholder="Üye İsmini ve Soyismini Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ekip üyenize ait isim ve soyisim bilgisini giriniz..." data-original-title="Üye İsim Soyisim" data-placement="left">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label">Çalıştığı Ofis:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <select name="office" id="Office" class="form-control input-sm" tabindex="1">
+                                @foreach (Office item in officeList)
+                                {
+                                    <option value="@item.ID">@item.OfficeName</option>
+                                }
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">

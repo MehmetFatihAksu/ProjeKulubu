@@ -1,9 +1,9 @@
-﻿@using ProjeKulubu.Models;
-
-@{
-    ViewBag.Title = "OfficeIndex";
+﻿@{
+    ViewBag.Title = "CompleteProjects";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
+
+
 <link rel="stylesheet" href="~/Content/AdminContent/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="~/Content/AdminContent/assets/font-awesome/css/font-awesome.min.css">
 <!--page specific css styles-->
@@ -60,10 +60,8 @@
 
     function StepControl1() {
 
-        if ($("#PName").val() == "") {
-
+        if ($("#PName").val() == null) {
             alert("Lütfen eksiksiz veri girişi yapınız..");
-
         } else {
             var elem = $("#StepOne");
             elem.removeClass("active");
@@ -100,18 +98,9 @@
 
         if ($("#uploadFile").val() == null || $("#uploadFile").val() == "") {
 
-            alert("Lütfen ofisinize ait en az bir resim ekleyiniz...");
+            alert("Lütfen projeye ait en az bir resim ekleyiniz...");
 
         } else {
-
-            var DataPicture = {
-
-
-                Picture1: $("#uploadFile1").val(),
-                Picture2: $("#uploadFile2").val(),
-                Picture3: $("#uploadFile3").val(),
-                Picture4: $("#uploadFile4").val()
-            };
 
             var elem3 = $("#StepThree");
             elem3.removeClass("active");
@@ -170,7 +159,7 @@
             var elem = $("#tab1-3").find(".box-content");
 
             elem.append("<div class='form-group' id='data" + _counter + "'>" +
-                                            "<label class='col-sm-3 col-lg-2 control-label'>* Ofis Resmi:</label>" +
+                                            "<label class='col-sm-3 col-lg-2 control-label'>* Proje Resmi:</label>" +
                                             "<div class='col-sm-9 col-lg-10 controls'>" +
                                                 "<div class='fileupload fileupload-new' data-provides='fileupload'>" +
                                                     "<div class='fileupload-new img-thumbnail' style='width: 200px; height: 150px;'>" +
@@ -195,7 +184,7 @@
                                         "</div>");
         } else {
 
-            alert("Maksimum 5 Ofis Resmi Ekleyebilirsiniz...");
+            alert("Maksimum 5 Proje Resmi Ekleyebilirsiniz...");
             _counter = 0;
         }
 
@@ -218,8 +207,8 @@
 
 <div class="page-title">
     <div>
-        <h1><i class="fa fa-bars"></i> Ofis Yönetimi</h1>
-        <h4>Bu kısımda ofis ekleyip silebilir veya düzenleyebilirsiniz</h4>
+        <h1><i class="fa fa-bars"></i> Tamamlanan Proje Yönetimi</h1>
+        <h4>Bu kısımda proje ekleyip silebilir veya düzenleyebilirsiniz</h4>
     </div>
 </div>
 
@@ -237,14 +226,14 @@
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-rocket"></i> Ofis Ekleme Formu</h3>
+                <h3><i class="fa fa-rocket"></i>Tamamlanan Proje Ekleme Formu</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
                 </div>
             </div>
             <div class="box-content">
-                <form action="/Office/AddOffice" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <form action="/Project/AddProject" method="post" enctype="multipart/form-data" class="form-horizontal">
                     <div class="form-wizard" id="form-wizard-1">
                         <ul class="row steps">
                             <li class="col-xs-12 col-sm-6 col-lg-3" id="StepOne">
@@ -278,19 +267,44 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab1-1">
                                 <div class="box-content">
+                                    <form action="#" class="form-horizontal">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 ">
                                                 <!-- BEGIN Left Side -->
                                                 <div class="form-group">
                                                     <label for="textfield1" class="col-xs-3 col-lg-2 control-label">İsim : </label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <input type="text" id="PName" name="Name" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin ismini giriniz..." data-original-title="Ofis İsmi" data-placement="top" placeholder="Ofis İsim">
+                                                        <input type="text" id="PName" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma proje ismini giriniz..." data-original-title="Proje İsmi" data-placement="top" placeholder="Proje İsim">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password1" class="col-xs-3 col-lg-2 control-label">Tipi :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <select class="form-control" data-placeholder="Choose a Category" tabindex="1" id="Ptype">
+                                                            <option value="null">Seçiniz...</option>
+                                                            <option value="Plaza">Plaza</option>
+                                                            <option value="IsMerkezi">İş Merkezi</option>
+                                                            <option value="Fabrika">Fabrika</option>
+                                                            <option value="Villa">Villa</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password1" class="col-xs-3 col-lg-2 control-label">Durum :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <select class="form-control" data-placeholder="Choose a Category" tabindex="1" id="PStatus">
+                                                            <option value="null">Seçiniz...</option>
+                                                            <option value="Plaza">Plaza</option>
+                                                            <option value="IsMerkezi">İş Merkezi</option>
+                                                            <option value="Fabrika">Fabrika</option>
+                                                            <option value="Villa">Villa</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="textarea2" class="col-xs-3 col-lg-2 control-label">İçerik :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <textarea name="Content" id="PContent" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma ofisiniz ile ilgili genel bilgi metni giriniz..." data-original-title="Ofis Açıklama" data-placement="top" placeholder="Ofis Açıklaması Giriniz..."></textarea>
+                                                        <textarea name="textarea2" id="PContent" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma projenin açıklamasını giriniz..." data-original-title="Proje Açıklama" data-placement="top" placeholder="Proje Açıklaması Giriniz..."></textarea>
                                                     </div>
                                                 </div>
                                                 <!-- END Left Side -->
@@ -298,44 +312,68 @@
                                             <div class="col-md-6 ">
                                                 <!-- BEGIN Right Side -->
                                                 <div class="form-group">
-                                                    <label for="textarea2" class="col-xs-3 col-lg-2 control-label">Alt İçerik :</label>
+                                                    <label for="textfield2" class="col-xs-3 col-lg-2 control-label">Bütçe :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <textarea name="AltIcerik" id="PContent2" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma ofisiniz ile ilgili yardımıcı bir içerik  metni giriniz..." data-original-title="Ofis Alt Açıklama" data-placement="top" placeholder="Ofis Alt Açıklaması Giriniz..."></textarea>
+                                                        <input type="text" id="PBudget" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma projenin bütçe değerini giriniz..." data-original-title="Proje Bütçesi" data-placement="top" placeholder="Proje Bütçe">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label for="Location" class="col-xs-3 col-lg-2 control-label">Birim :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <select class="form-control" id="PBirim" data-placeholder="Choose a Category" tabindex="1">
+                                                            <option value="null">Para Birimi...</option>
+                                                            <option value="TurkLirasi">Türk Lirası (TL)</option>
+                                                            <option value="AmerikanDolari">Amerikan Doları ($)</option>
+                                                            <option value="Euro">Euro (€)</option>
+                                                            <option value="Pound">Pound(£)</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tel" class="col-xs-3 col-lg-2 control-label">Yıl :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <select class="form-control" id="PYear" data-placeholder="Choose a Category" tabindex="1">
+                                                            <option value="null">Proje Bitiş Yılı...</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
                                                     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                                        @*<button type="submit" class="btn btn-primary" onclick="StepControl()" style="float:right;">Devam Et <i class="fa fa-arrow-right" style="padding-left:10px;"></i></button>*@
                                                         <input type="button" class="btn btn-primary" onclick="StepControl1()" style="float:right;" value="Devam Et" />
                                                     </div>
                                                 </div>
                                                 <!-- END Right Side -->
                                             </div>
                                         </div>
-                                    
+                                    </form>
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab1-2">
                                 <div class="box-content">
-                                   
+                                    <form action="#" class="form-horizontal">
                                         <div class="row">
                                             <div class="col-md-6 ">
                                                 <!-- BEGIN Left Side -->
                                                 <div class="form-group">
                                                     <label for="Location" class="col-xs-3 col-lg-2 control-label">Zaman :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <select class="form-control" name="Zaman" id="PTime" data-placeholder="Choose a Category" tabindex="1">
-                                                            <option value="null">Çalışma Saatleri...</option>
-                                                            <option value="Hafta-İçi(9:00-17:00)">Hafta-İçi(9:00-17:00)</option>
-                                                            <option value="Hafta-İçi(9:00-17:00),Cumartesi(9:00-13:00)">Hafta-İçi(9:00-17:00),Cumartesi(9:00-13:00)</option>
-                                                            <option value="Cumartesi-Pazar(10:30-15:00)">Cumartesi-Pazar(10:30-15:00)</option>
+                                                        <select class="form-control" id="PTime" data-placeholder="Choose a Category" tabindex="1">
+                                                            <option value="">Çalışma Saatleri...</option>
+                                                            <option value="Category 1">Hafta-İçi(9:00-17:00)</option>
+                                                            <option value="Category 2">Hafta-İçi(9:00-17:00),Cumartesi(9:00-13:00)</option>
+                                                            <option value="Category 3">Cumartesi-Pazar(10:30-15:00)</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="tel" class="col-xs-3 col-lg-2 control-label">Telefon :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <input class="form-control col-md-5 show-popover" onkeypress="return OnlyNumber();" name="Telefon" id="PPhone" type="text" maxlength="10" placeholder="Telefon Numarası" data-trigger="hover" data-content="Bu kısıma ofisinizin telefon numarasını giriniz..." data-original-title="Ofis Telefon" data-placement="top">
+                                                        <input class="form-control col-md-5" id="PPhone" type="text" data-mask="(999) 999-9999" placeholder="">
                                                         <span class="help-inline">(212) 212-2121</span>
                                                     </div>
                                                 </div>
@@ -344,7 +382,7 @@
                                                     <div class="col-sm-9 col-lg-10 controls">
                                                         <div class="input-group">
                                                             <span class="input-group-addon">@@</span>
-                                                            <input class="form-control show-popover" id="PEMail" name="EMail" type="text" placeholder="Email" data-trigger="hover" data-content="Bu kısıma ofisinizin E-posta adresini giriniz..." data-original-title="Ofis E-Posta" data-placement="top">
+                                                            <input class="form-control" id="PEMail" type="text" placeholder="Email">
                                                         </div>
                                                         <span class="help-inline">deneme@deneme.com</span>
                                                     </div>
@@ -356,8 +394,8 @@
                                                 <div class="form-group">
                                                     <label for="password1" class="col-xs-3 col-lg-2 control-label">Konum :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <select class="form-control" id="PLocation" name="Konum" data-placeholder="Choose a Category" tabindex="1">
-                                                            <option value="null">Konum Seçiniz...</option>
+                                                        <select class="form-control" id="PLocation" data-placeholder="Choose a Category" tabindex="1">
+                                                            <option value="">Konum Seçiniz...</option>
                                                             <option value="İstanbul,Türkiye">İstanbul, Türkiye</option>
                                                             <option value="Ankara,Türkiye">Ankara, Türkiye</option>
                                                             <option value="İzmir,Türkiye">İzmir, Türkiye</option>
@@ -368,7 +406,7 @@
                                                 <div class="form-group">
                                                     <label for="textarea2" class="col-xs-3 col-lg-2 control-label">Adres :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <textarea name="Adres" id="PAdress" rows="5" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin adres bilgisini giriniz..." data-original-title="Ofis Adres" data-placement="top" placeholder="Adres içeriği giriniz..."></textarea>
+                                                        <textarea name="textarea2" id="PAdress" rows="5" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin adres bilgisini giriniz..." data-original-title="Ofis Adres" data-placement="top" placeholder="Adres içeriği giriniz..."></textarea>
                                                     </div>
                                                 </div>
 
@@ -380,39 +418,47 @@
                                                 <!-- END Right Side -->
                                             </div>
                                         </div>
-                                  
+                                    </form>
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab1-3">
                                 <div class="box-content">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 col-lg-2 control-label">* Ofis Resmi:</label>
-                                        <div class="col-sm-9 col-lg-10 controls">
-                                            <div class="fileupload fileupload-new" data-provides="fileupload">
-                                                <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
-                                                    <img src="/Content/noimage.gif" alt="">
+                                    <div class='form-group' id='data" + _counter + "'>
+                                       
+                                        <label class='col-sm-3 col-lg-2 control-label'>* Proje Resmi:</label>
+                                        <div class='col-sm-9 col-lg-10 controls'>
+                                            
+                                            <div class='fileupload fileupload-new' data-provides='fileupload'>
+                                                
+                                                <div class='fileupload-new img-thumbnail' style='width: 200px; height: 150px;'>
+                                                    
+                                                    <img src='/Content/noimage.gif' alt=''>
+                                                    
                                                 </div>
-                                                <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                                <div class='fileupload-preview fileupload-exists img-thumbnail' style='max-width: 200px; max-height: 150px; line-height: 20px;'></div>
                                                 <div>
-                                                    <span class="btn btn-default btn-file">
-                                                        <span class="fileupload-new">Resim Seç</span>
-                                                        <span class="fileupload-exists">Değiştir</span>
+                                                    
+                                                    <span class='btn btn-default btn-file'>
+                                                        
+                                                        <span class='fileupload-new'>Resim Seç</span>
+                                                        <span class='fileupload-exists'>Değiştir</span>
 
-                                                        <input required="" oninvalid="this.setCustomValidity('Ofis Resimlerini Boş Geçemezsiniz')" type="file" accept="image/*" oninput="setCustomValidity('')" id="uploadFile" name="uploadFile" class="file-input">
+                                                        <input required='' oninvalid='this.setCustomValidity(' ofis resimlerini boş geçemezsiniz')' type='file' accept='image/*' oninput='setCustomValidity(' ')' name='uploadFile" + _counter + "' id='uploadFile" + _counter + "' name='CommentPicture' class='file-input'>
+                                                        
                                                     </span>
-                                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
+                                                    <a href='#' class='btn btn-default fileupload-exists' data-dismiss='fileupload'>Sil</a>
+                                                    
                                                 </div>
+                                                
                                             </div>
 
-                                            <span class="help-inline" onclick="AddPictureForm()" style="color:#0090ff; cursor:pointer;">Daha Fazla Resim Ekle</span>
+                                            <span class='help-inline' onclick='AddPictureForm()' style='color:#0090ff; cursor:pointer;'>Daha Fazla Resim Ekle</span>
+                                            <span class='help-inline' onclick='DeletePictureForm(" + _counter + ")' dataid='data" + _counter + "' style='color: #ff0000;cursor: pointer;margin-left: 15px;'>İptal Et</span>
 
                                         </div>
                                     </div>
-                                    <input type="button" class="btn btn-primary" id="pictureDataSave" onclick="StepControl3()" style="float:right;margin-top: -250px;" value="Devam Et" />
                                 </div>
                             </div>
-
-
                             <div class="tab-pane" id="tab1-4">
                                 <div class="box-content">
                                     <div class="row">
@@ -426,82 +472,135 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 col-lg-2 control-label">Zaman :</label>
+                                                <label class="col-sm-3 col-lg-2 control-label">Tip :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblType"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">Durum :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblStatus"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">İçerik :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblIcerik"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">Bütçe :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
                                                     <span class="text" id="LblBugdet"></span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 col-lg-2 control-label">Konum :</label>
+                                                <label class="col-sm-3 col-lg-2 control-label">Birim :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
                                                     <span class="text" id="LblBirim"></span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 col-lg-2 control-label">Telefon :</label>
+                                                <label class="col-sm-3 col-lg-2 control-label">Yıl :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
                                                     <span class="text" id="LblYear"></span>
                                                 </div>
                                             </div>
-
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">Zaman :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblTime"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">Telefon :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblPhone"></span>
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 col-lg-2 control-label">E-Mail :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
                                                     <span class="text" id="LblEmail"></span>
                                                 </div>
                                             </div>
-                                        </div>
-
-
-                                        <div class="col-md-6">
 
                                             <div class="form-group">
-                                                <label class="col-sm-3 col-lg-2 control-label">Adres :</label>
+                                                <label class="col-sm-3 col-lg-2 control-label">Konum :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
                                                     <span class="text" id="LblLocation"></span>
                                                 </div>
                                             </div>
 
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">Adres :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblAdress"></span>
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 col-lg-2 control-label">Resim 1 :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
                                                     <span class="text" id="LblPicture1"></span>
                                                 </div>
                                             </div>
-
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">SeoAlt 1 :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblSeoAlt1"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">İçerik 1 :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblIcerik1"></span>
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 col-lg-2 control-label">Resim 2 :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
                                                     <span class="text" id="LblPicture2"></span>
                                                 </div>
                                             </div>
-
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">SeoAlt 2 :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblSeoAlt2"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">İçerik 2 :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblIcerik2"></span>
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 col-lg-2 control-label">Resim 3 :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
                                                     <span class="text" id="LblPicture3"></span>
                                                 </div>
                                             </div>
-
                                             <div class="form-group">
-                                                <label class="col-sm-3 col-lg-2 control-label">Resim 4 :</label>
+                                                <label class="col-sm-3 col-lg-2 control-label">SeoAlt 3 :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
-                                                    <span class="text" id="LblPicture4"></span>
+                                                    <span class="text" id="LblSeoAlt3"></span>
                                                 </div>
                                             </div>
-
                                             <div class="form-group">
-                                                <label class="col-sm-3 col-lg-2 control-label">Resim 5 :</label>
+                                                <label class="col-sm-3 col-lg-2 control-label">İçerik 3 :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
-                                                    <span class="text" id="LblPicture5"></span>
+                                                    <span class="text" id="LblIcerik3"></span>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                            @*<input value="Onayla & Kaydet" onclick="SaveAllData()" type="submit" class="btn btn-primary" id="button-save" style="float:right; margin-right: 50px;" />*@
                                             <button type="submit" id="button-save" class="btn btn-primary" style="float:right; margin-right: 50px;">Onayla & Kaydet</button>
                                         </div>
                                     </div>
@@ -509,6 +608,71 @@
                             </div>
                         </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-black">
+            <div class="box-title">
+                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Tamamlanan Projeler</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="btn-toolbar pull-right">
+                    <div class="btn-group">
+                        <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
+                        <a class="btn btn-circle show-tooltip" title="" href="#" data-original-title="Düzenle"><i class="fa fa-edit"></i></a>
+                        <a class="btn btn-circle show-tooltip" title="" href="#" data-original-title="Silme"><i class="fa fa-trash-o"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-circle show-tooltip" title="" href="#" data-original-title="Yenile"><i class="fa fa-repeat"></i></a>
+                    </div>
+                </div>
+                <br><br>
+                <div class="table-responsive">
+                    <table class="table table-advance">
+                        <thead>
+                            <tr>
+                                <th style="width:18px"><input type="checkbox"></th>
+                                <th>Seç</th>
+                                <th>Proje İsmi</th>
+                                <th>Proje Tipi</th>
+                                <th>Proje Konumu</th>
+                                <th>Proje Durum</th>
+                                <th>Bütçe</th>
+                                <th>Proje Yılı</th>
+                                <th>Açıklama</th>
+                                <th>Adres</th>
+                                <th>Telefon</th>
+                                <th>E-Mail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-flag-blue">
+                                <td><input type="checkbox"></td>
+                                <td>1</td>
+                                <td>Soru</td>
+                                <td>Cevap</td>
+                                <td>www.deneme.com</td>
+                                <td>Deneme</td>
+                                <td>Deneme</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <ul class="pagination">
+                        <li><a href="#">← Önceki</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">Sonraki → </a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
