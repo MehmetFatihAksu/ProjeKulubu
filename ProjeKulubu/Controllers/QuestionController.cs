@@ -6,20 +6,24 @@ using System.Web.Mvc;
 using System.Net;
 using ProjeKulubu.Models;
 using System.Data.Entity.Infrastructure;
+using PagedList;
 
 namespace ProjeKulubu.Controllers
 {
-    [ValidateInput(false)]
     public class QuestionController : Controller
     {
         //
         // GET: /Question/
 
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
 
 
-        public ActionResult QuestionIndex()
+        public ActionResult QuestionIndex(int ? page)
         {
+            var list = db.AskedQuestions.ToList();
+            var pageNumber = page ?? 1;
+            var onePageOfQuestion = list.ToPagedList(pageNumber, 7);
+            ViewBag.Show = onePageOfQuestion;
             return View();
         }
 

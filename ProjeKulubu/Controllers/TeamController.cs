@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ProjeKulubu.Models;
 using System.IO;
+using PagedList;
 
 namespace ProjeKulubu.Controllers
 {
@@ -12,9 +13,13 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Team/
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
-        public ActionResult TeamIndex()
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        public ActionResult TeamIndex(int ? page)
         {
+            var list = db.Team.ToList();
+            var pageNumber = page ?? 1;
+            var onePageOfTeam = list.ToPagedList(pageNumber, 10);
+            ViewBag.Show = onePageOfTeam;
             return View();
         }
 
@@ -23,8 +28,9 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddTeamMember(string name,string position,string exp,int age,HttpPostedFileBase picture,string facebook,string twitter,string google,string linkedin,string biografi)
         {
             Team teamModel = new Team();
-            //if(name!=null && position !=null && exp!=null && age.ToString() !=null && picture!=null && biografi!=null )
-            //{
+            
+            if(name!=null && position!=null && exp!=null && picture!=null && biografi!=null)
+            {
                 string fileMap = Path.GetFileName(picture.FileName);
                 var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
                 picture.SaveAs(loadLocation);
@@ -40,15 +46,43 @@ namespace ProjeKulubu.Controllers
                 teamModel.MemberTwitterURL = twitter;
                 db.Team.Add(teamModel);
                 db.SaveChanges();
+            }
+            else
+            {
+                ViewBag.Error("Belirlenemeyen bir hata oluştu");
+            }
+               
             
             return RedirectToAction("TeamIndex", "Team");
         }
 
         [HttpPost]
-        public ActionResult TeamDataUpdate()
+        [ValidateInput(false)]
+        public ActionResult TeamDataUpdate(int id,string name,string position,int age,string exp,HttpPostedFileBase picture,string facebook,string twitter,string google,string linkedin,string biografi)
         {
-            // doldurulcak
-            return View();
+            Team updateModel = db.Team.Where(x => x.ID == id).FirstOrDefault();
+            if(name!=null && position!=null && exp!=null && picture!=null && biografi!=null)
+            {
+                string fileMap = Path.GetFileName(picture.FileName);
+                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                picture.SaveAs(loadLocation);
+                updateModel.MemberAge = age;
+                updateModel.MemberBiografi = biografi;
+                updateModel.MemberExperience = exp;
+                updateModel.MemberFacebookURL = facebook;
+                updateModel.MemberGoogleURL = google;
+                updateModel.MemberLinkedinURL = linkedin;
+                updateModel.MemberName = name;
+                updateModel.MemberPictureURL = fileMap;
+                updateModel.MemberPozision = position;
+                updateModel.MemberTwitterURL = twitter;
+                db.SaveChanges();
+            }
+            else
+            {
+                ViewBag.Error("Belirlenemeyen bir hata oluştu");
+            }
+            return RedirectToAction("TeamIndex", "Team");
         }
 
         [HttpPost]

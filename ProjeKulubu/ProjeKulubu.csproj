@@ -57,6 +57,14 @@
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -167,6 +175,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\GivingEducationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -186,6 +195,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Blog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Contact.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerComments.cs">
@@ -1158,6 +1170,7 @@
     <Content Include="Content\js\jssor.slider-21.1.6.min.js" />
     <Content Include="Content\js\jssor.slider-21.1.6.mini.js" />
     <Content Include="Content\noimage.gif" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\pikocon_html\404.html" />
     <Content Include="Content\pikocon_html\about.html" />
     <Content Include="Content\pikocon_html\apple-touch-icon.png" />
@@ -2082,37 +2095,24 @@
     <Content Include="Views\Admin\Ofis.cshtml" />
     <Content Include="Views\Admin\SatisiDevamEdenProjeler.cshtml" />
     <Content Include="Views\Admin\TamamlananProjeler.cshtml" />
-    <Content Include="Views\Question\QuestionList.cshtml" />
     <Content Include="Views\Question\QuestionDelete.cshtml" />
     <Content Include="Views\Question\QuestionUpdate.cshtml" />
-    <Content Include="Views\Question\QuestionView.cshtml" />
     <Content Include="Views\Question\QuestionIndex.cshtml" />
-    <Content Include="Views\Tags\TagsIndex.cshtml" />
     <Content Include="Views\Tags\TagsDelete.cshtml" />
     <Content Include="Views\Tags\TagsUpdate.cshtml" />
-    <Content Include="Views\Tags\TagsList.cshtml" />
     <Content Include="Views\Customer\CustomerIndex.cshtml" />
-    <Content Include="Views\Customer\CustomerList.cshtml" />
-    <Content Include="Views\Customer\CustomerView.cshtml" />
     <Content Include="Views\Customer\CustomerDelete.cshtml" />
     <Content Include="Views\Customer\CustomerUpdate.cshtml" />
     <Content Include="Views\Pictures\PicturesIndex.cshtml" />
-    <Content Include="Views\Pictures\PicturesList.cshtml" />
     <Content Include="Views\Pictures\PicturesDelete.cshtml" />
-    <Content Include="Views\Pictures\PicturesView.cshtml" />
     <Content Include="Views\Pictures\PicturesUpdate.cshtml" />
     <Content Include="Views\Reference\ReferenceIndex.cshtml" />
-    <Content Include="Views\Reference\ReferenceList.cshtml" />
     <Content Include="Views\Reference\ReferenceUpdate.cshtml" />
-    <Content Include="Views\Reference\ReferenceView.cshtml" />
     <Content Include="Views\Reference\ReferenceDelete.cshtml" />
     <Content Include="Views\Team\TeamIndex.cshtml" />
-    <Content Include="Views\Team\TeamList.cshtml" />
     <Content Include="Views\Team\TeamDelete.cshtml" />
-    <Content Include="Views\Team\TeamView.cshtml" />
     <Content Include="Views\Team\TeamUpdate.cshtml" />
     <Content Include="Views\Blog\BlogIndex.cshtml" />
-    <Content Include="Views\Blog\BlogList.cshtml" />
     <Content Include="Views\Blog\BlogDelete.cshtml" />
     <Content Include="Views\Blog\BlogUpdate.cshtml" />
     <Content Include="Views\TakingEducation\TakingEducationIndex.cshtml" />
@@ -2120,6 +2120,7 @@
     <Content Include="Views\TakingEducation\TakingEducationDelete.cshtml" />
     <Content Include="Views\TakingEducation\TakingEducationUpdate.cshtml" />
     <Content Include="Views\TakingEducation\TakingEducationView.cshtml" />
+    <Content Include="Views\Tags\TagsIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

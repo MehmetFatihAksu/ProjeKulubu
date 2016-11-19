@@ -1,6 +1,11 @@
 ﻿@using ProjeKulubu.Models
 @model Tags
 
+@{
+    ViewBag.Title = "TagsDelete";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
 <script type="text/javascript">
 
     function DataDelete() {
@@ -23,13 +28,7 @@
         });
     }
 
-</script>
-
-
-@{
-    ViewBag.Title = "TagsDelete";
-    Layout = "~/Views/AdminShared/_Layout.cshtml";
-}
+</script>@*Tags Delete Scripts*@
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">
@@ -45,7 +44,7 @@
         </li>
         <li class="active"><i class="fa fa-trash-o"></i>Etiket Silme Ekranı</li>
     </ul>
-</div>
+</div>@*Header*@
 
 <aside id="QuesionDeleteDetail" class="QuestionContent">
 
@@ -96,8 +95,8 @@
 
     </form>
 
-</aside>
+</aside>@*Tags Delete Form*@
 
 <footer>
-    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-</footer>
+    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer>@*Footer*@

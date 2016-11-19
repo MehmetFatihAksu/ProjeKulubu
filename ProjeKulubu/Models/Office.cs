@@ -14,6 +14,12 @@ namespace ProjeKulubu.Models
     
     public partial class Office
     {
+        public Office()
+        {
+            this.OfficePictures = new HashSet<OfficePictures>();
+            this.Team = new HashSet<Team>();
+        }
+    
         public int ID { get; set; }
         public string OfficeName { get; set; }
         public string OfficeMainContent { get; set; }
@@ -22,10 +28,8 @@ namespace ProjeKulubu.Models
         public string OfficeLocation { get; set; }
         public string OfficeMail { get; set; }
         public string OfficePhone { get; set; }
-        public Nullable<int> OfficePictureID { get; set; }
-        public Nullable<int> OfficeMemberID { get; set; }
     
-        public virtual OfficePictures OfficePictures { get; set; }
-        public virtual Team Team { get; set; }
+        public virtual ICollection<OfficePictures> OfficePictures { get; set; }
+        public virtual ICollection<Team> Team { get; set; }
     }
 }

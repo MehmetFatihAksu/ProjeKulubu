@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ProjeKulubu.Models;
 using System.IO;
+using PagedList;
 
 namespace ProjeKulubu.Controllers
 {
@@ -13,10 +14,14 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /Reference/
 
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
 
-        public ActionResult ReferenceIndex()
+        public ActionResult ReferenceIndex(int? page)
         {
+            var list = db.Reference.ToList();
+            var pageNumber = page ?? 1;
+            var onePageOfReference = list.ToPagedList(pageNumber, 10);
+            ViewBag.Show = onePageOfReference;
             return View();
         }
 
@@ -42,10 +47,26 @@ namespace ProjeKulubu.Controllers
 
 
         [HttpPost]
-        public ActionResult ReferenceDataUpdate()
+        public ActionResult ReferenceDataUpdate(int id,HttpPostedFileBase ReferencePicture,string ReferenceName,string ReferenceURL,string ReferencePictureSEO)
         {
-            //doldurulcak
-            return View();
+            Reference updateModel = db.Reference.Where(x => x.ID == id).FirstOrDefault();
+            if(ReferencePicture !=null && ReferenceName!=null && ReferencePictureSEO!=null && ReferenceURL!=null )
+            {
+                string fileMap = Path.GetFileName(ReferencePicture.FileName);
+                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                ReferencePicture.SaveAs(loadLocation);
+                updateModel.ReferenceLink = ReferenceURL;
+                updateModel.ReferencePictureSEO = ReferencePictureSEO;
+                updateModel.ReferenceTitle = ReferenceName;
+                updateModel.ReferencePictureURL = fileMap;
+                db.SaveChanges();
+               
+            }
+            else
+            {
+                ViewBag.Error("Belirlenemeyen bir hata oluştu");
+            }
+            return RedirectToAction("ReferenceIndex", "Reference");
         }
 
         [HttpPost]

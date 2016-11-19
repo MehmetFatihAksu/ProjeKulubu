@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ProjeKulubu.Models;
 using System.IO;
+using PagedList;
 
 namespace ProjeKulubu.Controllers
 {
@@ -13,10 +14,14 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /Blog/
 
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
 
-        public ActionResult BlogIndex()
+        public ActionResult BlogIndex(int ? page)
         {
+            var list = db.Blog.ToList();
+            var pageNumber = page ?? 1;
+            var onePageOfBlog = list.ToPagedList(pageNumber, 10);
+            ViewBag.Show = onePageOfBlog;
             return View();
         }
 

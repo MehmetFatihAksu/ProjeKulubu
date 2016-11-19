@@ -13,10 +13,10 @@ namespace ProjeKulubu.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class db2299D218BEEntities8 : DbContext
+    public partial class db2299D218BEEntities9 : DbContext
     {
-        public db2299D218BEEntities8()
-            : base("name=db2299D218BEEntities8")
+        public db2299D218BEEntities9()
+            : base("name=db2299D218BEEntities9")
         {
         }
     
@@ -28,6 +28,7 @@ namespace ProjeKulubu.Models
         public DbSet<Admin> Admin { get; set; }
         public DbSet<AskedQuestions> AskedQuestions { get; set; }
         public DbSet<Blog> Blog { get; set; }
+        public DbSet<Contact> Contact { get; set; }
         public DbSet<CustomerComments> CustomerComments { get; set; }
         public DbSet<Education> Education { get; set; }
         public DbSet<EducationType> EducationType { get; set; }

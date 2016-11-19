@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ProjeKulubu.Models;
 using System.IO;
+using PagedList;
 
 namespace ProjeKulubu.Controllers
 {
@@ -13,12 +14,47 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /Pictures/
 
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
 
 
-        public ActionResult PicturesIndex()
+        public ActionResult PicturesIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
-            return View();
+            ViewBag.PictureSEO = string.IsNullOrEmpty(Sorting_Order) ? "Seo_Gore" : "";
+
+            ViewBag.CurrentSort = Sorting_Order;
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+
+            var kayitlar = from x in db.OurPictures select x;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                kayitlar = kayitlar.Where(x => x.PictureSEO.Contains(SearchString));
+            }
+
+            switch (Sorting_Order)
+            {
+                case "Seo_Gore":
+                    kayitlar = kayitlar.OrderBy(OurPictures => OurPictures.PictureSEO);
+                    break;
+                default:
+                    kayitlar = kayitlar.OrderByDescending(OurPictures => OurPictures.PictureSEO);
+                    break;
+            }
+
+            ViewBag.HtmlStr = kayitlar.Count();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
 
 

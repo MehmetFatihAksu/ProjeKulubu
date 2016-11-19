@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Net;
 using ProjeKulubu.Models;
 using System.Data.Entity.Infrastructure;
+using PagedList;
 
 namespace ProjeKulubu.Controllers
 {
@@ -13,14 +14,49 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Tags/
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
 
-        public ActionResult TagsIndex()
+        public ActionResult TagsIndex(string Sorting_Order,string SearchString,string currentFilter,int? page)
         {
-            return View();
-        }
+          ViewBag.TagName = string.IsNullOrEmpty(Sorting_Order)?"Ada_Gore":"";
 
-       [HttpPost]
+            ViewBag.CurrentSort = Sorting_Order;
+            if(SearchString!=null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+
+            var kayitlar = from x in db.Tags select x;
+
+            if(!String.IsNullOrEmpty(SearchString))
+            {
+                kayitlar = kayitlar.Where(x => x.TagsName.Contains(SearchString));
+            }
+
+            switch(Sorting_Order)
+            {
+                case "Ada_Gore":
+                    kayitlar = kayitlar.OrderBy(Tags => Tags.TagsName);
+                    break;
+                default:
+                    kayitlar = kayitlar.OrderByDescending(Tags => Tags.TagsName);
+                    break;
+            }
+
+            ViewBag.HtmlStr = kayitlar.Count();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(kayitlar.ToPagedList(pageNumber,pageSize));
+        }
+        
+        [HttpPost]
        public ActionResult AddTags(string tagname)
         {
             Tags addTags = new Tags();
@@ -65,6 +101,7 @@ namespace ProjeKulubu.Controllers
             var data = db.Tags.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
+
 
 
 

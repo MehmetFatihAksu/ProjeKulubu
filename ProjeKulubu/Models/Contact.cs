@@ -12,14 +12,13 @@ namespace ProjeKulubu.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OfficePictures
+    public partial class Contact
     {
         public int ID { get; set; }
-        public Nullable<int> OfficeID { get; set; }
-        public string PictureURL { get; set; }
-        public string PictureSEO { get; set; }
-        public string PictureALT { get; set; }
-    
-        public virtual Office Office { get; set; }
+        public string ContactName { get; set; }
+        public string ContactMail { get; set; }
+        public string ContactPhone { get; set; }
+        public string ContactSubject { get; set; }
+        public string ContantSubjectContent { get; set; }
     }
 }

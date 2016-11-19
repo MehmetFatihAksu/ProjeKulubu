@@ -1,6 +1,9 @@
 ﻿@using ProjeKulubu.Models
 @model AskedQuestions
-
+@{
+    ViewBag.Title = "QuestionDelete";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
 
 <script type="text/javascript">
 
@@ -24,13 +27,7 @@
         });
     }
 
-</script>
-
-@{
-    ViewBag.Title = "QuestionDelete";
-    Layout = "~/Views/AdminShared/_Layout.cshtml";
-}
-
+</script>@*Delete Scripts*@
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">
@@ -46,7 +43,7 @@
         </li>
         <li class="active"><i class="fa fa-trash-o"></i>Soru Silme Ekranı</li>
     </ul>
-</div>
+</div>@*Header*@
 
 <aside id="QuesionDeleteDetail" class="QuestionContent">
 
@@ -104,8 +101,7 @@
 
     </form>
 
-</aside>
-
+</aside>@*Question Delete Form*@
 <footer>
-    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-</footer>
+    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer>@*Footer*@

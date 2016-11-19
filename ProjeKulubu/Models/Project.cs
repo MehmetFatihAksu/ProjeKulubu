@@ -17,6 +17,7 @@ namespace ProjeKulubu.Models
         public Project()
         {
             this.ProjectPicture = new HashSet<ProjectPicture>();
+            this.Team = new HashSet<Team>();
         }
     
         public int ID { get; set; }
@@ -31,11 +32,9 @@ namespace ProjeKulubu.Models
         public string ProjectMail { get; set; }
         public string ProjectPhone { get; set; }
         public string ProjectAltLocation { get; set; }
-        public Nullable<int> ProjectPictureID { get; set; }
-        public Nullable<int> ProjectTeamMemberID { get; set; }
     
         public virtual ProjectType ProjectType1 { get; set; }
-        public virtual Team Team { get; set; }
         public virtual ICollection<ProjectPicture> ProjectPicture { get; set; }
+        public virtual ICollection<Team> Team { get; set; }
     }
 }

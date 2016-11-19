@@ -1,22 +1,18 @@
 ﻿@model ProjeKulubu.Models.Team
+@using PagedList
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "TeamIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<script src="~/Content/AdminContent/js/buttonActions.js"></script>
-
-
-<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
-
-
 <div class="page-title">
     <div>
         <h1><i class="fa fa-bars"></i> Ekip Yönetimi</h1>
         <h4>Bu kısımda ekip üyesi ekleyip silebilir veya düzenleyebilirsiniz</h4>
     </div>
-</div>
+</div> @*Header 1*@
 
 
 <div id="breadcrumbs">
@@ -28,7 +24,7 @@
         </li>
         <li class="active">Ekip Yönetimi</li>
     </ul>
-</div> 
+</div> @*Header 2*@
 
 <div class="row">
     <div class="col-md-12">
@@ -43,41 +39,44 @@
             <div class="box-content">
                 <form action="/Team/AddTeamMember" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye İsim ve Soyisim:</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Üye İsim ve Soyisim:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="name" id="name" placeholder="Üye İsmini ve Soyismini Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ekip üyenize ait isim ve soyisim bilgisini giriniz..." data-original-title="Üye İsim Soyisim" data-placement="left">
+                            <input type="text" name="name" id="name" placeholder="Üye İsmini ve Soyismini Giriniz" class="form-control show-popover" data-trigger="hover" required style="color:#000000" oninvalid="this.setCustomValidity('Üye ismini boş geçemezsiniz')" oninput="setCustomValidity('')" data-content="Bu kısıma ekip üyenize ait isim ve soyisim bilgisini giriniz..." data-original-title="Üye İsim Soyisim" data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Üye Pozisyon:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">* Üyenin Pozisyonu:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <select  name="position" id="position" class="form-control input-sm" tabindex="1">
-                                <option value="Pozisyon 1">Pozisyon 1</option>
-                                <option value="Pozisyon 2">Pozisyon 2</option>
-                                <option value="Pozisyon 3">Pozisyon 5</option>
-                                <option value="Pozisyon 4">Pozisyon 4</option>
-                            </select>
+                            <label class="radio-inline">
+                                <input type="radio" name="position" value="Genel Müdür" /> Genel Müdür
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="position" value="Yönetici" checked /> Yönetici
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="position" value="Çalışan" /> Çalışan
+                            </label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Üye Tecrübe:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">* Üye Tecrübe:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <select name="exp" id="exp" class="form-control input-sm" tabindex="1">
-                                <option value="Yıldız 1">1 Yıldız</option>
-                                <option value="Yıldız 2">2 Yıldız</option>
-                                <option value="Yıldız 3">3 Yıldız</option>
-                                <option value="Yıldız 4">4 Yıldız</option>
+                                <option value="1 Yıldız">1 Yıldız</option>
+                                <option value="2 Yıldız">2 Yıldız</option>
+                                <option value="3 Yıldız">3 Yıldız</option>
+                                <option value="4 Yıldız">4 Yıldız</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Yaşı:</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Üye Yaşı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="age" id="age" placeholder="Üye Yaşını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma üyenizin yaşını giriniz..." data-original-title="Üye Yaş" data-placement="left">
+                            <input type="text" onkeypress="return isNumber(event)" name="age" id="age" required style="color:#000000" oninvalid="this.setCustomValidity('Üye yaşını boş geçemezsiniz')" oninput="setCustomValidity('')" placeholder="Üye Yaşını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma üyenizin yaşını giriniz..." data-original-title="Üye Yaş" data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Üye Resim:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">* Üye Resim:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
@@ -88,7 +87,7 @@
                                     <span class="btn btn-default btn-file">
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
-                                        <input type="file" name="picture" id="picture" class="file-input" />
+                                        <input required  oninvalid="this.setCustomValidity('Üye resmini boş geçemezsiniz')" oninput="setCustomValidity('')" type="file" name="picture" id="picture" class="file-input" />
                                     </span>
                                     <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
@@ -98,31 +97,31 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Facebook:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="facebook" id="facebook" placeholder="Üye Facebook Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin facebook adresini giriniz.." data-original-title="Üye Facebook" data-placement="left">
+                            <input type="text" name="facebook" style="color:#000000" id="facebook" placeholder="Üye Facebook Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin facebook adresini giriniz.." data-original-title="Üye Facebook" data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Twitter:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="twitter" id="twitter" placeholder="Üye Twitter Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin twitter adresini giriniz.." data-original-title="Üye Twitter" data-placement="left">
+                            <input type="text" name="twitter" style="color:#000000" id="twitter" placeholder="Üye Twitter Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin twitter adresini giriniz.." data-original-title="Üye Twitter" data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye GooglePlus:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="google" id="google" placeholder="Üye GooglePlus Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin googlePlus adresini giriniz.." data-original-title="Üye GooglePlus" data-placement="left">
+                            <input type="text" name="google" style="color:#000000" id="google" placeholder="Üye GooglePlus Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin googlePlus adresini giriniz.." data-original-title="Üye GooglePlus" data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Linkedin:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="linkedin" id="linkedin" placeholder="Üye Linkedin Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin linkedin adresini giriniz.." data-original-title="Üye Linkedin" data-placement="left">
+                            <input type="text" name="linkedin" style="color:#000000" id="linkedin" placeholder="Üye Linkedin Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin linkedin adresini giriniz.." data-original-title="Üye Linkedin" data-placement="left">
                         </div>
                     </div>
                     <div class="box-content">
 
                         <div class="form-group">
-                            <label class="col-sm-3 col-lg-2 control-label">Üye Biyografisi:</label>
+                            <label class="col-sm-3 col-lg-2 control-label">* Üye Biyografisi:</label>
                             <div class="col-sm-9 col-lg-10 controls">
                                 <textarea class="form-control col-md-12 ckeditor" name="biografi" id="biografi" rows="6"></textarea>
                             </div>
@@ -133,23 +132,125 @@
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
                             <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                                    <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
+</div>@*Add Team Member*@
 
-@Html.Partial("TeamList","Team")
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-black">
+            <div class="box-title">
+                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Ekip Üyeleri</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="btn-toolbar pull-right">
+                    <div class="btn-group">
+                        <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
+                        <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("TeamIndex","Team")"><i class="fa fa-repeat"></i></a>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="table-responsive">
+                    <table class="table table-advance">
+                        <thead>
+                            <tr>
+                                <th style="width:18px"><input type="checkbox" /></th>
+                                <th>ID</th>
+                                <th>İsim</th>
+                                <th>Pozisyon</th>
+                                <th>Tecrübe</th>
+                                <th>Yaş</th>
+                                <th>Biografi</th>
+                                <th>Resim</th>
+                                <th>Facebook</th>
+                                <th>Twitter</th>
+                                <th>GooglePlus</th>
+                                <th>Linkedin</th>
+                                <th>İncele</th>
+                                <th>Düzenleme</th>
+                                <th>Silme</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var list in ViewBag.Show)
+                            {
+                                <tr class="table-flag-blue">
+                                    <td><input type="checkbox" /></td>
+                                    <td>@list.ID</td>
+                                    <td>@list.MemberName</td>
+                                    <td>@list.MemberPozision</td>
+                                    <td>@list.MemberExperience</td>
+                                    <td>@list.MemberAge</td>
+                                    <td>@list.MemberBiografi</td>
+                                    <td>
+                                        <ul class="gallery">
+                                            <li>
+                                                <a href="~/Dosyalar/@list.MemberPictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+                                                    <div>
+                                                        <span class="fa fa-image"></span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>@list.MemberFacebookURL</td>
+                                    <td>@list.MemberTwitterURL</td>
+                                    <td>@list.MemberGoogleURL</td>
+                                    <td>@list.MemberLinkedinURL</td>
+                                    <td><a class="btn btn-sm show-tooltip" title="İncele" target="_blank" href="@Url.Action("EkipSingle","Home")/@list.ID"><i class="fa fa-search"></i></a></td>
+                                    <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("TeamUpdate","Team")/@list.ID"><i class="fa fa-edit"></i></a></td>
+                                    <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("TeamDelete","Team")/@list.ID"><i class="fa fa-trash-o"></i></a></td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <ul class="pagination">
+                        @Html.PagedListPager((IPagedList)ViewBag.Show, page => Url.Action("TeamIndex", new { page }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>@*Team List*@
 
 <footer>
-    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-</footer>
+    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer>@* Footer *@
 
+@*Scripts Down Here*@
 
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
 
+<script src="~/Content/AdminContent/js/buttonActions.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+
+    function isNumber(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script> @*Only Number Script*@
+
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 

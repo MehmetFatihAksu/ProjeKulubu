@@ -13,7 +13,7 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Admin/
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
     
 
         #region Projeler
