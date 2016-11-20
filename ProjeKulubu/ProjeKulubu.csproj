@@ -2124,6 +2124,16 @@
     <Content Include="Views\GivingEducation\GivingEducationIndex.cshtml" />
     <Content Include="Views\Office\OfficeIndex.cshtml" />
     <Content Include="Views\Project\CompleteProjects.cshtml" />
+    <Content Include="Views\Office\OfficeDelete.cshtml" />
+    <Content Include="Views\Office\OfficeUpdate.cshtml" />
+    <Content Include="Views\Project\CompleteProjectUpdate.cshtml" />
+    <Content Include="Views\Project\CompleteProjectDelete.cshtml" />
+    <Content Include="Views\Office\OfficePictureIndex.cshtml" />
+    <Content Include="Views\Office\OfficePictureUpdate.cshtml" />
+    <Content Include="Views\Office\OfficePictureDelete.cshtml" />
+    <Content Include="Views\Project\ProjectPictureIndex.cshtml" />
+    <Content Include="Views\Project\ProjectPictureDelete.cshtml" />
+    <Content Include="Views\Project\ProjectPictureUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

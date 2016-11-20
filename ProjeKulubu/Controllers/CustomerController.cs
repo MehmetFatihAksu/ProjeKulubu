@@ -99,7 +99,7 @@ namespace ProjeKulubu.Controllers
 
             }
             else
-        {
+            {
                 ViewBag.Error("Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin");
             }
             return View();
