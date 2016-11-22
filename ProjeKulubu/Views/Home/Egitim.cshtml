@@ -1,4 +1,4 @@
-﻿
+﻿@model ProjeKulubu.Models.Education
 @{
     ViewBag.Title = "Egitim";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,17 +27,16 @@
                 <div class="box">
                     <!--blog image-->
                     <figure>
-                        <img src="/Content/pikocon_html/images/body/blog-single1.jpg" alt="service" class="img-responsive">
+                        <img src="~/Dosyalar/@Model.EducationFileURL" alt="@Model.EducationFileSEO" class="img-responsive">
                     </figure> <!--end blog image-->
                     <!--blog caption-->
                     <div class="caption">
-                        <h2>Eğitim Başlığı</h2>
+                        <h2>@Model.EducationTitle</h2>
                         <ul class="piko-li">
                             <li><i class="fa fa-calendar"></i>2015 ŞUBAT 27</li>
                             <li><i class="fa fa-search"></i>10</li>
                         </ul>
-                        <p>25 years experience piko construction and complete 100 building, and school college, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit tincidunt accumsan. Sed commodo, turpis vestibulum mattis  <mark>tristique, magna nisl accumsan tellus, </mark>sit amet elementum lacus nisi ac erat. In dapibus euismod magna sagittis interdum. Morbi turpis lectus, sodales et tellus vitae, sodales lobortis ligula. Nullam nec pulvinar est, sit amet posuere purus. Proin a metus bibendum, tempor arcu quis, auctor enim. Morbi aliquet sem eu sapien fermentum, in mollis sapien congue. Ut sed varius velit. Ut varius dapibus dignissim. Vivamus sit amet mattis libero, non imperdiet est. Suspendisse et ipsum ac odio euismod ultrices. Mauris dictum, est eu fermentum ornare, metus nulla malesuada elit, hendrerit pellentesque augue elit iaculis tellus. Morbi convallis sed nunc at dignissim. </p>
+                        <p>@Model.EducationContent </p>
                     </div> <!--end blog caption-->
                 </div>  <!--end post box-->
                 <!--shrear icon-->
@@ -194,27 +193,7 @@
                     </div>
                 </div>  <!--end start archive-->
                 <!--start tag-->
-                <div class="margin-b30">
-                    <div class="piko-title4 widget">
-                        <h3><span class="line"></span><span class="text">Etiketler</span></h3>
-                    </div><br>
-                    <div class="footer2-box">
-                        <a href="#" class="btn-s5 gray3">İnşaat</a>
-                        <a href="#" class="btn-s5 gray3">Yapı</a>
-                        <a href="#" class="btn-s5 gray3">Satılık</a>
-                        <a href="#" class="btn-s5 gray3">Kiralık</a>
-                        <a href="#" class="btn-s5 gray3">Daire</a>
-                        <a href="#" class="btn-s5 gray3">Yeni</a>
-                        <a href="#" class="btn-s5 gray3">Komisyon</a>
-                        <a href="#" class="btn-s5 gray3">Ders</a>
-                        <a href="#" class="btn-s5 gray3">Satış</a>
-                        <a href="#" class="btn-s5 gray3">Pazarlama</a>
-                        <a href="#" class="btn-s5 gray3">Makina</a>
-                        <a href="#" class="btn-s5 gray3">Kurumsal</a>
-                        <a href="#" class="btn-s5 gray3">Şirket</a>
-                        <a href="#" class="btn-s5 gray3">Villa</a>
-                    </div>
-                </div>  <!--end start tag-->
+                  <!--end start tag-->
             </div>  <!--end of col-->
         </div> <!--end of row-->
     </div> <!--end of container-->

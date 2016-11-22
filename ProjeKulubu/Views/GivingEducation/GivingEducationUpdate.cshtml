@@ -1,10 +1,9 @@
 ﻿@model ProjeKulubu.Models.Education
 
 @{
-    ViewBag.Title = "TakingEducationUpdate";
+    ViewBag.Title = "GivingEducationUpdate";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
-
 <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 
 <div id="breadcrumbs">
@@ -16,7 +15,7 @@
         </li>
         <li>
             <i class="fa fa-file-text-o"></i>
-            <a href="@Url.Action("TakingEducationIndex","TakingEducation")">Alınan Eğitim Yönetimi</a>
+            <a href="@Url.Action("GivingEducationIndex","GivingEducation")">Verilen Eğitim Yönetimi</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
         <li class="active"><i class="fa fa-edit"></i>Eğitim Düzenleme Ekranı</li>
@@ -34,12 +33,12 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="/TakingEducation/TakingEducationDataUpdate" method="post"
+                <form action="/GivingEducation/GivingEducationDataUpdate" method="post"
                       enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Eğitim Başlığı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" placeholder="Eğitim Başlığını Giriniz" style="color:#000000" name="title" id="title" value="@Model.EducationTitle" required oninvalid="this.setCustomValidity('Eğitim İsmini Boş Geçemezsiniz')" oninput="setCustomValidity('')"  class="form-control show-popover">
+                            <input type="text" placeholder="Eğitim Başlığını Giriniz" style="color:#000000" name="title" id="title" value="@Model.EducationTitle" required oninvalid="this.setCustomValidity('Eğitim İsmini Boş Geçemezsiniz')" oninput="setCustomValidity('')" class="form-control show-popover">
                         </div>
                     </div>
                     <div class="form-group">
@@ -56,7 +55,7 @@
                                         <span class="fileupload-exists">Değiştir</span>
                                         <input required oninvalid="this.setCustomValidity('Eğitim Resmini&Videoyu Boş Geçemezsiniz')" oninput="setCustomValidity('')" accept="image/*" type="file" name="file" id="file" class="file-input" />
                                     </span>
-                                    <a href="#"  class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
+                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +63,7 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Eğitim Resim SEO:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="seo" id="seo" value="@Model.EducationFileSEO"  required oninvalid="this.setCustomValidity('SEO Kısmını Boş Geçemezsiniz')" oninput="setCustomValidity('')" placeholder="SEO Kelimenizi Giriniz" style="color:#000000" class="form-control show-popover">
+                            <input type="text" name="seo" id="seo" value="@Model.EducationFileSEO" required oninvalid="this.setCustomValidity('SEO Kısmını Boş Geçemezsiniz')" oninput="setCustomValidity('')" placeholder="SEO Kelimenizi Giriniz" style="color:#000000" class="form-control show-popover">
                         </div>
                     </div>
                     <div class="box-content">
@@ -80,9 +79,9 @@
 
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <input type="hidden" id="dataId" name="Id" value="@Model.ID"/>
+                            <input type="hidden" id="dataId" name="Id" value="@Model.ID" />
                             <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Güncelle</button>
-                            <a class="btn btn-danger" style="float:left" href="@Url.Action("TakingEducationIndex","TakingEducation")">Geri Dön</a>
+                            <a class="btn btn-danger" style="float:left" href="@Url.Action("GivingEducationIndex","GivingEducation")">Geri Dön</a>
                         </div>
                     </div>
                     <div class="form-group last">

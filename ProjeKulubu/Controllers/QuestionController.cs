@@ -15,16 +15,47 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /Question/
 
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
 
-        public ActionResult QuestionIndex(int ? page)
+        public ActionResult QuestionIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
-            var list = db.AskedQuestions.ToList();
-            var pageNumber = page ?? 1;
-            var onePageOfQuestion = list.ToPagedList(pageNumber, 7);
-            ViewBag.Show = onePageOfQuestion;
-            return View();
+            ViewBag.Question = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
+
+            ViewBag.CurrentSort = Sorting_Order;
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+
+            var kayitlar = from x in db.AskedQuestions select x;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                kayitlar = kayitlar.Where(x => x.Question.Contains(SearchString));
+            }
+
+            switch (Sorting_Order)
+            {
+                case "Ada_Gore":
+                    kayitlar = kayitlar.OrderBy(AskedQuestions => AskedQuestions.Question);
+                    break;
+                default:
+                    kayitlar = kayitlar.OrderByDescending(AskedQuestions => AskedQuestions.ID);
+                    break;
+            }
+
+            ViewBag.HtmlStr = kayitlar.Count();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpPost]
@@ -86,11 +117,11 @@ namespace ProjeKulubu.Controllers
             var data = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
-        public ActionResult QuestionView(int id)
+        public ActionResult MultipleDelete(IEnumerable<int> idler)
         {
-            var data = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
+            db.AskedQuestions.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.AskedQuestions.Remove(y));
+            db.SaveChanges();
+            return RedirectToAction("QuestionIndex", "Question");
         }
 
 

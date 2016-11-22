@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using ProjeKulubu.Models;
-
+using PagedList;
 
 namespace ProjeKulubu.Controllers
 {
@@ -14,11 +14,56 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /TakingEducation/
 
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
-        public ActionResult TakingEducationIndex()
+        public ActionResult TakingEducationIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
-            return View();
+            ViewBag.EduName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
+            ViewBag.EduDate = string.IsNullOrEmpty(Sorting_Order) ? "Tarihe_Gore" : "";
+            ViewBag.EduView = string.IsNullOrEmpty(Sorting_Order) ? "Goruntulenme_Gore" : "";
+
+            ViewBag.CurrentSort = Sorting_Order;
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+
+            var kayitlar = from x in db.Education select x;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                kayitlar = kayitlar.Where(x => x.EducationTitle.Contains(SearchString));
+            }
+
+            switch (Sorting_Order)
+            {
+                case "Ada_Gore":
+                    kayitlar = kayitlar.OrderBy(Education => Education.EducationTitle);
+                    break;
+                case "Tarihe_Gore":
+                    kayitlar = kayitlar.OrderBy(Education => Education.EducationDate);
+                    break;
+                case "Goruntulenme_Gore":
+                    kayitlar = kayitlar.OrderBy(Education => Education.EducationView);
+                    break;
+                default:
+                    kayitlar = kayitlar.OrderByDescending(Education => Education.ID);
+                    break;
+            }
+
+            ViewBag.HtmlStr = kayitlar.Count();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
+
+
         }
 
         [HttpPost]
@@ -26,47 +71,49 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddTakingEducation(string title,HttpPostedFileBase file,string seo,string content)
         {
             Education eduModel = new Education();
-            if(title!=null && file!=null && seo!=null && content!=null)
+            if(title!=null && seo!=null && content!=null)
             {
-                string fileMap = Path.GetFileName(file.FileName);
-                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                file.SaveAs(loadLocation);
+                if(file != null)
+                {
+                    string fileMap = Path.GetFileName(file.FileName);
+                    var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                    file.SaveAs(loadLocation);
+                    eduModel.EducationFileURL = fileMap;
+                }
                 eduModel.EducationTitle = title;
-                eduModel.EducationFileURL = fileMap;
                 eduModel.EducationFileSEO = seo;
                 eduModel.EducationContent = content;
                 db.Education.Add(eduModel);
                 db.SaveChanges();
             }
+            else
+            {
+                ViewBag.Error("Serverdan kaynaklı bir sorun oluştu");
+            }
             return RedirectToAction("TakingEducationIndex", "TakingEducation");
         }
 
         [HttpPost]
-        public ActionResult TakingEducationDataUpdate(int Id,string title, HttpPostedFileBase file, string seo, string content)
+        [ValidateInput(false)]
+        public ActionResult TakingEducationDataUpdate(int id,string title, HttpPostedFileBase file, string seo, string content)
         {
-            if (Id!=null)
+            Education updateEdu = db.Education.Where(x => x.ID == id).FirstOrDefault();
+            if(title!=null && content!=null && seo!=null)
             {
-                var Query = from takingEducationData in db.Education
-                            where
-                                takingEducationData.ID == Id
-                            select takingEducationData;
-
-
-                foreach (Education item in Query)
+                if(file!=null)
                 {
-                    item.EducationTitle = title;
-                    item.EducationFileURL = file.FileName;
-                    item.EducationFileSEO = seo;
-                    item.EducationContent = content;
+                    string fileMap = Path.GetFileName(file.FileName);
+                    var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                    file.SaveAs(loadLocation);
+                    updateEdu.EducationFileURL = fileMap;
                 }
+                updateEdu.EducationContent = content;
+                updateEdu.EducationFileSEO = seo;
+                updateEdu.EducationTitle = title;
                 db.SaveChanges();
             }
-            else
-            {
-                return View("ErrorPage", "Error");
-            }
-
             return RedirectToAction("TakingEducationIndex", "TakingEducation");
+
         }
 
         [HttpPost]
@@ -84,16 +131,16 @@ namespace ProjeKulubu.Controllers
             return View(data);
         }
 
-        public ActionResult TakingEducationView(int id)
-        {
-            var data = db.Education.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-
         public ActionResult TakingEducationUpdate(int id)
         {
             var data = db.Education.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
+        }
+        public ActionResult MultipleDelete(IEnumerable<int> idler)
+        {
+            db.Education.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Education.Remove(y));
+            db.SaveChanges();
+            return RedirectToAction("TakingEducationIndex", "TakingEducation");
         }
 
     }

@@ -159,6 +159,17 @@
           <Property Name="ReferencePictureSEO" Type="nvarchar" MaxLength="50" />
           <Property Name="ReferenceLink" Type="nvarchar" MaxLength="150" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Settings">
+          <Property Name="facebookURL" Type="nvarchar" MaxLength="150" />
+          <Property Name="googleURL" Type="nvarchar" MaxLength="150" />
+          <Property Name="LinkedinURL" Type="nvarchar" MaxLength="150" />
+          <Property Name="twitterURL" Type="nvarchar" MaxLength="150" />
+          <Property Name="youtubeURL" Type="nvarchar" MaxLength="150" />
+          <Property Name="phoneNumber" Type="char" MaxLength="11" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -620,7 +631,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="db2299D218BEEntities9" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="db2299D218BEEntities8" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admin" EntityType="Self.Admin" />
           <EntitySet Name="AskedQuestions" EntityType="Self.AskedQuestions" />
           <EntitySet Name="Blog" EntityType="Self.Blog" />
@@ -673,7 +684,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="db2299D218BEModelStoreContainer" CdmEntityContainer="db2299D218BEEntities9">
+        <EntityContainerMapping StorageEntityContainer="db2299D218BEModelStoreContainer" CdmEntityContainer="db2299D218BEEntities8">
           <EntitySetMapping Name="Admin">
             <EntityTypeMapping TypeName="db2299D218BEModel.Admin">
               <MappingFragment StoreEntitySet="Admin">

@@ -183,6 +183,7 @@
     <Compile Include="Controllers\PicturesController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\ReferenceController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\TakingEducationController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
@@ -1171,6 +1172,7 @@
     <Content Include="Content\js\jssor.slider-21.1.6.min.js" />
     <Content Include="Content\js\jssor.slider-21.1.6.mini.js" />
     <Content Include="Content\noimage.gif" />
+    <Content Include="Content\notification.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\pikocon_html\404.html" />
     <Content Include="Content\pikocon_html\about.html" />
@@ -2062,12 +2064,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\HakkimizdaMenu.cshtml" />
     <Content Include="Views\Home\BizKimiz.cshtml" />
-    <Content Include="Views\Home\Iletisim.cshtml" />
     <Content Include="Views\Home\Misyonumuz.cshtml" />
     <Content Include="Views\Home\MusteriMemnuniyeti.cshtml" />
     <Content Include="Views\Home\MusteriYorumlari.cshtml" />
     <Content Include="Views\Home\NelerYapariz.cshtml" />
-    <Content Include="Views\Home\Referanslar.cshtml" />
     <Content Include="Views\Home\SikSorular.cshtml" />
     <Content Include="Views\Home\VerdigimizEgitimler.cshtml" />
     <Content Include="Views\AdminShared\_Layout.cshtml" />
@@ -2116,12 +2116,20 @@
     <Content Include="Views\Blog\BlogDelete.cshtml" />
     <Content Include="Views\Blog\BlogUpdate.cshtml" />
     <Content Include="Views\TakingEducation\TakingEducationIndex.cshtml" />
-    <Content Include="Views\TakingEducation\TakingEducationList.cshtml" />
     <Content Include="Views\TakingEducation\TakingEducationDelete.cshtml" />
     <Content Include="Views\TakingEducation\TakingEducationUpdate.cshtml" />
-    <Content Include="Views\TakingEducation\TakingEducationView.cshtml" />
-    <Content Include="Views\GivingEducation\GivingEducationIndex.cshtml" />
     <Content Include="Views\Office\OfficeIndex.cshtml" />
+    <Content Include="Views\Tags\TagsIndex.cshtml" />
+    <Content Include="Views\GivingEducation\GivingEducationIndex.cshtml" />
+    <Content Include="Views\GivingEducation\GivingEducationDelete.cshtml" />
+    <Content Include="Views\GivingEducation\GivingEducationUpdate.cshtml" />
+    <Content Include="Views\Contact\ContactIndex.cshtml" />
+    <Content Include="Views\Contact\ContactView.cshtml" />
+    <Content Include="Views\Home\Referanslar.cshtml" />
+    <Content Include="Views\Contact\AddContact.cshtml" />
+    <Content Include="Views\Home\Iletisim.cshtml" />
+    <Content Include="Views\Admin\Settings.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

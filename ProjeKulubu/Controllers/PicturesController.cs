@@ -14,7 +14,7 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /Pictures/
 
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
 
         public ActionResult PicturesIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
@@ -46,7 +46,7 @@ namespace ProjeKulubu.Controllers
                     kayitlar = kayitlar.OrderBy(OurPictures => OurPictures.PictureSEO);
                     break;
                 default:
-                    kayitlar = kayitlar.OrderByDescending(OurPictures => OurPictures.PictureSEO);
+                    kayitlar = kayitlar.OrderByDescending(OurPictures => OurPictures.ID);
                     break;
             }
 
@@ -120,12 +120,13 @@ namespace ProjeKulubu.Controllers
             var data = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
-        public ActionResult PicturesView(int id)
+        public ActionResult MultipleDelete(IEnumerable<int> idler)
         {
-            var data = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
+            db.OurPictures.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.OurPictures.Remove(y));
+            db.SaveChanges();
+            return RedirectToAction("PicturesIndex", "Pictures");
         }
+
 
     }
 }

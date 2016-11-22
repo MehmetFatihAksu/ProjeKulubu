@@ -13,14 +13,45 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Team/
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
-        public ActionResult TeamIndex(int ? page)
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        public ActionResult TeamIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
-            var list = db.Team.ToList();
-            var pageNumber = page ?? 1;
-            var onePageOfTeam = list.ToPagedList(pageNumber, 10);
-            ViewBag.Show = onePageOfTeam;
-            return View();
+            ViewBag.MemberName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
+
+            ViewBag.CurrentSort = Sorting_Order;
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+
+            var kayitlar = from x in db.Team select x;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                kayitlar = kayitlar.Where(x => x.MemberName.Contains(SearchString));
+            }
+
+            switch (Sorting_Order)
+            {
+                case "Ada_Gore":
+                    kayitlar = kayitlar.OrderBy(Team => Team.MemberName);
+                    break;
+                default:
+                    kayitlar = kayitlar.OrderByDescending(Team => Team.ID);
+                    break;
+            }
+
+            ViewBag.HtmlStr = kayitlar.Count();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpPost]
@@ -37,13 +68,13 @@ namespace ProjeKulubu.Controllers
                 teamModel.MemberAge = age;
                 teamModel.MemberBiografi = biografi;
                 teamModel.MemberExperience = exp;
-                teamModel.MemberFacebookURL = facebook;
-                teamModel.MemberGoogleURL = google;
-                teamModel.MemberLinkedinURL = linkedin;
+                teamModel.MemberFacebookURL ="Http://"+facebook;
+                teamModel.MemberGoogleURL = "Http://"+google;
+                teamModel.MemberLinkedinURL = "Http://" +linkedin;
                 teamModel.MemberName = name;
                 teamModel.MemberPictureURL = fileMap;
                 teamModel.MemberPozision = position;
-                teamModel.MemberTwitterURL = twitter;
+                teamModel.MemberTwitterURL = "Http://" +twitter;
                 db.Team.Add(teamModel);
                 db.SaveChanges();
             }
@@ -99,17 +130,16 @@ namespace ProjeKulubu.Controllers
             var data = db.Team.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
-        public ActionResult TeamView(int id)
-        {
-            var data = db.Team.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-
         public ActionResult TeamUpdate(int id)
         {
             var data = db.Team.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
+        }
+        public ActionResult MultipleDelete(IEnumerable<int> idler)
+        {
+            db.Team.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Team.Remove(y));
+            db.SaveChanges();
+            return RedirectToAction("TeamIndex", "Team");
         }
 
     }

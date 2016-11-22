@@ -81,17 +81,19 @@
 @using (Html.BeginForm("TagsIndex","Tags",FormMethod.Get))
 {
                     <div class="btn-group" style="margin-left:5px">
-                            @Html.TextBox("SearchString",ViewBag.CurrentFilter as string,new {@class="form-control", placeholder = "Arama..",style="color:#000000", })
+                            @Html.TextBox("SearchString",ViewBag.CurrentFilter as string,new {@class="form-control", placeholder = "Arama..",style="color:#000000",required ="required" })
                     </div>
                     <div class="btn-group">
                         <input type="submit" style="margin-left:10px;height:34px" value="Ara"   class="btn btn-info" />
                     </div>
 }
                 </div>
+@using (Html.BeginForm("MultipleDelete", "Tags", FormMethod.Post))
+{
                 <div class="btn-toolbar pull-right">
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
-                        <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
+                        <button type="submit" class="btn btn-circle show-tooltip" title="Silme"><i class="fa fa-trash-o"></i></button>
                     </div>
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("TagsIndex", "Tags")"><i class="fa fa-repeat"></i></a>
@@ -104,7 +106,7 @@
                             <tr>
                                 <th style="width:18px"><input type="checkbox" /></th>
                                 <th>ID</th>                                
-                                <th>@Html.ActionLink("Etiket Adı","TagsIndex",new { Sorting_Order = ViewBag.TagName, currentFilter = ViewBag.CurrentFilter},new { @class = "cssMenu"})    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız Veriler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
+                                <th>@Html.ActionLink("Etiket Adı", "TagsIndex", new { Sorting_Order = ViewBag.TagName, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız Veriler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
                                 <th>Düzenleme</th>
                                 <th>Silme</th>
                             </tr>
@@ -113,21 +115,21 @@
                             @foreach (var item in Model)
                             {
                                 <tr class="table-flag-blue">
-                                    <td><input type="checkbox" /></td>
-                                    <td>@Html.DisplayFor(modelitem=>item.ID)</td>
-                                    <td>@Html.DisplayFor(modelitem =>item.TagsName)</td>
-                                    <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("TagsUpdate","Tags")/@item.ID"><i class="fa fa-edit"></i></a></td>
-                                    <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("TagsDelete","Tags")/@item.ID"><i class="fa fa-trash-o"></i></a></td>
+                                    <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
+                                    <td>@Html.DisplayFor(modelitem => item.ID)</td>
+                                    <td>@Html.DisplayFor(modelitem => item.TagsName)</td>
+                                    <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("TagsUpdate", "Tags")/@item.ID"><i class="fa fa-edit"></i></a></td>
+                                    <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("TagsDelete", "Tags")/@item.ID"><i class="fa fa-trash-o"></i></a></td>
                                 </tr>
                             }
 
                         </tbody>
                     </table>
                 </div>
+}
                 <div class="text-center">
                     <ul class="pagination">
-                        @*Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount*@
-                        @Html.PagedListPager(Model,page=>Url.Action("TagsIndex",new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                        @Html.PagedListPager(Model, page => Url.Action("TagsIndex", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
                     </ul>
                 </div>
                 <div class="text-right" style="font-size:14px">

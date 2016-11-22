@@ -14,14 +14,14 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Tags/
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
-        public ActionResult TagsIndex(string Sorting_Order,string SearchString,string currentFilter,int? page)
+        public ActionResult TagsIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
-          ViewBag.TagName = string.IsNullOrEmpty(Sorting_Order)?"Ada_Gore":"";
+            ViewBag.TagsName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
 
             ViewBag.CurrentSort = Sorting_Order;
-            if(SearchString!=null)
+            if (SearchString != null)
             {
                 page = 1;
             }
@@ -34,18 +34,18 @@ namespace ProjeKulubu.Controllers
 
             var kayitlar = from x in db.Tags select x;
 
-            if(!String.IsNullOrEmpty(SearchString))
+            if (!String.IsNullOrEmpty(SearchString))
             {
                 kayitlar = kayitlar.Where(x => x.TagsName.Contains(SearchString));
             }
 
-            switch(Sorting_Order)
+            switch (Sorting_Order)
             {
                 case "Ada_Gore":
                     kayitlar = kayitlar.OrderBy(Tags => Tags.TagsName);
                     break;
                 default:
-                    kayitlar = kayitlar.OrderByDescending(Tags => Tags.TagsName);
+                    kayitlar = kayitlar.OrderByDescending(Tags => Tags.ID);
                     break;
             }
 
@@ -53,9 +53,10 @@ namespace ProjeKulubu.Controllers
             int pageSize = 5;
             int pageNumber = (page ?? 1);
 
-            return View(kayitlar.ToPagedList(pageNumber,pageSize));
-        }
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
+        }    
         
+                
         [HttpPost]
        public ActionResult AddTags(string tagname)
         {
@@ -101,7 +102,12 @@ namespace ProjeKulubu.Controllers
             var data = db.Tags.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        public ActionResult MultipleDelete(IEnumerable<int> idler)
+        {
+            db.Tags.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Tags.Remove(y));
+            db.SaveChanges();
+            return RedirectToAction("TagsIndex", "Tags");
+        }
 
 
 

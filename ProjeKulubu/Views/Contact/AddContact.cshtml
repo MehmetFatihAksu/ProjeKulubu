@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Iletisim";
+    ViewBag.Title = "AddContact";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -43,21 +43,21 @@
                 <!--contact form-->
                 <div class="row">
                     <div class="result text-center"></div>
-                    <form  action="/Contact/AddContact" method="post" class="piko-form">
+                    <form id="contactForm" action="mail/action-contact.php" method="post" class="piko-form">
                         <div class="col-md-4 col-sm-12 col-xs-12">
-                            <input type="text" required oninvalid="this.setCustomValidity('İsminizi Giriniz')" oninput="setCustomValidity('')" name="name" class="form-control" placeholder="Adınız Soyadınız">
+                            <input type="text" name="name" class="form-control" placeholder="Adınız Soyadınız">
                         </div>
                         <div class="col-md-4 col-sm-12 col-xs-12">
-                            <input type="text" name="mail" required oninvalid="this.setCustomValidity('Mail Adresinizi Giriniz')" oninput="setCustomValidity('')" class="form-control" placeholder="E-mail Adresiniz">
+                            <input type="text" name="email" class="form-control" placeholder="E-mail Adresiniz">
                         </div>
                         <div class="col-md-4 col-sm-12 col-xs-12">
-                            <input type="text" name="phone" required oninvalid="this.setCustomValidity('Telefon Numaranızı Giriniz')" oninput="setCustomValidity('')"  onkeypress="return isNumber(event)" class="form-control" placeholder="Telefon">
+                            <input type="text" name="phone" class="form-control" placeholder="Telefon">
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <textarea class="form-control" name="content" required oninvalid="this.setCustomValidity('Açıklama Mesajını Giriniz')" oninput="setCustomValidity('')" rows="6" placeholder="Mesaj"></textarea>
+                            <textarea class="form-control" name="comment" rows="6" placeholder="Mesaj"></textarea>
                         </div>
                         <div class="text-left padding-lr15">
-                            <button type="submit" class="btn btn-warning">Mesajı Gönder</button>
+                            <button type="submit" name="submit" class="btn btn-warning">Mesajı Gönder</button>
                         </div>
                     </form>
                 </div>  <!--end contact form-->
@@ -65,14 +65,3 @@
         </div>
     </div>  <!--end container-->
 </section>
-
-<script language="javascript" type="text/javascript">
-
-
-    function isNumber(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
-        return true;
-    }
-</script> @*Only Number Script*@

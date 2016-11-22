@@ -15,7 +15,7 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /Customer/
 
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
 
         public ActionResult CustomerIndex(string Sorting_Order,string SearchString,string currentFilter,int? page)
@@ -47,7 +47,7 @@ namespace ProjeKulubu.Controllers
                     kayitlar = kayitlar.OrderBy(CustomerComments =>CustomerComments.Name);
                     break;
                 default:
-                    kayitlar = kayitlar.OrderByDescending(CustomerComments => CustomerComments.Name);
+                    kayitlar = kayitlar.OrderByDescending(CustomerComments => CustomerComments.ID);
                     break;
             }
 
@@ -59,7 +59,6 @@ namespace ProjeKulubu.Controllers
 
 
         }
-
         [HttpPost]
         public ActionResult AddCustomer(HttpPostedFileBase CommentPicture, string CustomerName)
         {
@@ -121,11 +120,6 @@ namespace ProjeKulubu.Controllers
         }
 
         public ActionResult CustomerUpdate(int id)
-        {
-            var data = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-        public ActionResult CustomerView(int id)
         {
             var data = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
             return View(data);

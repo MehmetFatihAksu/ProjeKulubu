@@ -1,0 +1,63 @@
+﻿@model ProjeKulubu.Models.Admin
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+<div class="page-title">
+    <div>
+        <h1><i class="fa fa-bars"></i> Admin Yönetimi</h1>
+        <h4>Bu kısımda admin bilgilerinizi görüntüleyebilirsiniz</h4>
+    </div>
+</div> @*Customer Header 1*@
+
+<div id="breadcrumbs">
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li class="active">Admin Yönetimi</li>
+    </ul>
+
+</div> @*Customer Header 2*@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-title">
+                <h3><i class="fa fa-file"></i> Profil</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-responsive img-thumbnail" src="img/demo/profile-picture.jpg" alt="profile picture" />
+                        <br /><br />
+                    </div>
+                    <div class="col-md-9 user-profile-info">
+                        <p><span>Kullanıcı Adı:</span> asdsadadsa</p>
+                        <p><span>İsim:</span> Jack</p>
+                        <p><span>Soyİsim:</span> Brown</p>
+                        <p><span>Doğum Tarihi:</span> 26 July 1983</p>
+                        <p><span>Cinsiyet:</span> Male</p>
+                        <p><span>Telefon Numarası:</span> +1 (0) 123 456 78</p>
+                        <p><span>E-Mail:</span> <a href="mailto:#">asdsadsa</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer> @*Footer*@
+
+<script src="~/Content/AdminContent/js/buttonActions.js"></script>
+

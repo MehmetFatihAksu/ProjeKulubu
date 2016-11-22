@@ -13,29 +13,7 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Admin/
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
-    
-
-        #region Projeler
-
-        public ActionResult newProject()
-        {
-            return View();
-        }
-
-        public ActionResult SatisiDevamEdenProjeler()
-        {
-            return View();
-        }
-
-        public ActionResult TamamlananProjeler()
-        {
-            return View();
-        }
-            
-       
-        
-        #endregion
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
         #region AnaSayfa
         public ActionResult Index()
@@ -44,28 +22,6 @@ namespace ProjeKulubu.Controllers
         }
 
         #endregion
-
-        #region Ekip
-        public ActionResult Ekip()
-        {
-            return View();
-        }
-        #endregion
-
-        #region Ofis
-     
-        public ActionResult Ofis()
-        {
-            return View();
-        }
-
-
-
-
-
-        //Ofis Action'ı eklendi..
-        #endregion
-
 
         #region Yardim
         public ActionResult HelpDetail()
@@ -84,6 +40,7 @@ namespace ProjeKulubu.Controllers
         #region Ayarlar
         public ActionResult Settings()
         {
+            //Doldurulcak
             return View();
         }
 
@@ -111,13 +68,6 @@ namespace ProjeKulubu.Controllers
         //    }
         //}
         //#endregion
-        #endregion
-
-        #region makale
-        public ActionResult Makale()
-        {
-            return View();
-        }
         #endregion
 
 

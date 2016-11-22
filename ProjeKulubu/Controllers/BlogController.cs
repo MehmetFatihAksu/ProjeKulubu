@@ -14,15 +14,53 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /Blog/
 
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
-        public ActionResult BlogIndex(int ? page)
+        public ActionResult BlogIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
-            var list = db.Blog.ToList();
-            var pageNumber = page ?? 1;
-            var onePageOfBlog = list.ToPagedList(pageNumber, 10);
-            ViewBag.Show = onePageOfBlog;
-            return View();
+            ViewBag.BlogName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
+            ViewBag.BlogDate = string.IsNullOrEmpty(Sorting_Order) ? "Tarihe_Gore" : "";
+            ViewBag.BlogView = string.IsNullOrEmpty(Sorting_Order) ? "Goruntulenme_Gore" : "";
+            ViewBag.CurrentSort = Sorting_Order;
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+
+            var kayitlar = from x in db.Blog select x;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                kayitlar = kayitlar.Where(x => x.BlogTitle.Contains(SearchString));
+            }
+
+            switch (Sorting_Order)
+            {
+                case "Ada_Gore":
+                    kayitlar = kayitlar.OrderBy(Blog => Blog.BlogTitle);
+                    break;
+                case "Tarihe_Gore":
+                    kayitlar = kayitlar.OrderBy(Blog => Blog.BlogDate);
+                    break;
+                case "Goruntulenme_Gore":
+                    kayitlar = kayitlar.OrderBy(Blog => Blog.BlogViewCount);
+                    break;
+                default:
+                    kayitlar = kayitlar.OrderByDescending(Blog => Blog.ID);
+                    break;
+            }
+
+            ViewBag.HtmlStr = kayitlar.Count();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpPost]
@@ -30,7 +68,7 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddBlog(string title,string tag,HttpPostedFileBase picture,string seo,string content)
         {
             Blog addModel = new Blog();
-            if(title!=null || content!=null)
+            if(title!=null && content!=null)
             {
                 if(picture!=null)
                 {
@@ -106,7 +144,12 @@ namespace ProjeKulubu.Controllers
             var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        public ActionResult MultipleDelete(IEnumerable<int> idler)
+        {
+            db.Blog.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Blog.Remove(y));
+            db.SaveChanges();
+            return RedirectToAction("BlogIndex", "Blog");
+        }
 
 
 

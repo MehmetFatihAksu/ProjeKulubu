@@ -1,8 +1,7 @@
 ﻿@model ProjeKulubu.Models.Education
 
-
 @{
-    ViewBag.Title = "TakingEducationDelete";
+    ViewBag.Title = "GivingEducationDelete";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
@@ -15,13 +14,13 @@
         $.ajax({
 
             type: "POST",
-            url: "/TakingEducation/TakingEducationDataDelete/",
+            url: "/GivingEducation/GivingEducationDataDelete/",
             data: { id: $("#dataId").val() },
             ajaxasync: true,
             traditional: true,
             success: function (response) {
                 alert("Eğitim Başarıyla Silindi");
-                window.location.href = "/TakingEducation/TakingEducationIndex";
+                window.location.href = "/GivingEducation/GivingEducationIndex";
             },
             error: function (response) {
                 console.log("Hata Oluştu");
@@ -41,7 +40,7 @@
         </li>
         <li>
             <i class="fa fa-file-text-o"></i>
-            <a href="@Url.Action("TakingEducationIndex","TakingEducation")">Alınan Eğitim Yönetimi</a>
+            <a href="@Url.Action("GivingEducationIndex","GivingEducation")">Verilen Eğitim Yönetimi</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
         <li class="active"><i class="fa fa-trash-o"></i>Eğitim Silme Ekranı</li>
@@ -65,7 +64,7 @@
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim ID:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000" name="title" id="title" value="@Model.ID" class="form-control show-popover" disabled >
+                                <input type="text" style="color:#000000" name="title" id="title" value="@Model.ID" class="form-control show-popover" disabled>
                             </div>
                         </div>
                         <div class="form-group">
@@ -107,24 +106,25 @@
                                 <input type="hidden" id="dataId" value="@Model.ID" />
                                 <input type="button" class="btn btn-primary" style="float:right" value="Sil" onclick="DataDelete()" />
                                 @ViewBag.Error
-                                <a class="btn btn-danger" style="float:left" href="@Url.Action("TakingEducationIndex","TakingEducation")">Geri Dön</a>
+                                <a class="btn btn-danger" style="float:left" href="@Url.Action("GivingEducationIndex","GivingEducation")">Geri Dön</a>
                             </div>
 
                         </div>
 
                     </div>
-                    </div>
                 </div>
             </div>
-        </form>
-    </aside>
+        </div>
+    </form>
+</aside>
 
 
 
-                    <footer>
-                        <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-                    </footer>
+<footer>
+    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer>
 
 
-                    <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
+<a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
+
 

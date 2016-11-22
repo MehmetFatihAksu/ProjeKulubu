@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="/Reference/AddReference" class="form-horizontal form-row-separated" method="post" enctype="multipart/form-data">
+                <form action="/Reference/ReferenceDataUpdate" class="form-horizontal form-row-separated" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Referans Başlığı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
@@ -59,7 +59,7 @@
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
 
-                                        <input type="file" required oninvalid="this.setCustomValidity('Referans resmini boş geçemezsiniz')" oninput="setCustomValidity('')"  id="uploadFile" name="ReferencePicture" class="file-input" />
+                                        <input type="file" accept="image/*" required oninvalid="this.setCustomValidity('Referans resmini boş geçemezsiniz')" oninput="setCustomValidity('')"  id="uploadFile" name="ReferencePicture" class="file-input" />
                                     </span>
                                     <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
@@ -77,6 +77,8 @@
 
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <input type="hidden" id="id" name="id" value="@Model.ID" />
+
                             <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
                             <a class="btn btn-danger" style="float:left" href="@Url.Action("ReferenceIndex","Reference")">Geri Dön</a>
                               

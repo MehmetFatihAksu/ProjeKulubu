@@ -13,14 +13,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!--base css styles-->
+    <link rel="stylesheet" href="/Content/AdminContent/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Content/AdminContent/assets/font-awesome/css/font-awesome.min.css">
+    <!--page specific css styles-->
+    <!--flaty css styles-->
+    <link rel="stylesheet" href="/Content/AdminContent/css/flaty.css">
+    <link rel="stylesheet" href="/Content/AdminContent/css/flaty-responsive.css">
+    <link rel="shortcut icon" href="img/favicon.png">
     <link href="~/Content/AdminContent/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/AdminContent/assets/font-awesome/css/font-awesome.min.css">
     <!--page specific css styles-->
     <!--flaty css styles-->
     <link href="~/Content/AdminContent/css/flaty.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/AdminContent/css/flaty-responsive.css">
-    <link rel="stylesheet" href="/Content/AdminContent/assets/prettyPhoto/css/prettyPhoto.css">
-    <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/chosen-bootstrap/chosen.min.css" />
+    <link rel="stylesheet" href="~/Content/AdminContent/assets/prettyPhoto/css/prettyPhoto.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/chosen-bootstrap/chosen.min.css" />
 
 </head>
 <body>
@@ -34,42 +41,117 @@
         </button>
         <a class="navbar-brand" href="@Url.Action("Index","Admin")">
             <small>
-
-                Proje Kulübü Türkiye Admin Paneli
+                <i class="fa fa-desktop"></i>
+              Proje Kulübü Admin Paneli
             </small>
         </a>
         <!-- BEGIN Navbar Buttons -->
         <ul class="nav flaty-nav pull-right">
-            
+            <li class="hidden-xs">
+                <a target="_blank"  href="@Url.Action("Index","Home")">
+                    <i class="fa fa-upload"></i>
+                </a>
+                <!-- BEGIN Messages Dropdown -->
+                
+                <!-- END Notifications Dropdown -->
+            </li>
+            <li class="hidden-xs">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <i class="fa fa-envelope"></i>
+                    <span class="badge badge-success">1</span>
+                </a>
+                <!-- BEGIN Messages Dropdown -->
+                <ul class="dropdown-navbar dropdown-menu">
+                    <li class="nav-header">
+                        <i class="fa fa-comments"></i>
+                        1 Yeni Mesajınız Var
+                    </li>
+                    <li class="msg">
+                        <a href="#">
+                            <img src="~/Content/notification.png" alt="Alternate Text" />
+                            <div>
+                                <span class="msg-title">Sarah</span>
+                                <span class="msg-time">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span>a moment ago</span>
+                                </span>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </a>
+                    </li>
+                    <li class="msg">
+                        <a href="#">
+                            <img src="~/Content/notification.png" alt="Alternate Text" />
+                            <div>
+                                <span class="msg-title">Emma</span>
+                                <span class="msg-time">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span>2 Days ago</span>
+                                </span>
+                            </div>
+                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris ...</p>
+                        </a>
+                    </li>
+                    <li class="msg">
+                        <a href="#">
+                            <img src="~/Content/notification.png" alt="Alternate Text" />
+                            <div>
+                                <span class="msg-title">John</span>
+                                <span class="msg-time">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span>8:24 PM</span>
+                                </span>
+                            </div>
+                            <p>Duis aute irure dolor in reprehenderit in ...</p>
+                        </a>
+                    </li>
+                    <li class="more">
+                        <a href="@Url.Action("ContactIndex","Contact")">Bütün Mesajları Gör</a>
+                    </li>
+                </ul>
+                <!-- END Notifications Dropdown -->
+            </li>
+            <!-- END Button Messages -->
+            <!-- BEGIN Button User -->
             <li class="user-profile">
                 <a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">
-                    <img class="nav-user-photo" src="~/Content/pikocon_html/images/atilla.jpg" />
-                    <span class="hhh" id="user_info">
+                    <img class="nav-user-photo" src="~/Content/pikocon_html/images/atilla.jpg" Admin Photo" />
+                    <span id="user_info">
                         Admin
                     </span>
                     <i class="fa fa-caret-down"></i>
                 </a>
                 <!-- BEGIN User Dropdown -->
                 <ul class="dropdown-menu dropdown-navbar" id="user_menu">
-
+                    <li class="nav-header">
+                        <i class="fa fa-clock-o"></i>
+                        Giriş Saati 20:45
+                    </li>
                     <li>
-                        <a href="#">
-                            <i class="fa fa-cog"></i>
+                        <a href="@Url.Action("Settings","Admin")">
+                            <i class="fa fa-user"></i>
                             Hesap Bilgisi
                         </a>
                     </li>
-
                     <li>
                         <a href="#">
                             <i class="fa fa-question"></i>
                             Yardım
                         </a>
                     </li>
+                    <li class="divider visible-xs"></li>
+                    <li class="visible-xs">
+                        <a href="@Url.Action("ContactIndex","Contact")">
+                            <i class="fa fa-envelope"></i>
+                            Messages
+                            <span class="badge badge-success">3</span>
+                        </a>
+                    </li>
                     <li class="divider"></li>
                     <li>
                         <a href="#">
                             <i class="fa fa-off"></i>
-                            Çıkış Yap
+                            Çıkış
                         </a>
                     </li>
                 </ul>
@@ -84,120 +166,126 @@
     <div class="container" id="main-container">
         <!-- BEGIN Sidebar -->
         <div id="sidebar" class="navbar-collapse collapse">
-           
-            <ul class="nav nav-list">
-                <!-- BEGIN Search Form -->
-                <li>
-                    <form target="#" method="GET" class="search-form">
-                        <span class="search-pan">
-                            <button type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            <input type="text" name="search" placeholder="Arama Yapınız ..." autocomplete="off" />
-                        </span>
-                    </form>
-                </li>
-                <!-- END Search Form -->
-                <li class="active">
-                    <a href="@Url.Action("Index","Admin")">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Ana Sayfa</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("ReferenceIndex", "Reference")">
-                        <i class="fa fa-star-o"></i>
-                        <span>Referans Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle">
-                        <i class="fa fa-desktop"></i>
-                        <span>Proje Yönetimi</span>
-                        <b class="arrow fa fa-angle-right"></b>
-                    </a>
-                    <!-- BEGIN Submenu -->
-                    <ul class="submenu">
-                        <li><a href="@Url.Action("TamamlananProjeler", "Admin")">Tamamlanan Projeler</a></li>
-                        <li><a href="@Url.Action("SatisiDevamEdenProjeler", "Admin")">Satışı Devam Eden Projeler</a></li>
-                        <li><a href="@Url.Action("AddProject", "Admin")">Yakındaki Projeler</a></li>
-                    </ul>
-                    <!-- END Submenu -->
-                </li>
+            
+                <ul class="nav nav-list">
+                    <!-- BEGIN Search Form -->
+                    <li>
+                        <form target="#" method="GET" class="search-form">
+                            <span class="search-pan">
+                                <button type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                <input type="text" name="search" placeholder="Arama Yapınız ..." autocomplete="off" />
+                            </span>
+                        </form>
+                    </li>
+                    <!-- END Search Form -->
+                    <li class="active">
+                        <a href="@Url.Action("Index","Admin")">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Ana Sayfa</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ReferenceIndex", "Reference")">
+                            <i class="fa fa-star-o"></i>
+                            <span>Referans Yönetimi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle">
+                            <i class="fa fa-desktop"></i>
+                            <span>Proje Yönetimi</span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+                        <!-- BEGIN Submenu -->
+                        <ul class="submenu">
+                            <li><a href="@Url.Action("TamamlananProjeler", "Admin")">Tamamlanan Projeler</a></li>
+                            <li><a href="@Url.Action("SatisiDevamEdenProjeler", "Admin")">Satışı Devam Eden Projeler</a></li>
+                            <li><a href="@Url.Action("AddProject", "Admin")">Yakındaki Projeler</a></li>
+                        </ul>
+                        <!-- END Submenu -->
+                    </li>
 
-                <li>
-                    <a href="@Url.Action("OfficeIndex", "Office")">
-                        <i class="fa fa-list-alt"></i>
-                        <span>Ofis Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("TagsIndex", "Tags")">
-                        <i class="fa fa-tags"></i>
-                        <span>Etiket Yönetimi</span>
-                    </a>
-                </li>
-                
-               
-                <li>
-                    <a href="#" class="dropdown-toggle">
-                        <i class="fa fa-file-text-o"></i>
-                        <span>Eğitim Yönetimi</span>
-                        <b class="arrow fa fa-angle-right"></b>
-                    </a>
-                    <!-- BEGIN Submenu -->
-                    <ul class="submenu">
-                        <li><a href="@Url.Action("TakingEducationIndex", "TakingEducation")">Alınan Eğitimler</a></li>
-                        <li><a href="@Url.Action("GivingEducationIndex", "GivingEducation")">Verilen Eğitimler</a></li>
-                    </ul>
-                    <!-- END Submenu -->
-                </li>
-                <li>
-                    <a href="@Url.Action("QuestionIndex", "Question")">
-                        <i class="fa fa-question-circle"></i>
-                        <span>S.S.S Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("TeamIndex","Team")">
-                        <i class="fa fa-users"></i>
-                        <span>Ekip Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("BlogIndex", "Blog")">
-                        <i class="fa fa-tasks"></i>
-                        <span>Makale Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("PicturesIndex", "Pictures")">
-                        <i class="fa fa-image"></i>
-                        <span>Bizden Resimler</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("CustomerIndex", "Customer")">
-                        <i class="fa fa-comments"></i>
-                        <span>Müşteri Yorumları</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("ContactIndex","Contact")">
-                        <i class="fa fa-connectdevelop"></i>
-                        <span>İletişim Mesajları</span>
-                    </a>
-                </li>
-                
-            </ul>
-            <!-- END Navlist -->
-            <!-- BEGIN Sidebar Collapse Button -->
-            <div id="sidebar-collapse" class="visible-lg">
-                <i class="fa fa-angle-double-left"></i>
-            </div>
-            <!-- END Sidebar Collapse Button -->
+                    <li>
+                        <a href="@Url.Action("OfficeIndex", "Office")">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Ofis Yönetimi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("TagsIndex", "Tags")">
+                            <i class="fa fa-tags"></i>
+                            <span>Etiket Yönetimi</span>
+                        </a>
+                    </li>
 
-        </div>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle">
+                            <i class="fa fa-file-text-o"></i>
+                            <span>Eğitim Yönetimi</span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+                        <!-- BEGIN Submenu -->
+                        <ul class="submenu">
+                            <li><a href="@Url.Action("TakingEducationIndex", "TakingEducation")">Alınan Eğitimler</a></li>
+                            <li><a href="@Url.Action("GivingEducationIndex", "GivingEducation")">Verilen Eğitimler</a></li>
+                        </ul>
+                        <!-- END Submenu -->
+                    </li>
+                    <li>
+                        <a href="@Url.Action("QuestionIndex", "Question")">
+                            <i class="fa fa-question-circle"></i>
+                            <span>S.S.S Yönetimi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("TeamIndex","Team")">
+                            <i class="fa fa-users"></i>
+                            <span>Ekip Yönetimi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("BlogIndex", "Blog")">
+                            <i class="fa fa-tasks"></i>
+                            <span>Makale Yönetimi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("PicturesIndex", "Pictures")">
+                            <i class="fa fa-image"></i>
+                            <span>Bizden Resimler</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("CustomerIndex", "Customer")">
+                            <i class="fa fa-comments"></i>
+                            <span>Müşteri Yorumları</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ContactIndex","Contact")">
+                            <i class="fa fa-connectdevelop"></i>
+                            <span>İletişim Mesajları</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","Settings")">
+                            <i class="fa fa-cog"></i>
+                            <span>Genel Ayarlar</span>
+                        </a>
+                    </li>
+
+                </ul>
+                <!-- END Navlist -->
+                <!-- BEGIN Sidebar Collapse Button -->
+                <div id="sidebar-collapse" class="visible-lg">
+                    <i class="fa fa-angle-double-left"></i>
+                </div>
+                <!-- END Sidebar Collapse Button -->
+
+</div>
         <!-- END Sidebar -->
       
         <!-- BEGIN Content -->
@@ -207,12 +295,19 @@
         
         <!-- END Content -->
     </div>
-
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/Content/AdminContent/assets/jquery/jquery-2.1.4.min.js"><\/script>')</script>
+    <script src="/Content/AdminContent/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/Content/AdminContent/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/Content/AdminContent/assets/jquery-cookie/jquery.cookie.js"></script>
+    <!--page specific plugin scripts-->
+    <!--flaty scripts-->
+    <script src="/Content/AdminContent/js/flaty.js"></script>
+    <script src="/Content/AdminContent/js/flaty-demo-codes.js"></script>
     <!-- END Container -->
     <!--basic scripts-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="assets/jquery/jquery-2.1.4.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="~/Content/AdminContent/assets/jquery/jquery-2.1.4.min.js"><\/script>')</script>
     <script src="~/Content/AdminContent/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Content/AdminContent/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="~/Content/AdminContent/assets/jquery-cookie/jquery.cookie.js"></script>
@@ -240,17 +335,19 @@
     <script src="~/Content/AdminContent/assets/bootstrap-switch/static/js/bootstrap-switch.js"></script>
     <script src="~/Content/AdminContent/assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
     <script src="~/Content/AdminContent/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
-    <script src="~/Content/AdminContent/assets/ckeditor/ckeditor.js"></script> 
+    <script src="~/Content/AdminContent/assets/ckeditor/ckeditor.js"></script>
 
 
 
     <!--flaty scripts-->
     <script src="~/Content/AdminContent/js/flaty.js"></script>
     <script src="~/Content/AdminContent/js/flaty-demo-codes.js"></script>
-    <script src="/Content/AdminContent/assets/prettyPhoto/js/jquery.prettyPhoto.js"></script>
-    <script src="/Content/AdminContent/assets/chosen-bootstrap/chosen.jquery.min.js"></script>
-    <script src="/Content/AdminContent/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/Content/AdminContent/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="/Content/AdminContent/assets/jquery-cookie/jquery.cookie.js"></script>
+    <script src="~/Content/AdminContent/assets/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Content/AdminContent/assets/chosen-bootstrap/chosen.jquery.min.js"></script>
+    <script src="~/Content/AdminContent/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/AdminContent/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/AdminContent/assets/jquery-cookie/jquery.cookie.js"></script>
+
+    
 </body>
 </html>
