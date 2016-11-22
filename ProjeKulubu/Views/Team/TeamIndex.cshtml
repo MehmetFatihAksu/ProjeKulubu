@@ -1,5 +1,15 @@
 ﻿@model PagedList.IPagedList<ProjeKulubu.Models.Team>
 @using PagedList.Mvc
+@using ProjeKulubu.Models
+
+@{
+    ProjeKulubu.Models.db2299D218BEEntities9 db = new ProjeKulubu.Models.db2299D218BEEntities9();
+    
+    List<Office> officeList = new List<Office>();
+    
+    officeList = db.Office.Where(x=>x.OfficeName !=null).ToList();
+
+}
 
 @{
     ViewBag.Title = "TeamIndex";
@@ -44,7 +54,18 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">* Üyenin Pozisyonu:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">Çalıştığı Ofis:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <select name="office" id="Office" class="form-control input-sm" tabindex="1">
+                                @foreach (Office item in officeList)
+                                {
+                                    <option value="@item.ID">@item.OfficeName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label">Üye Pozisyon:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <label class="radio-inline">
                                 <input type="radio" name="position" value="Genel Müdür" /> Genel Müdür
@@ -168,12 +189,12 @@
                 <div class="btn-toolbar pull-right">
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
-                        <button type="submit" class="btn btn-circle show-tooltip" title="Silme"><i class="fa fa-trash-o"></i></button>
-                    </div>
+                        <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
+        </div>
                     <div class="btn-group">
-                        <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("TeamIndex", "Team")"><i class="fa fa-repeat"></i></a>
-                    </div>
-                </div>
+                        <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("TeamIndex","Team")"><i class="fa fa-repeat"></i></a>
+    </div>
+</div>
                 <br /><br />
                 <div class="table-responsive" style="margin-top:10px">
                     <table class="table table-advance">

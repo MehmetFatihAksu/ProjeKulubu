@@ -14,9 +14,9 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /Blog/
 
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
-
-        public ActionResult BlogIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        [UserAuthorize]
+        public ActionResult BlogIndex(int ? page)
         {
             ViewBag.BlogName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
             ViewBag.BlogDate = string.IsNullOrEmpty(Sorting_Order) ? "Tarihe_Gore" : "";
@@ -68,7 +68,9 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddBlog(string title,string tag,HttpPostedFileBase picture,string seo,string content)
         {
             Blog addModel = new Blog();
-            if(title!=null && content!=null)
+
+            content = content.Replace("<p>", "").Replace("</p>", "");
+            if(title!=null || content!=null)
             {
                 if(picture!=null)
                 {
@@ -96,6 +98,8 @@ namespace ProjeKulubu.Controllers
         public ActionResult BlogDataUpdate(int id,string title,string tag,HttpPostedFileBase picture,string content,string seo)
         {
             Blog updateModel = db.Blog.Where(x => x.ID == id).FirstOrDefault();
+
+            content = content.Replace("<p>", "").Replace("</p>", "");
             if(title!=null && content!=null)
             {
                 if(picture!=null)
@@ -126,19 +130,19 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
+        [UserAuthorize]
         public ActionResult BlogView(int id)
         {
             var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        [UserAuthorize]
         public ActionResult BlogUpdate(int id)
         {
             var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        [UserAuthorize]
         public ActionResult BlogDelete(int id)
         {
             var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();

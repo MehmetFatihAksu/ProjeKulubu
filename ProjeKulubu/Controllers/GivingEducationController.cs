@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using ProjeKulubu.Models;
+using System.Data.Entity.Infrastructure;
 using PagedList;
 
 namespace ProjeKulubu.Controllers
@@ -14,9 +15,9 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /GivingEducation/
 
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
-        
-        public ActionResult GivingEducationIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        [UserAuthorize]
+        public ActionResult GivingEducationIndex(int? page)
         {
             ViewBag.EduName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
             ViewBag.EduDate = string.IsNullOrEmpty(Sorting_Order) ? "Tarihe_Gore" : "";
@@ -82,6 +83,7 @@ namespace ProjeKulubu.Controllers
                 eduModel.EducationContent = content;
                 eduModel.EducationFileSEO = seo;
                 eduModel.EducationTitle = title;
+                eduModel.EducationTypeID = 2;
                 db.Education.Add(eduModel);
                 db.SaveChanges();
             }
@@ -92,25 +94,31 @@ namespace ProjeKulubu.Controllers
         [ValidateInput(false)]
         public ActionResult GivingEducationDataUpdate(int id,string title,HttpPostedFileBase file,string seo,string content)
         {
-            Education updateModel = db.Education.Where(x => x.ID == id).FirstOrDefault();
-            if(title!=null && content!=null)
+            Education education = db.Education.Where(x => x.ID == id).FirstOrDefault();
+
+            content = content.Replace("<p>", "").Replace("</p>", "");
+
+            if (file == null)
             {
-                if(file!=null)
-                {
-                    string fileMap = Path.GetFileName(file.FileName);
-                    var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                    file.SaveAs(loadLocation);
-                    updateModel.EducationFileURL = fileMap;
-                }
-                else
-                {
-                    ViewBag.Error = "Belirlenemeyen bi hata oluştu";
-                }
-                updateModel.EducationTitle = title;
-                updateModel.EducationFileSEO = seo;
-                updateModel.EducationContent = content;
+                education.EducationTitle = title;
+                education.EducationContent = content;
+                education.EducationFileSEO = seo;
+                education.EducationTypeID = 2;
                 db.SaveChanges();
             }
+            else
+            {
+                string fileMap = Path.GetFileName(file.FileName);
+                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                file.SaveAs(loadLocation);
+                education.EducationTitle = title;
+                education.EducationContent = content;
+                education.EducationFileSEO = seo;
+                education.EducationFileURL = fileMap;
+                education.EducationTypeID = 2;
+                db.SaveChanges();
+            }
+
             return RedirectToAction("GivingEducationIndex", "GivingEducation");
 
         }
@@ -123,20 +131,26 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
+       
+        [HttpPost]
+        [UserAuthorize]
         public ActionResult GivingEducationDelete(int id)
         {
             var data = db.Education.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        
+        [HttpPost]
+        [UserAuthorize]
         public ActionResult GivingEducationUpdate(int id)
         {
             var data = db.Education.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
 
-        public ActionResult MultipleDelete(IEnumerable<int> idler)
+        [HttpPost]
+        [UserAuthorize]
+        public ActionResult GivingEducationView(int id)
         {
             db.Education.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Education.Remove(y));
             db.SaveChanges();

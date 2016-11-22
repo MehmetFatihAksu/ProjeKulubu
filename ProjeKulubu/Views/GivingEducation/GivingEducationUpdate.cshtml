@@ -4,6 +4,7 @@
     ViewBag.Title = "GivingEducationUpdate";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
+
 <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 
 <div id="breadcrumbs">
@@ -36,13 +37,13 @@
                 <form action="/GivingEducation/GivingEducationDataUpdate" method="post"
                       enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Eğitim Başlığı:</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim Başlığı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" placeholder="Eğitim Başlığını Giriniz" style="color:#000000" name="title" id="title" value="@Model.EducationTitle" required oninvalid="this.setCustomValidity('Eğitim İsmini Boş Geçemezsiniz')" oninput="setCustomValidity('')" class="form-control show-popover">
+                            <input type="text" name="title" id="title" value="@Model.EducationTitle" class="form-control show-popover">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">* Eğitim Resim/Video Yükleme:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">Eğitim Resim/Video Yükleme:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
@@ -53,7 +54,7 @@
                                     <span class="btn btn-default btn-file">
                                         <span class="fileupload-new">Resim/Video Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
-                                        <input required oninvalid="this.setCustomValidity('Eğitim Resmini&Videoyu Boş Geçemezsiniz')" oninput="setCustomValidity('')" accept="image/*" type="file" name="file" id="file" class="file-input" />
+                                        <input type="file" name="file" id="file" class="file-input" />
                                     </span>
                                     <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
@@ -61,33 +62,27 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Eğitim Resim SEO:</label>
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim Resim SEO:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="seo" id="seo" value="@Model.EducationFileSEO" required oninvalid="this.setCustomValidity('SEO Kısmını Boş Geçemezsiniz')" oninput="setCustomValidity('')" placeholder="SEO Kelimenizi Giriniz" style="color:#000000" class="form-control show-popover">
+                            <input type="text" name="seo" id="seo" value="@Model.EducationFileSEO" class="form-control show-popover">
                         </div>
                     </div>
                     <div class="box-content">
 
                         <div class="form-group">
-                            <label class="col-sm-3 col-lg-2 control-label">* Eğitim İçeriği:</label>
+                            <label class="col-sm-3 col-lg-2 control-label">Eğitim İçeriği:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control col-md-12 ckeditor" id="content" name="content" style="color:#000000" rows="6">@Model.EducationContent</textarea>
+                                <textarea class="form-control col-md-12" id="content" name="content" rows="6">@Model.EducationContent</textarea>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <input type="hidden" id="dataId" name="Id" value="@Model.ID" />
-                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Güncelle</button>
-                            <a class="btn btn-danger" style="float:left" href="@Url.Action("GivingEducationIndex","GivingEducation")">Geri Dön</a>
-                        </div>
-                    </div>
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <h6 style="float:right">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
-
+                            <input type="hidden" id="dataId" name="Id" value="@Model.ID" />
+                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Güncelle</button>
+                            <a class="btn btn-danger" style="float:left" href="@Url.Action("GivingEducationIndex","GivingEducation")">Geri Dön</a>
                         </div>
                     </div>
                 </form>

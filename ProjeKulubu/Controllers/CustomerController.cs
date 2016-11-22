@@ -17,7 +17,7 @@ namespace ProjeKulubu.Controllers
 
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
-
+        [UserAuthorize]
         public ActionResult CustomerIndex(string Sorting_Order,string SearchString,string currentFilter,int? page)
         {
             ViewBag.CustomerName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
@@ -86,7 +86,13 @@ namespace ProjeKulubu.Controllers
         public ActionResult CustomerDataUpdate(int id, HttpPostedFileBase CommentPicture,string CustomerName)
         {
             CustomerComments customerModel = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
-            if(CustomerName!=null && CommentPicture!=null)
+
+            if (CommentPicture ==null)
+            {
+                customerModel.Name = CustomerName;
+                db.SaveChanges();
+            }
+            else
             {
                 string fileMap = Path.GetFileName(CommentPicture.FileName);
                 var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
@@ -94,14 +100,8 @@ namespace ProjeKulubu.Controllers
                 customerModel.CommentsPictureURL = fileMap;
                 customerModel.Name = CustomerName;
                 db.SaveChanges();
-                return RedirectToAction("CustomerIndex", "Customer");
-
             }
-            else
-        {
-                ViewBag.Error("Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin");
-            }
-            return View();
+            return RedirectToAction("CustomerIndex", "Customer");
         }
 
         [HttpPost]
@@ -112,14 +112,20 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
+        [UserAuthorize]
         public ActionResult CustomerDelete(int id)
         {
             var data = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        [UserAuthorize]
         public ActionResult CustomerUpdate(int id)
+        {
+            var data = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+        [UserAuthorize]
+        public ActionResult CustomerView(int id)
         {
             var data = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
             return View(data);

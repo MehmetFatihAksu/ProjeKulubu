@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using ProjeKulubu.Models;
+using System.Data.Entity.Infrastructure;
 using PagedList;
 
 namespace ProjeKulubu.Controllers
@@ -83,6 +84,7 @@ namespace ProjeKulubu.Controllers
                 eduModel.EducationTitle = title;
                 eduModel.EducationFileSEO = seo;
                 eduModel.EducationContent = content;
+                eduModel.EducationTypeID = 1;
                 db.Education.Add(eduModel);
                 db.SaveChanges();
             }
@@ -97,23 +99,31 @@ namespace ProjeKulubu.Controllers
         [ValidateInput(false)]
         public ActionResult TakingEducationDataUpdate(int id,string title, HttpPostedFileBase file, string seo, string content)
         {
-            Education updateEdu = db.Education.Where(x => x.ID == id).FirstOrDefault();
-            if(title!=null && content!=null && seo!=null)
+            Education education = db.Education.Where(x => x.ID == Id).FirstOrDefault();
+
+            content = content.Replace("<p>", "").Replace("</p>", "");
+
+            if (file == null)
             {
-                if(file!=null)
-                {
-                    string fileMap = Path.GetFileName(file.FileName);
-                    var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                    file.SaveAs(loadLocation);
-                    updateEdu.EducationFileURL = fileMap;
-                }
-                updateEdu.EducationContent = content;
-                updateEdu.EducationFileSEO = seo;
-                updateEdu.EducationTitle = title;
+                education.EducationTitle = title;
+                education.EducationContent = content;
+                education.EducationFileSEO = seo;
+                education.EducationTypeID = 1;
+                db.SaveChanges();
+            }
+            else
+            {
+                string fileMap = Path.GetFileName(file.FileName);
+                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                file.SaveAs(loadLocation);
+                education.EducationTitle = title;
+                education.EducationContent = content;
+                education.EducationFileSEO = seo;
+                education.EducationFileURL = fileMap;
+                education.EducationTypeID = 1;
                 db.SaveChanges();
             }
             return RedirectToAction("TakingEducationIndex", "TakingEducation");
-
         }
 
         [HttpPost]
@@ -124,19 +134,20 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
+        [UserAuthorize]
         public ActionResult TakingEducationDelete(int id)
         {
             var data = db.Education.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
-        public ActionResult TakingEducationUpdate(int id)
+        [UserAuthorize]
+        public ActionResult TakingEducationView(int id)
         {
             var data = db.Education.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-        public ActionResult MultipleDelete(IEnumerable<int> idler)
+        [UserAuthorize]
+        public ActionResult TakingEducationUpdate(int id)
         {
             db.Education.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Education.Remove(y));
             db.SaveChanges();

@@ -10,9 +10,9 @@ namespace ProjeKulubu.Controllers
 {
     public class ContactController : Controller
     {
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
-       
-        public ActionResult ContactIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        [UserAuthorize]
+        public ActionResult ContactIndex()
         {
             ViewBag.ContactName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
             ViewBag.CurrentSort = Sorting_Order;
@@ -65,7 +65,8 @@ namespace ProjeKulubu.Controllers
             }
             return RedirectToAction("Iletisim", "Home");
         }
-        public ActionResult ContactView(int id)
+        [UserAuthorize]
+        public ActionResult ContactDelete(int id)
         {
             var data = db.Contact.Where(x => x.ID == id).FirstOrDefault();
             return View(data);

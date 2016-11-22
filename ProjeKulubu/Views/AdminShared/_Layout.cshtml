@@ -166,124 +166,129 @@
     <div class="container" id="main-container">
         <!-- BEGIN Sidebar -->
         <div id="sidebar" class="navbar-collapse collapse">
-            
-                <ul class="nav nav-list">
-                    <!-- BEGIN Search Form -->
-                    <li>
-                        <form target="#" method="GET" class="search-form">
-                            <span class="search-pan">
-                                <button type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                                <input type="text" name="search" placeholder="Arama Yapınız ..." autocomplete="off" />
-                            </span>
-                        </form>
-                    </li>
-                    <!-- END Search Form -->
-                    <li class="active">
-                        <a href="@Url.Action("Index","Admin")">
-                            <i class="fa fa-dashboard"></i>
-                            <span>Ana Sayfa</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("ReferenceIndex", "Reference")">
-                            <i class="fa fa-star-o"></i>
-                            <span>Referans Yönetimi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-desktop"></i>
-                            <span>Proje Yönetimi</span>
-                            <b class="arrow fa fa-angle-right"></b>
-                        </a>
-                        <!-- BEGIN Submenu -->
-                        <ul class="submenu">
-                            <li><a href="@Url.Action("TamamlananProjeler", "Admin")">Tamamlanan Projeler</a></li>
-                            <li><a href="@Url.Action("SatisiDevamEdenProjeler", "Admin")">Satışı Devam Eden Projeler</a></li>
-                            <li><a href="@Url.Action("AddProject", "Admin")">Yakındaki Projeler</a></li>
-                        </ul>
-                        <!-- END Submenu -->
-                    </li>
-
-                    <li>
-                        <a href="@Url.Action("OfficeIndex", "Office")">
-                            <i class="fa fa-list-alt"></i>
-                            <span>Ofis Yönetimi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("TagsIndex", "Tags")">
-                            <i class="fa fa-tags"></i>
-                            <span>Etiket Yönetimi</span>
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-file-text-o"></i>
-                            <span>Eğitim Yönetimi</span>
-                            <b class="arrow fa fa-angle-right"></b>
-                        </a>
-                        <!-- BEGIN Submenu -->
-                        <ul class="submenu">
-                            <li><a href="@Url.Action("TakingEducationIndex", "TakingEducation")">Alınan Eğitimler</a></li>
-                            <li><a href="@Url.Action("GivingEducationIndex", "GivingEducation")">Verilen Eğitimler</a></li>
-                        </ul>
-                        <!-- END Submenu -->
-                    </li>
-                    <li>
-                        <a href="@Url.Action("QuestionIndex", "Question")">
-                            <i class="fa fa-question-circle"></i>
-                            <span>S.S.S Yönetimi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("TeamIndex","Team")">
-                            <i class="fa fa-users"></i>
-                            <span>Ekip Yönetimi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("BlogIndex", "Blog")">
-                            <i class="fa fa-tasks"></i>
-                            <span>Makale Yönetimi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("PicturesIndex", "Pictures")">
-                            <i class="fa fa-image"></i>
-                            <span>Bizden Resimler</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("CustomerIndex", "Customer")">
-                            <i class="fa fa-comments"></i>
-                            <span>Müşteri Yorumları</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("ContactIndex","Contact")">
-                            <i class="fa fa-connectdevelop"></i>
-                            <span>İletişim Mesajları</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Index","Settings")">
-                            <i class="fa fa-cog"></i>
-                            <span>Genel Ayarlar</span>
-                        </a>
-                    </li>
-
-                </ul>
-                <!-- END Navlist -->
-                <!-- BEGIN Sidebar Collapse Button -->
-                <div id="sidebar-collapse" class="visible-lg">
-                    <i class="fa fa-angle-double-left"></i>
-                </div>
-                <!-- END Sidebar Collapse Button -->
+           
+            <ul class="nav nav-list">
+                <!-- BEGIN Search Form -->
+                <li>
+                    <form target="#" method="GET" class="search-form">
+                        <span class="search-pan">
+                            <button type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <input type="text" name="search" placeholder="Arama Yapınız ..." autocomplete="off" />
+                        </span>
+                    </form>
+                </li>
+                <!-- END Search Form -->
+                <li class="active">
+                    <a href="@Url.Action("Index","Admin")">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Ana Sayfa</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ReferenceIndex", "Reference")">
+                        <i class="fa fa-star-o"></i>
+                        <span>Referans Yönetimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-desktop"></i>
+                        <span>Proje Yönetimi</span>
+                        <b class="arrow fa fa-angle-right"></b>
+                    </a>
+                    <!-- BEGIN Submenu -->
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("CompleteProjects", "Project")">Tamamlanan Projeler</a></li>
+                        <li><a href="@Url.Action("SaleProjects", "Project")">Satışı Devam Eden Projeler</a></li>
+                        <li><a href="@Url.Action("SoonProjects", "Project")">Yakındaki Projeler</a></li>
+                    </ul>
+                    <!-- END Submenu -->
+                </li>
+                <li>
+                    <a href="@Url.Action("ProjectPictureIndex", "Project")">
+                        <i class="fa fa-clipboard"></i>
+                        <span>Proje Görsel Yönetimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("OfficeIndex", "Office")">
+                        <i class="fa fa-list-alt"></i>
+                        <span>Ofis Yönetimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("OfficePictureIndex", "Office")">
+                        <i class="fa fa-indent"></i>
+                        <span>Ofis Görsel Yönetimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("TagsIndex", "Tags")">
+                        <i class="fa fa-tags"></i>
+                        <span>Etiket Yönetimi</span>
+                    </a>
+                </li>
+                
+               
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-file-text-o"></i>
+                        <span>Eğitim Yönetimi</span>
+                        <b class="arrow fa fa-angle-right"></b>
+                    </a>
+                    <!-- BEGIN Submenu -->
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("TakingEducationIndex", "TakingEducation")">Alınan Eğitimler</a></li>
+                        <li><a href="@Url.Action("GivingEducationIndex", "GivingEducation")">Verilen Eğitimler</a></li>
+                    </ul>
+                    <!-- END Submenu -->
+                </li>
+                <li>
+                    <a href="@Url.Action("QuestionIndex", "Question")">
+                        <i class="fa fa-question-circle"></i>
+                        <span>S.S.S Yönetimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("TeamIndex","Team")">
+                        <i class="fa fa-users"></i>
+                        <span>Ekip Yönetimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("BlogIndex", "Blog")">
+                        <i class="fa fa-tasks"></i>
+                        <span>Makale Yönetimi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("PicturesIndex", "Pictures")">
+                        <i class="fa fa-image"></i>
+                        <span>Bizden Resimler</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("CustomerIndex", "Customer")">
+                        <i class="fa fa-comments"></i>
+                        <span>Müşteri Yorumları</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ContactIndex","Contact")">
+                        <i class="fa fa-connectdevelop"></i>
+                        <span>İletişim Mesajları</span>
+                    </a>
+                </li>
+                
+            </ul>
+            <!-- END Navlist -->
+            <!-- BEGIN Sidebar Collapse Button -->
+            <div id="sidebar-collapse" class="visible-lg">
+                <i class="fa fa-angle-double-left"></i>
+            </div>
+            <!-- END Sidebar Collapse Button -->
 
 </div>
         <!-- END Sidebar -->

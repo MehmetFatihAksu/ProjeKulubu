@@ -16,7 +16,8 @@ namespace ProjeKulubu.Controllers
         // GET: /Tags/
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
-        public ActionResult TagsIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
+        [UserAuthorize]
+        public ActionResult TagsIndex(string Sorting_Order,string SearchString,string currentFilter,int? page)
         {
             ViewBag.TagsName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
 
@@ -90,13 +91,13 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
+        [UserAuthorize]
         public ActionResult TagsDelete(int id)
         {
             var data = db.Tags.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        [UserAuthorize]
         public ActionResult TagsUpdate(int id)
         {
             var data = db.Tags.Where(x => x.ID == id).FirstOrDefault();

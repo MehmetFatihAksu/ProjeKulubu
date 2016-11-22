@@ -16,7 +16,7 @@ namespace ProjeKulubu.Controllers
 
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
-
+        [UserAuthorize]
         public ActionResult PicturesIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
             ViewBag.PictureSEO = string.IsNullOrEmpty(Sorting_Order) ? "Seo_Gore" : "";
@@ -108,19 +108,20 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
+        [UserAuthorize]
         public ActionResult PicturesDelete(int id)
         {
             var data = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        [UserAuthorize]
         public ActionResult PicturesUpdate(int id)
         {
             var data = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-        public ActionResult MultipleDelete(IEnumerable<int> idler)
+        [UserAuthorize]
+        public ActionResult PicturesView(int id)
         {
             db.OurPictures.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.OurPictures.Remove(y));
             db.SaveChanges();

@@ -3,9 +3,11 @@
 @using PagedList.Mvc
 
 @{
-    ViewBag.Title = "OfficeIndex";
+    ViewBag.Title = "CompleteProjects";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
+
+
 <link rel="stylesheet" href="~/Content/AdminContent/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="~/Content/AdminContent/assets/font-awesome/css/font-awesome.min.css">
 <!--page specific css styles-->
@@ -62,10 +64,8 @@
 
     function StepControl1() {
 
-        if ($("#PName").val() == "") {
-
+        if ($("#PName").val() == "" || $("#PBirim").val() == "" || $("#PBudget").val() == "" || $("#PYear").val() == "") {
             alert("Lütfen eksiksiz veri girişi yapınız..");
-
         } else {
             var elem = $("#StepOne");
             elem.removeClass("active");
@@ -94,58 +94,67 @@
             var dataDiv2 = $("#tab1-4");
             dataDiv2.addClass("active");
 
-
             $("#LblIsim").text($("#PName").val());
-            $("#LblBugdet").text($("#PTime").val());
-            $("#LblBirim").text($("#PLocation").val());
-            $("#LblLocation").text($("#PAdress").val());
+            $("#LblType").text($("#Ptype").val());
+            $("#LblBugdet").text($("#PBudget").val());
+            $("#LblBirim").text($("#PBirim").val());
+            $("#LblYear").text($("#PYear").val());
+            $("#LblTime").text($("#PTime").val());
+            $("#LblPhone").text($("#PPhone").val());
+            $("#LblAdress").text($("#PAdress").val());
+            $("#LblLocation").text($("#PLocation").val());
             $("#LblEmail").text($("#PEMail").val());
-            $("#LblYear").text($("#PPhone").val());
         }
 
     }
-  
 
-    //var _counter = 0;
-    //function AddPictureForm() {
 
-    //    _counter++;
-    //    if (_counter <= 4) {
+    var _counter = 0;
+    function AddPictureForm() {
 
-    //        var elem = $("#tab1-3").find(".box-content");
+        _counter++;
+        if (_counter <= 4) {
 
-    //        elem.append("<div class='form-group' id='data" + _counter + "'>" +
-    //                                        "<label class='col-sm-3 col-lg-2 control-label'>* Ofis Resmi:</label>" +
-    //                                        "<div class='col-sm-9 col-lg-10 controls'>" +
-    //                                            "<div class='fileupload fileupload-new' data-provides='fileupload'>" +
-    //                                                "<div class='fileupload-new img-thumbnail' style='width: 200px; height: 150px;'>" +
-    //                                                    "<img src='/Content/noimage.gif' alt=''>" +
-    //                                                "</div>" +
-    //                                                "<div class='fileupload-preview fileupload-exists img-thumbnail' style='max-width: 200px; max-height: 150px; line-height: 20px;'></div>" +
-    //                                                "<div>" +
-    //                                                    "<span class='btn btn-default btn-file'>" +
-    //                                                        "<span class='fileupload-new'>Resim Seç</span>" +
-    //                                                        "<span class='fileupload-exists'>Değiştir</span>" +
+            var elem = $("#tab1-3").find(".box-content");
 
-    //                                                        "<input required='' oninvalid='this.setCustomValidity('Ofis Resimlerini Boş Geçemezsiniz')' type='file' accept='image/*' oninput='setCustomValidity('')' name='uploadFile" + _counter + "' id='uploadFile" + _counter + "' name='CommentPicture' class='file-input'>" +
-    //                                                    "</span>" +
-    //                                                    "<a href='#' class='btn btn-default fileupload-exists' data-dismiss='fileupload'>Sil</a>" +
-    //                                                "</div>" +
-    //                                            "</div>" +
+            elem.append("<div class='form-group' id='data" + _counter + "'>" +
+                                            "<label class='col-sm-3 col-lg-2 control-label'>* Proje Resmi:</label>" +
+                                            "<div class='col-sm-9 col-lg-10 controls'>" +
+                                                "<div class='fileupload fileupload-new' data-provides='fileupload'>" +
+                                                    "<div class='fileupload-new img-thumbnail' style='width: 200px; height: 150px;'>" +
+                                                        "<img src='/Content/noimage.gif' alt=''>" +
+                                                    "</div>" +
+                                                    "<div class='fileupload-preview fileupload-exists img-thumbnail' style='max-width: 200px; max-height: 150px; line-height: 20px;'></div>" +
+                                                    "<div>" +
+                                                        "<span class='btn btn-default btn-file'>" +
+                                                            "<span class='fileupload-new'>Resim Seç</span>" +
+                                                            "<span class='fileupload-exists'>Değiştir</span>" +
 
-    //                                            "<span class='help-inline' onclick='AddPictureForm()' style='color:#0090ff; cursor:pointer;'>Daha Fazla Resim Ekle</span>" +
-    //                                            "<span class='help-inline' onclick='DeletePictureForm(" + _counter + ")' dataId='data" + _counter + "' style='color: #ff0000;cursor: pointer;margin-left: 15px;'>İptal Et</span>" +
+                                                            "<input required='' oninvalid='this.setCustomValidity('Ofis Resimlerini Boş Geçemezsiniz')' type='file' accept='image/*' oninput='setCustomValidity('')' name='uploadFile" + _counter + "' id='uploadFile" + _counter + "' name='CommentPicture' class='file-input'>" +
+                                                        "</span>" +
+                                                        "<a href='#' class='btn btn-default fileupload-exists' data-dismiss='fileupload'>Sil</a>" +
+                                                    "</div>" +
+                                                "</div>" +
 
-    //                                        "</div>" +
-    //                                    "</div>");
-    //    } else {
+                                                "<span class='help-inline' onclick='AddPictureForm()' style='color:#0090ff; cursor:pointer;'>Daha Fazla Resim Ekle</span>" +
+                                                "<span class='help-inline' onclick='DeletePictureForm(" + _counter + ")' dataId='data" + _counter + "' style='color: #ff0000;cursor: pointer;margin-left: 15px;'>İptal Et</span>" +
 
-    //        alert("Maksimum 5 Ofis Resmi Ekleyebilirsiniz...");
-    //        _counter = 0;
-    //    }
+                                            "</div>" +
+                                        "</div>");
+        } else {
 
-    //}
+            alert("Maksimum 5 Proje Resmi Ekleyebilirsiniz...");
+            _counter = 0;
+        }
 
+    }
+
+    function DeletePictureForm(_counter) {
+
+        var elem = $(".box-content").find("#data" + _counter + "");
+        elem.fadeOut(1000);
+        _counter = 0;
+    }
     function OnlyNumber() {
         if ((event.keyCode < 48) || (event.keyCode > 57)) {
             return false;
@@ -157,8 +166,8 @@
 
 <div class="page-title">
     <div>
-        <h1><i class="fa fa-bars"></i> Ofis Yönetimi</h1>
-        <h4>Bu kısımda ofis ekleyip silebilir veya düzenleyebilirsiniz</h4>
+        <h1><i class="fa fa-bars"></i> Tamamlanan Proje Yönetimi</h1>
+        <h4>Bu kısımda proje ekleyip silebilir veya düzenleyebilirsiniz</h4>
     </div>
 </div>
 
@@ -169,21 +178,21 @@
             <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
-        <li class="active">Ofis Yönetimi</li>
+        <li class="active">Proje Yönetimi</li>
     </ul>
 </div>
 <div class="row">
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-rocket"></i> Ofis Ekleme Formu</h3>
+                <h3><i class="fa fa-rocket"></i>Tamamlanan Proje Ekleme Formu</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
                 </div>
             </div>
             <div class="box-content">
-                <form action="/Office/AddOffice" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <form action="/Project/AddCompleteProject" method="post" enctype="multipart/form-data" class="form-horizontal">
                     <div class="form-wizard" id="form-wizard-1">
                         <ul class="row steps">
                             <li class="col-xs-12 col-sm-6 col-lg-3" id="StepOne">
@@ -212,18 +221,30 @@
                             <div class="tab-pane active" id="tab1-1">
                                 <div class="box-content">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 ">
                                                 <!-- BEGIN Left Side -->
                                                 <div class="form-group">
                                                     <label for="textfield1" class="col-xs-3 col-lg-2 control-label">İsim : </label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <input type="text" id="PName" name="Name" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin ismini giriniz..." data-original-title="Ofis İsmi" data-placement="top" placeholder="Ofis İsim">
+                                                        <input type="text" id="PName" name="Name" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma proje ismini giriniz..." data-original-title="Proje İsmi" data-placement="top" placeholder="Proje İsim">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password1" class="col-xs-3 col-lg-2 control-label">Tipi :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <select class="form-control" name="Type" data-placeholder="Choose a Category" tabindex="1" id="Ptype">
+                                                            <option value="">Seçiniz...</option>
+                                                            <option value="Plaza">Plaza</option>
+                                                            <option value="IsMerkezi">İş Merkezi</option>
+                                                            <option value="Fabrika">Fabrika</option>
+                                                            <option value="Villa">Villa</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="textarea2" class="col-xs-3 col-lg-2 control-label">İçerik :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <textarea name="Content" id="PContent" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma ofisiniz ile ilgili genel bilgi metni giriniz..." data-original-title="Ofis Açıklama" data-placement="top" placeholder="Ofis Açıklaması Giriniz..."></textarea>
+                                                        <textarea name="Content" id="PContent" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma projenin açıklamasını giriniz..." data-original-title="Proje Açıklama" data-placement="top" placeholder="Proje Açıklaması Giriniz..."></textarea>
                                                     </div>
                                                 </div>
                                                 <!-- END Left Side -->
@@ -231,11 +252,36 @@
                                             <div class="col-md-6 ">
                                                 <!-- BEGIN Right Side -->
                                                 <div class="form-group">
-                                                    <label for="textarea2" class="col-xs-3 col-lg-2 control-label">Alt İçerik :</label>
+                                                    <label for="textfield2" class="col-xs-3 col-lg-2 control-label">Bütçe :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <textarea name="AltIcerik" id="PContent2" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma ofisiniz ile ilgili yardımıcı bir içerik  metni giriniz..." data-original-title="Ofis Alt Açıklama" data-placement="top" placeholder="Ofis Alt Açıklaması Giriniz..."></textarea>
+                                                        <input type="text" name="Bugdet" id="PBudget" class="form-control show-popover" onkeypress="return OnlyNumber();" data-trigger="hover" data-content="Bu kısıma projenin bütçe değerini giriniz..." data-original-title="Proje Bütçesi" data-placement="top" placeholder="Proje Bütçe">
                                                     </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="Location" class="col-xs-3 col-lg-2 control-label">Birim :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <select class="form-control" name="Birim" id="PBirim" data-placeholder="Choose a Category" tabindex="1">
+                                                            <option value="">Para Birimi...</option>
+                                                            <option value="TurkLirasi">Türk Lirası (TL)</option>
+                                                            <option value="AmerikanDolari">Amerikan Doları ($)</option>
+                                                            <option value="Euro">Euro (€)</option>
+                                                            <option value="Pound">Pound(£)</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tel" class="col-xs-3 col-lg-2 control-label">Yıl :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <select class="form-control" name="Year" id="PYear" data-placeholder="Choose a Category" tabindex="1">
+                                                            <option value="">Proje Bitiş Yılı...</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
                                                 <div class="form-group">
                                                     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
                                                         <input type="button" class="btn btn-primary" onclick="StepControl1()" style="float:right;" value="Devam Et" />
@@ -244,11 +290,11 @@
                                                 <!-- END Right Side -->
                                             </div>
                                         </div>
+                                 
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab1-2">
                                 <div class="box-content">
-                                   
                                         <div class="row">
                                             <div class="col-md-6 ">
                                                 <!-- BEGIN Left Side -->
@@ -256,7 +302,7 @@
                                                     <label for="Location" class="col-xs-3 col-lg-2 control-label">Zaman :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
                                                         <select class="form-control" name="Zaman" id="PTime" data-placeholder="Choose a Category" tabindex="1">
-                                                            <option value="null">Çalışma Saatleri...</option>
+                                                            <option value="">Çalışma Saatleri...</option>
                                                             <option value="Hafta-İçi(9:00-17:00)">Hafta-İçi(9:00-17:00)</option>
                                                             <option value="Hafta-İçi(9:00-17:00),Cumartesi(9:00-13:00)">Hafta-İçi(9:00-17:00),Cumartesi(9:00-13:00)</option>
                                                             <option value="Cumartesi-Pazar(10:30-15:00)">Cumartesi-Pazar(10:30-15:00)</option>
@@ -266,7 +312,7 @@
                                                 <div class="form-group">
                                                     <label for="tel" class="col-xs-3 col-lg-2 control-label">Telefon :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <input class="form-control col-md-5 show-popover" onkeypress="return OnlyNumber();" name="Telefon" id="PPhone" type="text" maxlength="10" placeholder="Telefon Numarası" data-trigger="hover" data-content="Bu kısıma ofisinizin telefon numarasını giriniz..." data-original-title="Ofis Telefon" data-placement="top">
+                                                        <input class="form-control col-md-5 show-popover" onkeypress="return OnlyNumber();" name="Telefon" id="PPhone" type="text" maxlength="10" placeholder="Telefon Numarası" data-trigger="hover" data-content="Bu kısıma projenizin telefon numarasını giriniz..." data-original-title="Proje Telefon" data-placement="top">
                                                         <span class="help-inline">(212) 212-2121</span>
                                                     </div>
                                                 </div>
@@ -275,7 +321,8 @@
                                                     <div class="col-sm-9 col-lg-10 controls">
                                                         <div class="input-group">
                                                             <span class="input-group-addon">@@</span>
-                                                            <input class="form-control show-popover" id="PEMail" name="EMail" type="text" placeholder="Email" data-trigger="hover" data-content="Bu kısıma ofisinizin E-posta adresini giriniz..." data-original-title="Ofis E-Posta" data-placement="top">
+                                                            <input class="form-control show-popover" id="PEMail" name="EMail" type="text" placeholder="Email" data-trigger="hover" data-content="Bu kısıma projenizin E-posta adresini giriniz..." data-original-title="Proje E-Posta" data-placement="top">
+
                                                         </div>
                                                         <span class="help-inline">deneme@deneme.com</span>
                                                     </div>
@@ -287,7 +334,7 @@
                                                 <div class="form-group">
                                                     <label for="password1" class="col-xs-3 col-lg-2 control-label">Konum :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <input class="form-control show-popover" id="PLocation" value="İstanbul,Türkiye" disabled name="Location" type="text" placeholder="Konum" data-trigger="hover" data-content="Bu kısıma ofisinizin konumunu giriniz..." data-original-title="Ofis Konum" data-placement="top">
+                                                        <input class="form-control show-popover" id="PLocation" value="İstanbul,Turkiye" disabled name="Location" type="text" placeholder="Konum" data-trigger="hover" data-content="Bu kısıma ofisinizin konumunu giriniz..." data-original-title="Ofis Konum" data-placement="top">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -307,13 +354,49 @@
                                         </div>
                                 </div>
                             </div>
+                            @*<div class="tab-pane" id="tab1-3">
+                                    <div class="box-content">
+                                        <div class='form-group' id='data" + _counter + "'>
 
+                                            <label class='col-sm-3 col-lg-2 control-label'>* Proje Resmi:</label>
+                                            <div class='col-sm-9 col-lg-10 controls'>
+
+                                                <div class='fileupload fileupload-new' data-provides='fileupload'>
+
+                                                    <div class='fileupload-new img-thumbnail' style='width: 200px; height: 150px;'>
+
+                                                        <img src='/Content/noimage.gif' alt=''>
+
+                                                    </div>
+                                                    <div class='fileupload-preview fileupload-exists img-thumbnail' style='max-width: 200px; max-height: 150px; line-height: 20px;'></div>
+                                                    <div>
+
+                                                        <span class='btn btn-default btn-file'>
+
+                                                            <span class='fileupload-new'>Resim Seç</span>
+                                                            <span class='fileupload-exists'>Değiştir</span>
+
+                                                            <input required='' oninvalid='this.setCustomValidity(' ofis resimlerini boş geçemezsiniz')' type='file' accept='image/*' oninput='setCustomValidity(' ')' name='uploadFile" + _counter + "' id='uploadFile" + _counter + "' name='CommentPicture' class='file-input'>
+
+                                                        </span>
+                                                        <a href='#' class='btn btn-default fileupload-exists' data-dismiss='fileupload'>Sil</a>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <span class='help-inline' onclick='AddPictureForm()' style='color:#0090ff; cursor:pointer;'>Daha Fazla Resim Ekle</span>
+                                                <span class='help-inline' onclick='DeletePictureForm(" + _counter + ")' dataid='data" + _counter + "' style='color: #ff0000;cursor: pointer;margin-left: 15px;'>İptal Et</span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
                             <div class="tab-pane" id="tab1-4">
                                 <div class="box-content">
                                     <div class="row">
 
                                         <div class="col-md-6">
-
                                             <div class="form-group">
                                                 <label class="col-sm-3 col-lg-2 control-label">İsim :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
@@ -321,33 +404,56 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 col-lg-2 control-label">Zaman :</label>
+                                                <label class="col-sm-3 col-lg-2 control-label">Tip :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblType"></span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">Bütçe :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
                                                     <span class="text" id="LblBugdet"></span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 col-lg-2 control-label">Konum :</label>
+                                                <label class="col-sm-3 col-lg-2 control-label">Birim :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
                                                     <span class="text" id="LblBirim"></span>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">Yıl :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblYear"></span>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-
                                             <div class="form-group">
-                                                <label class="col-sm-3 col-lg-2 control-label">Adres :</label>
+                                                <label class="col-sm-3 col-lg-2 control-label">Zaman :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
-                                                    <span class="text" id="LblLocation"></span>
+                                                    <span class="text" id="LblTime"></span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 col-lg-2 control-label">Telefon :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
-                                                    <span class="text" id="LblYear"></span>
+                                                    <span class="text" id="LblPhone"></span>
                                                 </div>
                                             </div>
-
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">Adres :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblAdress"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-2 control-label">Konum :</label>
+                                                <div class="col-sm-5 col-lg-3 controls">
+                                                    <span class="text" id="LblLocation"></span>
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 col-lg-2 control-label">E-Mail :</label>
                                                 <div class="col-sm-5 col-lg-3 controls">
@@ -359,7 +465,6 @@
                                     <div class="form-group">
                                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
                                             <button type="submit" id="button-save" class="btn btn-primary" style="float:right; margin-right: 50px;">Onayla & Kaydet</button>
-                                            @ViewBag.Error
                                         </div>
                                     </div>
                                 </div>
@@ -370,12 +475,11 @@
         </div>
     </div>
 </div>
-
 <div class="row">
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Ofisler</h3>
+                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Tamamlanan Projeler</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
@@ -388,7 +492,7 @@
                         <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
                     </div>
                     <div class="btn-group">
-                        <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("OfficeIndex", "Office")"><i class="fa fa-repeat"></i></a>
+                        <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("CompleteProjects", "Project")"><i class="fa fa-repeat"></i></a>
                     </div>
                 </div>
                 <br /><br />
@@ -398,15 +502,16 @@
                             <tr>
                                 <th style="width:18px"><input type="checkbox" /></th>
                                 <th>ID</th>
-                                <th>Ofis İsim</th>
-                                <th>Çalışma Saatleri</th>
-                                <th>Telefon</th>
-                                <th>E-Posta</th>
+                                <th>Proje İsmi</th>
+                                <th>Proje Tipi</th>
+                                <th>Proje Bütçesi</th>
+                                <th>Bitiş Yılı</th>
                                 <th>Adres</th>
+                                <th>E-Mail</th>
+                                <th>Icerik</th>
                                 <th>İncele</th>
                                 <th>Güncelle</th>
                                 <th>Sil</th>
-                                
                             </tr>
                         </thead>
                         <tbody>
@@ -415,14 +520,16 @@
                                 <tr class="table-flag-blue">
                                     <td><input type="checkbox" /></td>
                                     <td>@list.ID</td>
-                                    <td>@list.OfficeName</td>
-                                    <td>@list.OfficeWorkingTime</td>
-                                    <td>@list.OfficePhone</td>
-                                    <td>@list.OfficeMail</td>
-                                    <td>@list.OfficeLocation</td>
-                                    <td><a class="btn btn-sm show-tooltip" title="İncele" href="@Url.Action("OfficeView", "Office")/@list.ID"><i class="fa fa-search"></i></a></td>
-                                    <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("OfficeUpdate", "Office")/@list.ID"><i class="fa fa-edit"></i></a></td>
-                                    <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("OfficeDelete", "Office")/@list.ID"><i class="fa fa-trash-o"></i></a></td>
+                                    <td>@list.ProjectName</td>
+                                    <td>@list.ProjectType</td>
+                                    <td>@list.ProjectBudgets</td>
+                                    <td>@list.ProjectYear</td>
+                                    <td>@list.ProjectLocation</td>
+                                    <td>@list.ProjectMail</td>
+                                    <td>@list.ProjectContent.Substring(0, 10)</td>
+                                    <td><a class="btn btn-sm show-tooltip" title="İncele" href="@Url.Action("CompleteProjectView", "Project")/@list.ID"><i class="fa fa-search"></i></a></td>
+                                    <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("CompleteProjectUpdate", "Project")/@list.ID"><i class="fa fa-edit"></i></a></td>
+                                    <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("CompleteProjectDelete", "Project")/@list.ID"><i class="fa fa-trash-o"></i></a></td>
 
                                 </tr>
                             }
@@ -431,21 +538,10 @@
                 </div>
                 <div class="text-center">
                     <ul class="pagination">
-                        @Html.PagedListPager((IPagedList)ViewBag.Show, page => Url.Action("OfficeIndex", new { page }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
+                        @Html.PagedListPager((IPagedList)ViewBag.Show, page => Url.Action("CompleteProjects", new { page }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-</div> @*Question List*@
-
-<footer>
-    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-</footer> @*Footer*@
-
-@*Scripts Down Here*@
-
-<a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
-<script src="~/Content/AdminContent/js/buttonActions.js"></script>
-<script type="text/javascript" src="/Content/AdminContent/assets/ckeditor/ckeditor.js"></script>
-
+</div>

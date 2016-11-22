@@ -1,0 +1,137 @@
+﻿@using ProjeKulubu.Models;
+@model Office
+
+@{
+    ViewBag.Title = "OfficeDelete";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    function DataDelete() {
+
+        $.ajax({
+
+            type: "POST",
+            url: "/Office/OfficeDataDelete/",
+            data: { id : $("#dataId").val()},
+            ajaxasync: true,
+            traditional: true,
+            success: function (response) {
+                alert("Ofis Başarıyla Silindi");
+                window.location.href = "/Office/OfficeIndex";
+            },
+            error: function (response) {
+                console.log("Hata Oluştu");
+            }
+
+        });
+    }
+
+</script>@*Delete Scripts*@
+
+<div id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li>
+            <i class="fa fa-question-circle"></i>
+            <a href="@Url.Action("OfficeIndex", "Office")">Ofis Yönetimi</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li class="active"><i class="fa fa-trash-o"></i>Ofis Silme Ekranı</li>
+    </ul>
+</div>@*Header*@
+
+<aside id="OfficeDeleteDetail" class="OfficeContent">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-black">
+                    <div class="box-title">
+                        <h3><i class="fa fa-trash-o"></i> Mevcut Ofisi Silmek İstediğinize Emin Misiniz ?</h3>
+                        <div class="box-tool">
+                            <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                            <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Ofis ID:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+
+                                <input type="text" style="color:#000000" class="form-control show-popover" disabled value="@Model.ID" id="ID" name="textfield3" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Ofis Adı:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" class="form-control show-popover" value="@Model.OfficeName" style="color:#000000" disabled id="OfficeName" name="textfield3" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label"> Çalışma Saatleri:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" class="form-control show-popover" value="@Model.OfficeWorkingTime" style="color:#000000" disabled id="OfficeWorkingTime" name="textfield3" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Ofis Telefonu:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" class="form-control show-popover" value="@Model.OfficePhone" style="color:#000000" disabled id="OfficePhone" name="textfield3" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label"> E-Posta Adresi:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" class="form-control show-popover" value="@Model.OfficeMail" style="color:#000000" disabled id="OfficeMail" name="textfield3" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Adres:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <textarea class="form-control" disabled id="OfficeLocation" rows="6" style="color:#000000">@Model.OfficeLocation</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">İçerik:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <textarea class="form-control" disabled id="OfficeMainContent" rows="6" style="color:#000000">@Model.OfficeMainContent</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Alt İçerik:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <textarea class="form-control" disabled id="OfficeAltContent" rows="6" style="color:#000000">@Model.OfficeAltContent</textarea>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                <input type="hidden" id="dataId" value="@Model.ID" />
+                                <input type="button" class="btn btn-primary" style="float:right" value="Sil" onclick="DataDelete()" />
+                                @ViewBag.Error
+                                <a class="btn btn-danger" style="float:left" href="@Url.Action("OfficeIndex", "Office")">Geri Dön</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+</aside>@*Question Delete Form*@
+<footer>
+    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer>@*Footer*@

@@ -13,8 +13,10 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Team/
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
-        public ActionResult TeamIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
+        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+
+        [UserAuthorize]
+        public ActionResult TeamIndex(int ? page)
         {
             ViewBag.MemberName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
 
@@ -56,7 +58,7 @@ namespace ProjeKulubu.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AddTeamMember(string name,string position,string exp,int age,HttpPostedFileBase picture,string facebook,string twitter,string google,string linkedin,string biografi)
+        public ActionResult AddTeamMember(string office, string name,string position,string exp,int age,HttpPostedFileBase picture,string facebook,string twitter,string google,string linkedin,string biografi)
         {
             Team teamModel = new Team();
             
@@ -92,7 +94,7 @@ namespace ProjeKulubu.Controllers
         public ActionResult TeamDataUpdate(int id,string name,string position,int age,string exp,HttpPostedFileBase picture,string facebook,string twitter,string google,string linkedin,string biografi)
         {
             Team updateModel = db.Team.Where(x => x.ID == id).FirstOrDefault();
-            if(name!=null && position!=null && exp!=null && picture!=null && biografi!=null)
+            if(name!=null && position!=null && exp!=null && biografi!=null)
             {
                 string fileMap = Path.GetFileName(picture.FileName);
                 var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
@@ -124,18 +126,20 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
+        [UserAuthorize]
         public ActionResult TeamDelete(int id)
         {
             var data = db.Team.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-        public ActionResult TeamUpdate(int id)
+        [UserAuthorize]
+        public ActionResult TeamView(int id)
         {
             var data = db.Team.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-        public ActionResult MultipleDelete(IEnumerable<int> idler)
+        [UserAuthorize]
+        public ActionResult TeamUpdate(int id)
         {
             db.Team.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Team.Remove(y));
             db.SaveChanges();
