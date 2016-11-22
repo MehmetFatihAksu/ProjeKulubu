@@ -11,14 +11,14 @@
     <meta name="viewport" content="width=device-width" />
     <title>Proje Kulubu Admin Giriş</title>
     <style type="text/css">
-        .form-input{
-              padding: 5px;
-              min-width: 50%;
-              height: 20px;
-              border-radius: 4px;
-              border: none;
-              font-family: 'Nunito', sans-serif;
-              font-weight: normal;
+        .form-input {
+            padding: 5px;
+            min-width: 50%;
+            height: 20px;
+            border-radius: 4px;
+            border: none;
+            font-family: 'Nunito', sans-serif;
+            font-weight: normal;
         }
     </style>
 </head>
@@ -38,33 +38,28 @@
 
         <div class="form-container flip">
 
-          
-@using (Html.BeginForm("Login","Admin",FormMethod.Post,new {@class="login-form"}))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+            <form action="/Admin/LoginControl" method="post" enctype="multipart/form-data" class="login-form">
+
                 <h3 class="title">Giriş Formu</h3>
-                    <div class="form-group" id="username">
-                        @*<input class="form-input" tooltip-class="username-tooltip" placeholder="Kullanıcı Adı" id="email" />*@
-                        @Html.TextBoxFor(model=>model.UserName,new { @class = "form-input" })
-                         
-                    </div>
-                    <div class="form-group" id="password">
-                        @*<input type="password" class="form-input" tooltip-class="password-tooltip" placeholder="Şifre" />*@
-                        @Html.PasswordFor(model=>model.Password,new { @class = "form-input" })
-                    </div>
-                    <div class="form-group">
-                        <button onclick="clickListener();" class="login-button">Giriş</button>
-                    </div>
-}
-            <div class="loading">
-                <div class="loading-spinner-large" style="display: none;"></div>
-                <div class="loading-spinner-small" style="display: none;"></div>
-            </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" tooltip-class="username-tooltip" placeholder="Kullancı Adı" id="Username" name="UserName" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-input" tooltip-class="password-tooltip" placeholder="Şifre" id="Password" name="Password" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="login-button">Giriş Yap</button>
+                    @ViewBag.Error
+                </div>
+
+                <div class="loading">
+                    <div class="loading-spinner-large" style="display: none;"></div>
+                    <div class="loading-spinner-small" style="display: none;"></div>
+                </div>
+            </form>
         </div>
 
     </div>
-
 </body>
 
 </html>

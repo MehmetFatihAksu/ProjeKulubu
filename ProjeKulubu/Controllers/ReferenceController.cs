@@ -15,7 +15,7 @@ namespace ProjeKulubu.Controllers
         // GET: /Reference/
 
         db2299D218BEEntities9 db = new db2299D218BEEntities9();
-
+        [UserAuthorize]
         public ActionResult ReferenceIndex(int? page)
         {
             var list = db.Reference.ToList();
@@ -47,10 +47,18 @@ namespace ProjeKulubu.Controllers
 
 
         [HttpPost]
-        public ActionResult ReferenceDataUpdate(int id,HttpPostedFileBase ReferencePicture,string ReferenceName,string ReferenceURL,string ReferencePictureSEO)
+        public ActionResult ReferenceDataUpdate(int Id, HttpPostedFileBase ReferencePicture, string ReferenceName, string ReferenceURL, string ReferencePictureSEO)
         {
-            Reference updateModel = db.Reference.Where(x => x.ID == id).FirstOrDefault();
-            if(ReferencePicture !=null && ReferenceName!=null && ReferencePictureSEO!=null && ReferenceURL!=null )
+            Reference updateModel = db.Reference.Where(x => x.ID == Id).FirstOrDefault();
+
+            if (ReferencePicture == null)
+            {
+                updateModel.ReferenceLink = ReferenceURL;
+                updateModel.ReferencePictureSEO = ReferencePictureSEO;
+                updateModel.ReferenceTitle = ReferenceName;
+                db.SaveChanges();
+            }
+            else
             {
                 string fileMap = Path.GetFileName(ReferencePicture.FileName);
                 var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
@@ -60,11 +68,6 @@ namespace ProjeKulubu.Controllers
                 updateModel.ReferenceTitle = ReferenceName;
                 updateModel.ReferencePictureURL = fileMap;
                 db.SaveChanges();
-               
-            }
-            else
-            {
-                ViewBag.Error("Belirlenemeyen bir hata oluştu");
             }
             return RedirectToAction("ReferenceIndex", "Reference");
         }
@@ -77,17 +80,19 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
+        [UserAuthorize]
         public ActionResult ReferenceDelete(int id)
         {
             var data = db.Reference.Where(x => x.ID == id).FirstOrDefault();
                return View(data);
         }
+        [UserAuthorize]
         public ActionResult ReferenceUpdate(int id)
         {
             var data = db.Reference.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
+        [UserAuthorize]
         public ActionResult ReferenceView(int id)
         {
             var data = db.Reference.Where(x => x.ID == id).FirstOrDefault();

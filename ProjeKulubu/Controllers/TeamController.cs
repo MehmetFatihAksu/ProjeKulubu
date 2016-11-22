@@ -14,6 +14,8 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /Team/
         db2299D218BEEntities9 db = new db2299D218BEEntities9();
+
+        [UserAuthorize]
         public ActionResult TeamIndex(int ? page)
         {
             var list = db.Team.ToList();
@@ -61,7 +63,7 @@ namespace ProjeKulubu.Controllers
         public ActionResult TeamDataUpdate(int id,string name,string position,int age,string exp,HttpPostedFileBase picture,string facebook,string twitter,string google,string linkedin,string biografi)
         {
             Team updateModel = db.Team.Where(x => x.ID == id).FirstOrDefault();
-            if(name!=null && position!=null && exp!=null && picture!=null && biografi!=null)
+            if(name!=null && position!=null && exp!=null && biografi!=null)
             {
                 string fileMap = Path.GetFileName(picture.FileName);
                 var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
@@ -93,19 +95,19 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
+        [UserAuthorize]
         public ActionResult TeamDelete(int id)
         {
             var data = db.Team.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        [UserAuthorize]
         public ActionResult TeamView(int id)
         {
             var data = db.Team.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        [UserAuthorize]
         public ActionResult TeamUpdate(int id)
         {
             var data = db.Team.Where(x => x.ID == id).FirstOrDefault();

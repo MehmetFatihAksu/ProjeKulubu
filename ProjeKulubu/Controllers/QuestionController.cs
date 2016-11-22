@@ -17,7 +17,7 @@ namespace ProjeKulubu.Controllers
 
         db2299D218BEEntities9 db = new db2299D218BEEntities9();
 
-
+        [UserAuthorize]
         public ActionResult QuestionIndex(int ? page)
         {
             var list = db.AskedQuestions.ToList();
@@ -32,6 +32,7 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddQuestion(string Question,string Answer)
         {
             AskedQuestions askModel = new AskedQuestions();
+            Answer = Answer.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
             if(Question!=null && Answer!=null)
             {
                 askModel.Question = Question;
@@ -48,6 +49,7 @@ namespace ProjeKulubu.Controllers
         public ActionResult QuestionDataUpdate(int id,string Question,string Answer)
         {
             AskedQuestions updateModel = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
+            Answer = Answer.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
             if(Question!=null && Answer!=null)
             {
                 updateModel.Question = Question;
@@ -72,7 +74,7 @@ namespace ProjeKulubu.Controllers
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
 
-
+        [UserAuthorize]
         public ActionResult QuestionDelete(int id)
         {
             var data = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
@@ -80,13 +82,13 @@ namespace ProjeKulubu.Controllers
             return View(data);
         }
 
-
+        [UserAuthorize]
         public ActionResult QuestionUpdate(int id)
         {
             var data = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        [UserAuthorize]
         public ActionResult QuestionView(int id)
         {
             var data = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();

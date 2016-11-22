@@ -11,7 +11,7 @@ namespace ProjeKulubu.Controllers
     public class ContactController : Controller
     {
         db2299D218BEEntities9 db = new db2299D218BEEntities9();
-       
+        [UserAuthorize]
         public ActionResult ContactIndex()
         {
             return View();
@@ -25,7 +25,7 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
+        [UserAuthorize]
         public ActionResult ContactDelete(int id)
         {
             var data = db.Contact.Where(x => x.ID == id).FirstOrDefault();

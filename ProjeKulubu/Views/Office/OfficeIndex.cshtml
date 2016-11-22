@@ -403,8 +403,10 @@
                                 <th>Telefon</th>
                                 <th>E-Posta</th>
                                 <th>Adres</th>
-                                <th>İçerik</th>
-                                <th>Alt İçerik</th>
+                                <th>İncele</th>
+                                <th>Güncelle</th>
+                                <th>Sil</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -418,8 +420,6 @@
                                     <td>@list.OfficePhone</td>
                                     <td>@list.OfficeMail</td>
                                     <td>@list.OfficeLocation</td>
-                                    <td>@list.OfficeMainContent.Substring(0, 10)</td>
-                                    <td>@list.OfficeAltContent.Substring(0, 10)</td>
                                     <td><a class="btn btn-sm show-tooltip" title="İncele" href="@Url.Action("OfficeView", "Office")/@list.ID"><i class="fa fa-search"></i></a></td>
                                     <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("OfficeUpdate", "Office")/@list.ID"><i class="fa fa-edit"></i></a></td>
                                     <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("OfficeDelete", "Office")/@list.ID"><i class="fa fa-trash-o"></i></a></td>

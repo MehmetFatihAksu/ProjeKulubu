@@ -15,7 +15,7 @@ namespace ProjeKulubu.Controllers
         // GET: /Blog/
 
         db2299D218BEEntities9 db = new db2299D218BEEntities9();
-
+        [UserAuthorize]
         public ActionResult BlogIndex(int ? page)
         {
             var list = db.Blog.ToList();
@@ -30,6 +30,8 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddBlog(string title,string tag,HttpPostedFileBase picture,string seo,string content)
         {
             Blog addModel = new Blog();
+
+            content = content.Replace("<p>", "").Replace("</p>", "");
             if(title!=null || content!=null)
             {
                 if(picture!=null)
@@ -58,6 +60,8 @@ namespace ProjeKulubu.Controllers
         public ActionResult BlogDataUpdate(int id,string title,string tag,HttpPostedFileBase picture,string content,string seo)
         {
             Blog updateModel = db.Blog.Where(x => x.ID == id).FirstOrDefault();
+
+            content = content.Replace("<p>", "").Replace("</p>", "");
             if(title!=null && content!=null)
             {
                 if(picture!=null)
@@ -88,19 +92,19 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
+        [UserAuthorize]
         public ActionResult BlogView(int id)
         {
             var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        [UserAuthorize]
         public ActionResult BlogUpdate(int id)
         {
             var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-
+        [UserAuthorize]
         public ActionResult BlogDelete(int id)
         {
             var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();

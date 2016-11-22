@@ -14,7 +14,7 @@ namespace ProjeKulubu.Controllers
     {
 
         db2299D218BEEntities9 db = new db2299D218BEEntities9();
-
+        [UserAuthorize]
         public ActionResult OfficeIndex(int? page)
         {
             var list = db.Office.ToList();
@@ -86,19 +86,20 @@ namespace ProjeKulubu.Controllers
             return RedirectToAction("OfficeIndex", "Office");
         }
 
-
+        [UserAuthorize]
         public ActionResult OfficeDelete(int id)
         {
             var data = db.Office.Where(x => x.ID == id).FirstOrDefault();
 
             return View(data);
         }
-
+        [UserAuthorize]
         public ActionResult OfficeUpdate(int id)
         {
             var data = db.Office.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
+        [UserAuthorize]
         public ActionResult OfficeView(int id)
         {
             var data = db.Office.Where(x => x.ID == id).FirstOrDefault();
@@ -115,7 +116,7 @@ namespace ProjeKulubu.Controllers
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
 
-
+        [UserAuthorize]
         public ActionResult OfficePictureIndex(int? page)
         {
             var list = db.OfficePictures.ToList();
@@ -150,7 +151,7 @@ namespace ProjeKulubu.Controllers
             }
             return RedirectToAction("OfficePictureIndex", "Office");
         }
-
+        [UserAuthorize]
         public ActionResult OfficePictureUpdate(int id)
         {
             var data = db.OfficePictures.Where(x => x.ID == id).FirstOrDefault();
