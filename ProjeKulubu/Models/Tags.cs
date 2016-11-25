@@ -14,15 +14,10 @@ namespace ProjeKulubu.Models
     
     public partial class Tags
     {
-        public Tags()
-        {
-            this.Blog = new HashSet<Blog>();
-        }
-    
         public int ID { get; set; }
-        public Nullable<int> TagsID { get; set; }
+        public Nullable<int> BlogID { get; set; }
         public string TagsName { get; set; }
     
-        public virtual ICollection<Blog> Blog { get; set; }
+        public virtual Blog Blog { get; set; }
     }
 }

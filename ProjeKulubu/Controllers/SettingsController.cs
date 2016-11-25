@@ -11,6 +11,7 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /Settings/
 
+        [UserAuthorize]
         public ActionResult Index()
         {
             return View();

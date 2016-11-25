@@ -15,7 +15,7 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Project/
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
 
         #region Tamamlanan Proje Yönetimi

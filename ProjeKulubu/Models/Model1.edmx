@@ -34,7 +34,6 @@
           <Property Name="BlogContent" Type="nvarchar(max)" />
           <Property Name="BlogDate" Type="date" />
           <Property Name="BlogViewCount" Type="int" />
-          <Property Name="BlogTagsID" Type="int" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -44,8 +43,8 @@
           <Property Name="ContactName" Type="nvarchar" MaxLength="50" />
           <Property Name="ContactMail" Type="nvarchar" MaxLength="50" />
           <Property Name="ContactPhone" Type="char" MaxLength="11" />
-          <Property Name="ContactSubject" Type="nvarchar" MaxLength="50" />
-          <Property Name="ContantSubjectContent" Type="nvarchar(max)" />
+          <Property Name="ContactSubjectContent" Type="nvarchar(max)" />
+          <Property Name="ReadorNot" Type="bit" />
         </EntityType>
         <EntityType Name="CustomerComments">
           <Key>
@@ -54,6 +53,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="150" />
           <Property Name="CommentsPictureURL" Type="nvarchar(max)" />
+          <Property Name="PictureSEO" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="Education">
           <Key>
@@ -169,6 +169,12 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
           <Property Name="youtubeURL" Type="nvarchar" MaxLength="150" />
           <Property Name="phoneNumber" Type="char" MaxLength="11" />
           <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Working1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Working2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Working3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="MainOfficeID" Type="int" />
+          <Property Name="ContactMessage" Type="nvarchar" MaxLength="50" />
         </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
@@ -185,7 +191,7 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TagsID" Type="int" />
+          <Property Name="BlogID" Type="int" />
           <Property Name="TagsName" Type="nvarchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Team">
@@ -206,18 +212,6 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
           <Property Name="OfficeID" Type="int" />
           <Property Name="ProjectID" Type="int" />
         </EntityType>
-        <Association Name="FK_Blog_Tags">
-          <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
-          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tags">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Blog">
-              <PropertyRef Name="BlogTagsID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Education_EducationType">
           <End Role="EducationType" Type="Self.EducationType" Multiplicity="0..1" />
           <End Role="Education" Type="Self.Education" Multiplicity="*" />
@@ -266,6 +260,18 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tags_Blog">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+          <End Role="Tags" Type="Self.Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Team_Office">
           <End Role="Office" Type="Self.Office" Multiplicity="0..1" />
           <End Role="Team" Type="Self.Team" Multiplicity="*" />
@@ -309,10 +315,6 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Blog_Tags" Association="Self.FK_Blog_Tags">
-            <End Role="Tags" EntitySet="Tags" />
-            <End Role="Blog" EntitySet="Blog" />
-          </AssociationSet>
           <AssociationSet Name="FK_Education_EducationType" Association="Self.FK_Education_EducationType">
             <End Role="EducationType" EntitySet="EducationType" />
             <End Role="Education" EntitySet="Education" />
@@ -328,6 +330,10 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
           <AssociationSet Name="FK_ProjectPicture_Project1" Association="Self.FK_ProjectPicture_Project1">
             <End Role="Project" EntitySet="Project" />
             <End Role="ProjectPicture" EntitySet="ProjectPicture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tags_Blog" Association="Self.FK_Tags_Blog">
+            <End Role="Blog" EntitySet="Blog" />
+            <End Role="Tags" EntitySet="Tags" />
           </AssociationSet>
           <AssociationSet Name="FK_Team_Office" Association="Self.FK_Team_Office">
             <End Role="Office" EntitySet="Office" />
@@ -372,8 +378,7 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
           <Property Name="BlogContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BlogDate" Type="DateTime" Precision="0" />
           <Property Name="BlogViewCount" Type="Int32" />
-          <Property Name="BlogTagsID" Type="Int32" />
-          <NavigationProperty Name="Tags" Relationship="Self.FK_Blog_Tags" FromRole="Blog" ToRole="Tags" />
+          <NavigationProperty Name="Tags" Relationship="Self.FK_Tags_Blog" FromRole="Blog" ToRole="Tags" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -383,8 +388,8 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
           <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ContactMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ContactPhone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
-          <Property Name="ContactSubject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ContantSubjectContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactSubjectContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReadorNot" Type="Boolean" />
         </EntityType>
         <EntityType Name="CustomerComments">
           <Key>
@@ -393,6 +398,7 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="CommentsPictureURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PictureSEO" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Education">
           <Key>
@@ -523,9 +529,9 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TagsID" Type="Int32" />
+          <Property Name="BlogID" Type="Int32" />
           <Property Name="TagsName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Blog" Relationship="Self.FK_Blog_Tags" FromRole="Tags" ToRole="Blog" />
+          <NavigationProperty Name="Blog" Relationship="Self.FK_Tags_Blog" FromRole="Tags" ToRole="Blog" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -547,15 +553,15 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
           <NavigationProperty Name="Office" Relationship="Self.FK_Team_Office" FromRole="Team" ToRole="Office" />
           <NavigationProperty Name="Project" Relationship="Self.FK_Team_Project" FromRole="Team" ToRole="Project" />
         </EntityType>
-        <Association Name="FK_Blog_Tags">
-          <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
-          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+        <Association Name="FK_Tags_Blog">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+          <End Role="Tags" Type="Self.Tags" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Tags">
+            <Principal Role="Blog">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Blog">
-              <PropertyRef Name="BlogTagsID" />
+            <Dependent Role="Tags">
+              <PropertyRef Name="BlogID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -650,9 +656,9 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tags" EntityType="Self.Tags" />
           <EntitySet Name="Team" EntityType="Self.Team" />
-          <AssociationSet Name="FK_Blog_Tags" Association="Self.FK_Blog_Tags">
-            <End Role="Tags" EntitySet="Tags" />
+          <AssociationSet Name="FK_Tags_Blog" Association="Self.FK_Tags_Blog">
             <End Role="Blog" EntitySet="Blog" />
+            <End Role="Tags" EntitySet="Tags" />
           </AssociationSet>
           <AssociationSet Name="FK_Education_EducationType" Association="Self.FK_Education_EducationType">
             <End Role="EducationType" EntitySet="EducationType" />
@@ -715,7 +721,6 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
                 <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
                 <ScalarProperty Name="BlogDate" ColumnName="BlogDate" />
                 <ScalarProperty Name="BlogViewCount" ColumnName="BlogViewCount" />
-                <ScalarProperty Name="BlogTagsID" ColumnName="BlogTagsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -726,8 +731,8 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
                 <ScalarProperty Name="ContactName" ColumnName="ContactName" />
                 <ScalarProperty Name="ContactMail" ColumnName="ContactMail" />
                 <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
-                <ScalarProperty Name="ContactSubject" ColumnName="ContactSubject" />
-                <ScalarProperty Name="ContantSubjectContent" ColumnName="ContantSubjectContent" />
+                <ScalarProperty Name="ContactSubjectContent" ColumnName="ContactSubjectContent" />
+                <ScalarProperty Name="ReadorNot" ColumnName="ReadorNot" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -737,6 +742,7 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CommentsPictureURL" ColumnName="CommentsPictureURL" />
+                <ScalarProperty Name="PictureSEO" ColumnName="PictureSEO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -869,7 +875,7 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
             <EntityTypeMapping TypeName="db2299D218BEModel.Tags">
               <MappingFragment StoreEntitySet="Tags">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="TagsID" ColumnName="TagsID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
                 <ScalarProperty Name="TagsName" ColumnName="TagsName" />
               </MappingFragment>
             </EntityTypeMapping>

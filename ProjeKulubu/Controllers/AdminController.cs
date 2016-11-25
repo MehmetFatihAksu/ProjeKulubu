@@ -14,7 +14,7 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Admin/
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
         [UserAuthorize]
         public ActionResult Index()
@@ -42,7 +42,6 @@ namespace ProjeKulubu.Controllers
             else
             {
                 return RedirectToAction("Login", "Admin");
-                ViewBag.Error = "Kullanıcı Adı veya Şifre Hatalı";
             }
         }
         [UserAuthorize]
@@ -62,39 +61,6 @@ namespace ProjeKulubu.Controllers
             //Doldurulcak
             return View();
         }
-
-        #endregion
-
-        #region Login
-        //#region Login
-        //public ActionResult Login()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult Login(Admin Model)
-        //{
-        //    var kullanici = db.Admin.FirstOrDefault(x => x.UserName == Model.UserName && x.Password == Model.Password);
-        //    if(kullanici !=null)
-        //    {
-        //        Session["UserName"] = kullanici.UserName.ToString();
-        //        return RedirectToAction("Index", "Admin");
-        //    }
-        //    else
-        //    {
-        //        ViewBag.Hata = "Hatalı Verişi Girişi";
-        //        return View();
-        //    }
-        //}
-        //#endregion
-        #endregion
-
-        #region makale
-        public ActionResult Makale()
-        {
-            return View();
-        }
-        #endregion
 
 
     }

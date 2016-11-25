@@ -1,10 +1,12 @@
 ﻿@model PagedList.IPagedList<ProjeKulubu.Models.Blog>
 @using PagedList.Mvc
-
+@using ProjeKulubu.Models
 @{
     ViewBag.Title = "BlogIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
+
+
 
 <div class="page-title">
     <div>
@@ -41,12 +43,6 @@
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Makale Başlığı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <input type="text" name="title" required oninvalid="this.setCustomValidity('Makale Başlığını Boş Bırakamazsınız')" oninput="setCustomValidity('')" style="color:#000000" id="title" placeholder="Makale Başlığını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma makale başlığını giriniz..." data-original-title="Makale Başlığı" data-placement="left">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Etiket Ekle:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input id="tag-input-1"  style="color:#000000" name="tag" type="text" class="form-control tags show-popover" value="" data-trigger="hover" data-content="Bu kısıma etiket kelimeler giriniz..." data-original-title="Etiket Ekle" data-placement="left" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -144,7 +140,7 @@
                                 <th>Resim</th>
                                 <th>ResimSEO</th>
                                 <th>İçerik</th>
-                                <th>@Html.ActionLink("Tarih", "BlogIndex", new { Sorting_Order = ViewBag.BlogDate, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Tarihe Tıklarsanız Tarih Ekisden Yeniye Doğru Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
+                                <th>@Html.ActionLink("Eklenme Tarihi", "BlogIndex", new { Sorting_Order = ViewBag.BlogDate, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Tarihe Tıklarsanız Tarih Eskiden Yeniye Doğru Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
                                 <th>@Html.ActionLink("Görüntülenme", "BlogIndex", new { Sorting_Order = ViewBag.BlogView, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Görüntülenmeye Tıklarsanız En Çok dan En Aza Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
                                 <th>İncele</th>
                                 <th>Düzenleme</th>
@@ -158,7 +154,12 @@
                                     <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
                                     <td>@item.ID</td>
                                     <td>@item.BlogTitle</td>
-                                    <td>Etiket</td>
+                                    <td><select class="form-control input-sm" tabindex="1" style="color:#000000">
+    @foreach (var tagsList in item.Tags.Where(x=>x.BlogID == item.ID))
+    {
+        <option>@tagsList.TagsName</option>
+    }
+</select></td>
                                     <td>
                                         <ul class="gallery">
                                             <li>
@@ -172,8 +173,8 @@
                                     </td>
                                     <td>@item.BlogPictureSEO</td>
                                     <td>@item.BlogContent</td>
-                                    <td>Tarih</td>
-                                    <td>Görüntü</td>
+                                    <td>@item.BlogDate</td>
+                                    <td>@item.BlogViewCount</td>
                                     <td><a class="btn btn-sm show-tooltip" target="_blank" title="İncele" href="@Url.Action("BlogSingle", "Home")/@item.ID"><i class="fa fa-search"></i></a></td>
                                     <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("BlogUpdate", "Blog")/@item.ID"><i class="fa fa-edit"></i></a></td>
                                     <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("BlogDelete", "Blog")/@item.ID"><i class="fa fa-trash-o"></i></a></td>

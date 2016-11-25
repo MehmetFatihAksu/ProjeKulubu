@@ -1,5 +1,13 @@
 ﻿@model PagedList.IPagedList<ProjeKulubu.Models.Education>
 @using PagedList.Mvc
+@using ProjeKulubu.Models
+
+@{ 
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    var takingList = db.Education.Where(x => x.EducationTypeID == 1).ToList();
+    var popList = (from x in takingList orderby x.EducationView descending select x).Take(3);
+    var newList = (from x in takingList orderby x.ID descending select x).Take(3);
+}
 
 @{
     ViewBag.Title = "AldigimizEgitimler";
@@ -28,7 +36,7 @@
                 <div class="row team1">
                     <div class="col-sm-12 col-md-12">
                         <!--post box-->
-                    @foreach (var item in Model)
+                    @foreach (var item in takingList)
                     {
                         <div class="box">
                             <!--blog date-->
@@ -44,9 +52,9 @@
                             <div class="caption">
                                 <h2>@item.EducationTitle</h2>
                                 <ul class="piko-li">
-                                    <li><i class="fa fa-calendar"></i>2015 ŞUBAT 27</li>
+                                    <li><i class="fa fa-calendar"></i>@item.EducationDate</li>
                                     <li><i class="fa fa-user"> Yazar:</i></li>
-                                    <li><i class="fa fa-search"></i>10</li>
+                                    <li><i class="fa fa-search"></i>@item.EducationView</li>
                                 </ul>
                                 <p>@item.EducationContent<p>
                                 <a href="@Url.Action("Egitim","Home")/@item.ID">Devamını Oku</a>
@@ -76,114 +84,40 @@
                 <div class="tab-content tab-widget">
                     <div id="sectionA" class="tab-pane fade in active">
                         <!--tab post-->
+                    @foreach (var pop in popList)
+                    {
                         <div class="media">
                             <div class="media-left">
-                                <a href="@Url.Action("Egitim","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                <a href="@Url.Action("Egitim","Home")/@pop.ID">
+                                    <img class="media-object" src="~/Dosyalar/@pop.EducationFileURL" alt="@pop.EducationFileSEO">
                                 </a>
                             </div>
                             <div class="media-body">
-                                <a href="@Url.Action("Egitim","Home")">Popüler Eğitim Başlık 1</a><br>
-                                <p>10 ŞUBAT 2015</p>
+                                <a href="@Url.Action("Egitim","Home")/@pop.ID">@pop.EducationTitle</a><br>
+                                <p>@pop.EducationDate</p>
                             </div>
                         </div>   <!--end tab post-->
-                        <!--tab post-->
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="@Url.Action("Egitim","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="@Url.Action("Egitim","Home")">Popüler Eğitim Başlık 2</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>   <!--end tab post-->
-                        <!--tab post-->
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="@Url.Action("Egitim","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="@Url.Action("Egitim","Home")">Popüler Eğitim Başlık 3</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>   <!--tab post-->
+                    }
+                       
                     </div>   <!--end of section a-->
                     <!--section b-->
                     <div id="sectionB" class="tab-pane fade">
+                    @foreach (var newEdu in newList)
+                    {
                         <div class="media">
                             <div class="media-left">
-                                <a href="@Url.Action("Egitim","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                <a href="@Url.Action("Egitim","Home")/@newEdu.ID">
+                                    <img class="media-object" src="~/Dosyalar/@newEdu.EducationFileURL" alt="@newEdu.EducationFileSEO">
                                 </a>
                             </div>
                             <div class="media-body">
-                                <a href="@Url.Action("Egitim","Home")">Yeni Eğitim Başlık 1</a><br>
-                                <p>10 ŞUBAT 2015</p>
+                                <a href="@Url.Action("Egitim","Home")/@newEdu.ID">@newEdu.EducationTitle</a><br>
+                                <p>@newEdu.EducationDate</p>
                             </div>
                         </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="@Url.Action("Egitim","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="@Url.Action("Egitim","Home")">Yeni Eğitim Başlık 2</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="@Url.Action("Egitim","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="@Url.Action("Egitim","Home")">Yeni Eğitim Başlık 3</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>
+                    }
+                        
                     </div> <!--end section b-->
-                    <!--section c-->
-                    <div id="sectionC" class="tab-pane fade">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="@Url.Action("Egitim","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="@Url.Action("Egitim","Home")">Yeni Eğitim Başlık 4</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">How To Build A Team Works Plan</a><br>
-                                <p>10 Dec 2015</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">How To Build A Team Works Plan</a><br>
-                                <p>10 Dec 2015</p>
-                            </div>
-                        </div>
-                    </div> <!--end section c-->
                 </div> <!--End tabs-->
                 <!--start archive-->
                 <div class="margin-b30">

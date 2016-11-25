@@ -2075,7 +2075,6 @@
     <Content Include="Views\AdminShared\_Layout.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Home\Egitim.cshtml" />
-    <Content Include="Views\Home\Ekip.cshtml" />
     <Content Include="Views\Home\Projeler.cshtml" />
     <Content Include="Views\Home\SingleProject.cshtml" />
     <Content Include="Views\Home\Egitimlerimiz.cshtml" />
@@ -2116,10 +2115,8 @@
     <Content Include="Views\TakingEducation\TakingEducationIndex.cshtml" />
     <Content Include="Views\TakingEducation\TakingEducationDelete.cshtml" />
     <Content Include="Views\TakingEducation\TakingEducationUpdate.cshtml" />
-    <Content Include="Views\Office\OfficeIndex.cshtml" />
     <Content Include="Views\Tags\TagsIndex.cshtml" />
     <Content Include="Views\GivingEducation\GivingEducationIndex.cshtml" />
-    <Content Include="Views\Office\OfficeIndex.cshtml" />
     <Content Include="Views\Project\CompleteProjects.cshtml" />
     <Content Include="Views\Office\OfficeDelete.cshtml" />
     <Content Include="Views\Office\OfficeUpdate.cshtml" />
@@ -2131,14 +2128,21 @@
     <Content Include="Views\Project\ProjectPictureIndex.cshtml" />
     <Content Include="Views\Project\ProjectPictureDelete.cshtml" />
     <Content Include="Views\Project\ProjectPictureUpdate.cshtml" />
+    <Content Include="Views\GivingEducation\GivingEducationDelete.cshtml" />
+    <Content Include="Views\GivingEducation\GivingEducationUpdate.cshtml" />
     <Content Include="Views\Project\SaleProjects.cshtml" />
     <Content Include="Views\Project\SaleProjectUpdate.cshtml" />
     <Content Include="Views\Project\SaleProjectDelete.cshtml" />
     <Content Include="Views\Project\SoonProjects.cshtml" />
     <Content Include="Views\Project\SoonProjectUpdate.cshtml" />
     <Content Include="Views\Project\SoonProjectDelete.cshtml" />
-    <Content Include="Views\GivingEducation\GivingEducationDelete.cshtml" />
-    <Content Include="Views\GivingEducation\GivingEducationUpdate.cshtml" />
+    <Content Include="Views\Home\Ekip.cshtml" />
+    <Content Include="Views\Office\OfficeIndex.cshtml" />
+    <Content Include="Views\Contact\AddContact.cshtml" />
+    <Content Include="Views\Contact\ContactIndex.cshtml" />
+    <Content Include="Views\Contact\ContactView.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\Home\EkipSingle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

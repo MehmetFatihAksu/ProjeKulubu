@@ -1,5 +1,7 @@
-﻿@@ -0,0 +1,183 @@
-﻿@{
+﻿@model PagedList.IPagedList<ProjeKulubu.Models.Office>
+@using PagedList.Mvc
+@using ProjeKulubu.Models
+@{
     ViewBag.Title = "SatisOfis";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -28,73 +30,37 @@
             <div class="row">
                 <div class="piko-divider1 three"></div>
                 <!--product-->
+            @foreach (var item in Model)
+            {
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <div class="thumbnail piko-thub shop">
                         <div class="quick-view">
                             <a href="#" data-toggle="modal" data-target=".shop-quick"><i class="fa fa-gg"></i> İncele</a>
                         </div>
-                        <img src="/Content/pikocon_html/images/shop/3.jpg" alt="product construction" class="piko-thub-img " style="max-height:250px;">
+                        <img src="~/Content/noimage.gif" alt="product construction" class="piko-thub-img " style="max-height:250px;">
                         <div class="caption">
                             <div class="piko-title5">
-                                <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><a href="shop-single.html"><strong>OFİS İSMİ</strong></a></span></h3>
-                                <a href="#">Kısa Metin</a>
+                                <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><a href="@Url.Action("SatisOfisSingle","Home")/@item.ID"><strong>@item.OfficeName</strong></a></span></h3>
+                                <a href="#">@item.OfficeMainContent</a>
                             </div>
                             <div class="cart-button">
                                 @*<strong>$100 <del>$130</del></strong>*@
-                                <strong>Konum , TURKEY</strong>
-                                <a href="@Url.Action("SatisOfisSingle","Home")" class="btn-xs3 pull-right"> Ofis Detay</a>
+                                <strong>@item.OfficeLocation</strong>
+                                <a href="@Url.Action("SatisOfisSingle","Home")/@item.ID" class="btn-xs3 pull-right"> Ofis Detay</a>
 
                             </div>
                         </div>
                     </div>
-                </div>  <!--end product-->
-                <!--product-->
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="thumbnail piko-thub shop">
-                        <!--ribbin-->
-                        <div class="ribbon-corner">
-                            <span>Yeni</span>
-                        </div> <!--end of ribbin-->
-                        <div class="quick-view">
-                            <a href="#" data-toggle="modal" data-target=".shop-quick"><i class="fa fa-gg"></i> İncele</a>
-                        </div>
-                        <img src="/Content/pikocon_html/images/shop/2.jpg" alt="product construction" class="piko-thub-img" style="max-height:250px;">
-                        <div class="caption">
-                            <div class="piko-title5">
-                                <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><a href="shop-single.html"><strong>OFİS İSMİ</strong></a></span></h3>
-                                <a href="#">Kısa Metin</a>
-                            </div>
-                            <div class="cart-button">
-                                <strong>Konum , TURKEY</strong>
-                                <a href="@Url.Action("SatisOfisSingle","Home")" class="btn-xs3 pull-right"> Ofis Detay</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>  <!--end product-->
-                <!--product-->
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="thumbnail piko-thub shop">
-                        <div class="quick-view">
-                            <a href="#" data-toggle="modal" data-target=".shop-quick"><i class="fa fa-gg"></i> İncele</a>
-                        </div>
-                        <img src="/Content/pikocon_html/images/shop/1.jpg" alt="product construction" class="piko-thub-img " style="max-height:250px;">
-                        <div class="caption">
-                            <div class="piko-title5">
-                                <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><a href="shop-single.html"><strong>OFİS İSMİ</strong></a></span></h3>
-                                <a href="#">Kısa Metin</a>
-                            </div>
-                            <div class="cart-button">
-                                <strong>Konum , Turkey</strong>
-                                <a href="@Url.Action("SatisOfisSingle","Home")" class="btn-xs3 pull-right"> Ofis Detay</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>  <!--end product-->
+                </div>
+                        <!--end product-->
+                        }
+                    
+               
             </div>  <!--end of row-->
             <!--product 4 iteam-->
             <!--end 4 tiem row-->
         </div>  <!--end container-->
+        </div>
 </section>
 <!--pagination-->
 <div class="margin-tb25">
@@ -102,24 +68,7 @@
     <div class="container">
         <div class="custom-pagi">
             <ul class="pagination">
-                <li class="disabled">
-                    <a href="#">Önceki</a>
-                </li>
-                <li class="active">
-                    <a href="#">1</a>
-                </li>
-                <li>
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#">4</a>
-                </li>
-                <li>
-                    <a href="#">Sonraki</a>
-                </li>
+               @Html.PagedListPager(Model, page => Url.Action("SatisOfis", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
             </ul>
         </div>
     </div>
@@ -180,4 +129,3 @@
         </div> <!--end of model-->
     </div> <!--end of model lg-->
 </div> <!--end of quick view-->
-\ No newline at end of file

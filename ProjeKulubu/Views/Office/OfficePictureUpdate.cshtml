@@ -1,12 +1,8 @@
-﻿@using ProjeKulubu.Models;
+﻿@using ProjeKulubu.Models
 @model OfficePictures
-@using PagedList
-@using PagedList.Mvc
-
-@{
-    ProjeKulubu.Models.db2299D218BEEntities9 db = new ProjeKulubu.Models.db2299D218BEEntities9();
-    List<Office> officeList = new List<Office>();
-    officeList = db.Office.Where(x => x.OfficeName != null).ToList();
+@{ 
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    var officeList = db.Office.ToList();
 }
 
 @{
@@ -14,13 +10,12 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-
 <div class="page-title">
     <div>
-        <h1><i class="fa fa-star"></i> Ofis Resimleri Güncelleme </h1>
+        <h1><i class="fa fa-bars"></i> Ofis Resimleri Güncelleme </h1>
         <h4>Bu kısımda mevcut ofislerinize ait resimleri güncelleyebilirsiniz</h4>
     </div>
-</div>
+</div>@*Header 1*@
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">
@@ -31,12 +26,13 @@
         </li>
         <li class="active">Ofis Görsel Yönetimi</li>
     </ul>
-</div>
+</div>@*Header 2*@
+
 <div class="row">
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-star"></i>Ofis Resimleri Güncelleme Formu</h3>
+                <h3><i class="fa fa-edit"></i>Mevcut Resmin Güncelleme Formu</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
@@ -45,16 +41,16 @@
             <div class="box-content">
                 <form action="/Office/OfficePictureDataUpdate" class="form-horizontal form-row-separated" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">*Resmin Şuan Ait Olduğu Ofis:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">Resmin Şuan Ait Olduğu Ofis:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="Office" disabled value="@Model.Office.OfficeName" style="color:#000000" id="Office" class="form-control show-popover" data-trigger="hover" data-content="bu kısımda resminizin hangi ofise ait olduğu gösterilir." data-original-title="Ofis Resim" data-placement="left">
+                            <input type="text" name="Office" disabled value="@Model.Office.OfficeName" style="color:#000000" id="Office" class="form-control show-popover" data-trigger="hover" data-content="Bu kısımda resminizin hangi ofise ait olduğu gösterilir." data-original-title="Ofis Resim" data-placement="left">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 col-lg-2 control-label">*Resmin Ait Olacağı Ofis:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <select name="officeId" id="Office" class="form-control input-sm" tabindex="1" required oninvalid="this.setCustomValidity('Resmin Ait Olduğu Ofis Kısmını Boş Geçemezsiniz')" oninput="setCustomValidity('')" style="color:#000000">
-                                @foreach (Office item in officeList)
+                                @foreach (var item in officeList)
                                 {
                                     <option value="@item.ID">@item.OfficeName</option>
                                 }
@@ -75,9 +71,8 @@
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
 
-                                        <input required oninvalid="this.setCustomValidity('Ofis resmini boş geçemezsiniz')" oninput="setCustomValidity('')" type="file" id="uploadFile" name="OfficePicture" class="file-input" />
+                                        <input accept="image/*" type="file" id="uploadFile" name="OfficePicture" class="file-input" />
                                     </span>
-                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
                             </div>
 
@@ -91,24 +86,26 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Ofis Resim Açıklama:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" value="@Model.PictureALT" name="OfficePictureDesc" id="OfficePictureDesc" style="color:#000000" placeholder="Kısa Açıklama Cümlesi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofis resminiz için kısa açıklama giriniz" data-original-title="Ofis Resim Açıklama" data-placement="left">
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <input type="hidden" name="id" value="@Model.ID" />
+                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <a class="btn btn-danger" style="float:left" href="@Url.Action("OfficePictureIndex","Office")">Geri Dön</a>
+                            
                         </div>
                     </div>
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <input type="hidden" name="id" value="@Model.ID" />
-                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Güncelle</button>
-                            @ViewBag.Error
-                            <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+                            <h6 style="float:right">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div> 
+</div> @*Update Form*@
+
+@*Scripts Down Here*@
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 <script src="~/Content/AdminContent/js/buttonActions.js"></script>

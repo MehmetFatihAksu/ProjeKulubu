@@ -4,7 +4,7 @@
 @using PagedList.Mvc
 
 @{
-    ProjeKulubu.Models.db2299D218BEEntities9 db = new ProjeKulubu.Models.db2299D218BEEntities9();
+    ProjeKulubu.Models.db2299D218BEEntities8 db = new ProjeKulubu.Models.db2299D218BEEntities8();
     List<Project> projectList = new List<Project>();
     projectList = db.Project.Where(x => x.ProjectName != null).ToList();
 }

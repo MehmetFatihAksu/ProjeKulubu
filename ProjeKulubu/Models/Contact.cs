@@ -18,7 +18,7 @@ namespace ProjeKulubu.Models
         public string ContactName { get; set; }
         public string ContactMail { get; set; }
         public string ContactPhone { get; set; }
-        public string ContactSubject { get; set; }
-        public string ContantSubjectContent { get; set; }
+        public string ContactSubjectContent { get; set; }
+        public Nullable<bool> ReadorNot { get; set; }
     }
 }

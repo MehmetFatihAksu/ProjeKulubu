@@ -1,7 +1,16 @@
-﻿@model ProjeKulubu.Models.Contact
+﻿@using ProjeKulubu.Models
+@model Contact
 @{
     ViewBag.Title = "ContactView";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+@if(!(IsPost))
+{
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    Contact updateModel = db.Contact.Where(x => x.ID == Model.ID).FirstOrDefault();
+    updateModel.ReadorNot = true;
+    db.SaveChanges();
 }
 
 <div class="page-title">
@@ -58,7 +67,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">Mesaj İçeriği:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control col-md-12" disabled name="content" rows="6">@Model.ContantSubjectContent</textarea>
+                                <textarea class="form-control col-md-12" disabled name="content" rows="6">@Model.ContactSubjectContent</textarea>
                             </div>
                         </div>
 

@@ -1,4 +1,16 @@
-﻿@{
+﻿@using ProjeKulubu.Models
+@model Office
+
+@{ 
+    db2299D218BEEntities8 dB = new db2299D218BEEntities8();
+    var pictureList = dB.OfficePictures.Where(x => x.OfficeID == x.Office.ID).ToList();
+}
+
+@{ 
+    var teamList = dB.Team.Where(x => x.OfficeID == x.Office.ID).ToList();
+}
+
+@{
     ViewBag.Title = "SatisOfisSingle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,13 +18,13 @@
 <section class="banner margin-t150">
     <div class="container page-banner">
         <div class="col-sm-6 col-md-6">
-            <h1>OFİS İSMİ</h1>
+            <h1>@Model.OfficeName</h1>
         </div>
         <div class="col-sm-6 col-md-6">
             <ol class="breadcrumb pull-right">
                 <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
                 <li><a href="@Url.Action("SatisOfis","Home")">Satış Ofislerimiz</a></li>
-                <li class="active">Ofis İsmi</li>
+                <li class="active">@Model.OfficeName</li>
             </ol>
         </div>
     </div>
@@ -33,21 +45,16 @@
                      data-nav="true"
                      data-dots="true"
                      data-items="1">
+                @foreach (var item in pictureList)
+                {
                     <div class="item">
-                        <a href="/Content/pikocon_html/images/shop/1.jpg" title="How is the description on that one">
-                            <img src="/Content/pikocon_html/images/shop/1.jpg" alt="constructin" class="img-responsive">
+                        <a href="~/Dosyalar/@item.PictureURL">
+                            <img src="~/Dosyalar/@item.PictureURL" alt="@item.PictureSEO" class="img-responsive">
                         </a>
                     </div>
-                    <div class="item">
-                        <a href="/Content/pikocon_html/images/shop/2.jpg" title="How is the description on that one">
-                            <img src="/Content/pikocon_html/images/shop/2.jpg" alt="constructin" class="img-responsive">
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="/Content/pikocon_html/images/shop/3.jpg" title="How is the description on that one">
-                            <img src="/Content/pikocon_html/images/shop/3.jpg" alt="constructin" class="img-responsive">
-                        </a>
-                    </div>
+                }
+                    
+                   
                 </div> <!--end carousel-->
                 <!-- end of template -->
             </div> <!-- end of col6 -->
@@ -57,33 +64,19 @@
                 <div class="shop-page">
                     <a href="shop-single.html"><i class="fa  fa-chevron-left  font17 white"></i></a>
                     <a href="shop-single.html"><i class="fa  fa-chevron-right  font17 white"></i></a>
-                    <small class="pull-right">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
-                    </small>
+                    
                 </div> <!--product rate-->
                 <!--product title-->
                 <div class="piko-title5">
-                    <h3 class="nmb"><span class="line2"></span><span class="line"></span><span class="text"><strong>OFİS İSMİ</strong></span></h3>
-                    <a href="#">Kısa Başlık</a>
+                    <h3 class="nmb"><span class="line2"></span><span class="line"></span><span class="text"><strong>@Model.OfficeName</strong></span></h3>
                 </div>  <!--product title-->
-                <!--details-->
-                <p>Ofis Hakkında Metin</p>
-                <ul class="fa-ul">
-                    <li><i class="fa-li fa fa-long-arrow-right"></i>Liste Metin 1</li>
-                    <li><i class="fa-li fa fa-long-arrow-right"></i>Liste Metin 2</li>
-                    <li><i class="fa-li fa fa-long-arrow-right"></i>Liste Metin 3</li>
-                    <li><i class="fa-li fa fa-long-arrow-right"></i>Liste Metin 4</li>
-                </ul>  <!--end details-->
+                @Model.OfficeMainContent <!--end details-->
                 <div class="piko-divider1 three"></div>
                 @*<h4>$100 <del>$130</del></h4>*@
                 <div class="piko-divider1 three"></div>
                 <div class="piko-divider1 three"></div>
                 <ul class="fa-ul tags">
-                    <li><i class="fa-li fa fa-barcode"></i>Konum , Turkey</li>
+                    <li><i class="fa-li fa fa-barcode"></i>@Model.OfficeLocation</li>
                 </ul>
                 <div class="piko-divider1 three"></div>
                 <!--social icon-->
@@ -93,7 +86,6 @@
                         <li class="btn-bounce-top"><a href="#"><i class="fa fa-linkedin"></i></a></li>
                         <li class="btn-bounce-top"><a href="#"><i class="fa fa-google-plus"></i></a></li>
                         <li class="btn-bounce-top"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li class="btn-bounce-top"><a href="#"><i class="fa fa-heart-o"></i></a></li>
                     </ul>
                 </div>  <!--social icon-->
             </div> <!--product details-->
@@ -101,86 +93,58 @@
         <!--additional info-->
         <div class="row padding-t50">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#sectionA">Başlık 1</a></li>
-                <li><a data-toggle="tab" href="#sectionB"> Başlık 2</a></li>
-                <li><a data-toggle="tab" href="#sectionC">Çalışanlar <span class="badge"> 2</span></a></li>
+                <li class="active"><a data-toggle="tab" href="#sectionA">Ofis Bilgi</a></li>
+                <li><a data-toggle="tab" href="#sectionC">Çalışanlar <span class="badge"> @teamList.Count()</span></a></li>
             </ul>
             <div class="tab-content">
                 <!--tab section a-->
                 <div id="sectionA" class="tab-pane fade in active">
-                    <h4>BAŞLIK</h4>
-                    <p>Metin</p>
+                    <p>@Model.OfficeAltContent</p>
                 </div>  <!--tab section a-->
-                <!--tab section b-->
-                <div id="sectionB" class="tab-pane fade">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <br>
-                            <table class="table table-striped">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Material</th>
-                                        <td>Iron</td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Stock</th>
-                                        <td>Available</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Product</th>
-                                        <td>Information</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>  <!--end tab section b-->
-                <!--tab section c-->
                 <div id="sectionC" class="tab-pane fade">
                     <div class="blog-comment">
                         <!--comment 1-->
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="img-circle" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4>
-                                    Çalışan İsim <br><em>Yaş :</em><small class="shop-rate pull-right">
-                                        <span>Tecrübe:</span>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </small>
-                                </h4>
-                                <p>Çalışanın Biyografisi</p>
-                            </div>
-                        </div> <!--end of comment-->
-                        <!--start comment 2-->
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="img-circle" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4>
-                                    Çalışan İsim <br><em>Yaş:</em><small class="shop-rate pull-right">
-                                        <span>Tecrübe:</span>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </small>
-                                </h4>
-                                <p>Çalışanın Biyografisi</p>
-                            </div>
-                        </div> <!--end comment-->
+                        @foreach (var team in teamList)
+                        {
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="@Url.Action("EkipSingle","Home")/@team.ID">
+                                        <img class="img-circle" src="~/Dosyalar/@team.MemberPictureURL" alt="piko construciton">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4>
+                                        @team.MemberName <br><em>Yaş :</em>@team.MemberAge<small class="shop-rate pull-right">
+                                            <span>Tecrübe:@if (!(IsPost))
+                                            {
+                                                if (@team.MemberExperience == "1")
+                                                {
+                                                    <i class="fa fa-star"></i>
+                                                }
+                                                if (@team.MemberExperience == "2")
+                                                {
+                                                    <i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                                }
+                                                if (@team.MemberExperience == "3")
+                                                {
+                                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                                }
+                                                if (@team.MemberExperience == "4")
+                                                {
+                                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                                }
+                                                if (@team.MemberExperience == "5")
+                                                {
+                                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                                }
+                                            }</span>
+                                        </small>
+                                    </h4>
+                                    <p>@team.MemberBiografi</p>
+                                </div>
+                            </div> <!--end of comment-->
+                        }
+                        
                     </div>
                     <!--other titile-->
                     <!--start comment form-->

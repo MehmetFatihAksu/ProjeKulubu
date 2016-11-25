@@ -6,17 +6,18 @@ using System.Web.Mvc;
 using ProjeKulubu.Models;
 using System.IO;
 using PagedList;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjeKulubu.Controllers
 {
     public class BlogController : Controller
     {
-        //
-        // GET: /Blog/
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        #region Views
         [UserAuthorize]
-        public ActionResult BlogIndex(int ? page)
+        public ActionResult BlogIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
             ViewBag.BlogName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
             ViewBag.BlogDate = string.IsNullOrEmpty(Sorting_Order) ? "Tarihe_Gore" : "";
@@ -63,64 +64,85 @@ namespace ProjeKulubu.Controllers
             return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
 
+        [UserAuthorize]
+        public ActionResult BlogUpdate(int id)
+        {
+            var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        [UserAuthorize]
+        public ActionResult BlogDelete(int id)
+        {
+            var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+        #endregion
+
+        #region Methods
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AddBlog(string title,string tag,HttpPostedFileBase picture,string seo,string content)
+        public ActionResult AddBlog(string title, string tag, HttpPostedFileBase picture, string seo, string content)
         {
             Blog addModel = new Blog();
 
             content = content.Replace("<p>", "").Replace("</p>", "");
-            if(title!=null || content!=null)
+            if (picture != null)
             {
-                if(picture!=null)
-                {
-                    string fileMap = Path.GetFileName(picture.FileName);
-                    var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                    picture.SaveAs(loadLocation);
-                    addModel.BlogPictureURL = fileMap;
-                }
+                string fileMap = Path.GetFileName(picture.FileName);
+                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                picture.SaveAs(loadLocation);
+                addModel.BlogPictureURL = fileMap;
                 addModel.BlogContent = content;
                 addModel.BlogPictureSEO = seo;
                 addModel.BlogTitle = title;
+                addModel.BlogDate = DateTime.Today;
+                addModel.BlogViewCount = 0;
                 db.Blog.Add(addModel);
                 db.SaveChanges();
             }
             else
             {
-                ViewBag.Error("Hatalı Giriş");
+                addModel.BlogContent = content;
+                addModel.BlogPictureSEO = seo;
+                addModel.BlogTitle = title;
+                addModel.BlogDate = DateTime.Today;
+                addModel.BlogViewCount = 0;
+                db.Blog.Add(addModel);
+                db.SaveChanges();
             }
-
             return RedirectToAction("BlogIndex", "Blog");
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult BlogDataUpdate(int id,string title,string tag,HttpPostedFileBase picture,string content,string seo)
+        public ActionResult BlogDataUpdate(int id, string title, string tag, HttpPostedFileBase picture, string content, string seo)
         {
             Blog updateModel = db.Blog.Where(x => x.ID == id).FirstOrDefault();
 
             content = content.Replace("<p>", "").Replace("</p>", "");
-            if(title!=null && content!=null)
+            if (picture == null)
             {
-                if(picture!=null)
-                {
-                    string fileMap = Path.GetFileName(picture.FileName);
-                    var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                    picture.SaveAs(loadLocation);
-                    updateModel.BlogPictureURL = fileMap;
-                }
+            updateModel.BlogContent = content;
+            updateModel.BlogPictureSEO = seo;
+            updateModel.BlogTitle = title;
+            db.SaveChanges();
+            }
+            else
+            {
+                string fileMap = Path.GetFileName(picture.FileName);
+                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                picture.SaveAs(loadLocation);
+                updateModel.BlogPictureURL = fileMap;
                 updateModel.BlogContent = content;
                 updateModel.BlogPictureSEO = seo;
                 updateModel.BlogTitle = title;
                 db.SaveChanges();
             }
-            else
-            {
-                ViewBag.Error("Hatalı Giriş");
-            }
+                
+
             return RedirectToAction("BlogIndex", "Blog");
         }
-
 
         [HttpPost]
         public ActionResult BlogDataDelete(int id)
@@ -130,31 +152,14 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-        [UserAuthorize]
-        public ActionResult BlogView(int id)
-        {
-            var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-        [UserAuthorize]
-        public ActionResult BlogUpdate(int id)
-        {
-            var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-        [UserAuthorize]
-        public ActionResult BlogDelete(int id)
-        {
-            var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
+
         public ActionResult MultipleDelete(IEnumerable<int> idler)
         {
             db.Blog.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Blog.Remove(y));
             db.SaveChanges();
             return RedirectToAction("BlogIndex", "Blog");
         }
-
+        #endregion
 
 
 

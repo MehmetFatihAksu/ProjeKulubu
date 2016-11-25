@@ -14,6 +14,11 @@ namespace ProjeKulubu.Models
     
     public partial class Blog
     {
+        public Blog()
+        {
+            this.Tags = new HashSet<Tags>();
+        }
+    
         public int ID { get; set; }
         public string BlogTitle { get; set; }
         public string BlogPictureURL { get; set; }
@@ -21,8 +26,7 @@ namespace ProjeKulubu.Models
         public string BlogContent { get; set; }
         public Nullable<System.DateTime> BlogDate { get; set; }
         public Nullable<int> BlogViewCount { get; set; }
-        public Nullable<int> BlogTagsID { get; set; }
     
-        public virtual Tags Tags { get; set; }
+        public virtual ICollection<Tags> Tags { get; set; }
     }
 }

@@ -14,9 +14,9 @@ namespace ProjeKulubu.Controllers
         //
         // GET: /Reference/
 
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
         [UserAuthorize]
-        public ActionResult ReferenceIndex(int? page)
+        public ActionResult ReferenceIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
             ViewBag.ReferenceName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
 
@@ -60,8 +60,6 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddReference(HttpPostedFileBase ReferencePicture, string ReferenceName, string ReferencePictureSEO, string ReferenceURL)
         {
             Reference referenceModel = new Reference();
-            if (ReferencePicture != null && ReferenceName != null && ReferenceURL != null && ReferencePictureSEO != null)
-            {
                 string fileMap = Path.GetFileName(ReferencePicture.FileName);
                 var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
                 ReferencePicture.SaveAs(loadLocation);
@@ -71,8 +69,6 @@ namespace ProjeKulubu.Controllers
                 referenceModel.ReferencePictureSEO = ReferencePictureSEO;
                 db.Reference.Add(referenceModel);
                 db.SaveChanges();
-
-            }
             return RedirectToAction("ReferenceIndex", "Reference");
         }
 
@@ -123,8 +119,7 @@ namespace ProjeKulubu.Controllers
             var data = db.Reference.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-        [UserAuthorize]
-        public ActionResult ReferenceView(int id)
+        public ActionResult MultipleDelete(IEnumerable<int> idler)
         {
             db.Reference.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Reference.Remove(y));
             db.SaveChanges();

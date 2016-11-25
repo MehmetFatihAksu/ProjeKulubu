@@ -89,26 +89,45 @@ namespace ProjeKulubu.Controllers
         {
             return View(); 
         }
-        public ActionResult Ekip()
+        public ActionResult Ekip(int? page)
         {
-            return View();
+            var kayitlar = from x in db.Team select x;
+            kayitlar = kayitlar.OrderBy(Team => Team.ID);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult SatisOfis()
+        public ActionResult EkipSingle(int id)
         {
-            return View();
+            var data = db.Team.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
         }
-        public ActionResult SatisOfisSingle()
+        public ActionResult SatisOfis(int? page)
         {
-            return View();
+            var kayitlar = from x in db.Office select x;
+            kayitlar = kayitlar.OrderBy(Office => Office.ID);
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult SatisOfisSingle(int id)
+        {
+            var data = db.Office.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
         }
 
-        public ActionResult Blog()
+        public ActionResult Blog(int? page)
         {
-            return View();
+            var kayitlar = from x in db.Blog select x;
+            kayitlar = kayitlar.OrderByDescending(Blog => Blog.ID);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult BlogSingle()
+        public ActionResult BlogSingle(int id)
         {
-            return View();
+            var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
         }
 
 

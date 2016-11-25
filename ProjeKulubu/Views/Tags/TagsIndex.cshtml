@@ -1,20 +1,16 @@
 ﻿@model PagedList.IPagedList<ProjeKulubu.Models.Tags>
 @using PagedList.Mvc
+@using ProjeKulubu.Models
+
+@{ 
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    var blogList = db.Blog.ToList();
+}
 
 @{
     ViewBag.Title = "TagsIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
-
-<style type="text/css">
-    .cssMenu {
-        color: #888;
-    }
-
-        .cssMenu:hover {
-            color: #0094ff;
-        }
-</style>
 
 <div class="page-title">
     <div>
@@ -46,6 +42,17 @@
             </div>
             <div class="box-content">
                 <form action="/Tags/AddTags" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                    <div class="form-group">
+                        <label class="col-sm-3 col-lg-2 control-label">* Etiketin Ait Olduğu Makale:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <select name="blogId" id="Blog" class="form-control input-sm" tabindex="1" required oninvalid="this.setCustomValidity('Öncelikle Bir Makale Eklemelisiniz')" oninput="setCustomValidity('')" style="color:#000000">
+                                @foreach (var item in blogList)
+                                {
+                                    <option value="@item.ID">@item.BlogTitle</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Etiket İsmi</label>
                         <div class="col-sm-9 col-lg-10 controls">
@@ -105,8 +112,9 @@
                         <thead>
                             <tr>
                                 <th style="width:18px"><input type="checkbox" /></th>
-                                <th>ID</th>                                
-                                <th>@Html.ActionLink("Etiket Adı", "TagsIndex", new { Sorting_Order = ViewBag.TagName, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız Veriler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
+                                <th>ID</th>     
+                                <th>@Html.ActionLink("Ait Olduğu Makale", "TagsIndex", new { Sorting_Order = ViewBag.BlogName, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız Veriler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>                           
+                                <th>Etiket Adı</th>
                                 <th>Düzenleme</th>
                                 <th>Silme</th>
                             </tr>
@@ -116,8 +124,9 @@
                             {
                                 <tr class="table-flag-blue">
                                     <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
-                                    <td>@Html.DisplayFor(modelitem => item.ID)</td>
-                                    <td>@Html.DisplayFor(modelitem => item.TagsName)</td>
+                                    <td>@item.ID</td>
+                                    <td>@item.Blog.BlogTitle</td>
+                                    <td>@item.TagsName</td>
                                     <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("TagsUpdate", "Tags")/@item.ID"><i class="fa fa-edit"></i></a></td>
                                     <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("TagsDelete", "Tags")/@item.ID"><i class="fa fa-trash-o"></i></a></td>
                                 </tr>
@@ -147,5 +156,13 @@
 @*Scripts Down HERE*@
 
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
+<style type="text/css">
+    .cssMenu {
+        color: #888;
+    }
 
+        .cssMenu:hover {
+            color: #0094ff;
+        }
+</style>
 <script src="~/Content/AdminContent/js/buttonActions.js"></script>

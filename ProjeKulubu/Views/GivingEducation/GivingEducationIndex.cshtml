@@ -1,4 +1,13 @@
-﻿@{
+﻿@model PagedList.IPagedList<ProjeKulubu.Models.Education>
+@using PagedList.Mvc
+@using ProjeKulubu.Models
+
+@{ 
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    var query = db.Education.Where(x => x.EducationTypeID == 2).ToList();
+}
+
+@{
     ViewBag.Title = "GivingEducationIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
@@ -144,7 +153,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @foreach (var item in query)
                                 {
                                     <tr class="table-flag-blue">
                                         <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
@@ -163,8 +172,8 @@
                                         </td>
                                         <td>@item.EducationFileSEO</td>
                                         <td>@item.EducationContent</td>
-                                        <th>tarih</th>
-                                        <th>görüntülenme</th>
+                                        <th>@item.EducationDate</th>
+                                        <th>@item.EducationView</th>
                                         <td><a class="btn btn-sm show-tooltip" title="İnceleme" target="_blank" href="@Url.Action("Egitim","Home")/@item.ID"><i class="fa fa-search"></i></a></td>
                                         <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("GivingEducationUpdate","GivingEducation")/@item.ID"><i class="fa fa-edit"></i></a></td>
                                         <td><a class="btn btn-danger show-tooltip" title="Silme" href="@Url.Action("GivingEducationDelete","GivingEducation")/@item.ID"><i class="fa fa-trash"></i></a></td>

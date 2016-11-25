@@ -1,20 +1,52 @@
-﻿@model ProjeKulubu.Models.Education
+﻿@using ProjeKulubu.Models
+@model Education
 @{
     ViewBag.Title = "Egitim";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    var takingList = db.Education.Where(x => x.EducationTypeID == 1).ToList();
+    var takePopList = (from x in takingList orderby x.EducationView descending select x).Take(3);
+    var takeNewList = (from x in takingList orderby x.ID descending select x).Take(3);
+
+    var givingList = db.Education.Where(x => x.EducationTypeID == 2).ToList();
+    var givePopList = (from x in givingList orderby x.EducationView descending select x).Take(3);
+    var giveNewList = (from x in givingList orderby x.ID descending select x).Take(3);
+}
+
+@if (!(IsPost))
+{
+    Education updateEdu = db.Education.Where(x => x.ID == Model.ID).FirstOrDefault();
+    int newCount = Convert.ToInt32(Model.EducationView);
+    newCount++;
+    updateEdu.EducationView = newCount;
+    db.SaveChanges();
+
+    
 }
 
 <section class="banner margin-t150">
     <div class="container page-banner">
         <div class="col-sm-6 col-md-6">
-            <h1>EĞİTİM İSMİ</h1>
+            <h1>@Model.EducationTitle</h1>
         </div>
         <div class="col-sm-6 col-md-6">
             <ol class="breadcrumb pull-right">
                 <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
                 <li><a href="@Url.Action("Egitimlerimiz","Home")">Eğitimlerimiz</a></li>
-                <li><a href="@Url.Action("VerdigimizEgitimler","Home")">Verdiğimiz Eğitimler</a></li>
-                <li class="active">Eğitim İsmi</li>
+                <li>@if (!(IsPost))
+                {
+                    if (Model.EducationTypeID == 1)
+                    {
+                        <a href="@Url.Action("AldigimizEgitimler","Home")">Aldığımız Eğitimler</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("VerdigimizEgitimler","Home")">Verdiğimiz Eğitimler</a>
+                    }
+                }</li>
+                <li class="active">@Model.EducationTitle</li>
             </ol>
         </div>
     </div>
@@ -33,8 +65,8 @@
                     <div class="caption">
                         <h2>@Model.EducationTitle</h2>
                         <ul class="piko-li">
-                            <li><i class="fa fa-calendar"></i>2015 ŞUBAT 27</li>
-                            <li><i class="fa fa-search"></i>10</li>
+                            <li><i class="fa fa-calendar"></i>@Model.EducationDate</li>
+                            <li><i class="fa fa-search"></i>@Model.EducationView</li>
                         </ul>
                         <p>@Model.EducationContent </p>
                     </div> <!--end blog caption-->
@@ -47,12 +79,10 @@
                     <div class="col-md-9 col-sm-12 col-xs-12">
                         <div class="social-share">
                             <ul>
-                                <li class="btn-bounce-top"><a href="#"><i class="fa fa-share-alt"></i></a></li>
                                 <li class="btn-bounce-top"><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li class="btn-bounce-top"><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                 <li class="btn-bounce-top"><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                 <li class="btn-bounce-top"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li class="btn-bounce-top"><a href="#"><i class="fa fa-heart-o"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -70,114 +100,80 @@
                 <div class="tab-content tab-widget">
                     <div id="sectionA" class="tab-pane fade in active">
                         <!--tab post-->
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">Popüler Eğitimler 1</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>   <!--end tab post-->
-                        <!--tab post-->
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">Popüler Eğitimler 2</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>   <!--end tab post-->
-                        <!--tab post-->
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">Popüler Eğitimler 3</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>   <!--tab post-->
+                        @if(Model.EducationTypeID==1)
+                        {
+                            foreach (var takepop in takePopList)
+                            {
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="@takepop.ID">
+                                            <img class="media-object" src="~/Dosyalar/@takepop.EducationFileURL" alt="@takepop.EducationFileSEO">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="@takepop.ID">@takepop.EducationTitle</a><br>
+                                        <p>@takepop.EducationDate</p>
+                                    </div>
+                                </div>   <!--end tab post-->
+                            }
+                        }
+                        @if (Model.EducationTypeID == 2)
+                        {
+                            foreach (var givepop in givePopList)
+                            {
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="@givepop.ID">
+                                            <img class="media-object" src="~/Dosyalar/@givepop.EducationFileURL" alt="@givepop.EducationFileSEO">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="@givepop.ID">@givepop.EducationTitle</a><br>
+                                        <p>@givepop.EducationDate</p>
+                                    </div>
+                                </div>   <!--end tab post-->
+                            }
+                        }
+                  
                     </div>   <!--end of section a-->
                     <!--section b-->
                     <div id="sectionB" class="tab-pane fade">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">Yeni Eğitimler 1</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">Yeni Eğitimler 2</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">Yeni Eğitimler 3</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>
+                        @if (Model.EducationTypeID == 1)
+                        {
+                            foreach (var takenew in takeNewList)
+                            {
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="@takenew.ID">
+                                            <img class="media-object" src="~/Dosyalar/@takenew.EducationFileURL" alt="@takenew.EducationFileSEO">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="@takenew.ID">@takenew.EducationTitle</a><br>
+                                        <p>@takenew.EducationDate</p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        @if (Model.EducationTypeID == 2)
+                        {
+                            foreach (var givenew in giveNewList)
+                            {
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="@givenew.ID">
+                                            <img class="media-object" src="~/Dosyalar/@givenew.EducationFileURL" alt="@givenew.EducationFileSEO">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="@givenew.ID">@givenew.EducationTitle</a><br>
+                                        <p>@givenew.EducationDate</p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                       
                     </div> <!--end section b-->
-                    <!--section c-->
-                    <div id="sectionC" class="tab-pane fade">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">How To Build A Team Works Plan</a><br>
-                                <p>10 Dec 2015</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">How To Build A Team Works Plan</a><br>
-                                <p>10 Dec 2015</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">How To Build A Team Works Plan</a><br>
-                                <p>10 Dec 2015</p>
-                            </div>
-                        </div>
-                    </div> <!--end section c-->
                 </div> <!--End tabs-->
                 <!--start archive-->
                 <div class="margin-b30">

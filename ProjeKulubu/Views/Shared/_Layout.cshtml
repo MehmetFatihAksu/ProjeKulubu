@@ -1,7 +1,7 @@
 ﻿@using ProjeKulubu.Models
     @{ 
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
-        var queryTag = (from x in db.Tags orderby x.TagsName descending select x).Take(15);
+        var tagsList = (from x in db.Tags orderby x.ID descending select x).Take(15);
     }
 @{
     Layout = null;
@@ -241,9 +241,9 @@
                                 <h3><span class="line"></span><span class="text"><strong>Etiketler</strong></span></h3>
                             </div>
                             <p>
-                                @foreach (var item in queryTag)
+                                @foreach (var item in tagsList)
                                 {
-                                    <a href="#" class="btn-s5 gray2">@item.TagsName</a>
+                                    <a href="@Url.Action("BlogSingle","Home")/@item.Blog.ID" class="btn-s5 gray2">@item.TagsName</a>
 
                                 }
 

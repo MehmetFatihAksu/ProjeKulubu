@@ -12,11 +12,10 @@ namespace ProjeKulubu.Controllers
 {
     public class TakingEducationController : Controller
     {
-        //
-        // GET: /TakingEducation/
-
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
+        #region Views
+        [UserAuthorize]
         public ActionResult TakingEducationIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
             ViewBag.EduName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
@@ -35,7 +34,7 @@ namespace ProjeKulubu.Controllers
 
             ViewBag.CurrentFilter = SearchString;
 
-            var kayitlar = from x in db.Education select x;
+            var kayitlar = from x in db.Education.Where(x=>x.EducationTypeID==1) select x;
 
             if (!String.IsNullOrEmpty(SearchString))
             {
@@ -67,47 +66,67 @@ namespace ProjeKulubu.Controllers
 
         }
 
+        [UserAuthorize]
+        public ActionResult TakingEducationDelete(int id)
+        {
+            var data = db.Education.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        [UserAuthorize]
+        public ActionResult TakingEducationUpdate(int id)
+        {
+            var data = db.Education.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+        #endregion
+
+        #region Methods
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AddTakingEducation(string title,HttpPostedFileBase file,string seo,string content)
+        public ActionResult AddTakingEducation(string title, HttpPostedFileBase file, string seo, string content)
         {
             Education eduModel = new Education();
-            if(title!=null && seo!=null && content!=null)
+            content = content.Replace("<p>", "").Replace("</p>", "");
+            if (file != null)
             {
-                if(file != null)
-                {
-                    string fileMap = Path.GetFileName(file.FileName);
-                    var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                    file.SaveAs(loadLocation);
-                    eduModel.EducationFileURL = fileMap;
-                }
+                string fileMap = Path.GetFileName(file.FileName);
+                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                file.SaveAs(loadLocation);
+                eduModel.EducationFileURL = fileMap;
                 eduModel.EducationTitle = title;
                 eduModel.EducationFileSEO = seo;
                 eduModel.EducationContent = content;
                 eduModel.EducationTypeID = 1;
+                eduModel.EducationDate = DateTime.Today;
+                eduModel.EducationView = 0;
                 db.Education.Add(eduModel);
                 db.SaveChanges();
             }
             else
             {
-                ViewBag.Error("Serverdan kaynaklı bir sorun oluştu");
+                eduModel.EducationTitle = title;
+                eduModel.EducationFileSEO = seo;
+                eduModel.EducationContent = content;
+                eduModel.EducationTypeID = 1;
+                eduModel.EducationDate = DateTime.Today;
+                eduModel.EducationView = 0;
+                db.Education.Add(eduModel);
+                db.SaveChanges();
             }
             return RedirectToAction("TakingEducationIndex", "TakingEducation");
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult TakingEducationDataUpdate(int id,string title, HttpPostedFileBase file, string seo, string content)
+        public ActionResult TakingEducationDataUpdate(int id, string title, HttpPostedFileBase file, string seo, string content)
         {
-            Education education = db.Education.Where(x => x.ID == Id).FirstOrDefault();
-
+            Education education = db.Education.Where(x => x.ID == id).FirstOrDefault();
             content = content.Replace("<p>", "").Replace("</p>", "");
-
             if (file == null)
             {
                 education.EducationTitle = title;
                 education.EducationContent = content;
-                education.EducationFileSEO = seo;
                 education.EducationTypeID = 1;
                 db.SaveChanges();
             }
@@ -134,25 +153,14 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-        [UserAuthorize]
-        public ActionResult TakingEducationDelete(int id)
-        {
-            var data = db.Education.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-        [UserAuthorize]
-        public ActionResult TakingEducationView(int id)
-        {
-            var data = db.Education.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-        [UserAuthorize]
-        public ActionResult TakingEducationUpdate(int id)
+
+        public ActionResult MultipleDelete(IEnumerable<int> idler)
         {
             db.Education.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Education.Remove(y));
             db.SaveChanges();
             return RedirectToAction("TakingEducationIndex", "TakingEducation");
         }
+        #endregion
 
     }
 

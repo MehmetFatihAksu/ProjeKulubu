@@ -47,10 +47,7 @@
 </div>@*Header*@
 
 <aside id="QuesionDeleteDetail" class="QuestionContent">
-
     <form action="/Tags/TagsDelete" class="form-horizontal form-row-separated">
-
-
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-black">
@@ -62,6 +59,12 @@
                         </div>
                     </div>
                     <div class="box-content">
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Etiketin Ait Olduğu Makale:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" name="Office" disabled value="@Model.Blog.BlogTitle" style="color:#000000" id="Office" class="form-control">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Etiket ID:</label>
                             <div class="col-sm-9 col-lg-10 controls">

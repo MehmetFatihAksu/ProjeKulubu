@@ -1,7 +1,13 @@
-﻿@{
+﻿@using ProjeKulubu.Models
+
+@{
     Layout = null;
 }
 
+@{ 
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    var notReadList = db.Contact.Where(x => x.ReadorNot == false).ToList();
+}
 
 <!DOCTYPE html>
 <html>
@@ -57,54 +63,32 @@
             </li>
             <li class="hidden-xs">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <i class="fa fa-envelope"></i>
-                    <span class="badge badge-success">1</span>
+                    <i class="fa fa-envelope show-tooltip" title="Okunmayan Mesajlarınız"></i>
+                    <span class="badge badge-success">@notReadList.Count()</span>
                 </a>
                 <!-- BEGIN Messages Dropdown -->
                 <ul class="dropdown-navbar dropdown-menu">
                     <li class="nav-header">
                         <i class="fa fa-comments"></i>
-                        1 Yeni Mesajınız Var
+                       @notReadList.Count() Yeni Mesajınız Var
                     </li>
-                    <li class="msg">
-                        <a href="#">
-                            <img src="~/Content/notification.png" alt="Alternate Text" />
-                            <div>
-                                <span class="msg-title">Sarah</span>
-                                <span class="msg-time">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span>a moment ago</span>
-                                </span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </a>
-                    </li>
-                    <li class="msg">
-                        <a href="#">
-                            <img src="~/Content/notification.png" alt="Alternate Text" />
-                            <div>
-                                <span class="msg-title">Emma</span>
-                                <span class="msg-time">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span>2 Days ago</span>
-                                </span>
-                            </div>
-                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris ...</p>
-                        </a>
-                    </li>
-                    <li class="msg">
-                        <a href="#">
-                            <img src="~/Content/notification.png" alt="Alternate Text" />
-                            <div>
-                                <span class="msg-title">John</span>
-                                <span class="msg-time">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span>8:24 PM</span>
-                                </span>
-                            </div>
-                            <p>Duis aute irure dolor in reprehenderit in ...</p>
-                        </a>
-                    </li>
+                    @foreach (var item in notReadList)
+                    {
+                        <li class="msg">
+                            <a href="@Url.Action("ContactView","Contact")/@item.ID">
+                                <img src="~/Content/notification.png" alt="Alternate Text" />
+                                <div>
+                                    <span class="msg-title">@item.ContactName</span>
+                                    <span class="msg-time">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span>a moment ago</span>
+                                    </span>
+                                </div>
+                                <p>@item.ContactSubjectContent</p>
+                            </a>
+                        </li>
+                    }
+                    
                     <li class="more">
                         <a href="@Url.Action("ContactIndex","Contact")">Bütün Mesajları Gör</a>
                     </li>
@@ -143,17 +127,18 @@
                     <li class="visible-xs">
                         <a href="@Url.Action("ContactIndex","Contact")">
                             <i class="fa fa-envelope"></i>
-                            Messages
-                            <span class="badge badge-success">3</span>
+                            Mesajlar
+                            <span class="badge badge-success">@notReadList.Count()</span>
                         </a>
                     </li>
                     <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-off"></i>
-                            Çıkış
-                        </a>
-                    </li>
+                    
+                        <li>
+                            <a href="@Url.Action("LogOut","Admin")">
+                                <i class="fa fa-off"></i>
+                                Çıkış
+                            </a>
+                        </li>
                 </ul>
                 <!-- BEGIN User Dropdown -->
             </li>
@@ -187,14 +172,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("ReferenceIndex", "Reference")">
-                        <i class="fa fa-star-o"></i>
-                        <span>Referans Yönetimi</span>
-                    </a>
-                </li>
-                <li>
                     <a href="#" class="dropdown-toggle">
-                        <i class="fa fa-desktop"></i>
+                        <i class="fa fa-list-alt"></i>
                         <span>Proje Yönetimi</span>
                         <b class="arrow fa fa-angle-right"></b>
                     </a>
@@ -203,35 +182,25 @@
                         <li><a href="@Url.Action("CompleteProjects", "Project")">Tamamlanan Projeler</a></li>
                         <li><a href="@Url.Action("SaleProjects", "Project")">Satışı Devam Eden Projeler</a></li>
                         <li><a href="@Url.Action("SoonProjects", "Project")">Yakındaki Projeler</a></li>
+                        <li><a href="@Url.Action("ProjectPictureIndex", "Project")">Proje Resim İşlemleri</a></li>
+
+
                     </ul>
                     <!-- END Submenu -->
                 </li>
                 <li>
-                    <a href="@Url.Action("ProjectPictureIndex", "Project")">
-                        <i class="fa fa-clipboard"></i>
-                        <span>Proje Görsel Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("OfficeIndex", "Office")">
+                    <a href="#" class="dropdown-toggle">
                         <i class="fa fa-list-alt"></i>
                         <span>Ofis Yönetimi</span>
+                        <b class="arrow fa fa-angle-right"></b>
                     </a>
+                    <!-- BEGIN Submenu -->
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("OfficeIndex", "Office")">Ofis İşlemleri</a></li>
+                        <li><a href="@Url.Action("OfficePictureIndex", "Office")">Ofis Resim İşlemleri</a></li>
+                    </ul>
+                    <!-- END Submenu -->
                 </li>
-                <li>
-                    <a href="@Url.Action("OfficePictureIndex", "Office")">
-                        <i class="fa fa-indent"></i>
-                        <span>Ofis Görsel Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("TagsIndex", "Tags")">
-                        <i class="fa fa-tags"></i>
-                        <span>Etiket Yönetimi</span>
-                    </a>
-                </li>
-                
-               
                 <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="fa fa-file-text-o"></i>
@@ -246,6 +215,27 @@
                     <!-- END Submenu -->
                 </li>
                 <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="fa fa-tasks"></i>
+                        <span>Makale Yönetimi</span>
+                        <b class="arrow fa fa-angle-right"></b>
+                    </a>
+                    <!-- BEGIN Submenu -->
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("BlogIndex", "Blog")">Makale İşlemleri</a></li>
+                        <li><a href="@Url.Action("TagsIndex", "Tags")">Makale Etiket</a></li>
+                    </ul>
+                    <!-- END Submenu -->
+                </li>
+                <li>
+                    <a href="@Url.Action("ReferenceIndex", "Reference")">
+                        <i class="fa fa-star-o"></i>
+                        <span>Referans Yönetimi</span>
+                    </a>
+                </li>
+               
+
+                <li>
                     <a href="@Url.Action("QuestionIndex", "Question")">
                         <i class="fa fa-question-circle"></i>
                         <span>S.S.S Yönetimi</span>
@@ -255,12 +245,6 @@
                     <a href="@Url.Action("TeamIndex","Team")">
                         <i class="fa fa-users"></i>
                         <span>Ekip Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("BlogIndex", "Blog")">
-                        <i class="fa fa-tasks"></i>
-                        <span>Makale Yönetimi</span>
                     </a>
                 </li>
                 <li>

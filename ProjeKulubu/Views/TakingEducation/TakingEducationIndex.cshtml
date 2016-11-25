@@ -1,214 +1,217 @@
 ﻿@model PagedList.IPagedList<ProjeKulubu.Models.Education>
 @using PagedList.Mvc
-
+@using ProjeKulubu.Models
 @{
-    ViewBag.Title = "TakingEducationIndex";
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    var query = Model.Where(x => x.EducationTypeID == 1).ToList();
+}
+@{
+ViewBag.Title = "TakingEducationIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<div class="page-title">
-    <div>
-        <h1><i class="fa fa-bars"></i> Alinan Eğitim Yönetimi</h1>
-        <h4>Bu kısımda alınan eğitimlerinizi ekleyip silebilir veya düzenleyebilirsiniz</h4>
-    </div>
-</div>@*Header 1*@
+    <div class="page-title">
+        <div>
+            <h1><i class="fa fa-bars"></i> Alinan Eğitim Yönetimi</h1>
+            <h4>Bu kısımda alınan eğitimlerinizi ekleyip silebilir veya düzenleyebilirsiniz</h4>
+        </div>
+    </div>@*Header 1*@
 
-<div id="breadcrumbs">
-    <ul class="breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
-            <span class="divider"><i class="fa fa-angle-right"></i></span>
-        </li>
-        <li class="active">Alınan Eğitim Yönetimi</li>
-        <li style="float:right"><i class="fa fa-arrow-circle-o-up"></i><a style="color:green" target="_blank" href="@Url.Action("AldigimizEgitimler","Home")">Görünüme Git</a></li>
-    </ul>
-</div> @*Header 2*@
+    <div id="breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
+                <span class="divider"><i class="fa fa-angle-right"></i></span>
+            </li>
+            <li class="active">Alınan Eğitim Yönetimi</li>
+            <li style="float:right"><i class="fa fa-arrow-circle-o-up"></i><a style="color:green" target="_blank" href="@Url.Action("AldigimizEgitimler","Home")">Görünüme Git</a></li>
+        </ul>
+    </div> @*Header 2*@
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-black">
-            <div class="box-title">
-                <h3><i class="fa fa-file-text-o"></i> Alınan Eğitim Ekleme Formu</h3>
-                <div class="box-tool">
-                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-black">
+                <div class="box-title">
+                    <h3><i class="fa fa-file-text-o"></i> Alınan Eğitim Ekleme Formu</h3>
+                    <div class="box-tool">
+                        <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                        <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="box-content">
-                <form action="/TakingEducation/AddTakingEducation" method="post"
-                      enctype="multipart/form-data" class="form-horizontal form-row-separated">
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Eğitim Başlığı:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="title" id="title" required oninvalid="this.setCustomValidity('Eğitim İsmini Boş Geçemezsiniz')" oninput="setCustomValidity('')" style="color:#000000" placeholder="Eğitim Başlığını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma eğitiminizin başlığını giriniz..." data-original-title="Eğitim İçerik Başlığı" data-placement="left">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">* Eğitim Resim/Video Yükleme:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <div class="fileupload fileupload-new" data-provides="fileupload">
-                                <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
-                                    <img src="~/Content/noimage.gif" alt="" />
-                                </div>
-                                <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                                <div>
-                                    <span class="btn btn-default btn-file">
-                                        <span class="fileupload-new">Resim/Video Seç</span>
-                                        <span class="fileupload-exists">Değiştir</span>
-                                        <input type="file" name="file" id="file" required oninvalid="this.setCustomValidity('Eğitim Resmini&Videoyu Boş Geçemezsiniz')" accept="image/*" oninput="setCustomValidity('')" class="file-input" />
-                                    </span>
-                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Eğitim Resim SEO:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="seo" id="seo" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" required oninvalid="this.setCustomValidity('SEO Kısmını Boş Geçemezsiniz')" oninput="setCustomValidity('')" style="color:#000000" data-trigger="hover" data-content="Bu kısıma eğitime ait olan resim/video için anahtar kelime giriniz..." data-original-title="Eğitim Resim SEO" data-placement="left">
-                        </div>
-                    </div>
-                    <div class="box-content">
-
+                <div class="box-content">
+                    <form action="/TakingEducation/AddTakingEducation" method="post"
+                          enctype="multipart/form-data" class="form-horizontal form-row-separated">
                         <div class="form-group">
-                            <label class="col-sm-3 col-lg-2 control-label">* Eğitim İçeriği:</label>
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Eğitim Başlığı:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control col-md-12 ckeditor" id="content" name="content" rows="6"></textarea>
+                                <input type="text" name="title" id="title" required oninvalid="this.setCustomValidity('Eğitim İsmini Boş Geçemezsiniz')" oninput="setCustomValidity('')" style="color:#000000" placeholder="Eğitim Başlığını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma eğitiminizin başlığını giriniz..." data-original-title="Eğitim İçerik Başlığı" data-placement="left">
                             </div>
                         </div>
-
-                    </div>
-
-                    <div class="form-group last">
-                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
-                            <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">* Eğitim Resim/Video Yükleme:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                                        <img src="~/Content/noimage.gif" alt="" />
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                    <div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileupload-new">Resim/Video Seç</span>
+                                            <span class="fileupload-exists">Değiştir</span>
+                                            <input type="file" name="file" id="file" required oninvalid="this.setCustomValidity('Eğitim Resmini&Videoyu Boş Geçemezsiniz')" accept="image/*" oninput="setCustomValidity('')" class="file-input" />
+                                        </span>
+                                        <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Eğitim Resim SEO:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" name="seo" id="seo" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" required oninvalid="this.setCustomValidity('SEO Kısmını Boş Geçemezsiniz')" oninput="setCustomValidity('')" style="color:#000000" data-trigger="hover" data-content="Bu kısıma eğitime ait olan resim/video için anahtar kelime giriniz..." data-original-title="Eğitim Resim SEO" data-placement="left">
+                            </div>
+                        </div>
+                        <div class="box-content">
+
+                            <div class="form-group">
+                                <label class="col-sm-3 col-lg-2 control-label">* Eğitim İçeriği:</label>
+                                <div class="col-sm-9 col-lg-10 controls">
+                                    <textarea class="form-control col-md-12 ckeditor" id="content" name="content" rows="6"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group last">
+                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
+                                <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>@*Add Education*@
+    </div>@*Add Education*@
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-black">
-            <div class="box-title">
-                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Alınan Eğitimler</h3>
-                <div class="box-tool">
-                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-black">
+                <div class="box-title">
+                    <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Alınan Eğitimler</h3>
+                    <div class="box-tool">
+                        <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                        <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="box-content">
-                <div class="btn-toolbar pull-left">
-                    @using (Html.BeginForm("TakingEducationIndex", "TakingEducation", FormMethod.Post))
+                <div class="box-content">
+                    <div class="btn-toolbar pull-left">
+                        @using (Html.BeginForm("TakingEducationIndex", "TakingEducation", FormMethod.Post))
+                        {
+                            <div class="btn-group" style="margin-left:5px">
+                                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Arama..", style = "color:#000000", required = "required" })
+                            </div>
+                            <div class="btn-group">
+                                <input type="submit" style="margin-left:10px;height:34px" value="Ara" class="btn btn-info" />
+                            </div>
+                        }
+                    </div>
+                    @using (Html.BeginForm("MultipleDelete", "TakingEducation", FormMethod.Post))
                     {
-                        <div class="btn-group" style="margin-left:5px">
-                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Arama..", style = "color:#000000", required = "required" })
+                        <div class="btn-toolbar pull-right">
+
+                            <div class="btn-group">
+                                <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
+                                <button type="submit" class="btn btn-circle show-tooltip" title="Silme"><i class="fa fa-trash-o"></i></button>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("TakingEducationIndex", "TakingEducation")"><i class="fa fa-repeat"></i></a>
+                            </div>
+
+
                         </div>
-                        <div class="btn-group">
-                            <input type="submit" style="margin-left:10px;height:34px" value="Ara" class="btn btn-info" />
+                        <br /><br />
+                        <div class="table-responsive" style="margin-top:10px">
+                            <table class="table table-advance">
+                                <thead>
+                                    <tr>
+                                        <th style="width:18px"><input type="checkbox" /></th>
+                                        <th>ID</th>
+                                        <th>@Html.ActionLink("Başlık", "TakingEducationIndex", new { Sorting_Order = ViewBag.EduName, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız Veriler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
+                                        <th>Dosya</th>
+                                        <th>SEO</th>
+                                        <th>İçerik</th>
+                                        <th>@Html.ActionLink("Tarih", "TakingEducationIndex", new { Sorting_Order = ViewBag.EduDate, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Tarihe Tıklarsanız Veriler Eskiden Yeniye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
+                                        <th>@Html.ActionLink("Görüntülenme", "TakingEducationIndex", new { Sorting_Order = ViewBag.EduView, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız Veriler Büyükten Küçüğe Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
+                                        <th>İncele</th>
+                                        <th>Düzenleme</th>
+                                        <th>Silme</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="table-flag-blue">
+                                            <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
+                                            <td>@item.ID</td>
+                                            <td>@item.EducationTitle</td>
+                                            <td>
+                                                <ul class="gallery">
+                                                    <li>
+                                                        <a href="~/Dosyalar/@Html.DisplayFor(modelitem=>item.EducationFileURL)" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+                                                            <div>
+                                                                <span class="fa fa-image"></span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td>@item.EducationFileSEO</td>
+                                            <td>@item.EducationContent</td>
+                                            <th>@item.EducationDate</th>
+                                            <th>@item.EducationView</th>
+                                            <td><a class="btn btn-sm show-tooltip" title="İnceleme" target="_blank" href="@Url.Action("Egitim","Home")/@item.ID"><i class="fa fa-search"></i></a></td>
+                                            <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("TakingEducationUpdate","TakingEducation")/@item.ID"><i class="fa fa-edit"></i></a></td>
+                                            <td><a class="btn btn-danger show-tooltip" title="Silme" href="@Url.Action("TakingEducationDelete","TakingEducation")/@item.ID"><i class="fa fa-trash"></i></a></td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
                         </div>
                     }
-                </div>
-                @using (Html.BeginForm("MultipleDelete", "TakingEducation", FormMethod.Post))
-                {
-                    <div class="btn-toolbar pull-right">
-
-                        <div class="btn-group">
-                            <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
-                            <button type="submit" class="btn btn-circle show-tooltip" title="Silme"><i class="fa fa-trash-o"></i></button>
-                        </div>
-                        <div class="btn-group">
-                            <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("TakingEducationIndex", "TakingEducation")"><i class="fa fa-repeat"></i></a>
-                        </div>
-
-
+                    <div class="text-center">
+                        <ul class="pagination">
+                            @Html.PagedListPager(Model, page => Url.Action("TakingEducationIndex", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
+                        </ul>
                     </div>
-                    <br /><br />
-                    <div class="table-responsive" style="margin-top:10px">
-                        <table class="table table-advance">
-                            <thead>
-                                <tr>
-                                    <th style="width:18px"><input type="checkbox" /></th>
-                                    <th>ID</th>
-                                    <th>@Html.ActionLink("Başlık", "TakingEducationIndex", new { Sorting_Order = ViewBag.EduName, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız Veriler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
-                                    <th>Dosya</th>
-                                    <th>SEO</th>
-                                    <th>İçerik</th>
-                                    <th>@Html.ActionLink("Tarih", "TakingEducationIndex", new { Sorting_Order = ViewBag.EduDate, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Tarihe Tıklarsanız Veriler Eskiden Yeniye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
-                                    <th>@Html.ActionLink("Görüntülenme", "TakingEducationIndex", new { Sorting_Order = ViewBag.EduView, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız Veriler Büyükten Küçüğe Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
-                                    <th>İncele</th>
-                                    <th>Düzenleme</th>
-                                    <th>Silme</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr class="table-flag-blue">
-                                        <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
-                                        <td>@item.ID</td>
-                                        <td>@item.EducationTitle</td>
-                                        <td>
-                                            <ul class="gallery">
-                                                <li>
-                                                    <a href="~/Dosyalar/@Html.DisplayFor(modelitem=>item.EducationFileURL)" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
-                                                        <div>
-                                                            <span class="fa fa-image"></span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td>@item.EducationFileSEO</td>
-                                        <td>@item.EducationContent</td>
-                                        <th>tarih</th>
-                                        <th>görüntülenme</th>
-                                        <td><a class="btn btn-sm show-tooltip" title="İnceleme" target="_blank" href="@Url.Action("Egitim","Home")/@item.ID"><i class="fa fa-search"></i></a></td>
-                                        <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("TakingEducationUpdate","TakingEducation")/@item.ID"><i class="fa fa-edit"></i></a></td>
-                                        <td><a class="btn btn-danger show-tooltip" title="Silme" href="@Url.Action("TakingEducationDelete","TakingEducation")/@item.ID"><i class="fa fa-trash"></i></a></td>
-                                    </tr>
-                                }
-
-                            </tbody>
-                        </table>
+                    <div class="text-right" style="font-size:14px">
+                        Toplam:@(Html.Raw(ViewBag.HtmlStr)) sonuç
                     </div>
-                }
-                <div class="text-center">
-                    <ul class="pagination">
-                        @Html.PagedListPager(Model, page => Url.Action("TakingEducation", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
-                    </ul>
-                </div>
-                <div class="text-right" style="font-size:14px">
-                    Toplam:@(Html.Raw(ViewBag.HtmlStr)) sonuç
                 </div>
             </div>
         </div>
-    </div>
-</div>@*Education List*@
+    </div>@*Education List*@
 
-<footer>
-    <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-</footer>@*Footer*@
+    <footer>
+        <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+    </footer>@*Footer*@
 
+    @*Scripts Down HERE*@
 
-@*Scripts Down HERE*@
-
-<style type="text/css">
-    .cssMenu {
-        color: #888;
-    }
-
-        .cssMenu:hover {
-            color: #0094ff;
+    <style type="text/css">
+        .cssMenu {
+            color: #888;
         }
-</style>
 
-<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
-<script src="~/Content/AdminContent/js/buttonActions.js"></script>
-<script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
-<a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
+            .cssMenu:hover {
+                color: #0094ff;
+            }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+    <script src="~/Content/AdminContent/js/buttonActions.js"></script>
+    <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+    <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>

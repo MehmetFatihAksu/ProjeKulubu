@@ -17,7 +17,7 @@ namespace ProjeKulubu.Controllers
 
         db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
-
+        [UserAuthorize]
         public ActionResult QuestionIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
             ViewBag.Question = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";

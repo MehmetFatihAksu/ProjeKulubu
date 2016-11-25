@@ -1,7 +1,20 @@
-﻿@{
+﻿@model PagedList.IPagedList<ProjeKulubu.Models.Blog>
+@using PagedList.Mvc
+@using ProjeKulubu.Models
+
+@{ 
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    var popList = (from x in db.Blog orderby x.BlogViewCount descending select x).Take(3);
+    var newList = (from x in db.Blog orderby x.ID descending select x).Take(3);
+    var tagsList = (from x in db.Tags orderby x.ID descending select x).Take(20);
+}
+
+@{
     ViewBag.Title = "Blog";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 
 <section class="banner margin-t150">
     <div class="container page-banner">
@@ -21,54 +34,48 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-7">
-                <div class="row team1">
-                    <div class="col-sm-12 col-md-12">
-                        <!--post box-->
-                        <div class="box">
-                            <!--blog date-->
-                            <div class="blog_date2">
-                                <p><span>27 ŞUBAT</span> 2015</p>
-                                @*<p>03 <span>omments</span></p>*@
-                            </div>
-                            <!--blog image-->
-                            <figure>
-                                <img src="/Content/pikocon_html/images/body/blog-single1.jpg" alt="service" class="img-responsive">
-                            </figure> <!--end blog image-->
-                            <!--blog caption-->
-                            <div class="caption">
-                                <h2>BAŞLIK 1</h2>
-                                <ul class="piko-li">
-                                    <li><i class="fa fa-tags"></i><a href="#">Etiketler</a> <a href="#"></a></li>
-                                    <li><i class="fa fa-search"></i>10</li>
-                                </ul>
-                                <p>Makale Hakkında Kısa Metin</p>
-                                <a href="@Url.Action("BlogSingle","Home")">Devamını Oku</a>
-                            </div> <!--end blog caption-->
-                        </div>  <!--end post box-->
-                    </div> <!--end post-->
-                 <!--end post-->
-                </div>  <!--end of row-->
+                @foreach (var item in Model)
+                {
+                        <div class="row team1">
+                            <div class="col-sm-12 col-md-12">
+                                <!--post box-->
+                                <div class="box">
+                                    <!--blog date-->
+                                    <div class="blog_date2">
+                                        <p><span>27 ŞUBAT</span> 2015</p>
+                                        @*<p>03 <span>omments</span></p>*@
+                                    </div>
+                                    <!--blog image-->
+                                    <figure>
+                                        <img src="~/Dosyalar/@item.BlogPictureURL">
+                                    </figure> <!--end blog image-->
+                                    <!--blog caption-->
+                                    <div class="caption">
+                                        <h2>@item.BlogTitle</h2>
+                                        <ul class="piko-li">
+                                            <li><i class="fa fa-user"></i> Yazar :</li>
+
+                                            <li>
+                                                <i class="fa fa-tags"></i>
+                                                @foreach (var tags in item.Tags.Where(x => x.BlogID == item.ID))
+                                                {<a href="#">#@tags.TagsName   </a>} <a href="#"></a>
+                                            </li>
+
+                                            <li><i class="fa fa-search"></i>@item.BlogViewCount</li>
+                                        </ul>
+                                        <p>@item.BlogContent</p>
+                                            <a href="@Url.Action("BlogSingle", "Home")/@item.ID">Devamını Oku</a>
+                                    </div> <!--end blog caption-->
+                                </div>  <!--end post box-->
+                            </div> <!--end post-->
+                            <!--end post-->
+                        </div>  <!--end of row-->
+
+                }
                 <!--start pagination-->
                 <div class="custom-pagi">
                     <ul class="pagination">
-                        <li class="disabled">
-                            <a href="#">Önceki</a>
-                        </li>
-                        <li class="active">
-                            <a href="#">1</a>
-                        </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">Sonraki</a>
-                        </li>
+                        @Html.PagedListPager(Model, page => Url.Action("Blog", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
                     </ul>
                 </div>
                 <!--end of pagination-->
@@ -85,114 +92,40 @@
                 <div class="tab-content tab-widget">
                     <div id="sectionA" class="tab-pane fade in active">
                         <!--tab post-->
+                    @foreach (var item in popList)
+                    {
                         <div class="media">
                             <div class="media-left">
-                                <a href="@Url.Action("BlogSingle","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                <a href="@Url.Action("BlogSingle","Home")/@item.ID">
+                                    <img class="media-object" src="~/Dosyalar/@item.BlogPictureURL" alt="@item.BlogPictureSEO">
                                 </a>
                             </div>
                             <div class="media-body">
-                                <a href="@Url.Action("BlogSingle","Home")">Popüler Makale Başlık 1</a><br>
-                                <p>10 ŞUBAT 2015</p>
+                                <a href="@Url.Action("BlogSingle","Home")/@item.ID">@item.BlogTitle</a><br>
+                                <p>@item.BlogDate</p>
                             </div>
                         </div>   <!--end tab post-->
-                        <!--tab post-->
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="@Url.Action("BlogSingle","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="@Url.Action("BlogSingle","Home")">Popüler Makale Başlık 2</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>   <!--end tab post-->
-                        <!--tab post-->
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="@Url.Action("BlogSingle","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="@Url.Action("BlogSingle","Home")">Popüler Makale Başlık 3</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>   <!--tab post-->
+                    }
+                        
                     </div>   <!--end of section a-->
                     <!--section b-->
                     <div id="sectionB" class="tab-pane fade">
+                    @foreach (var item in newList)
+                    {
                         <div class="media">
                             <div class="media-left">
-                                <a href="@Url.Action("BlogSingle","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                                <a href="@Url.Action("BlogSingle","Home")/@item.ID">
+                                    <img class="media-object" alt="@item.BlogPictureSEO" src="~/Dosyalar/@item.BlogPictureURL">
                                 </a>
                             </div>
                             <div class="media-body">
-                                <a href="@Url.Action("BlogSingle","Home")">Yeni Makale Başlık 1</a><br>
-                                <p>10 ŞUBAT 2015</p>
+                                <a href="@Url.Action("BlogSingle","Home")/@item.ID">@item.BlogTitle</a><br>
+                                <p>@item.BlogDate</p>
                             </div>
                         </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="@Url.Action("BlogSingle","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="@Url.Action("BlogSingle","Home")">Yeni Makale Başlık 2</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="@Url.Action("BlogSingle","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="@Url.Action("BlogSingle","Home")">Yeni Makale Başlık 3</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>
+                    }
+                        
                     </div> <!--end section b-->
-                    <!--section c-->
-                    <div id="sectionC" class="tab-pane fade">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="@Url.Action("BlogSingle","Home")">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="@Url.Action("BlogSingle","Home")">Yeni Makale Başlık 4</a><br>
-                                <p>10 ŞUBAT 2015</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">How To Build A Team Works Plan</a><br>
-                                <p>10 Dec 2015</p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="#">How To Build A Team Works Plan</a><br>
-                                <p>10 Dec 2015</p>
-                            </div>
-                        </div>
-                    </div> <!--end section c-->
                 </div> <!--End tabs-->
                 <!--start archive-->
                 <div class="margin-b30">
@@ -213,20 +146,12 @@
                         <h3><span class="line"></span><span class="text">Etiketler</span></h3>
                     </div><br>
                     <div class="footer2-box">
-                        <a href="#" class="btn-s5 gray3">İnşaat</a>
-                        <a href="#" class="btn-s5 gray3">Yapı</a>
-                        <a href="#" class="btn-s5 gray3">Satılık</a>
-                        <a href="#" class="btn-s5 gray3">Kiralık</a>
-                        <a href="#" class="btn-s5 gray3">Daire</a>
-                        <a href="#" class="btn-s5 gray3">Komisyon</a>
-                        <a href="#" class="btn-s5 gray3">Ders</a>
-                        <a href="#" class="btn-s5 gray3">Satış</a>
-                        <a href="#" class="btn-s5 gray3">Pazarlama</a>
-                        <a href="#" class="btn-s5 gray3">Kurumsal</a>
-                        <a href="#" class="btn-s5 gray3">Şirket</a>
-                        <a href="#" class="btn-s5 gray3">Gayrimenkul</a>
-                        <a href="#" class="btn-s5 gray3">Villa</a>
-                        <a href="#" class="btn-s5 gray3">Emlak</a>
+                        @foreach (var item in tagsList)
+                        {
+                            <a href="@Url.Action("BlogSingle","Home")/@item.Blog.ID" class="btn-s5 gray3" title="@item.Blog.BlogTitle">@item.TagsName</a>
+
+                        }
+                        
                     </div>
                 </div>  <!--end start tag-->
             </div>  <!--end of col-->

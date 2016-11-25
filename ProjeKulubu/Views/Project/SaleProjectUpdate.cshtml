@@ -1,0 +1,124 @@
+﻿@using ProjeKulubu.Models;
+@model Project
+
+
+@{
+    ViewBag.Title = "SaleProjectUpdate";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    function OnlyNumber() {
+        if ((event.keyCode < 48) || (event.keyCode > 57)) {
+            return false;
+        }
+    }
+
+</script>
+
+
+<div id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li>
+            <i class="fa fa-question-circle"></i>
+            <a href="@Url.Action("SaleProjects", "Project")">Satışı Devam Eden Proje Yönetimi</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li class="active"><i class="fa fa-edit"></i>Satışı Devam Eden Proje Proje Düzenleme Ekranı</li>
+    </ul>
+</div>@*Header*@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-black">
+            <div class="box-title">
+                <h3><i class="fa fa-rocket"></i>Mevcut Satışı Devam Eden Proje Proje Düzenleme Formu</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form action="/Project/SaleProjectDataUpdate" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="form-group">
+                        <label for="textfield1" class="col-xs-3 col-lg-2 control-label">İsim : </label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" id="PName" name="Name" value="@Model.ProjectName" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma proje ismini giriniz..." data-original-title="Proje İsmi" data-placement="top" placeholder="Proje İsim">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password1" class="col-xs-3 col-lg-2 control-label">Tipi :</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input class="form-control show-popover" id="PType" name="Type" type="text" value="@Model.ProjectType" placeholder="Çalışma Saatleri" data-trigger="hover" data-content="Bu kısıma ofisinizin çalışma saatlerini giriniz..." data-original-title="Ofis Çalışma Saatleri" data-placement="top">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea2" class="col-xs-3 col-lg-2 control-label">İçerik :</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <textarea name="Content" id="PContent" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma projenin açıklamasını giriniz..." data-original-title="Proje Açıklama" data-placement="top" placeholder="Proje Açıklaması Giriniz...">@Model.ProjectContent</textarea>
+                        </div>
+                    </div>
+
+
+                    <!-- BEGIN Right Side -->
+                    <div class="form-group">
+                        <label for="textfield2" class="col-xs-3 col-lg-2 control-label">Bütçe :</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="Bugdet" id="PBudget" value="@Model.ProjectBudgets" class="form-control show-popover" onkeypress="return OnlyNumber();" data-trigger="hover" data-content="Bu kısıma projenin bütçe değerini giriniz..." data-original-title="Proje Bütçesi" data-placement="top" placeholder="Proje Bütçe">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Location" class="col-xs-3 col-lg-2 control-label">Birim :</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input class="form-control show-popover" id="PBirim" name="Birim" type="text" value="@Model.ProjectMoneyType" placeholder="Çalışma Saatleri" data-trigger="hover" data-content="Bu kısıma ofisinizin çalışma saatlerini giriniz..." data-original-title="Ofis Çalışma Saatleri" data-placement="top">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tel" class="col-xs-3 col-lg-2 control-label">Yıl :</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input class="form-control show-popover" id="PYear" name="Year" type="text" onkeypress="return OnlyNumber();" value="@Model.ProjectYear" placeholder="Çalışma Saatleri" data-trigger="hover" data-content="Bu kısıma ofisinizin çalışma saatlerini giriniz..." data-original-title="Ofis Çalışma Saatleri" data-placement="top">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tel" class="col-xs-3 col-lg-2 control-label">Telefon :</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input class="form-control col-md-5 show-popover" onkeypress="return OnlyNumber();" name="Telefon" id="PPhone" type="text" value="@Model.ProjectPhone" maxlength="10" placeholder="Telefon Numarası" data-trigger="hover" data-content="Bu kısıma projenizin telefon numarasını giriniz..." data-original-title="Proje Telefon" data-placement="top">
+                            <span class="help-inline">(212) 212-2121</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email" class="col-xs-3 col-lg-2 control-label">E-Mail : </label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <div class="input-group">
+                                <span class="input-group-addon">@@</span>
+                                <input class="form-control show-popover" id="PEMail" name="EMail" type="text" value="@Model.ProjectMail" placeholder="Email" data-trigger="hover" data-content="Bu kısıma projenizin E-posta adresini giriniz..." data-original-title="Proje E-Posta" data-placement="top">
+                            </div>
+                            <span class="help-inline">deneme@deneme.com</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea2" class="col-xs-3 col-lg-2 control-label">Adres :</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <textarea name="Adres" id="PAdress" rows="5" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin adres bilgisini giriniz..." data-original-title="Ofis Adres" data-placement="top" placeholder="Adres içeriği giriniz...">@Model.ProjectAltLocation</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <input type="hidden" id="id" name="id" value="@Model.ID" />
+                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Güncelle </button>
+                            <a class="btn btn-danger" style="float:left" href="@Url.Action("SaleProjects", "Project")">Geri Dön</a>
+                        </div>
+                    </div>
+                    <!-- END Right Side -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

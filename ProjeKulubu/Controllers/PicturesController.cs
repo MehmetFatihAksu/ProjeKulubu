@@ -120,8 +120,7 @@ namespace ProjeKulubu.Controllers
             var data = db.OurPictures.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-        [UserAuthorize]
-        public ActionResult PicturesView(int id)
+        public ActionResult MultipleDelete(IEnumerable<int> idler)
         {
             db.OurPictures.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.OurPictures.Remove(y));
             db.SaveChanges();

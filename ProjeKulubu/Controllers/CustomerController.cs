@@ -124,12 +124,6 @@ namespace ProjeKulubu.Controllers
             var data = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-        [UserAuthorize]
-        public ActionResult CustomerView(int id)
-        {
-            var data = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
         public ActionResult MultipleDelete(IEnumerable<int> idler)
         {
             db.CustomerComments.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.CustomerComments.Remove(y));

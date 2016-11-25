@@ -1,13 +1,17 @@
-﻿@using ProjeKulubu.Models;
+﻿@model PagedList.IPagedList<ProjeKulubu.Models.Team>
+@using PagedList.Mvc
 
-@{
-    db2299D218BEEntities8 db = new db2299D218BEEntities8();
-    List<Team> teamMemberList = new List<Team>();
-
-    teamMemberList = db.Team.Where(x => x.MemberName != null && x.MemberPictureURL != null).ToList();
+@helper cutContent(string metin)
+{
+if (metin.Length > 25)
+{
+        <p>@metin.Substring(0, 25)...</p>
 }
-
-
+else
+{
+        <p>@metin</p>
+}
+}
 
 @{
     ViewBag.Title = "Ekip";
@@ -38,8 +42,8 @@
             <p>EKİBİMİZ</p>
         </div> <!--end heading-->
         <div id="team-member" class="row">
-            
-            @foreach (Team item in teamMemberList)
+
+            @foreach (var item in Model)
             {
                 <div class="item col-sm-6 col-md-3">
                     <div class="box">
@@ -56,17 +60,55 @@
                         </figure>
                         <div class="caption">
                             <div class="piko-title6 two">
-                                <h4><strong>@item.MemberName</strong></h4>
+                                <a href="@Url.Action("EkipSingle","Home")/@item.ID"><h4><strong>@item.MemberName</strong></h4></a>
                                 <hr>
-                                <span>@item.MemberName</span>
-                                <p>@item.MemberBiografi</p><br>
+                                <span>@item.MemberPozision</span>
+                                <br />
+                                <span>@if (!(IsPost))
+                                {
+                                    if (@item.MemberExperience == "1")
+                                    {
+                                        <i class="fa fa-star"></i>
+                                    }
+                                    if (@item.MemberExperience == "2")
+                                    {
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    }
+                                    if (@item.MemberExperience == "3")
+                                    {
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    }
+                                    if (@item.MemberExperience == "4")
+                                    {
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    }
+                                    if (@item.MemberExperience == "5")
+                                    {
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    }
+                                }</span>
+                                <p>@{
+                                    <p>@cutContent(item.MemberBiografi)</p>
+                                }<br>
                             </div>
                         </div>
                     </div>
                 </div>
-            }
+                                    }
             <div class="clearfix"></div>
         </div> <!--end of teammember-->
+
+        <div class="margin-tb25">
+            <!--start pagination-->
+            <div class="container">
+                <div class="custom-pagi">
+                    <ul class="pagination">
+                            @Html.PagedListPager(Model, page => Url.Action("Ekip", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
+                    </ul>
+                </div>
+            </div>
+            <!--end of pagination-->
+        </div>
+
     </div> <!--end of container-->
 </section>
-
