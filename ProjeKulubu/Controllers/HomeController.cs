@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using ProjeKulubu.Models;
+using PagedList;
 namespace ProjeKulubu.Controllers
 {
     public class HomeController : Controller
     {
         //
         // GET: /Home/
-
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
         public ActionResult Index()
         {
             return View();
@@ -47,25 +48,38 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
-        public ActionResult Referanslar()
+        public ActionResult Referanslar(int? page)
         {
-            return View();
+            var kayitlar = from x in db.Reference select x;
+            kayitlar = kayitlar.OrderBy(Reference => Reference.ID);
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(kayitlar.ToPagedList(pageNumber,pageSize));
         }
-        public ActionResult AldigimizEgitimler()
+        public ActionResult AldigimizEgitimler(int? page)
         {
-            return View();
+            var kayitlar = from x in db.Education select x;
+            kayitlar = kayitlar.OrderByDescending(Education => Education.ID);
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            return View(kayitlar.ToPagedList(pageNumber,pageSize));
         }
-        public ActionResult VerdigimizEgitimler()
+        public ActionResult VerdigimizEgitimler(int? page)
         {
-            return View();
+            var kayitlar = from x in db.Education select x;
+            kayitlar = kayitlar.OrderByDescending(Education => Education.ID);
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            return View(kayitlar.ToPagedList(pageNumber,pageSize));
         }
         public ActionResult Egitimlerimiz()
         {
             return View();
         }
-        public ActionResult Egitim()
+        public ActionResult Egitim(int id)
         {
-            return View();
+            var data = db.Education.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
         }
         public ActionResult Projeler()
         {
@@ -75,26 +89,45 @@ namespace ProjeKulubu.Controllers
         {
             return View(); 
         }
-        public ActionResult Ekip()
+        public ActionResult Ekip(int? page)
         {
-            return View();
+            var kayitlar = from x in db.Team select x;
+            kayitlar = kayitlar.OrderBy(Team => Team.ID);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult SatisOfis()
+        public ActionResult EkipSingle(int id)
         {
-            return View();
+            var data = db.Team.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
         }
-        public ActionResult SatisOfisSingle()
+        public ActionResult SatisOfis(int? page)
         {
-            return View();
+            var kayitlar = from x in db.Office select x;
+            kayitlar = kayitlar.OrderBy(Office => Office.ID);
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult SatisOfisSingle(int id)
+        {
+            var data = db.Office.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
         }
 
-        public ActionResult Blog()
+        public ActionResult Blog(int? page)
         {
-            return View();
+            var kayitlar = from x in db.Blog select x;
+            kayitlar = kayitlar.OrderByDescending(Blog => Blog.ID);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult BlogSingle()
+        public ActionResult BlogSingle(int id)
         {
-            return View();
+            var data = db.Blog.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
         }
 
 

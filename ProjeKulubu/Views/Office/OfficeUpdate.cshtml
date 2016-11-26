@@ -35,58 +35,62 @@
             <div class="box-content">
                 <form action="/Office/OfficeDataUpdate" class="form-horizontal form-row-separated" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="textfield1" class="col-xs-3 col-lg-2 control-label">İsim : </label>
+                        <label for="textfield1" class="col-xs-3 col-lg-2 control-label">* İsim : </label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" id="PName" name="Name" class="form-control show-popover" value="@Model.OfficeName" data-trigger="hover" required oninvalid="this.setCustomValidity('Ofis İsmini Boş Geçemezsiniz')" oninput="setCustomValidity('')" data-content="Bu kısıma ofisinizin ismini giriniz..." data-original-title="Ofis İsmi" data-placement="top" placeholder="Ofis İsim">
+                            <input type="text" id="PName" name="Name" style="color:#000000" class="form-control show-popover" value="@Model.OfficeName" data-trigger="hover" required oninvalid="this.setCustomValidity('Ofis İsmini Boş Geçemezsiniz')" oninput="setCustomValidity('')" data-content="Bu kısıma ofisinizin ismini giriniz..." data-original-title="Ofis İsmi" data-placement="left" placeholder="Ofis İsim">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="textarea2" class="col-xs-3 col-lg-2 control-label">İçerik :</label>
+                        <label for="textarea2" class="col-xs-3 col-lg-2 control-label">* İçerik :</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <textarea name="Content" id="PContent" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma ofisiniz ile ilgili genel bilgi metni giriniz..." data-original-title="Ofis Açıklama" data-placement="top" placeholder="Ofis Açıklaması Giriniz...">@Model.OfficeMainContent</textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="textarea2" class="col-xs-3 col-lg-2 control-label">Alt İçerik :</label>
+                        <label for="textarea2" class="col-xs-3 col-lg-2 control-label">* Alt İçerik :</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <textarea name="AltIcerik" id="PContent2" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma ofisiniz ile ilgili yardımıcı bir içerik  metni giriniz..." data-original-title="Ofis Alt Açıklama" data-placement="top" placeholder="Ofis Alt Açıklaması Giriniz...">@Model.OfficeAltContent</textarea>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="Location" class="col-xs-3 col-lg-2 control-label">Zaman :</label>
+                        <label for="Location" class="col-xs-3 col-lg-2 control-label">* Zaman :</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input class="form-control show-popover" id="PTime" name="Zaman" type="text" value="@Model.OfficeWorkingTime" placeholder="Çalışma Saatleri" data-trigger="hover" data-content="Bu kısıma ofisinizin çalışma saatlerini giriniz..." data-original-title="Ofis Çalışma Saatleri" data-placement="top">
+                            <select class="form-control" name="Zaman" id="PTime" data-placeholder="Choose a Category" tabindex="1">
+                                <option value="Hafta-İçi(9:00-17:00)">Hafta-İçi(9:00-17:00)</option>
+                                <option value="Hafta-İçi(9:00-17:00),Cumartesi(9:00-13:00)">Hafta-İçi(9:00-17:00),Cumartesi(9:00-13:00)</option>
+                                <option value="Cumartesi-Pazar(10:30-15:00)">Cumartesi-Pazar(10:30-15:00)</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="tel" class="col-xs-3 col-lg-2 control-label">Telefon :</label>
+                        <label for="tel" class="col-xs-3 col-lg-2 control-label">* Telefon :</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input class="form-control col-md-5 show-popover" onkeypress="return OnlyNumber();" value="@Model.OfficePhone" name="Telefon" id="PPhone" type="text" maxlength="10" placeholder="Telefon Numarası" data-trigger="hover" data-content="Bu kısıma ofisinizin telefon numarasını giriniz..." data-original-title="Ofis Telefon" data-placement="top">
+                            <input class="form-control col-md-5 show-popover" style="color:#000000" required oninvalid="this.setCustomValidity('Ofis İletişim Numarasını Geçemezsiniz')" oninput="setCustomValidity('')"  onkeypress="return OnlyNumber();" value="@Model.OfficePhone" name="Telefon" id="PPhone" type="text" maxlength="10" placeholder="Telefon Numarası" data-trigger="hover" data-content="Bu kısıma ofisinizin telefon numarasını giriniz..." data-original-title="Ofis Telefon" data-placement="left">
                             <span class="help-inline">(212) 212-2121</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="Email" class="col-xs-3 col-lg-2 control-label">E-Mail : </label>
+                        <label for="Email" class="col-xs-3 col-lg-2 control-label">* E-Mail : </label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <div class="input-group">
                                 <span class="input-group-addon">@@</span>
-                                <input class="form-control show-popover" id="PEMail" value="@Model.OfficeMail" name="EMail" type="text" placeholder="Email" data-trigger="hover" data-content="Bu kısıma ofisinizin E-posta adresini giriniz..." data-original-title="Ofis E-Posta" data-placement="top">
+                                <input class="form-control show-popover" style="color:#000000" id="PEMail" value="@Model.OfficeMail" name="EMail" type="text" required oninvalid="this.setCustomValidity('Ofis E-Mail boş geçilemez')" oninput="setCustomValidity('')"  placeholder="Email" data-trigger="hover" data-content="Bu kısıma ofisinizin E-posta adresini giriniz..." data-original-title="Ofis E-Posta" data-placement="left">
                             </div>
                             <span class="help-inline">deneme@deneme.com</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password1" class="col-xs-3 col-lg-2 control-label">Konum :</label>
+                        <label for="password1" class="col-xs-3 col-lg-2 control-label">* Konum :</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <input class="form-control show-popover" id="PLocation" value="İstanbul,Türkiye" disabled name="Location" type="text" placeholder="Konum" data-trigger="hover" data-content="Bu kısıma ofisinizin konumunu giriniz..." data-original-title="Ofis Konum" data-placement="top">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="textarea2" class="col-xs-3 col-lg-2 control-label">Adres :</label>
+                        <label for="textarea2" class="col-xs-3 col-lg-2 control-label">* Adres :</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <textarea name="Adres" id="PAdress" rows="5" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin adres bilgisini giriniz..." data-original-title="Ofis Adres" data-placement="top" placeholder="Adres içeriği giriniz...">@Model.OfficeLocation</textarea>
+                            <textarea name="Adres" id="PAdress" rows="5" required oninvalid="this.setCustomValidity('Ofis Adresi Boş Geçemezsiniz')" oninput="setCustomValidity('')"  style="color:#000000" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin adres bilgisini giriniz..." data-original-title="Ofis Adres" data-placement="left" placeholder="Adres içeriği giriniz...">@Model.OfficeLocation</textarea>
                         </div>
                     </div>
 

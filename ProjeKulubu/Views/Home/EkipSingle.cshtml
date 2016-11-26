@@ -1,0 +1,96 @@
+﻿@using ProjeKulubu.Models
+@model Team
+
+@{
+    ViewBag.Title = "EkipSingle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner margin-t150">
+    <div class="container page-banner">
+        <div class="col-sm-6 col-md-6">
+            <h1>@Model.MemberName</h1>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <ol class="breadcrumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
+                <li><a href="@Url.Action("Ekip","Home")">Ekip Üyelerimiz</a></li>
+                <li class="active">@Model.MemberName</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<!--start count-up project-->
+<section class="padding-tb50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+
+                <!--carousel-->
+
+                        <div class="item">
+                            <a href="~/Dosyalar/@Model.MemberPictureURL">
+                                <img src="~/Dosyalar/@Model.MemberPictureURL" class="img-responsive">
+                            </a>
+                        </div>
+
+
+                <!--end carousel-->
+                <!-- end of template -->
+            </div> <!-- end of col6 -->
+            <!--product details-->
+            <div class="col-lg-6 col-md-6 col-sm-6 shop-single">
+                <!--product rate-->
+                <div class="shop-page">
+                    <a href="shop-single.html"><i class="fa  fa-chevron-left  font17 white"></i></a>
+                    <a href="shop-single.html"><i class="fa  fa-chevron-right  font17 white"></i></a>
+                    <span style="float:right">@if (!(IsPost))
+                    {
+                        if (@Model.MemberExperience == "1")
+                        {
+                            <i class="fa fa-star"></i>
+                        }
+                        if (@Model.MemberExperience == "2")
+                        {
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        }
+                        if (@Model.MemberExperience == "3")
+                        {
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        }
+                        if (@Model.MemberExperience == "4")
+                        {
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        }
+                        if (@Model.MemberExperience == "5")
+                        {
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        }
+                    }</span>
+                </div> <!--product rate-->
+                <!--product title-->
+                <div class="piko-title5">
+                    <h3 class="nmb"><span class="line2"></span><span class="line"></span><span class="text"><strong>@Model.MemberName (@Model.MemberAge)</strong></span><span class="text" style="float:right"><small>@Model.MemberPozision</small></span></h3>
+                </div>  <!--product title-->
+                @Model.MemberBiografi <!--end details-->
+                <div class="piko-divider1 three"></div>
+                @*<h4>$100 <del>$130</del></h4>*@
+                <div class="piko-divider1 three"></div>
+                <div class="piko-divider1 three"></div>
+                <div class="piko-divider1 three"></div>
+                <!--social icon-->
+                <div class="social-model">
+                    <ul>
+                        <li class="btn-bounce-top"><a target="_blank" href="@Model.MemberTwitterURL"><i class="fa fa-twitter"></i></a></li>
+
+                        <li class="btn-bounce-top"><a target="_blank" href="@Model.MemberLinkedinURL"><i class="fa fa-linkedin"></i></a></li>
+
+                        <li class="btn-bounce-top"><a target="_blank" href="@Model.MemberGoogleURL"><i class="fa fa-google-plus"></i></a></li>
+
+                        <li class="btn-bounce-top"><a target="_blank" href="@Model.MemberFacebookURL"><i class="fa fa-facebook"></i></a></li>
+                    </ul>
+                </div>  <!--social icon-->
+            </div> <!--product details-->
+        </div> <!--end of row-->
+    </div>  <!--end of container-->
+</section>

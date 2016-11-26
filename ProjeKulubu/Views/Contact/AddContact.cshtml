@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "AddContact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner margin-t150">
+    <div class="container page-banner">
+        <div class="col-sm-6 col-md-6">
+            <h1>İletişim</h1>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <ol class="breadcrumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
+                <li class="active">İletişim</li>
+            </ol>
+        </div>
+    </div>
+</section> <!--end sub titile-->
+<!--content body-->
+<section class="padding-tb50">
+    <div class="container">
+        <div class="row">
+            <!--contact info-->
+            <div class="col-md-5 col-sm-6">
+                <div class="piko-title4 widget padding-b30">
+                    <h3><span class="line"></span><span class="text">İletişim Bilgileri</span></h3>
+                </div>
+                <p>İletişim Metni</p>
+                <address>
+                    <strong>Adres:</strong><br>
+                    Adres<br>
+                    İstanbul , TÜRKİYE<br>
+                </address>
+                <abbr title="Phone Number"><strong>Telefon:</strong></abbr> (541) 557 36 10<br>
+                <abbr title="Fax"><strong>Fax:</strong></abbr> (541) 557 36 10<br>
+                <abbr title="Email Address"><strong>Email:</strong></abbr> info@projekulubuturkiye.com
+            </div>  <!--contact info-->
+            <div class="col-md-7 col-sm-6">
+                <!--title-->
+                <div class="piko-title4 widget">
+                    <h3><span class="line"></span><span class="text">İletişim Formu</span></h3>
+                </div>  <!-- end title-->
+                <!--contact form-->
+                <div class="row">
+                    <div class="result text-center"></div>
+                    <form id="contactForm" action="mail/action-contact.php" method="post" class="piko-form">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <input type="text" name="name" class="form-control" placeholder="Adınız Soyadınız">
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <input type="text" name="email" class="form-control" placeholder="E-mail Adresiniz">
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <input type="text" name="phone" class="form-control" placeholder="Telefon">
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <textarea class="form-control" name="comment" rows="6" placeholder="Mesaj"></textarea>
+                        </div>
+                        <div class="text-left padding-lr15">
+                            <button type="submit" name="submit" class="btn btn-warning">Mesajı Gönder</button>
+                        </div>
+                    </form>
+                </div>  <!--end contact form-->
+            </div>  <!--end col-->
+        </div>
+    </div>  <!--end container-->
+</section>

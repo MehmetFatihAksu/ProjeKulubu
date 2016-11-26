@@ -17,5 +17,6 @@ namespace ProjeKulubu.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string CommentsPictureURL { get; set; }
+        public string PictureSEO { get; set; }
     }
 }

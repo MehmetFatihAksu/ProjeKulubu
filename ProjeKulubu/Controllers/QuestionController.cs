@@ -12,66 +12,49 @@ namespace ProjeKulubu.Controllers
 {
     public class QuestionController : Controller
     {
-        //
-        // GET: /Question/
 
-        db2299D218BEEntities9 db = new db2299D218BEEntities9();
+        db2299D218BEEntities8 db = new db2299D218BEEntities8();
 
+        #region Views
         [UserAuthorize]
-        public ActionResult QuestionIndex(int ? page)
+        public ActionResult QuestionIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
-            var list = db.AskedQuestions.ToList();
-            var pageNumber = page ?? 1;
-            var onePageOfQuestion = list.ToPagedList(pageNumber, 7);
-            ViewBag.Show = onePageOfQuestion;
-            return View();
-        }
+            ViewBag.Question = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
 
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult AddQuestion(string Question,string Answer)
-        {
-            AskedQuestions askModel = new AskedQuestions();
-            Answer = Answer.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
-            if(Question!=null && Answer!=null)
+            ViewBag.CurrentSort = Sorting_Order;
+            if (SearchString != null)
             {
-                askModel.Question = Question;
-                askModel.QuestionAnswer = Answer;
-                db.AskedQuestions.Add(askModel);
-                db.SaveChanges();
-            }
-            return RedirectToAction("QuestionIndex", "Question");
-        }
-
-
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult QuestionDataUpdate(int id,string Question,string Answer)
-        {
-            AskedQuestions updateModel = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
-            Answer = Answer.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
-            if(Question!=null && Answer!=null)
-            {
-                updateModel.Question = Question;
-                updateModel.QuestionAnswer = Answer;
-                db.SaveChanges();
+                page = 1;
             }
             else
             {
-                ViewBag.Error("işlem başarısız");
+                SearchString = currentFilter;
             }
-            return RedirectToAction("QuestionIndex", "Question");
-        }
 
+            ViewBag.CurrentFilter = SearchString;
 
-        [HttpPost]
-        public ActionResult QuestionDataDelete(int id)
-        {
-            AskedQuestions Question = db.AskedQuestions.Find(id);
-            db.AskedQuestions.Remove(Question);
-            db.SaveChanges();
+            var kayitlar = from x in db.AskedQuestions select x;
 
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                kayitlar = kayitlar.Where(x => x.Question.Contains(SearchString));
+            }
+
+            switch (Sorting_Order)
+            {
+                case "Ada_Gore":
+                    kayitlar = kayitlar.OrderBy(AskedQuestions => AskedQuestions.Question);
+                    break;
+                default:
+                    kayitlar = kayitlar.OrderByDescending(AskedQuestions => AskedQuestions.ID);
+                    break;
+            }
+
+            ViewBag.HtmlStr = kayitlar.Count();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
 
         [UserAuthorize]
@@ -88,13 +71,50 @@ namespace ProjeKulubu.Controllers
             var data = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
             return View(data);
         }
-        [UserAuthorize]
-        public ActionResult QuestionView(int id)
+        #endregion
+
+        #region Methos
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult AddQuestion(string Question, string Answer)
         {
-            var data = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
+            AskedQuestions askModel = new AskedQuestions();
+            Answer = Answer.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
+            askModel.Question = Question;
+            askModel.QuestionAnswer = Answer;
+            db.AskedQuestions.Add(askModel);
+            db.SaveChanges();
+            return RedirectToAction("QuestionIndex", "Question");
         }
 
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult QuestionDataUpdate(int id, string Question, string Answer)
+        {
+            AskedQuestions updateModel = db.AskedQuestions.Where(x => x.ID == id).FirstOrDefault();
+            Answer = Answer.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
+            updateModel.Question = Question;
+            updateModel.QuestionAnswer = Answer;
+            db.SaveChanges();
+            return RedirectToAction("QuestionIndex", "Question");
+        }
+
+        [HttpPost]
+        public ActionResult QuestionDataDelete(int id)
+        {
+            AskedQuestions Question = db.AskedQuestions.Find(id);
+            db.AskedQuestions.Remove(Question);
+            db.SaveChanges();
+            return RedirectToAction("QuestionIndex", "Question");
+        }
+
+        public ActionResult MultipleDelete(IEnumerable<int> idler)
+        {
+            db.AskedQuestions.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.AskedQuestions.Remove(y));
+            db.SaveChanges();
+            return RedirectToAction("QuestionIndex", "Question");
+        }
+        #endregion
 
     }
 }

@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminShared/_Layout.cshtml";
+}
+
+<div class="page-title">
+    <div>
+        <h1><i class="fa fa-bars"></i> Genel Ayarlar Yönetimi</h1>
+        <h4>Bu kısımda ana sayfanızın genel ayarlarını değiştirip güncelleyebilirsiniz</h4>
+    </div>
+</div> @*Header 1*@
+
+<div id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li class="active">Genel Ayarlar Yönetimi</li>
+    </ul>
+</div> @*Header 2*@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-black">
+            <div class="box-title">
+                <h3><i class="fa fa-cog"></i>Ayarlar</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form action="/Blog/AddBlog" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label"><i class="fa fa-facebook-square"></i>  Facebook Adresi:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="title" oninput="setCustomValidity('')" style="color:#000000" id="title" placeholder="Facebook Adresini Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma Facebook adresinizi giriniz..." data-original-title="Facebook" data-placement="left">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label"><i class="fa fa-google-plus-square"></i>   GooglePlus Adresi:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="title" style="color:#000000" id="title" placeholder="GooglePlus Adresinizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma google plus adresinizi giriniz..." data-original-title="GooglePlus" data-placement="left">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label"><i class="fa fa-twitter-square"></i>   Twitter Adresi:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="title"style="color:#000000" id="title" placeholder="Twitter Adresinizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma twitter adresinizi giriniz..." data-original-title="Twitter" data-placement="left">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label"><i class="fa fa-youtube-square"></i>    Youtube Adresi:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="title"style="color:#000000" id="title" placeholder="YouTube Adresinizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma YouTube Adresinizi giriniz..." data-original-title="YouTube" data-placement="left">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label"><i class="fa fa-linkedin-square"></i>   LinkedIN Adresi:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="title"style="color:#000000" id="title" placeholder="LinkedIN Adresinizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma YouTube adresinizi giriniz..." data-original-title="YouTube" data-placement="left">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">*  <i class="fa fa-mobile-phone"></i> Telefon(İletişim):</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="title" required oninvalid="this.setCustomValidity('Telefon Bilginizi Boş Geçemezsiniz')" oninput="setCustomValidity('')" style="color:#000000" id="title" placeholder="Telefon Numarası Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma telefon numaranızı giriniz..." data-original-title="Telefon Numarası" data-placement="left">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">*  <i class="fa fa-mail-forward"></i>  E-Mail Adresi(İletişim):</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="title" required oninvalid="this.setCustomValidity('E-Mail Adresinizi Boş Bırakamazsınız')" oninput="setCustomValidity('')" style="color:#000000" id="title" placeholder="E-Mail Adresinizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma E-Mail adresinizi giriniz..." data-original-title="E-Mail" data-placement="left">
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> @*Settigs*@
+
+<footer>
+    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+</footer> @*Footer*@

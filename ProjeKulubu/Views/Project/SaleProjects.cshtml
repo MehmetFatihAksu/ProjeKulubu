@@ -220,76 +220,76 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab1-1">
                                 <div class="box-content">
-                                        <div class="row">
-                                            <div class="col-md-6 ">
-                                                <!-- BEGIN Left Side -->
-                                                <div class="form-group">
-                                                    <label for="textfield1" class="col-xs-3 col-lg-2 control-label">İsim : </label>
-                                                    <div class="col-sm-9 col-lg-10 controls">
-                                                        <input type="text" id="PName" name="Name" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma proje ismini giriniz..." data-original-title="Proje İsmi" data-placement="top" placeholder="Proje İsim">
-                                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 ">
+                                            <!-- BEGIN Left Side -->
+                                            <div class="form-group">
+                                                <label for="textfield1" class="col-xs-3 col-lg-2 control-label">İsim : </label>
+                                                <div class="col-sm-9 col-lg-10 controls">
+                                                    <input type="text" id="PName" name="Name" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma proje ismini giriniz..." data-original-title="Proje İsmi" data-placement="top" placeholder="Proje İsim">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="password1" class="col-xs-3 col-lg-2 control-label">Tipi :</label>
-                                                    <div class="col-sm-9 col-lg-10 controls">
-                                                        <select class="form-control" name="Type" data-placeholder="Choose a Category" tabindex="1" id="Ptype">
-                                                            <option value="">Seçiniz...</option>
-                                                            <option value="Plaza">Plaza</option>
-                                                            <option value="IsMerkezi">İş Merkezi</option>
-                                                            <option value="Fabrika">Fabrika</option>
-                                                            <option value="Villa">Villa</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="textarea2" class="col-xs-3 col-lg-2 control-label">İçerik :</label>
-                                                    <div class="col-sm-9 col-lg-10 controls">
-                                                        <textarea name="Content" id="PContent" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma projenin açıklamasını giriniz..." data-original-title="Proje Açıklama" data-placement="top" placeholder="Proje Açıklaması Giriniz..."></textarea>
-                                                    </div>
-                                                </div>
-                                                <!-- END Left Side -->
                                             </div>
-                                            <div class="col-md-6 ">
-                                                <!-- BEGIN Right Side -->
-                                                <div class="form-group">
-                                                    <label for="textfield2" class="col-xs-3 col-lg-2 control-label">Bütçe :</label>
-                                                    <div class="col-sm-9 col-lg-10 controls">
-                                                        <input type="text" name="Bugdet" id="PBudget" class="form-control show-popover" onkeypress="return OnlyNumber();" data-trigger="hover" data-content="Bu kısıma projenin bütçe değerini giriniz..." data-original-title="Proje Bütçesi" data-placement="top" placeholder="Proje Bütçe">
-                                                    </div>
+                                            <div class="form-group">
+                                                <label for="password1" class="col-xs-3 col-lg-2 control-label">Tipi :</label>
+                                                <div class="col-sm-9 col-lg-10 controls">
+                                                    <select class="form-control" name="Type" data-placeholder="Choose a Category" tabindex="1" id="Ptype">
+                                                        <option value="">Seçiniz...</option>
+                                                        <option value="Plaza">Plaza</option>
+                                                        <option value="IsMerkezi">İş Merkezi</option>
+                                                        <option value="Fabrika">Fabrika</option>
+                                                        <option value="Villa">Villa</option>
+                                                    </select>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="Location" class="col-xs-3 col-lg-2 control-label">Birim :</label>
-                                                    <div class="col-sm-9 col-lg-10 controls">
-                                                        <select class="form-control" name="Birim" id="PBirim" data-placeholder="Choose a Category" tabindex="1">
-                                                            <option value="">Para Birimi...</option>
-                                                            <option value="TurkLirasi">Türk Lirası (TL)</option>
-                                                            <option value="AmerikanDolari">Amerikan Doları ($)</option>
-                                                            <option value="Euro">Euro (€)</option>
-                                                            <option value="Pound">Pound(£)</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tel" class="col-xs-3 col-lg-2 control-label">Yıl :</label>
-                                                    <div class="col-sm-9 col-lg-10 controls">
-                                                        <select class="form-control" name="Year" id="PYear" data-placeholder="Choose a Category" tabindex="1">
-                                                            <option value="">Proje Bitiş Yılı...</option>
-                                                            <option value="2019">2019</option>
-                                                            <option value="2018">2018</option>
-                                                            <option value="2017">2017</option>
-                                                            <option value="2016">2016</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                                        <input type="button" class="btn btn-primary" onclick="StepControl1()" style="float:right;" value="Devam Et" />
-                                                    </div>
-                                                </div>
-                                                <!-- END Right Side -->
                                             </div>
+                                            <div class="form-group">
+                                                <label for="textarea2" class="col-xs-3 col-lg-2 control-label">İçerik :</label>
+                                                <div class="col-sm-9 col-lg-10 controls">
+                                                    <textarea name="Content" id="PContent" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma projenin açıklamasını giriniz..." data-original-title="Proje Açıklama" data-placement="top" placeholder="Proje Açıklaması Giriniz..."></textarea>
+                                                </div>
+                                            </div>
+                                            <!-- END Left Side -->
                                         </div>
+                                        <div class="col-md-6 ">
+                                            <!-- BEGIN Right Side -->
+                                            <div class="form-group">
+                                                <label for="textfield2" class="col-xs-3 col-lg-2 control-label">Bütçe :</label>
+                                                <div class="col-sm-9 col-lg-10 controls">
+                                                    <input type="text" name="Bugdet" id="PBudget" class="form-control show-popover" onkeypress="return OnlyNumber();" data-trigger="hover" data-content="Bu kısıma projenin bütçe değerini giriniz..." data-original-title="Proje Bütçesi" data-placement="top" placeholder="Proje Bütçe">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Location" class="col-xs-3 col-lg-2 control-label">Birim :</label>
+                                                <div class="col-sm-9 col-lg-10 controls">
+                                                    <select class="form-control" name="Birim" id="PBirim" data-placeholder="Choose a Category" tabindex="1">
+                                                        <option value="">Para Birimi...</option>
+                                                        <option value="TurkLirasi">Türk Lirası (TL)</option>
+                                                        <option value="AmerikanDolari">Amerikan Doları ($)</option>
+                                                        <option value="Euro">Euro (€)</option>
+                                                        <option value="Pound">Pound(£)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tel" class="col-xs-3 col-lg-2 control-label">Yıl :</label>
+                                                <div class="col-sm-9 col-lg-10 controls">
+                                                    <select class="form-control" name="Year" id="PYear" data-placeholder="Choose a Category" tabindex="1">
+                                                        <option value="">Proje Bitiş Yılı...</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2016">2016</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                                    <input type="button" class="btn btn-primary" onclick="StepControl1()" style="float:right;" value="Devam Et" />
+                                                </div>
+                                            </div>
+                                            <!-- END Right Side -->
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab1-2">
@@ -544,3 +544,4 @@
         </div>
     </div>
 </div>
+

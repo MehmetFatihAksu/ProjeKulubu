@@ -1,36 +1,9 @@
 ﻿@model ProjeKulubu.Models.Education
 
-
 @{
     ViewBag.Title = "TakingEducationDelete";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
-
-<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
-
-<script type="text/javascript">
-
-    function DataDelete() {
-
-        $.ajax({
-
-            type: "POST",
-            url: "/TakingEducation/TakingEducationDataDelete/",
-            data: { id: $("#dataId").val() },
-            ajaxasync: true,
-            traditional: true,
-            success: function (response) {
-                alert("Eğitim Başarıyla Silindi");
-                window.location.href = "/TakingEducation/TakingEducationIndex";
-            },
-            error: function (response) {
-                console.log("Hata Oluştu");
-            }
-
-        });
-    }
-
-</script>
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">
@@ -46,10 +19,9 @@
         </li>
         <li class="active"><i class="fa fa-trash-o"></i>Eğitim Silme Ekranı</li>
     </ul>
-</div>
+</div>@*Header 1*@
 
-<aside id="QuesionDeleteDetail" class="QuestionContent">
-
+<form class="form-row-separated form-horizontal" method="post" action="/TakingEducation/TakingEducationDataDelete">
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-black">
@@ -70,7 +42,7 @@
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim Başlığı:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" name="title" id="title" value="@Model.EducationTitle" disabled class="form-control show-popover">
+                                <input type="text" name="title" id="title" value="@Model.EducationTitle" style="color:#000000" disabled class="form-control show-popover">
                             </div>
                         </div>
                         <div class="form-group">
@@ -87,7 +59,7 @@
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Eğitim Resim SEO:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" name="seo" id="seo" value="@Model.EducationFileSEO" class="form-control show-popover">
+                                <input type="text" disabled name="seo" id="seo" value="@Model.EducationFileSEO" style="color:#000000" class="form-control show-popover">
                             </div>
                         </div>
                         <div class="box-content">
@@ -95,7 +67,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 col-lg-2 control-label">Eğitim İçeriği:</label>
                                 <div class="col-sm-9 col-lg-10 controls">
-                                    <textarea class="form-control col-md-12" id="content" name="content" disabled rows="6">@Model.EducationContent</textarea>
+                                    <textarea class="form-control col-md-12" style="color:#000000" id="content" name="content" disabled rows="6">@Model.EducationContent</textarea>
                                 </div>
                             </div>
 
@@ -103,26 +75,31 @@
 
                         <div class="form-group">
                             <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                <input type="hidden" id="dataId" value="@Model.ID" />
-                                <input type="button" class="btn btn-primary" style="float:right" value="Sil" onclick="DataDelete()" />
-                                @ViewBag.Error
+                                <input type="hidden" id="id" name="id" value="@Model.ID" />
+                                <button type="submit" class="btn btn-primary" style="float:right" onclick="Success()">Sil</button>
                                 <a class="btn btn-danger" style="float:left" href="@Url.Action("TakingEducationIndex","TakingEducation")">Geri Dön</a>
                             </div>
 
                         </div>
 
                     </div>
+
                 </div>
+
             </div>
         </div>
-</aside>
-
-
+    </form>@*Edu Delete Form*@
 
 <footer>
     <p>2016 © <a href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-</footer>
+</footer>@*Footer*@
 
-
+<script type="text/javascript">
+    function Success()
+    {
+        alert("Eğitim Başarıyla Silindi")
+    }
+</script>@*Success Message*@
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
 

@@ -47,7 +47,7 @@
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
 
-                                        <input type="file" required oninvalid="this.setCustomValidity('Resim Kısmını Boş Geçemezsiniz')" accept="image/*" oninput="    setCustomValidity('')"  id="uploadFile" name="Picture" class="file-input" />
+                                        <input type="file" accept="image/*"  id="uploadFile" name="Picture" class="file-input" />
                                     </span>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Resim SEO:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="PictureSEO" required oninvalid="this.setCustomValidity('SEO Kısmını Boş Geçemezsiniz')" style="color:#000000" oninput="setCustomValidity('')" id="CustomerName" placeholder="Resim SEO" class="form-control show-popover" data-trigger="hover" data-content="Resim İçin Anahtar Kelime Giriniz" data-original-title="Resim SEO" value="@Model.PictureSEO" data-placement="left">
+                            <input type="text" name="PictureSEO" required oninvalid="this.setCustomValidity('SEO Kısmını Boş Geçemezsiniz')" style="color:#000000" oninput="setCustomValidity('')" id="CustomerName" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Resim İçin Anahtar Kelime Giriniz" data-original-title="Resim SEO" value="@Model.PictureSEO" data-placement="left">
                         </div>
                     </div>
 
@@ -86,7 +86,6 @@
 </footer>@*Footer*@
 
 @*Scripts Down HERE*@
-
 <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 
 

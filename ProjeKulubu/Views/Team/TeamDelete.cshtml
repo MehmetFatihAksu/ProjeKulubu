@@ -5,30 +5,6 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<script type="text/javascript">
-
-    function DataDelete() {
-
-        $.ajax({
-
-            type: "POST",
-            url: "/Team/TeamDataDelete/",
-            data: { id : $("#dataId").val()},
-            ajaxasync: true,
-            traditional: true,
-            success: function (response) {
-                alert("Üye Başarıyla Silindi");
-                window.location.href = "/Team/TeamIndex";
-            },
-            error: function (response) {
-                console.log("Hata Oluştu");
-            }
-
-        });
-    }
-
-</script>@*Delete Scripts*@
-
 <div id="breadcrumbs">
     <ul class="breadcrumb">
         <li>
@@ -45,112 +21,133 @@
     </ul>
 </div>@*Header*@
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-black">
-            <div class="box-title">
-                <h3><i class="fa fa-trash"></i> Mevcut Üyeyi Silmek İstediğinizden Eminmisiniz?</h3>
-                <div class="box-tool">
-                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+<form action="/Team/TeamDataDelete" method="post" class="form-row-separated form-horizontal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-black">
+                <div class="box-title">
+                    <h3><i class="fa fa-trash"></i> Mevcut Üyeyi Silmek İstediğinizden Eminmisiniz?</h3>
+                    <div class="box-tool">
+                        <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                        <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="box-content">
-                <form action="/Team/AddTeamMember" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye İsim ve Soyisim:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" style="color:#000000" name="name" id="name" disabled value="@Model.MemberName" class="form-control show-popover">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Üye Pozisyon:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <label class="radio-inline">
-                                <input type="radio" disabled name="position" value="Genel Müdür" /> @Model.MemberPozision
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Üye Tecrübe:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <select name="exp" disabled id="exp" class="form-control input-sm" tabindex="1">
-                                <option style="color:#000000" value="Yıldız 1">@Model.MemberExperience</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Yaşı:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input style="color:#000000" type="text" name="age" id="age" value="@Model.MemberAge" disabled class="form-control show-popover">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Üye Resim:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <div class="fileupload fileupload-new" data-provides="fileupload">
-                                <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
-                                    <img src="~/Dosyalar/@Model.MemberPictureURL" alt="" />
-                                </div>
-                                <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Facebook:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="facebook" id="facebook" style="color:#000000" value="@Model.MemberFacebookURL" disabled class="form-control show-popover">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Twitter:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="twitter" id="twitter" style="color:#000000" value="@Model.MemberTwitterURL" disabled class="form-control show-popover">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye GooglePlus:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="google" id="google" style="color:#000000"  disabled value="@Model.MemberGoogleURL" class="form-control show-popover">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Linkedin:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="linkedin" id="linkedin" style="color:#000000" value="@Model.MemberLinkedinURL" class="form-control show-popover" disabled>
-                        </div>
-                    </div>
-                    <div class="box-content">
-
+                <div class="box-content">
                         <div class="form-group">
-                            <label class="col-sm-3 col-lg-2 control-label">Üye Biyografisi:</label>
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye İsim ve Soyisim:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control col-md-12" style="color:#000000" name="biografi" id="biografi" disabled rows="6">@Model.MemberBiografi</textarea>
+                                <input type="text" style="color:#000000" name="name" id="name" disabled value="@Model.MemberName" class="form-control">
                             </div>
                         </div>
-
-                    </div>
-
-                    <div class="form-group last">
-                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <input type="hidden" id="dataId" value="@Model.ID" />
-                            <input type="button" class="btn btn-primary" style="float:right" value="Sil" onclick="DataDelete()" />
-                            @ViewBag.Error
-                            <a class="btn btn-danger" style="float:left" href="@Url.Action("TeamIndex","Team")">Geri Dön</a>
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Üye Pozisyon:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                    <input type="text" disabled name="position" style="color:#000000" class="form-control" value="@Model.MemberPozision"  /> 
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Üye Tecrübe:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                @if (!(IsPost))
+                                {
+                                    if (Model.MemberExperience == "1")
+                                    {
+                                        <i class="fa fa-star"></i>
+                                    }
+                                    if (@Model.MemberExperience == "2")
+                                    {
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    }
+                                    if (@Model.MemberExperience == "3")
+                                    {
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    }
+                                    if (@Model.MemberExperience == "4")
+                                    {
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    }
+                                    if (@Model.MemberExperience == "5")
+                                    {
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Yaşı:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input style="color:#000000" type="text" name="age" id="age" value="@Model.MemberAge" disabled class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Üye Resim:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                                        <img src="~/Dosyalar/@Model.MemberPictureURL" alt="" />
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Facebook:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" name="facebook" id="facebook" style="color:#000000" value="@Model.MemberFacebookURL" disabled class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Twitter:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" name="twitter" id="twitter" style="color:#000000" value="@Model.MemberTwitterURL" disabled class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye GooglePlus:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" name="google" id="google" style="color:#000000" disabled value="@Model.MemberGoogleURL" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Linkedin:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" name="linkedin" id="linkedin" style="color:#000000" value="@Model.MemberLinkedinURL" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="box-content">
+
+                            <div class="form-group">
+                                <label class="col-sm-3 col-lg-2 control-label">Üye Biyografisi:</label>
+                                <div class="col-sm-9 col-lg-10 controls">
+                                    <textarea class="form-control col-md-12" style="color:#000000" name="biografi" id="biografi" disabled rows="6">@Model.MemberBiografi</textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group last">
+                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                <input type="hidden" id="id" name="id" value="@Model.ID" />
+                                <button type="submit" class="btn btn-primary" style="float:right" onclick="Success()">Sil</button>
+                                <a class="btn btn-danger" style="float:left" href="@Url.Action("TeamIndex","Team")">Geri Dön</a>
+                            </div>
+                        </div>
+                </div>
             </div>
         </div>
     </div>
-</div>@*Team Delete Form*@
+</form>@*Team Delete Form*@
 
 <footer>
     <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
 </footer>@*Footer*@
 
 @*Scripts Down HERE*@
-
+<script type="text/javascript">
+    function Success() {
+        alert("Ekip Üyesi Başarıyla Silindi");
+    }
+</script>
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
 <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>

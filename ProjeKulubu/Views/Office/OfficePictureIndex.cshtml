@@ -1,14 +1,10 @@
-﻿@using ProjeKulubu.Models;
-@model OfficePictures
-@using PagedList
+﻿@model PagedList.IPagedList<ProjeKulubu.Models.OfficePictures>
 @using PagedList.Mvc
-
-@{
-    ProjeKulubu.Models.db2299D218BEEntities9 db = new ProjeKulubu.Models.db2299D218BEEntities9();
-    List<Office> officeList = new List<Office>();
-    officeList = db.Office.Where(x => x.OfficeName != null).ToList();
+@using ProjeKulubu.Models
+@{ 
+    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    var officeList = db.Office.ToList();
 }
-
 @{
     ViewBag.Title = "OfficePictureIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
@@ -16,10 +12,10 @@
 
 <div class="page-title">
     <div>
-        <h1><i class="fa fa-star"></i> Ofis Resimleri</h1>
-        <h4>Bu kısımda mevcut ofislerinize ait resimleri düzenleyebilir veya yeni ofis resimleri ekleyebilirsiniz</h4>
+        <h1><i class="fa fa-bars"></i> Ofis Resimleri</h1>
+        <h4>Bu kısımda mevcut ofislerinize ait resimleri düzenleyebilir veya ofisleriniz için resim ekleyebilirsiniz</h4>
     </div>
-</div>
+</div>@*Header 1*@
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">
@@ -30,12 +26,13 @@
         </li>
         <li class="active">Ofis Görsel Yönetimi</li>
     </ul>
-</div>
+</div>@*Header 2*@
+
 <div class="row">
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-star"></i> Ofis Görsel Ekleme Formu</h3>
+                <h3><i class="fa fa-list-alt"></i> Ofis Görsel Ekleme Formu</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
@@ -44,10 +41,10 @@
             <div class="box-content">
                 <form action="/Office/AddOfficePicture" class="form-horizontal form-row-separated" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">*Resmin Ait Olduğu Ofis:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">* Resmin Ait Olduğu Ofis:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <select name="officeId" id="Office" class="form-control input-sm" tabindex="1" required oninvalid="this.setCustomValidity('Resmin Ait Olduğu Ofis Kısmını Boş Geçemezsiniz')" oninput="setCustomValidity('')" style="color:#000000">
-                                @foreach (Office item in officeList)
+                            <select name="officeId" id="Office" class="form-control input-sm" tabindex="1" required oninvalid="this.setCustomValidity('Öncelikle Bir Ofis Eklemelisiniz')" oninput="setCustomValidity('')" style="color:#000000">
+                                @foreach (var item in officeList)
                                 {
                                     <option value="@item.ID">@item.OfficeName</option>
                                 }
@@ -60,7 +57,7 @@
                         <div class="col-sm-9 col-lg-10 controls">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
-                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                    <img src="~/Content/noimage.gif" alt="" />
                                 </div>
                                 <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                 <div>
@@ -68,7 +65,7 @@
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
 
-                                        <input required oninvalid="this.setCustomValidity('Ofis resmini boş geçemezsiniz')" oninput="setCustomValidity('')" type="file" id="uploadFile" name="OfficePicture" class="file-input" />
+                                        <input required oninvalid="this.setCustomValidity('Ofis resmini boş geçemezsiniz')" oninput="setCustomValidity('')" type="file" id="uploadFile" accept="image/*" name="OfficePicture" class="file-input" />
                                     </span>
                                     <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
@@ -83,16 +80,9 @@
                             <input type="text" name="OfficePictureSEO" required oninvalid="this.setCustomValidity('SEO kısmını boş geçemezsiniz')" oninput="setCustomValidity('')" style="color:#000000" id="OfficePictureSEO" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofis resminiz için maksimum üç anahtar kelime giriniz" data-original-title="Ofis Resim SEO" data-placement="left">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Ofis Resim Açıklama:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="OfficePictureDesc" id="OfficePictureDesc" style="color:#000000" placeholder="Kısa Açıklama Cümlesi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofis resminiz için kısa açıklama giriniz" data-original-title="Ofis Resim Açıklama" data-placement="left">
-                        </div>
-                    </div>
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
                             <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
-                            @ViewBag.Error 
                             <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
                         </div>
                     </div>
@@ -100,7 +90,7 @@
             </div>
         </div>
     </div>
-</div> 
+</div> @*Add Office Picture*@
 
 <div class="row">
     <div class="col-md-12">
@@ -113,43 +103,54 @@
                 </div>
             </div>
             <div class="box-content">
+                <div class="btn-toolbar pull-left">
+                    @using (Html.BeginForm("OfficePictureIndex", "Office", FormMethod.Post))
+                    {
+                        <div class="btn-group" style="margin-left:5px">
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Arama..", style = "color:#000000", required = "required" })
+                        </div>
+                            <div class="btn-group">
+                                <input type="submit" style="margin-left:10px;height:34px" value="Ara" class="btn btn-info" />
+                            </div>
+                    }
+                </div>
+@using (Html.BeginForm("PictureMultipleDelete", "Office", FormMethod.Post))
+{
                 <div class="btn-toolbar pull-right">
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
-                        <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
+                        <button type="submit" class="btn btn-circle show-tooltip" title="Silme"><i class="fa fa-trash-o"></i></button>
                     </div>
                     <div class="btn-group">
-                        <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("OfficePictureIndex","Office")"><i class="fa fa-repeat"></i></a>
+                        <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("OfficePictureIndex", "Office")"><i class="fa fa-repeat"></i></a>
                     </div>
                 </div>
                 <br /><br />
-                <div class="table-responsive">
+                <div class="table-responsive" style="margin-top:10px">
                     <table class="table table-advance">
                         <thead>
                             <tr>
                                 <th style="width:18px"><input type="checkbox" /></th>
                                 <th>ID</th>
-                                <th>Resim Ait Olduğu Ofis</th>
+                                <th>@Html.ActionLink("Resmin Ait Olduğu Ofis", "OfficePictureIndex", new { Sorting_Order = ViewBag.PictureOfficeName, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız İsimler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
                                 <th>Resim SEO</th>
-                                <th>Resim Açıklama</th>
-                                <th>Resim URL</th>
+                                <th>Resim</th>
                                 <th>Düzenleme</th>
                                 <th>Silme</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var list in ViewBag.Show)
+                            @foreach (var item in Model)
                             {
                                 <tr class="table-flag-blue">
-                                    <td><input type="checkbox" /></td>
-                                    <td>@list.ID</td>
-                                    <td>@list.Office.OfficeName</td>
-                                    <td>@list.PictureSEO</td>
-                                    <td>@list.PictureALT</td>
+                                    <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
+                                    <td>@item.ID</td>
+                                    <td>@item.Office.OfficeName</td>
+                                    <td>@item.PictureSEO</td>
                                     <td>
                                         <ul class="gallery">
                                             <li>
-                                                <a href="~/Dosyalar/@list.PictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+                                                <a href="~/Dosyalar/@item.PictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
                                                     <div>
                                                         <span class="fa fa-image"></span>
                                                     </div>
@@ -158,8 +159,9 @@
                                         </ul>
                                     </td>
                                    
-                                    <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("OfficePictureUpdate","Office")/@list.ID"><i class="fa fa-edit"></i></a></td>
-                                    <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("OfficePictureDelete", "Office")/@list.ID"><i class="fa fa-trash-o"></i></a></td>
+                                    <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("OfficePictureUpdate", "Office")/@item.ID"><i class="fa fa-edit"></i></a></td>
+                                    <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" name="idler" id="@item.ID"><i class="fa fa-trash-o"></i></a></td>
+                                    
                                 </tr>
                             }
                         </tbody>
@@ -167,19 +169,34 @@
                 </div>
                 <div class="text-center">
                     <ul class="pagination">
-                        @Html.PagedListPager((IPagedList)ViewBag.Show, page => Url.Action("OfficePictureIndex", new { page }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
+                        @Html.PagedListPager(Model, page => Url.Action("OfficePictureIndex", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
                     </ul>
                 </div>
+                <div class="text-right" style="font-size:14px">
+                    Toplam:@(Html.Raw(ViewBag.HtmlStr)) sonuç
+                </div>
+}
             </div>
         </div>
     </div>
-</div> 
+</div> @*Office List*@
 
 <footer>
     <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
 </footer> @*Footer*@
 
+
+@*Scripts Down Here*@
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 <script src="~/Content/AdminContent/js/buttonActions.js"></script>
 <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+<style type="text/css">
+    .cssMenu {
+        color: #888;
+    }
+
+        .cssMenu:hover {
+            color: #0094ff;
+        }
+</style>
