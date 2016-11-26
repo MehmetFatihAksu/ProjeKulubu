@@ -508,7 +508,7 @@
                                 <th>Bitiş Yılı</th>
                                 <th>Adres</th>
                                 <th>E-Mail</th>
-                                <th>Icerik</th>
+                                @*<th>Icerik</th>*@
                                 <th>İncele</th>
                                 <th>Güncelle</th>
                                 <th>Sil</th>
@@ -526,7 +526,7 @@
                                     <td>@list.ProjectYear</td>
                                     <td>@list.ProjectLocation</td>
                                     <td>@list.ProjectMail</td>
-                                    <td>@list.ProjectContent.Substring(0, 10)</td>
+                                    @*<td>@list.ProjectContent.Substring(0, 10)</td>*@
                                     <td><a class="btn btn-sm show-tooltip" title="İncele" href="@Url.Action("CompleteProjectView", "Project")/@list.ID"><i class="fa fa-search"></i></a></td>
                                     <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("CompleteProjectUpdate", "Project")/@list.ID"><i class="fa fa-edit"></i></a></td>
                                     <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("CompleteProjectDelete", "Project")/@list.ID"><i class="fa fa-trash-o"></i></a></td>
