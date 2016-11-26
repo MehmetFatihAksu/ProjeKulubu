@@ -24,30 +24,6 @@ namespace ProjeKulubu.Controllers
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             ViewBag.HtmlStr = kayitlar.Count();
-            var context = System.Web.HttpContext.Current;
-            string ip = string.Empty;
-
-            if (context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] != null)
-            {
-                ip = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();
-            }
-            else if (!String.IsNullOrWhiteSpace(context.Request.UserHostAddress))
-            {
-                ip = context.Request.UserHostAddress;
-            }
-
-            if (ip == "::1")
-            {
-                ip = "127.0.0.1";
-            }
-
-            LoginList addLogin = new LoginList();
-            string browser_name = Request.Browser.Browser;
-            addLogin.IPAdress = ip;
-            addLogin.LoginDate = DateTime.Today;
-            addLogin.SoftwareType = browser_name;
-            db.LoginList.Add(addLogin);
-            db.SaveChanges();
             return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Login()
@@ -66,6 +42,30 @@ namespace ProjeKulubu.Controllers
                 Response.Cookies.Add(cookie);
                 HttpCookie cookie2 = new HttpCookie("PassWord", Password);
                 Response.Cookies.Add(cookie2);
+                var context = System.Web.HttpContext.Current;
+                string ip = string.Empty;
+
+                if (context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] != null)
+                {
+                    ip = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();
+                }
+                else if (!String.IsNullOrWhiteSpace(context.Request.UserHostAddress))
+                {
+                    ip = context.Request.UserHostAddress;
+                }
+
+                if (ip == "::1")
+                {
+                    ip = "127.0.0.1";
+                }
+
+                LoginList addLogin = new LoginList();
+                string browser_name = Request.Browser.Browser;
+                addLogin.IPAdress = ip;
+                addLogin.LoginDate = DateTime.Today;
+                addLogin.SoftwareType = browser_name;
+                db.LoginList.Add(addLogin);
+                db.SaveChanges();
                 return RedirectToAction("Index","Admin");
             }
             else
