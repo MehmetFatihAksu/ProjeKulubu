@@ -62,7 +62,7 @@ namespace ProjeKulubu.Controllers
                 LoginList addLogin = new LoginList();
                 string browser_name = Request.Browser.Browser;
                 addLogin.IPAdress = ip;
-                addLogin.LoginDate = DateTime.Today;
+                addLogin.LoginDate = DateTime.Now;
                 addLogin.SoftwareType = browser_name;
                 db.LoginList.Add(addLogin);
                 db.SaveChanges();
@@ -90,16 +90,12 @@ namespace ProjeKulubu.Controllers
             //Doldurulcak
             return View();
         }
-
-
-
         public ActionResult LoginListMultipleDelete(IEnumerable<int> idler)
         {
             db.LoginList.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.LoginList.Remove(y));
             db.SaveChanges();
             return RedirectToAction("Index", "Admin");
         }
-
         public ActionResult AllDelete()
         {
             var alldata = db.LoginList.ToList();
@@ -112,6 +108,11 @@ namespace ProjeKulubu.Controllers
             return RedirectToAction("Index", "Admin");
         }
 
+        [UserAuthorize]
+        public ActionResult Error()
+        {
+            return View();
+        }
 
 
 
