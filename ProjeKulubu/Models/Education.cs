@@ -22,6 +22,7 @@ namespace ProjeKulubu.Models
         public Nullable<int> EducationView { get; set; }
         public string EducationContent { get; set; }
         public Nullable<int> EducationTypeID { get; set; }
+        public Nullable<int> EducationAuthorID { get; set; }
     
         public virtual EducationType EducationType { get; set; }
     }

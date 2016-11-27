@@ -2,7 +2,7 @@
 @model Office
 
 @{ 
-    db2299D218BEEntities8 dB = new db2299D218BEEntities8();
+    db2299D218BEEntities10 dB = new db2299D218BEEntities10();
     var pictureList = dB.OfficePictures.Where(x => x.OfficeID == x.Office.ID).ToList();
 }
 

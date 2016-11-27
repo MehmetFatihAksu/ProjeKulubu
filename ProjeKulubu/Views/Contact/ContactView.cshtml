@@ -7,7 +7,7 @@
 
 @if(!(IsPost))
 {
-    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    db2299D218BEEntities10 db = new db2299D218BEEntities10();
     Contact updateModel = db.Contact.Where(x => x.ID == Model.ID).FirstOrDefault();
     updateModel.ReadorNot = true;
     db.SaveChanges();

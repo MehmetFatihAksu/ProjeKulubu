@@ -13,7 +13,7 @@ namespace ProjeKulubu.Controllers
 {
     public class BlogController : Controller
     {
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities10 db = new db2299D218BEEntities10();
 
         #region Views
         [UserAuthorize]

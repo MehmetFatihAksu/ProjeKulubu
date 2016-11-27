@@ -13,7 +13,7 @@ namespace ProjeKulubu.Controllers
     public class QuestionController : Controller
     {
 
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities10 db = new db2299D218BEEntities10();
 
         #region Views
         [UserAuthorize]
@@ -73,7 +73,7 @@ namespace ProjeKulubu.Controllers
         }
         #endregion
 
-        #region Methos
+        #region Methods
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult AddQuestion(string Question, string Answer)

@@ -13,10 +13,10 @@ namespace ProjeKulubu.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class db2299D218BEEntities8 : DbContext
+    public partial class db2299D218BEEntities10 : DbContext
     {
-        public db2299D218BEEntities8()
-            : base("name=db2299D218BEEntities8")
+        public db2299D218BEEntities10()
+            : base("name=db2299D218BEEntities10")
         {
         }
     

@@ -7,7 +7,7 @@
 
 @if(!(IsPost))
 {
-    db2299D218BEEntities8 dB = new db2299D218BEEntities8();
+    db2299D218BEEntities10 dB = new db2299D218BEEntities10();
     Blog updateBlog = dB.Blog.Where(x => x.ID == Model.ID).FirstOrDefault();
     int newCount = Convert.ToInt32(Model.BlogViewCount);
     newCount++;
@@ -16,7 +16,7 @@
 }
 
 @{ 
-    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    db2299D218BEEntities10 db = new db2299D218BEEntities10();
     var tagsList = db.Tags.Where(x => x.BlogID == x.Blog.ID).ToList();
 }
 <section class="banner margin-t150">

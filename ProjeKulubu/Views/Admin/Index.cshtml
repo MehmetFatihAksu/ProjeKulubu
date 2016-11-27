@@ -69,7 +69,7 @@
                     @using (Html.BeginForm("AllDelete", "Admin", FormMethod.Post))
                     {
                         <div>
-                            <input type="submit" style="margin-left:10px;height:34px" value="Temizle" class="btn btn-info" />
+                            <input type="submit" style="margin-left:10px;height:34px" value="Temizle" onclick="Success()" class="btn btn-info" />
                         </div>
                     }
                 </div>
@@ -123,9 +123,85 @@
     </div>
 </div>@*Login List*@
 
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-black">
+            <div class="box-title">
+                <h3><i class="fa fa-home"></i> İçerik Yönetimi</h3>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form action="/Question/AddQuestion" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label"><i class="fa fa-facebook "></i>  :</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Facebook Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma facebook adresinizi giriniz..." data-placement="left" data-original-title="Facebook" name="Question" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label"><i class="fa fa-google-plus "></i>  :</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" style="color:#000000"  class="form-control show-popover" id="Question" placeholder="GooglePlus adresinizi giriniz" data-trigger="hover" data-content="Bu kısıma Googleplus adresinizi giriniz..." data-placement="left" data-original-title="GooglePlus" name="Question" />                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label"><i class="fa fa-twitter "></i>  :</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Twitter Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma twitter adresinizi giriniz..." data-placement="left" data-original-title="Twitter" name="Question" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label"><i class="fa fa-linkedin "></i>  :</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Linedin Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma linkedin adresinizi giriniz..." data-placement="left" data-original-title="Linkedin" name="Question" />                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Telefon:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Telefon Numarası Giriniz" data-trigger="hover" data-content="Bu kısıma telefon numarasını giriniz..." data-placement="left" data-original-title="Telefon" name="Question" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">E-Mail:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="E-Mail Adresinizi Girin" data-trigger="hover" data-content="Bu kısıma E-mail adresinizi giriniz.." data-placement="left" data-original-title="E-Mail" name="Question" />
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                  
+                    <div class="form-group">
+
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> @* Question Add *@
+
 <footer>
-    <p>2015 © Cizgi Tech Admin Yönetimi.</p>
+    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
 </footer>@*Footer*@
 
-
+<script type="text/javascript">
+    function Success() {
+        alert("Verilerin Tümü Başarıyla Silindi");
+    }
+</script>
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>

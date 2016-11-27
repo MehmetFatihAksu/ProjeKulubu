@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db2299D218BEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="db2299D218BEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="ID" />
@@ -34,6 +34,7 @@
           <Property Name="BlogContent" Type="nvarchar(max)" />
           <Property Name="BlogDate" Type="date" />
           <Property Name="BlogViewCount" Type="int" />
+          <Property Name="BlogAuthorID" Type="int" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -67,6 +68,7 @@
           <Property Name="EducationView" Type="int" />
           <Property Name="EducationContent" Type="nvarchar(max)" />
           <Property Name="EducationTypeID" Type="int" />
+          <Property Name="EducationAuthorID" Type="int" />
         </EntityType>
         <EntityType Name="EducationType">
           <Key>
@@ -84,6 +86,26 @@
           <Property Name="SoftwareType" Type="nvarchar" MaxLength="50" />
           <Property Name="LoginDate" Type="smalldatetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'db2299D218BE.dbo.MainContents' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="MainContents">
+          <Property Name="ID" Type="int" />
+          <Property Name="facebookURL" Type="nvarchar" MaxLength="50" />
+          <Property Name="googleURL" Type="nvarchar" MaxLength="50" />
+          <Property Name="LinkedinURL" Type="nvarchar" MaxLength="50" />
+          <Property Name="twitterURL" Type="nvarchar" MaxLength="50" />
+          <Property Name="youtubeURL" Type="nvarchar" MaxLength="50" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Working1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Working2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Working3" Type="nvarchar" MaxLength="50" />
+          <Property Name="fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="mainofficeID1" Type="int" />
+          <Property Name="mainofficeID2" Type="int" />
+          <Property Name="mainofficeID3" Type="int" />
+          <Property Name="ContactMessage" Type="nvarchar" MaxLength="250" />
+        </EntityType>-->
         <EntityType Name="Office">
           <Key>
             <PropertyRef Name="ID" />
@@ -159,23 +181,6 @@
           <Property Name="ReferencePictureSEO" Type="nvarchar" MaxLength="50" />
           <Property Name="ReferenceLink" Type="nvarchar" MaxLength="150" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Settings">
-          <Property Name="facebookURL" Type="nvarchar" MaxLength="150" />
-          <Property Name="googleURL" Type="nvarchar" MaxLength="150" />
-          <Property Name="LinkedinURL" Type="nvarchar" MaxLength="150" />
-          <Property Name="twitterURL" Type="nvarchar" MaxLength="150" />
-          <Property Name="youtubeURL" Type="nvarchar" MaxLength="150" />
-          <Property Name="phoneNumber" Type="char" MaxLength="11" />
-          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
-          <Property Name="Working1" Type="nvarchar" MaxLength="50" />
-          <Property Name="Working2" Type="nvarchar" MaxLength="50" />
-          <Property Name="Working3" Type="nvarchar" MaxLength="50" />
-          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
-          <Property Name="MainOfficeID" Type="int" />
-          <Property Name="ContactMessage" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -344,8 +349,7 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
             <End Role="Team" EntitySet="Team" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db2299D218BEModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -378,6 +382,7 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
           <Property Name="BlogContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BlogDate" Type="DateTime" Precision="0" />
           <Property Name="BlogViewCount" Type="Int32" />
+          <Property Name="BlogAuthorID" Type="Int32" />
           <NavigationProperty Name="Tags" Relationship="Self.FK_Tags_Blog" FromRole="Blog" ToRole="Tags" />
         </EntityType>
         <EntityType Name="Contact">
@@ -412,6 +417,7 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
           <Property Name="EducationView" Type="Int32" />
           <Property Name="EducationContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EducationTypeID" Type="Int32" />
+          <Property Name="EducationAuthorID" Type="Int32" />
           <NavigationProperty Name="EducationType" Relationship="Self.FK_Education_EducationType" FromRole="Education" ToRole="EducationType" />
         </EntityType>
         <EntityType Name="EducationType">
@@ -637,7 +643,7 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="db2299D218BEEntities8" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="db2299D218BEEntities10" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admin" EntityType="Self.Admin" />
           <EntitySet Name="AskedQuestions" EntityType="Self.AskedQuestions" />
           <EntitySet Name="Blog" EntityType="Self.Blog" />
@@ -690,7 +696,7 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="db2299D218BEModelStoreContainer" CdmEntityContainer="db2299D218BEEntities8">
+        <EntityContainerMapping StorageEntityContainer="db2299D218BEModelStoreContainer" CdmEntityContainer="db2299D218BEEntities10">
           <EntitySetMapping Name="Admin">
             <EntityTypeMapping TypeName="db2299D218BEModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
@@ -721,6 +727,7 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
                 <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
                 <ScalarProperty Name="BlogDate" ColumnName="BlogDate" />
                 <ScalarProperty Name="BlogViewCount" ColumnName="BlogViewCount" />
+                <ScalarProperty Name="BlogAuthorID" ColumnName="BlogAuthorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -757,6 +764,7 @@ warning 6013: The table/view 'db2299D218BE.dbo.Settings' does not have a primary
                 <ScalarProperty Name="EducationView" ColumnName="EducationView" />
                 <ScalarProperty Name="EducationContent" ColumnName="EducationContent" />
                 <ScalarProperty Name="EducationTypeID" ColumnName="EducationTypeID" />
+                <ScalarProperty Name="EducationAuthorID" ColumnName="EducationAuthorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

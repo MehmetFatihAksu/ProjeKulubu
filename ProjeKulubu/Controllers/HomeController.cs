@@ -11,7 +11,7 @@ namespace ProjeKulubu.Controllers
     {
         //
         // GET: /Home/
-        db2299D218BEEntities8 db = new db2299D218BEEntities8();
+        db2299D218BEEntities10 db = new db2299D218BEEntities10();
         public ActionResult Index()
         {
             return View();

@@ -3,7 +3,7 @@
 @using ProjeKulubu.Models
 
 @{ 
-    db2299D218BEEntities8 db = new db2299D218BEEntities8();
+    db2299D218BEEntities10 db = new db2299D218BEEntities10();
     var popList = (from x in db.Blog orderby x.BlogViewCount descending select x).Take(3);
     var newList = (from x in db.Blog orderby x.ID descending select x).Take(3);
     var tagsList = (from x in db.Tags orderby x.ID descending select x).Take(20);

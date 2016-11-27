@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4203c71d5d734987b2de875692768247" Name="Diagram1">
+      <Diagram DiagramId="abe273fcde9747a2a963c5d623085647" Name="Diagram1">
         <EntityTypeShape EntityType="db2299D218BEModel.Admin" Width="1.5" PointX="10.75" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db2299D218BEModel.AskedQuestions" Width="1.5" PointX="5.75" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db2299D218BEModel.Blog" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="db2299D218BEModel.Contact" Width="1.5" PointX="10.75" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db2299D218BEModel.CustomerComments" Width="1.5" PointX="7.75" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db2299D218BEModel.Education" Width="1.5" PointX="13" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="db2299D218BEModel.EducationType" Width="1.5" PointX="10.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db2299D218BEModel.EducationType" Width="1.5" PointX="10.75" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="db2299D218BEModel.LoginList" Width="1.5" PointX="9.75" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db2299D218BEModel.Office" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="db2299D218BEModel.OfficePictures" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
@@ -21,7 +21,7 @@
         <EntityTypeShape EntityType="db2299D218BEModel.ProjectType" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db2299D218BEModel.Reference" Width="1.5" PointX="2.75" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db2299D218BEModel.sysdiagrams" Width="1.5" PointX="11.75" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="db2299D218BEModel.Tags" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="db2299D218BEModel.Tags" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="db2299D218BEModel.Team" Width="1.5" PointX="8.25" PointY="4.25" IsExpanded="true" />
         <AssociationConnector Association="db2299D218BEModel.FK_Tags_Blog" ManuallyRouted="false" />
         <AssociationConnector Association="db2299D218BEModel.FK_Education_EducationType" ManuallyRouted="false" />

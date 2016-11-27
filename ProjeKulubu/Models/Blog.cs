@@ -26,6 +26,7 @@ namespace ProjeKulubu.Models
         public string BlogContent { get; set; }
         public Nullable<System.DateTime> BlogDate { get; set; }
         public Nullable<int> BlogViewCount { get; set; }
+        public Nullable<int> BlogAuthorID { get; set; }
     
         public virtual ICollection<Tags> Tags { get; set; }
     }
