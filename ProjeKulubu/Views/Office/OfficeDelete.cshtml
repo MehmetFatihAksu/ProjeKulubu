@@ -6,31 +6,6 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-
-<script type="text/javascript">
-
-    function DataDelete() {
-
-        $.ajax({
-
-            type: "POST",
-            url: "/Office/OfficeDataDelete/",
-            data: { id : $("#dataId").val()},
-            ajaxasync: true,
-            traditional: true,
-            success: function (response) {
-                alert("Ofis Başarıyla Silindi");
-                window.location.href = "/Office/OfficeIndex";
-            },
-            error: function (response) {
-                console.log("Hata Oluştu");
-            }
-
-        });
-    }
-
-</script>@*Delete Scripts*@
-
 <div id="breadcrumbs">
     <ul class="breadcrumb">
         <li>
@@ -47,9 +22,7 @@
     </ul>
 </div>@*Header*@
 
-<aside id="OfficeDeleteDetail" class="OfficeContent">
-    <form class="form-horizontal form-row-separated">
-
+<form action="/Office/OfficeDataDelete" method="post" class="form-horizontal form-row-separated">
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-black">
@@ -120,9 +93,8 @@
 
                         <div class="form-group">
                             <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                <input type="hidden" id="dataId" value="@Model.ID" />
-                                <input type="button" class="btn btn-primary" style="float:right" value="Sil" onclick="DataDelete()" />
-                                @ViewBag.Error
+                                <input type="hidden" id="id" name="id" value="@Model.ID" />
+                                <button type="submit" class="btn btn-primary" style="float:right" onclick="Success()">Sil</button>
                                 <a class="btn btn-danger" style="float:left" href="@Url.Action("OfficeIndex", "Office")">Geri Dön</a>
                             </div>
 
@@ -131,8 +103,14 @@
                 </div>
             </div>
         </div>
-        </form>
-</aside>@*Question Delete Form*@
+        </form>@*Office Delete Form*@
+
 <footer>
     <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
 </footer>@*Footer*@
+
+<script type="text/javascript">
+    function Success() {
+        alert("Ofis Başarıyla Silindi");
+    }
+</script>

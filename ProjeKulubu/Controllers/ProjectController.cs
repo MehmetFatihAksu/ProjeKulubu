@@ -17,18 +17,64 @@ namespace ProjeKulubu.Controllers
         // GET: /Project/
         db2299D218BEEntities10 db = new db2299D218BEEntities10();
 
-
-        #region Tamamlanan Proje Yönetimi
+        #region Complete Project Views
         [UserAuthorize]
-        public ActionResult CompleteProjects(int? page)
+        public ActionResult CompleteProjects(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
-            var list = db.Project.Where(x => x.ProjectStatusID == 1).ToList();
-            var pageNumber = page ?? 1;
-            var onePageOfProject = list.ToPagedList(pageNumber, 7);
-            ViewBag.Show = onePageOfProject;
-            return View();
+            ViewBag.ProjectName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
+
+            ViewBag.CurrentSort = Sorting_Order;
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+
+            var kayitlar = from x in db.Project.Where(x=>x.ProjectStatusID==1) select x;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                kayitlar = kayitlar.Where(x => x.ProjectName.Contains(SearchString));
+            }
+
+            switch (Sorting_Order)
+            {
+                case "Ada_Gore":
+                    kayitlar = kayitlar.OrderByDescending(Project => Project.ProjectName);
+                    break;
+                default:
+                    kayitlar = kayitlar.OrderByDescending(Project => Project.ID);
+                    break;
+            }
+
+            ViewBag.HtmlStr = kayitlar.Count();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
 
+        [UserAuthorize]
+        public ActionResult CompleteProjectUpdate(int id)
+        {
+            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        [UserAuthorize]
+        public ActionResult CompleteProjectDelete(int id)
+        {
+            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+        #endregion
+
+        #region Complete Project Methods
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult AddCompleteProject(string Name, string Type, string Content, string Bugdet, string Birim, string Year, string Zaman, string Telefon, string EMail, string Location, string Adres)
@@ -61,18 +107,6 @@ namespace ProjeKulubu.Controllers
                 ViewBag.Error = "Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin.";
             }
             return RedirectToAction("CompleteProjects", "Project");
-        }
-        [UserAuthorize]
-        public ActionResult CompleteProjectUpdate(int id)
-        {
-            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-        [UserAuthorize]
-        public ActionResult CompleteProjectDelete(int id)
-        {
-            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
         }
 
         [HttpPost]
@@ -107,7 +141,6 @@ namespace ProjeKulubu.Controllers
             return RedirectToAction("CompleteProjects", "Project");
         }
 
-
         [HttpPost]
         public ActionResult CompleteProjectDataDelete(int id)
         {
@@ -117,100 +150,18 @@ namespace ProjeKulubu.Controllers
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
 
-        #endregion
-
-        #region Proje Görsel Yönetimi
         [HttpPost]
-        public ActionResult ProjectPictureDataDelete(int id)
+        public ActionResult CompleteProjectMultipleDelete(IEnumerable<int> idler)
         {
-            ProjectPicture projectPicture = db.ProjectPicture.Find(id);
-            db.ProjectPicture.Remove(projectPicture);
+            db.Project.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Project.Remove(y));
             db.SaveChanges();
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return RedirectToAction("CompleteProjects", "Project");
         }
-
-
-        public ActionResult ProjectPictureIndex(int? page)
-        {
-            var list = db.ProjectPicture.ToList();
-            var pageNumber = page ?? 1;
-            var onePageOfProjectPicture = list.ToPagedList(pageNumber, 7);
-            ViewBag.Show = onePageOfProjectPicture;
-            return View();
-        }
-
-
-        public ActionResult ProjectPictureUpdate(int id)
-        {
-            var data = db.ProjectPicture.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-
-        public ActionResult ProjectPictureDelete(int id)
-        {
-            var data = db.ProjectPicture.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-
-
-        [HttpPost]
-        public ActionResult ProjectPictureDataUpdate(int id, int projectId, HttpPostedFileBase ProjectPicture, string ProjectPictureSEO, string ProjectPictureDesc)
-        {
-            ProjectPicture projePictureModel = db.ProjectPicture.Where(x => x.ID == id).FirstOrDefault();
-
-            if (projectId != null || ProjectPicture != null)
-            {
-                string fileMap = Path.GetFileName(ProjectPicture.FileName);
-                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                ProjectPicture.SaveAs(loadLocation);
-
-                projePictureModel.PictureSEO = ProjectPictureSEO;
-                projePictureModel.PictureALT = ProjectPictureDesc;
-                projePictureModel.ProjectID = projectId;
-                projePictureModel.PictureURL = fileMap;
-                db.SaveChanges();
-
-            }
-            else
-            {
-                ViewBag.Error = "Lütfen eksiksiz veri girişi yapınız..";
-            }
-            return RedirectToAction("ProjectPictureIndex", "Project");
-        }
-
-        [HttpPost]
-        public ActionResult AddProjectPicture(int projectId, HttpPostedFileBase ProjectPicture, string ProjectPictureSEO, string ProjectPictureDesc)
-        {
-            ProjectPicture projectPicture = new ProjectPicture();
-
-            if (ProjectPicture != null || projectId != null)
-            {
-                string fileMap = Path.GetFileName(ProjectPicture.FileName);
-                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                ProjectPicture.SaveAs(loadLocation);
-
-                projectPicture.ProjectID = projectId;
-                projectPicture.PictureSEO = ProjectPictureSEO;
-                projectPicture.PictureALT = ProjectPictureDesc;
-                projectPicture.PictureURL = fileMap;
-
-                db.ProjectPicture.Add(projectPicture);
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Error = "Lütfen eksiksiz veri girişi yapınız..";
-            }
-            return RedirectToAction("ProjectPictureIndex", "Project");
-        }
-
-
-
         #endregion
 
 
-        #region Satışı Devam Eden Proje Yönetimi
 
+        #region Sale Project Views
         [UserAuthorize]
         public ActionResult SaleProjects(int? page)
         {
@@ -221,6 +172,22 @@ namespace ProjeKulubu.Controllers
             return View();
         }
 
+        [UserAuthorize]
+        public ActionResult SaleProjectUpdate(int id)
+        {
+            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        [UserAuthorize]
+        public ActionResult SaleProjectDelete(int id)
+        {
+            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+        #endregion
+
+        #region Sale Project Methods
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult AddSaleProject(string Name, string Type, string Content, string Bugdet, string Birim, string Year, string Zaman, string Telefon, string EMail, string Location, string Adres)
@@ -254,14 +221,7 @@ namespace ProjeKulubu.Controllers
             }
             return RedirectToAction("SaleProjects", "Project");
         }
-        [UserAuthorize]
-        public ActionResult SaleProjectUpdate(int id)
-        {
-            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
 
-        
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult SaleProjectDataUpdate(int id, string Name, string Type, string Content, string Bugdet, string Birim, string Year, string Zaman, string Telefon, string EMail, string Location, string Adres)
@@ -294,13 +254,6 @@ namespace ProjeKulubu.Controllers
             return RedirectToAction("SaleProjects", "Project");
         }
 
-        [UserAuthorize]
-        public ActionResult SaleProjectDelete(int id)
-        {
-            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-
         [HttpPost]
         public ActionResult SaleProjectDataDelete(int id)
         {
@@ -309,14 +262,11 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
-        
-
-
         #endregion
 
-        #region Yakındaki Projeler Yönetimi
 
+
+        #region Soon Project Views
         [UserAuthorize]
         public ActionResult SoonProjects(int? page)
         {
@@ -327,7 +277,22 @@ namespace ProjeKulubu.Controllers
             return View();
         }
 
-        
+        [UserAuthorize]
+        public ActionResult SoonProjectUpdate(int id)
+        {
+            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        [UserAuthorize]
+        public ActionResult SoonProjectDelete(int id)
+        {
+            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+        #endregion
+
+        #region Soon Project Methods
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult AddSoonProject(string Name, string Type, string Content, string Bugdet, string Birim, string Year, string Zaman, string Telefon, string EMail, string Location, string Adres)
@@ -361,18 +326,6 @@ namespace ProjeKulubu.Controllers
             }
             return RedirectToAction("SoonProjects", "Project");
         }
-        [UserAuthorize]
-        public ActionResult SoonProjectUpdate(int id)
-        {
-            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
-        [UserAuthorize]
-        public ActionResult SoonProjectDelete(int id)
-        {
-            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
-            return View(data);
-        }
 
         [HttpPost]
         [ValidateInput(false)]
@@ -405,7 +358,7 @@ namespace ProjeKulubu.Controllers
             }
             return RedirectToAction("SoonProjects", "Project");
         }
-        
+
         [HttpPost]
         public ActionResult SoonProjectDataDelete(int id)
         {
@@ -414,9 +367,123 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
-
         #endregion
 
+
+
+        #region Project Pictures Views
+        [UserAuthorize]
+        public ActionResult ProjectPictureIndex(string Sorting_Order, string SearchString, string currentFilter, int? page)
+        {
+            ViewBag.PictureProjectName = string.IsNullOrEmpty(Sorting_Order) ? "Projeye_Gore" : "";
+
+            ViewBag.CurrentSort = Sorting_Order;
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+
+            var kayitlar = from x in db.ProjectPicture select x;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                kayitlar = kayitlar.Where(x => x.Project.ProjectName.Contains(SearchString));
+            }
+
+            switch (Sorting_Order)
+            {
+                case "Ofise_Gore":
+                    kayitlar = kayitlar.OrderByDescending(ProjectPicture => ProjectPicture.Project.ProjectName);
+                    break;
+                default:
+                    kayitlar = kayitlar.OrderByDescending(ProjectPicture => ProjectPicture.ID);
+                    break;
+            }
+
+            ViewBag.HtmlStr = kayitlar.Count();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
+        }
+
+        [UserAuthorize]
+        public ActionResult ProjectPictureUpdate(int id)
+        {
+            var data = db.ProjectPicture.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        [UserAuthorize]
+        public ActionResult ProjectPictureDelete(int id)
+        {
+            var data = db.ProjectPicture.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+        #endregion
+
+        #region Project Pictures Methods
+        [HttpPost]
+        public ActionResult AddProjectPicture(int projectId, HttpPostedFileBase ProjectPicture, string ProjectPictureSEO)
+        {
+            ProjectPicture projectPicture = new ProjectPicture();
+            string fileMap = Path.GetFileName(ProjectPicture.FileName);
+            var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+            ProjectPicture.SaveAs(loadLocation);
+            projectPicture.ProjectID = projectId;
+            projectPicture.PictureSEO = ProjectPictureSEO;
+            projectPicture.PictureURL = fileMap;
+            db.ProjectPicture.Add(projectPicture);
+            db.SaveChanges();
+            return RedirectToAction("ProjectPictureIndex", "Project");
+        }
+
+        [HttpPost]
+        public ActionResult ProjectPictureDataUpdate(int id, int projectId, HttpPostedFileBase ProjectPicture, string ProjectPictureSEO)
+        {
+            ProjectPicture projePictureModel = db.ProjectPicture.Where(x => x.ID == id).FirstOrDefault();
+            if(ProjectPicture == null)
+            {
+                projePictureModel.PictureSEO = ProjectPictureSEO;
+                projePictureModel.ProjectID = projectId;
+                db.SaveChanges();
+            }
+            else
+            {
+                string fileMap = Path.GetFileName(ProjectPicture.FileName);
+                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+                ProjectPicture.SaveAs(loadLocation);
+                projePictureModel.PictureSEO = ProjectPictureSEO;
+                projePictureModel.ProjectID = projectId;
+                projePictureModel.PictureURL = fileMap;
+                db.SaveChanges();
+            }
+            
+            return RedirectToAction("ProjectPictureIndex", "Project");
+        }
+
+        [HttpPost]
+        public ActionResult ProjectPictureDataDelete(int id)
+        {
+            ProjectPicture projectPicture = db.ProjectPicture.Find(id);
+            db.ProjectPicture.Remove(projectPicture);
+            db.SaveChanges();
+            return RedirectToAction("ProjectPictureIndex", "Project");
+        }
+
+        public ActionResult PicturesMultipleDelete(IEnumerable<int> idler)
+        {
+            db.ProjectPicture.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.ProjectPicture.Remove(y));
+            db.SaveChanges();
+            return RedirectToAction("ProjectPictureIndex", "Project");
+        }
+        #endregion
 
 
     }

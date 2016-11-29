@@ -58,7 +58,7 @@ namespace ProjeKulubu.Controllers
         }
         public ActionResult AldigimizEgitimler(int? page)
         {
-            var kayitlar = from x in db.Education select x;
+            var kayitlar = from x in db.Education.Where(x=>x.EducationTypeID==1) select x;
             kayitlar = kayitlar.OrderByDescending(Education => Education.ID);
             int pageSize = 4;
             int pageNumber = (page ?? 1);
@@ -66,7 +66,7 @@ namespace ProjeKulubu.Controllers
         }
         public ActionResult VerdigimizEgitimler(int? page)
         {
-            var kayitlar = from x in db.Education select x;
+            var kayitlar = from x in db.Education.Where(x=>x.EducationTypeID==2) select x;
             kayitlar = kayitlar.OrderByDescending(Education => Education.ID);
             int pageSize = 4;
             int pageNumber = (page ?? 1);

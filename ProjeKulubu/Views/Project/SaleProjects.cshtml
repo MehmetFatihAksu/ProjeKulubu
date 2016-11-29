@@ -525,7 +525,7 @@
                                     <td>@list.ProjectYear</td>
                                     <td>@list.ProjectLocation</td>
                                     <td>@list.ProjectMail</td>
-                                    <td>@list.ProjectContent.Substring(0, 10)</td>
+                                    <td>@list.ProjectContent</td>
                                     <td><a class="btn btn-sm show-tooltip" title="İncele" href="@Url.Action("SaleProjectView", "Project")/@list.ID"><i class="fa fa-search"></i></a></td>
                                     <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("SaleProjectUpdate", "Project")/@list.ID"><i class="fa fa-edit"></i></a></td>
                                     <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("SaleProjectDelete", "Project")/@list.ID"><i class="fa fa-trash-o"></i></a></td>

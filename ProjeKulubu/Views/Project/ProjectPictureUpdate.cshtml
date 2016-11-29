@@ -1,12 +1,9 @@
-﻿@using ProjeKulubu.Models;
-@model ProjectPicture
-@using PagedList
-@using PagedList.Mvc
+﻿@model ProjeKulubu.Models.ProjectPicture
+@using ProjeKulubu.Models
 
 @{
-    ProjeKulubu.Models.db2299D218BEEntities10 db = new ProjeKulubu.Models.db2299D218BEEntities10();
-    List<Project> projectList = new List<Project>();
-    projectList = db.Project.Where(x => x.ProjectName != null).ToList();
+    db2299D218BEEntities10 db = new db2299D218BEEntities10();
+    var projectList = db.Project.ToList();
 }
 
 
@@ -15,13 +12,12 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-
 <div class="page-title">
     <div>
-        <h1><i class="fa fa-star"></i> Proje Resimleri Güncelleme </h1>
+        <h1><i class="fa fa-bars"></i> Proje Resimleri Güncelleme </h1>
         <h4>Bu kısımda mevcut projelerinize ait resimleri güncelleyebilirsiniz</h4>
     </div>
-</div>
+</div>@*Header 1*@
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">
@@ -30,14 +26,20 @@
             <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
-        <li class="active">Proje Görsel Yönetimi</li>
+        <li>
+            <i class="fa fa-gavel"></i>
+            <a href="@Url.Action("ProjectPictureIndex","Project")">Proje Resim İşlemleri</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li class="active">Görsel Düzenleme Formu</li>
     </ul>
-</div>
+</div>@*Update Form*@
+
 <div class="row">
     <div class="col-md-12">
         <div class="box box-black">
             <div class="box-title">
-                <h3><i class="fa fa-star"></i>Proje Resimleri Güncelleme Formu</h3>
+                <h3><i class="fa fa-edit"></i>Seçili Resmin Düzenlenme Formu</h3>
                 <div class="box-tool">
                     <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
                     <a data-action="close" href="#"><i class="fa fa-times"></i></a>
@@ -46,7 +48,7 @@
             <div class="box-content">
                 <form action="/Project/ProjectPictureDataUpdate" class="form-horizontal form-row-separated" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">*Resmin Şuan Ait Olduğu Proje:</label>
+                        <label class="col-sm-3 col-lg-2 control-label">Resmin Şuan Ait Olduğu Proje:</label>
                         <div class="col-sm-9 col-lg-10 controls">
                             <input type="text" name="Project" disabled value="@Model.Project.ProjectName" style="color:#000000" id="Project" class="form-control show-popover" data-trigger="hover" data-content="bu kısımda resminizin hangi Projee ait olduğu gösterilir." data-original-title="Proje Resim" data-placement="left">
                         </div>
@@ -76,9 +78,8 @@
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
 
-                                        <input required oninvalid="this.setCustomValidity('Proje resmini boş geçemezsiniz')" oninput="setCustomValidity('')" type="file" id="uploadFile" name="ProjectPicture" class="file-input" />
+                                        <input  type="file" id="uploadFile" name="ProjectPicture" class="file-input" />
                                     </span>
-                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
                             </div>
 
@@ -92,24 +93,26 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Proje Resim Açıklama:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" value="@Model.PictureALT" name="ProjectPictureDesc" id="ProjectPictureDesc" style="color:#000000" placeholder="Kısa Açıklama Cümlesi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma Proje resminiz için kısa açıklama giriniz" data-original-title="Proje Resim Açıklama" data-placement="left">
+                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                            <input type="hidden" id="id" name="id" value="@Model.ID" />
+                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <a class="btn btn-danger" style="float:left" href="@Url.Action("ProjectPictureIndex","Project")">Geri Dön</a>
                         </div>
+
                     </div>
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <input type="hidden" name="id" value="@Model.ID" />
-                            <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Güncelle</button>
-                            @ViewBag.Error
-                            <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+                            <h6 style="float:right">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
+</div>@*Footer*@
+
+@*Scripts Down Here*@
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 <script src="~/Content/AdminContent/js/buttonActions.js"></script>

@@ -2126,7 +2126,6 @@
     <Content Include="Views\Office\OfficePictureUpdate.cshtml" />
     <Content Include="Views\Office\OfficePictureDelete.cshtml" />
     <Content Include="Views\Project\ProjectPictureIndex.cshtml" />
-    <Content Include="Views\Project\ProjectPictureDelete.cshtml" />
     <Content Include="Views\Project\ProjectPictureUpdate.cshtml" />
     <Content Include="Views\GivingEducation\GivingEducationDelete.cshtml" />
     <Content Include="Views\GivingEducation\GivingEducationUpdate.cshtml" />

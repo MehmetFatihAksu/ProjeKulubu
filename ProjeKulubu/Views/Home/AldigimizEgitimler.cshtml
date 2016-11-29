@@ -4,9 +4,8 @@
 
 @{ 
     db2299D218BEEntities10 db = new db2299D218BEEntities10();
-    var takingList = Model.Where(x => x.EducationTypeID == 1).ToList();
-    var popList = (from x in takingList orderby x.EducationView descending select x).Take(3);
-    var newList = (from x in takingList orderby x.ID descending select x).Take(3);
+    var populerList = db.Education.Where(x => x.EducationTypeID == 1).OrderByDescending(y => y.EducationView).Take(3);
+    var newList = db.Education.Where(x => x.EducationTypeID == 1).OrderByDescending(y => y.ID).Take(3);
 }
 
 @{
@@ -36,7 +35,7 @@
                 <div class="row team1">
                     <div class="col-sm-12 col-md-12">
                         <!--post box-->
-                    @foreach (var item in takingList)
+                    @foreach (var item in Model)
                     {
                         <div class="box">
                             <!--blog date-->
@@ -84,7 +83,7 @@
                 <div class="tab-content tab-widget">
                     <div id="sectionA" class="tab-pane fade in active">
                         <!--tab post-->
-                    @foreach (var pop in popList)
+                    @foreach (var pop in populerList)
                     {
                         <div class="media">
                             <div class="media-left">

@@ -128,15 +128,20 @@ namespace ProjeKulubu.Controllers
         [HttpPost]
         public ActionResult OfficeDataDelete(int id)
         {
-            Office office = db.Office.Find(id);
-            db.Office.Remove(office);
+            Office removeOffice = db.Office.Find(id);
+            db.OfficePictures.Where(x => x.OfficeID == removeOffice.ID).ToList().ForEach(y => db.OfficePictures.Remove(y));
+            db.Office.Remove(removeOffice);
             db.SaveChanges();
-
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return RedirectToAction("OfficeIndex", "Office");
         }
 
         public ActionResult OfficeMultipleDelete(IEnumerable<int> idler)
         {
+            foreach (var item in idler)
+            {
+                Office removeModel = db.Office.Find(item);
+                db.OfficePictures.Where(x => x.OfficeID == removeModel.ID).ToList().ForEach(y => db.OfficePictures.Remove(y));
+            }
             db.Office.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Office.Remove(y));
             db.SaveChanges();
             return RedirectToAction("OfficeIndex", "Office");

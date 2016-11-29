@@ -172,7 +172,7 @@ ViewBag.Title = "TakingEducationIndex";
                                             </td>
                                             <td>@item.EducationFileSEO</td>
                                             <td>@item.EducationContent</td>
-                                            <th>@item.EducationDate</th>
+                                            <th>@item.EducationDate.ToString().Substring(0, 10)</th>
                                             <th>@item.EducationView</th>
                                             <td><a class="btn btn-sm show-tooltip" title="İnceleme" target="_blank" href="@Url.Action("Egitim","Home")/@item.ID"><i class="fa fa-search"></i></a></td>
                                             <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("TakingEducationUpdate","TakingEducation")/@item.ID"><i class="fa fa-edit"></i></a></td>

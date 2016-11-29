@@ -34,7 +34,7 @@ namespace ProjeKulubu.Controllers
 
             ViewBag.CurrentFilter = SearchString;
 
-            var kayitlar = from x in db.Education select x;
+            var kayitlar = from x in db.Education.Where(x => x.EducationTypeID == 2) select x;
 
             if (!String.IsNullOrEmpty(SearchString))
             {
@@ -47,10 +47,10 @@ namespace ProjeKulubu.Controllers
                     kayitlar = kayitlar.OrderBy(Education => Education.EducationTitle);
                     break;
                 case "Tarihe_Gore":
-                    kayitlar = kayitlar.OrderBy(Education => Education.EducationDate);
+                    kayitlar = kayitlar.OrderByDescending(Education => Education.EducationDate);
                     break;
                 case "Goruntulenme_Gore":
-                    kayitlar = kayitlar.OrderBy(Education => Education.EducationView);
+                    kayitlar = kayitlar.OrderByDescending(Education => Education.EducationView);
                     break;
                 default:
                     kayitlar = kayitlar.OrderByDescending(Education => Education.ID);
