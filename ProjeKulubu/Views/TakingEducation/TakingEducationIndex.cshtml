@@ -12,6 +12,43 @@ ViewBag.Title = "TakingEducationIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    var idler = [];
+    function MultiDataDelete() {
+
+        if ($("input[type=checkbox]:checked").length == 0) {
+            alert("Lütfen silmek istediğiniz veriyi seçiniz...");
+        } else {
+
+            var elemCount = $("input[type=checkbox]:checked").length;
+
+            for (var i = 0; i < elemCount; i++) {
+
+                var elemId = $("input[type=checkbox]:checked")[i].valueOf();
+                idler[i] = elemId;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/TakingEducation/MultipleDelete",
+                data: idler,
+                ajaxasync: true,
+                traditional: true,
+                success: function (response) {
+                    alert("Seçilen Eğitimler Başarıyla Silindi");
+                    window.location.href = "/TakingEducation/TakingEducationIndex";
+                },
+                error: function (response) {
+                    console.log("Hata Oluştu");
+                }
+            });
+        }
+    }
+
+</script>
+
+
+
     <div class="page-title">
         <div>
             <h1><i class="fa fa-bars"></i> Alinan Eğitim Yönetimi</h1>
@@ -120,13 +157,12 @@ ViewBag.Title = "TakingEducationIndex";
                             </div>
                         }
                     </div>
-                    @using (Html.BeginForm("MultipleDelete", "TakingEducation", FormMethod.Post))
-                    {
+                   
                         <div class="btn-toolbar pull-right">
 
                             <div class="btn-group">
                                 <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
-                                <button type="submit" class="btn btn-circle show-tooltip" title="Silme"><i class="fa fa-trash-o"></i></button>
+                                <button type="submit" class="btn btn-circle show-tooltip" id="MultiDataDelete" onclick="MultiDataDelete()" title="Silme"><i class="fa fa-trash-o"></i></button>
                             </div>
                             <div class="btn-group">
                                 <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("TakingEducationIndex", "TakingEducation")"><i class="fa fa-repeat"></i></a>
@@ -183,7 +219,6 @@ ViewBag.Title = "TakingEducationIndex";
                                 </tbody>
                             </table>
                         </div>
-                    }
                     <div class="text-center">
                         <ul class="pagination">
                             @Html.PagedListPager(Model, page => Url.Action("TakingEducationIndex", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })

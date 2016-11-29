@@ -160,6 +160,7 @@
             return false;
         }
     }
+    
 
 </script>
 
@@ -488,7 +489,7 @@
                 <div class="btn-toolbar pull-right">
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
-                        <a class="btn btn-circle show-tooltip" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
+                        <a class="btn btn-circle show-tooltip" id="MultiDataDelete" onclick="MultiDataDelete()" title="Silme" href="#"><i class="fa fa-trash-o"></i></a>
                     </div>
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("SaleProjects", "Project")"><i class="fa fa-repeat"></i></a>
@@ -517,7 +518,7 @@
                             @foreach (var list in ViewBag.Show)
                             {
                                 <tr class="table-flag-blue">
-                                    <td><input type="checkbox" /></td>
+                                    <td><input type="checkbox" id="@list.ID"></td>
                                     <td>@list.ID</td>
                                     <td>@list.ProjectName</td>
                                     <td>@list.ProjectType</td>

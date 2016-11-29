@@ -155,6 +155,10 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
+        public ActionResult Error()
+        {
+            return View();
+        }
 
     }
 }
