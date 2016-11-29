@@ -71,7 +71,7 @@ namespace ProjeKulubu.Controllers
         #region Methods
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AddTeamMember(int officeId,string office, string name, string position, string exp, int age, HttpPostedFileBase picture, string facebook, string twitter, string google, string linkedin, string biografi)
+        public ActionResult AddTeamMember(int officeId,string office, string name, string position, string exp, int age, HttpPostedFileBase picture,string seo, string facebook, string twitter, string google, string linkedin, string biografi)
         {
             Team teamModel = new Team();
             biografi = biografi.Replace("<p>", "").Replace("</p>", "");
@@ -85,6 +85,7 @@ namespace ProjeKulubu.Controllers
             teamModel.MemberGoogleURL = "Http://" + google;
             teamModel.MemberLinkedinURL = "Http://" + linkedin;
             teamModel.MemberName = name;
+            teamModel.MemberPictureSEO = seo;
             teamModel.MemberPictureURL = fileMap;
             teamModel.MemberPozision = position;
             teamModel.MemberTwitterURL = "Http://" + twitter;
@@ -96,12 +97,13 @@ namespace ProjeKulubu.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult TeamDataUpdate(int id,int officeId,string name, string position, int age, string exp, HttpPostedFileBase picture, string facebook, string twitter, string google, string linkedin, string biografi)
+        public ActionResult TeamDataUpdate(int id,int officeId,string name,string seo, string position, int age, string exp, HttpPostedFileBase picture, string facebook, string twitter, string google, string linkedin, string biografi)
         {
             Team updateModel = db.Team.Where(x => x.ID == id).FirstOrDefault();
             biografi = biografi.Replace("<p>", "").Replace("</p>", "");
             if (picture == null)
             {
+                updateModel.MemberPictureSEO = seo;
                 updateModel.MemberAge = age;
                 updateModel.MemberBiografi = biografi;
                 updateModel.MemberExperience = exp;
@@ -127,6 +129,7 @@ namespace ProjeKulubu.Controllers
                 updateModel.MemberGoogleURL = google;
                 updateModel.MemberLinkedinURL = linkedin;
                 updateModel.MemberName = name;
+                updateModel.MemberPictureSEO = seo;
                 updateModel.MemberPozision = position;
                 updateModel.MemberTwitterURL = twitter;
                 updateModel.OfficeID = officeId;

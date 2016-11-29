@@ -85,27 +85,19 @@ namespace ProjeKulubu.Controllers
 
             Content = Content.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
 
-            if (Name != null || Type != null || Birim != null || Content != null || Bugdet != null)
-            {
-                project.ProjectName = Name;
-                project.ProjectBudgets = Bugdet;
-                project.ProjectContent = Content;
-                project.ProjectMoneyType = Birim;
-                project.ProjectYear = Year;
-                project.ProjectMail = EMail;
-                project.ProjectLocation = Adres + " " + Location;
-                project.ProjectType = Type;
-                project.ProjectStatusID = 1;
-                project.ProjectPhone = Telefon;
-                project.ProjectAltLocation = Adres;
-
-                db.Project.Add(project);
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Error = "Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin.";
-            }
+            project.ProjectName = Name;
+            project.ProjectBudgets = Bugdet;
+            project.ProjectContent = Content;
+            project.ProjectMoneyType = Birim;
+            project.ProjectYear = Year;
+            project.ProjectMail = EMail;
+            project.ProjectLocation = Adres + " " + Location;
+            project.ProjectType = Type;
+            project.ProjectStatusID = 1;
+            project.ProjectPhone = Telefon;
+            project.ProjectAltLocation = Adres;
+            db.Project.Add(project);
+            db.SaveChanges();
             return RedirectToAction("CompleteProjects", "Project");
         }
 
@@ -118,26 +110,18 @@ namespace ProjeKulubu.Controllers
             Location = "İstanbul,Türkiye";
 
             Content = Content.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
-
-            if (Name != null || Type != null || Birim != null || Content != null || Bugdet != null)
-            {
-                projectModel.ProjectName = Name;
-                projectModel.ProjectBudgets = Bugdet;
-                projectModel.ProjectContent = Content;
-                projectModel.ProjectMoneyType = Birim;
-                projectModel.ProjectYear = Year;
-                projectModel.ProjectMail = EMail;
-                projectModel.ProjectLocation = Adres + " " + Location;
-                projectModel.ProjectType = Type;
-                projectModel.ProjectStatusID = 1;
-                projectModel.ProjectPhone = Telefon;
-                projectModel.ProjectAltLocation = Adres;
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Error = "Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin.";
-            }
+            projectModel.ProjectName = Name;
+            projectModel.ProjectBudgets = Bugdet;
+            projectModel.ProjectContent = Content;
+            projectModel.ProjectMoneyType = Birim;
+            projectModel.ProjectYear = Year;
+            projectModel.ProjectMail = EMail;
+            projectModel.ProjectLocation = Adres + " " + Location;
+            projectModel.ProjectType = Type;
+            projectModel.ProjectStatusID = 1;
+            projectModel.ProjectPhone = Telefon;
+            projectModel.ProjectAltLocation = Adres;
+            db.SaveChanges();
             return RedirectToAction("CompleteProjects", "Project");
         }
 
@@ -147,7 +131,7 @@ namespace ProjeKulubu.Controllers
             Project proje = db.Project.Find(id);
             db.Project.Remove(proje);
             db.SaveChanges();
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return RedirectToAction("CompleteProjects", "Project");
         }
 
         [HttpPost]

@@ -27,6 +27,7 @@ namespace ProjeKulubu.Models
         public string MemberLinkedinURL { get; set; }
         public Nullable<int> OfficeID { get; set; }
         public Nullable<int> ProjectID { get; set; }
+        public string MemberPictureSEO { get; set; }
     
         public virtual Office Office { get; set; }
         public virtual Project Project { get; set; }

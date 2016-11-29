@@ -3,12 +3,8 @@
 @using ProjeKulubu.Models
 
 @{
-    ProjeKulubu.Models.db2299D218BEEntities10 db = new ProjeKulubu.Models.db2299D218BEEntities10();
-    
-    List<Office> officeList = new List<Office>();
-    
-    officeList = db.Office.Where(x=>x.OfficeName !=null).ToList();
-
+    db2299D218BEEntities10 db = new db2299D218BEEntities10();
+    var officeList = db.Office.ToList();
 }
 
 @{
@@ -61,24 +57,42 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="/Team/AddTeamMember" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Üye İsim ve Soyisim:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="name" id="name" placeholder="Üye İsmini ve Soyismini Giriniz" class="form-control show-popover" data-trigger="hover" required style="color:#000000" oninvalid="this.setCustomValidity('Üye ismini boş geçemezsiniz')" oninput="setCustomValidity('')" data-content="Bu kısıma ekip üyenize ait isim ve soyisim bilgisini giriniz..." data-original-title="Üye İsim Soyisim" data-placement="left">
+                @if (officeList.Count == 0)
+                {
+                    <form method="get" action="/Office/OfficeIndex" class="form-horizontal form-row-separated">
+                        <div class="form-group">
+                            <div class="col-sm-12 col-lg-12 controls">
+                                <input type="text" name="OfficePictureSEO" disabled style="color:#000000" id="OfficePictureSEO" value="Öncelikle Bir Ofis veya Proje Eklemelisiniz" class="form-control show-popover">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Çalıştığı Ofis:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            @if (officeList.Count==0)
-                            {
-                                <select name="officeId" id="Office" class="form-control input-sm" tabindex="1" >
-                                    <option value="1">Henüz Bir Ofis Eklenmemiş</option>
-                                </select>
-                            }
-                            else
-                            {
+                        <div class="form-group last">
+                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                <button type="submit" class="btn btn-danger" style="float:left"><i class="fa fa-check-circle"></i>Proje Ekle</button>
+                                <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i>Ofis Ekle</button>
+                            </div>
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <form action="/Team/AddTeamMember" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Üye İsim ve Soyisim:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" name="name" id="name" placeholder="Üye İsmini ve Soyismini Giriniz" class="form-control show-popover" data-trigger="hover" required style="color:#000000" oninvalid="this.setCustomValidity('Üye ismini boş geçemezsiniz')" oninput="setCustomValidity('')" data-content="Bu kısıma ekip üyenize ait isim ve soyisim bilgisini giriniz..." data-original-title="Üye İsim Soyisim" data-placement="left">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Çalıştığı Ofis:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                @if (officeList.Count == 0)
+                                {
+                                    <select name="officeId" id="Office" class="form-control input-sm" required>
+                                        <option value="1">Henüz Bir Ofis Eklenmemiş</option>
+                                    </select>
+                                }
+                                else
+                                {
                                     <select name="officeId" id="Office" class="form-control input-sm" tabindex="1">
                                         @foreach (Office item in officeList)
                                         {
@@ -86,106 +100,114 @@
                                         }
 
                                     </select>
-                            }
-
-                        </div>
-                        
+                                }
 
                             </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">Üye Pozisyon:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <label class="radio-inline">
-                                <input type="radio" name="position" value="Genel Müdür" /> Genel Müdür
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="position" value="Yönetici" checked /> Yönetici
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="position" value="Çalışan" /> Çalışan
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">* Üye Tecrübe:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <select name="exp" id="exp" class="form-control input-sm" tabindex="1">
-                                <option value="1">1 Yıldız</option>
-                                <option value="2">2 Yıldız</option>
-                                <option value="3">3 Yıldız</option>
-                                <option value="4">4 Yıldız</option>
-                                <option value="5">5 Yıldız</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Üye Yaşı:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" onkeypress="return isNumber(event)" name="age" id="age" required style="color:#000000" oninvalid="this.setCustomValidity('Üye yaşını boş geçemezsiniz')" oninput="setCustomValidity('')" placeholder="Üye Yaşını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma üyenizin yaşını giriniz..." data-original-title="Üye Yaş" data-placement="left">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">* Üye Resim:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <div class="fileupload fileupload-new" data-provides="fileupload">
-                                <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
-                                    <img src="~/Content/noimage.gif" alt="" />
-                                </div>
-                                <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                                <div>
-                                    <span class="btn btn-default btn-file">
-                                        <span class="fileupload-new">Resim Seç</span>
-                                        <span class="fileupload-exists">Değiştir</span>
-                                        <input required  oninvalid="this.setCustomValidity('Üye resmini boş geçemezsiniz')" oninput="setCustomValidity('')" type="file" name="picture" accept="image/*" id="picture" class="file-input" />
-                                    </span>
-                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Facebook:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="facebook" style="color:#000000" id="facebook" placeholder="Üye Facebook Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin facebook adresini giriniz.." data-original-title="Üye Facebook" data-placement="left">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Twitter:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="twitter" style="color:#000000" id="twitter" placeholder="Üye Twitter Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin twitter adresini giriniz.." data-original-title="Üye Twitter" data-placement="left">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye GooglePlus:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="google" style="color:#000000" id="google" placeholder="Üye GooglePlus Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin googlePlus adresini giriniz.." data-original-title="Üye GooglePlus" data-placement="left">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Linkedin:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" name="linkedin" style="color:#000000" id="linkedin" placeholder="Üye Linkedin Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin linkedin adresini giriniz.." data-original-title="Üye Linkedin" data-placement="left">
-                        </div>
-                    </div>
-                    <div class="box-content">
 
+
+                        </div>
                         <div class="form-group">
-                            <label class="col-sm-3 col-lg-2 control-label">* Üye Biyografisi:</label>
+                            <label class="col-sm-3 col-lg-2 control-label">Üye Pozisyon:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control col-md-12 ckeditor" name="biografi" id="biografi" rows="6"></textarea>
+                                <label class="radio-inline">
+                                    <input type="radio" name="position" value="Genel Müdür" /> Genel Müdür
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="position" value="Yönetici" checked /> Yönetici
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="position" value="Çalışan" /> Çalışan
+                                </label>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">* Üye Tecrübe:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <select name="exp" id="exp" class="form-control input-sm" tabindex="1">
+                                    <option value="1">1 Yıldız</option>
+                                    <option value="2">2 Yıldız</option>
+                                    <option value="3">3 Yıldız</option>
+                                    <option value="4">4 Yıldız</option>
+                                    <option value="5">5 Yıldız</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Üye Yaşı:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" onkeypress="return isNumber(event)" name="age" id="age" required style="color:#000000" oninvalid="this.setCustomValidity('Üye yaşını boş geçemezsiniz')" oninput="setCustomValidity('')" placeholder="Üye Yaşını Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma üyenizin yaşını giriniz..." data-original-title="Üye Yaş" data-placement="left">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">* Üye Resim:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new img-thumbnail" style="width: 200px; height: 150px;">
+                                        <img src="~/Content/noimage.gif" alt="" />
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists img-thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                    <div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileupload-new">Resim Seç</span>
+                                            <span class="fileupload-exists">Değiştir</span>
+                                            <input required oninvalid="this.setCustomValidity('Üye resmini boş geçemezsiniz')" oninput="setCustomValidity('')" type="file" name="picture" accept="image/*" id="picture" class="file-input" />
+                                        </span>
+                                        <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Resim SEO:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" name="seo" id="seo" placeholder="SEO" class="form-control show-popover" data-trigger="hover" required style="color:#000000" oninvalid="this.setCustomValidity('SEO kısmını boş geçemezsiniz')" oninput="setCustomValidity('')" data-content="Bu kısıma ekip üyenizin resmiyle ilgili anahtar kelime giriniz" data-original-title="SEO" data-placement="left">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Facebook:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" name="facebook" style="color:#000000" id="facebook" placeholder="Üye Facebook Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin facebook adresini giriniz.." data-original-title="Üye Facebook" data-placement="left">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Twitter:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" name="twitter" style="color:#000000" id="twitter" placeholder="Üye Twitter Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin twitter adresini giriniz.." data-original-title="Üye Twitter" data-placement="left">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye GooglePlus:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" name="google" style="color:#000000" id="google" placeholder="Üye GooglePlus Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin googlePlus adresini giriniz.." data-original-title="Üye GooglePlus" data-placement="left">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Üye Linkedin:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" name="linkedin" style="color:#000000" id="linkedin" placeholder="Üye Linkedin Adresi" class="form-control show-popover" data-trigger="hover" data-content="Üyenizin linkedin adresini giriniz.." data-original-title="Üye Linkedin" data-placement="left">
+                            </div>
+                        </div>
+                        <div class="box-content">
 
-                    </div>
-
-                    <div class="form-group last">
-                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
-                                    <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-lg-2 control-label">* Üye Biyografisi:</label>
+                                <div class="col-sm-9 col-lg-10 controls">
+                                    <textarea class="form-control col-md-12 ckeditor" name="biografi" id="biografi" rows="6"></textarea>
+                                </div>
+                            </div>
 
                         </div>
-                    </div>
-                </form>
+
+                        <div class="form-group last">
+                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                                <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+
+                            </div>
+                        </div>
+                    </form>
+                }
+                
             </div>
         </div>
     </div>

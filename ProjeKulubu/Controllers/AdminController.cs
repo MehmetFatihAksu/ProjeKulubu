@@ -114,6 +114,30 @@ namespace ProjeKulubu.Controllers
             return View();
         }
 
+        public ActionResult MainUpdate(string facebook,string twitter,string google,string linkedin,string youtube,string phone,string mail,string working1,string working2,string working3,string fax,int office1,int office2,int office3,string contactmessage,string contactmainoffice,string workingcomment)
+        {
+            var data = db.MainContents.Where(x => x.ID == 0).FirstOrDefault();
+            data.facebookURL = facebook;
+            data.twitterURL = twitter;
+            data.googleURL = google;
+            data.LinkedinURL = linkedin;
+            data.youtubeURL = youtube;
+            data.phoneNumber = phone;
+            data.Mail = mail;
+            data.Working1 = working1;
+            data.Working2 = working2;
+            data.Working3 = working3;
+            data.fax = fax;
+            data.mainofficeID1 = office1;
+            data.mainofficeID2 = office2;
+            data.mainofficeID3 = office3;
+            data.ContactMessage = contactmessage;
+            data.contanctmainoffice = contactmainoffice;
+            data.workingcomment = workingcomment;
+            db.SaveChanges();
+            return View();
+        }
+
 
 
 

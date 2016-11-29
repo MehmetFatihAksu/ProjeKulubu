@@ -18,5 +18,8 @@ namespace ProjeKulubu.Models
         public string IPAdress { get; set; }
         public string SoftwareType { get; set; }
         public Nullable<System.DateTime> LoginDate { get; set; }
+        public Nullable<int> AdminID { get; set; }
+    
+        public virtual Admin Admin { get; set; }
     }
 }

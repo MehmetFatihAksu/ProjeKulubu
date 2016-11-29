@@ -41,33 +41,52 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="/Tags/AddTags" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
-                    <div class="form-group">
-                        <label class="col-sm-3 col-lg-2 control-label">* Etiketin Ait Olduğu Makale:</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <select name="blogId" id="Blog" class="form-control input-sm" tabindex="1" required oninvalid="this.setCustomValidity('Öncelikle Bir Makale Eklemelisiniz')" oninput="setCustomValidity('')" style="color:#000000">
-                                @foreach (var item in blogList)
-                                {
-                                    <option value="@item.ID">@item.BlogTitle</option>
-                                }
-                            </select>
+                @if (blogList.Count == 0)
+                {
+                    <form method="get" action="/Blog/BlogIndex" class="form-horizontal form-row-separated">
+                        <div class="form-group">
+                            <div class="col-sm-12 col-lg-12 controls">
+                                <input type="text" name="OfficePictureSEO" disabled style="color:#000000" id="OfficePictureSEO" value="Öncelikle Bir Makale Eklemelisiniz" class="form-control show-popover">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Etiket İsmi</label>
-                        <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" required style="color:#000000" oninvalid="this.setCustomValidity('Etiket İsmini Boş Geçemezsiniz')" oninput="setCustomValidity('')" id="tagname" name="tagname" placeholder="Etiket İsmini Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma etiketinizin adını giriniz..." data-original-title="Etiket İsmi" data-placement="left">
+                        <div class="form-group last">
+                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Makale Ekle</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+                }
+                else
+                {
+                    <form action="/Tags/AddTags" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                        <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">* Etiketin Ait Olduğu Makale:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <select name="blogId" id="Blog" class="form-control input-sm" tabindex="1" required oninvalid="this.setCustomValidity('Öncelikle Bir Makale Eklemelisiniz')" oninput="setCustomValidity('')" style="color:#000000">
+                                    @foreach (var item in blogList)
+                                    {
+                                        <option value="@item.ID">@item.BlogTitle</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Etiket İsmi</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                <input type="text" required style="color:#000000" oninvalid="this.setCustomValidity('Etiket İsmini Boş Geçemezsiniz')" oninput="setCustomValidity('')" id="tagname" name="tagname" placeholder="Etiket İsmini Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma etiketinizin adını giriniz..." data-original-title="Etiket İsmi" data-placement="left">
+                            </div>
+                        </div>
 
 
-                    <div class="form-group last">
-                        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
-                            <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+                        <div class="form-group last">
+                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                                <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                }
+                
             </div>
         </div>
     </div>

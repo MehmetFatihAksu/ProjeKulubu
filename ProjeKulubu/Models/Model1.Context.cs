@@ -43,5 +43,6 @@ namespace ProjeKulubu.Models
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Tags> Tags { get; set; }
         public DbSet<Team> Team { get; set; }
+        public DbSet<MainContents> MainContents { get; set; }
     }
 }

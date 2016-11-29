@@ -75,35 +75,28 @@ namespace ProjeKulubu.Controllers
 
         #region Methods
         [HttpPost]
-        public ActionResult AddCustomer(HttpPostedFileBase CommentPicture, string CustomerName)
+        public ActionResult AddCustomer(HttpPostedFileBase CommentPicture, string CustomerName,string seo)
         {
             CustomerComments customerModel = new CustomerComments();
-            if (CommentPicture != null && CustomerName != null)
-            {
-                string fileMap = Path.GetFileName(CommentPicture.FileName);
-                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                CommentPicture.SaveAs(loadLocation);
-                customerModel.CommentsPictureURL = fileMap;
-                customerModel.Name = CustomerName;
-                db.CustomerComments.Add(customerModel);
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Error("Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin");
-            }
+            string fileMap = Path.GetFileName(CommentPicture.FileName);
+            var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+            CommentPicture.SaveAs(loadLocation);
+            customerModel.PictureSEO = seo;
+            customerModel.CommentsPictureURL = fileMap;
+            customerModel.Name = CustomerName;
+            db.CustomerComments.Add(customerModel);
+            db.SaveChanges();
             return RedirectToAction("CustomerIndex", "Customer");
-
-
         }
 
         [HttpPost]
-        public ActionResult CustomerDataUpdate(int id, HttpPostedFileBase CommentPicture, string CustomerName)
+        public ActionResult CustomerDataUpdate(int id, HttpPostedFileBase CommentPicture, string CustomerName,string seo)
         {
             CustomerComments customerModel = db.CustomerComments.Where(x => x.ID == id).FirstOrDefault();
 
             if (CommentPicture == null)
             {
+                customerModel.PictureSEO = seo;
                 customerModel.Name = CustomerName;
                 db.SaveChanges();
             }
@@ -113,6 +106,7 @@ namespace ProjeKulubu.Controllers
                 var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
                 CommentPicture.SaveAs(loadLocation);
                 customerModel.CommentsPictureURL = fileMap;
+                customerModel.PictureSEO = seo;
                 customerModel.Name = CustomerName;
                 db.SaveChanges();
             }

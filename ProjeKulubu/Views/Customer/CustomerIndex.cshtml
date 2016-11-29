@@ -67,7 +67,12 @@
                         </div>
 
                     </div>
-
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Resim SEO:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" style="color:#000000" name="seo" required oninvalid="this.setCustomValidity('SEO Kısmını Boş Geçemezsiniz')" oninput="setCustomValidity('')" id="CustomerName" placeholder="SEO" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma resim için bir anahtar kelime giriniz" data-original-title="Resim Seo" data-placement="left">
+                        </div>
+                    </div>
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
                             <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
@@ -125,6 +130,7 @@
                             <th>ID</th>
                             <th>@Html.ActionLink("Müşteri İsmi", "CustomerIndex", new { Sorting_Order = ViewBag.CustomerName, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız Veriler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
                             <th>Müşteri Yorum Resmi</th>
+                            <th>Resim SEO</th>
                             <th>Düzenleme</th>
                             <th>Silme</th>
                         </tr>
@@ -134,12 +140,12 @@
                         {
                             <tr class="table-flag-blue">
                                 <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
-                                <td>@Html.DisplayFor(modelitem => item.ID)</td>
-                                <td>@Html.DisplayFor(modelitem => item.Name)</td>
+                                <td>@item.ID</td>
+                                <td>@item.Name</td>
                                 <td>
                                     <ul class="gallery">
                                         <li>
-                                            <a href="~/Dosyalar/@Html.DisplayFor(modelitem=>item.CommentsPictureURL)" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+                                            <a href="~/Dosyalar/@item.CommentsPictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
                                                 <div>
                                                     <span class="fa fa-image"></span>
                                                 </div>
@@ -147,6 +153,7 @@
                                         </li>
                                     </ul>
                                 </td>
+                                <td>@item.PictureSEO</td>
                                 <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("CustomerUpdate","Customer")/@item.ID"><i class="fa fa-edit"></i></a></td>
                                 <td><a class="btn btn-danger show-tooltip" title="Silme" href="@Url.Action("CustomerDelete","Customer")/@item.ID"><i class="fa fa-trash"></i></a></td>
                             </tr>

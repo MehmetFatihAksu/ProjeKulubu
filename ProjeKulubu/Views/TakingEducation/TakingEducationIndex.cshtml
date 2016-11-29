@@ -12,42 +12,6 @@ ViewBag.Title = "TakingEducationIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
-<script type="text/javascript">
-    var idler = [];
-    function MultiDataDelete() {
-
-        if ($("input[type=checkbox]:checked").length == 0) {
-            alert("Lütfen silmek istediğiniz veriyi seçiniz...");
-        } else {
-
-            var elemCount = $("input[type=checkbox]:checked").length;
-
-            for (var i = 0; i < elemCount; i++) {
-
-                var elemId = $("input[type=checkbox]:checked")[i].valueOf();
-                idler[i] = elemId;
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "/TakingEducation/MultipleDelete",
-                data: idler,
-                ajaxasync: true,
-                traditional: true,
-                success: function (response) {
-                    alert("Seçilen Eğitimler Başarıyla Silindi");
-                    window.location.href = "/TakingEducation/TakingEducationIndex";
-                },
-                error: function (response) {
-                    console.log("Hata Oluştu");
-                }
-            });
-        }
-    }
-
-</script>
-
-
 
     <div class="page-title">
         <div>
@@ -238,16 +202,50 @@ ViewBag.Title = "TakingEducationIndex";
 
     @*Scripts Down HERE*@
 
-    <style type="text/css">
-        .cssMenu {
-            color: #888;
-        }
+<style type="text/css">
+.cssMenu {
+    color: #888;
+}
 
-            .cssMenu:hover {
-                color: #0094ff;
-            }
-    </style>
-    <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
-    <script src="~/Content/AdminContent/js/buttonActions.js"></script>
-    <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
-    <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
+    .cssMenu:hover {
+        color: #0094ff;
+    }
+</style>
+<script type="text/javascript">
+var idler = [];
+function MultiDataDelete() {
+
+if ($("input[type=checkbox]:checked").length == 0) {
+    alert("Lütfen silmek istediğiniz veriyi seçiniz...");
+} else {
+
+    var elemCount = $("input[type=checkbox]:checked").length;
+
+    for (var i = 0; i < elemCount; i++) {
+
+        var elemId = $("input[type=checkbox]:checked")[i].valueOf();
+        idler[i] = elemId;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/TakingEducation/MultipleDelete",
+        data: idler,
+        ajaxasync: true,
+        traditional: true,
+        success: function (response) {
+            alert("Seçilen Eğitimler Başarıyla Silindi");
+            window.location.href = "/TakingEducation/TakingEducationIndex";
+        },
+        error: function (response) {
+            console.log("Hata Oluştu");
+        }
+    });
+}
+}
+
+</script>@*Multi Control Script*@
+<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+<script src="~/Content/AdminContent/js/buttonActions.js"></script>
+<script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+<a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>

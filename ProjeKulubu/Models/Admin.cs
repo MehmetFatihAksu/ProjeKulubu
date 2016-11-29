@@ -14,10 +14,17 @@ namespace ProjeKulubu.Models
     
     public partial class Admin
     {
+        public Admin()
+        {
+            this.LoginList = new HashSet<LoginList>();
+        }
+    
         public int ID { get; set; }
         public string UserName { get; set; }
         public string UserPassword { get; set; }
         public string UserEmail { get; set; }
         public string UserPictureURL { get; set; }
+    
+        public virtual ICollection<LoginList> LoginList { get; set; }
     }
 }

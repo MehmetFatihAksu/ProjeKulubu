@@ -7,6 +7,10 @@
     var projectList = db.Project.ToList();
 }
 
+@{ 
+    var data = db.MainContents.Where(x => x.ID == 1).FirstOrDefault();
+}
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
@@ -148,13 +152,13 @@
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label"><i class="fa fa-facebook "></i>  :</label>
                             <div class="col-sm-9 col-lg-10 controls">
 
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Facebook Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma facebook adresinizi giriniz..." data-placement="left" data-original-title="Facebook" name="Question" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Facebook Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma facebook adresinizi giriniz..." data-placement="left" data-original-title="Facebook" name="Question" value="@data.facebookURL" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label"><i class="fa fa-google-plus "></i>  :</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000"  class="form-control show-popover" id="Question" placeholder="GooglePlus adresinizi giriniz" data-trigger="hover" data-content="Bu kısıma Googleplus adresinizi giriniz..." data-placement="left" data-original-title="GooglePlus" name="Question" />                            </div>
+                                <input type="text" style="color:#000000"  class="form-control show-popover" id="Question" placeholder="GooglePlus adresinizi giriniz" data-trigger="hover" data-content="Bu kısıma Googleplus adresinizi giriniz..." data-placement="left" data-original-title="GooglePlus" name="Question" value="@data.googleURL" />                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -162,13 +166,13 @@
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label"><i class="fa fa-twitter "></i>  :</label>
                             <div class="col-sm-9 col-lg-10 controls">
 
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Twitter Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma twitter adresinizi giriniz..." data-placement="left" data-original-title="Twitter" name="Question" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Twitter Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma twitter adresinizi giriniz..." data-placement="left" data-original-title="Twitter" name="Question" value="@data.twitterURL" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label"><i class="fa fa-linkedin "></i>  :</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Linedin Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma linkedin adresinizi giriniz..." data-placement="left" data-original-title="Linkedin" name="Question" />                            </div>
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Linedin Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma linkedin adresinizi giriniz..." data-placement="left" data-original-title="Linkedin" name="Question" value="@data.LinkedinURL" />                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -176,7 +180,7 @@
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Telefon:</label>
                             <div class="col-sm-9 col-lg-10 controls">
 
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Telefon Numarası Giriniz" data-trigger="hover" data-content="Bu kısıma telefon numarasını giriniz..." data-placement="left" data-original-title="Telefon" name="Question" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Telefon Numarası Giriniz" data-trigger="hover" data-content="Bu kısıma telefon numarasını giriniz..." data-placement="left" data-original-title="Telefon" value="@data.phoneNumber" name="Question" />
                             </div>
                         </div>
                     </div>
@@ -184,7 +188,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">E-Mail:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="E-Mail Adresinizi Girin" data-trigger="hover" data-content="Bu kısıma E-mail adresinizi giriniz.." data-placement="left" data-original-title="E-Mail" name="Question" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="E-Mail Adresinizi Girin" data-trigger="hover" data-content="Bu kısıma E-mail adresinizi giriniz.." value="@data.Mail" data-placement="left" data-original-title="E-Mail" name="Question" />
                             </div>
                         </div>
                     </div>
@@ -219,13 +223,13 @@
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Kısa Metin:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control"></textarea>
+                                <textarea class="form-control">@data.ContactMessage</textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">Telefon:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Telefon Numaranızı Giriniz" name="Question" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Telefon Numaranızı Giriniz" value="@data.phoneNumber" name="Question" />
 
                             </div>
                         </div>
@@ -234,7 +238,7 @@
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Ana Ofis Adresi:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control"></textarea>
+                                <textarea class="form-control">@data.contanctmainoffice</textarea>
 
                             </div>
                         </div>
@@ -244,7 +248,7 @@
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Fax:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Fax Adresinizi Giriniz" name="Question" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Fax Adresinizi Giriniz" value="@data.fax" name="Question" />
                             </div>
                         </div>
                     </div>
@@ -253,7 +257,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">E-Mail:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="E-Mail Adresinizi Girin" name="Question" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="E-Mail Adresinizi Girin" value="@data.Mail" name="Question" />
                             </div>
                         </div>
                     </div>
@@ -332,7 +336,7 @@
             </div>
         </div>
     </div>
-</div>@*Project Manage*@
+</div>@*Project Manage *@
 
 <div class="row">
     <div class="col-md-12">
@@ -349,28 +353,28 @@
                     <div class="form-group">
                         <label class="col-sm-3 col-lg-2 control-label">Kısa Metin:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <textarea class="form-control col-md-12" id="Answer" name="Answer" rows="6"></textarea>
+                            <textarea class="form-control col-md-12" id="Answer" name="Answer" rows="6">@data.workingcomment</textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Pazartesi-Cuma:</label>
                         <div class="col-sm-9 col-lg-10 controls">
 
-                            <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Çalışma Saatinizi Giriniz" name="Question" />
+                            <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Çalışma Saatinizi Giriniz" value="@data.Working1" name="Question" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Cumartesi:</label>
                         <div class="col-sm-9 col-lg-10 controls">
 
-                            <input type="text" style="color:#000000"  oninput="setCustomValidity('')" class="form-control show-popover" id="Question" placeholder="Çalışma Saatinizi Giriniz" name="Question" />
+                            <input type="text" style="color:#000000"  oninput="setCustomValidity('')" class="form-control show-popover" id="Question" value="@data.Working2" placeholder="Çalışma Saatinizi Giriniz" name="Question" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Pazar:</label>
                         <div class="col-sm-9 col-lg-10 controls">
 
-                            <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Çalışma Saatinizi Giriniz"name="Question" />
+                            <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Çalışma Saatinizi Giriniz" value="@data.Working3" name="Question" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -383,7 +387,7 @@
             </div>
         </div>
     </div>
-</div> @* Working-Times Manage *@
+</div> @* Working-Times Manage*@
 
 <footer>
     <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>

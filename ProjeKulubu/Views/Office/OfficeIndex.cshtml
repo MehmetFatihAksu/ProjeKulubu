@@ -1,61 +1,11 @@
 ﻿@model PagedList.IPagedList<ProjeKulubu.Models.Office>
 @using PagedList.Mvc
 @using ProjeKulubu.Models
-@{ 
-    db2299D218BEEntities10 db = new db2299D218BEEntities10();
-    //var query = db.OfficePictures.Where(x => x.OfficeID == x.Office.ID).ToList();
-    //var query = db.OfficePictures.Where(Office => Office.OfficeID == Office.Office.ID).ToList();
-    @*@item.OfficePictures.Where(x => x.OfficeID == item.ID)*@
-}
     @{
         ViewBag.Title = "OfficeIndex";
         Layout = "~/Views/AdminShared/_Layout.cshtml";
     }
-    <link rel="stylesheet" href="~/Content/AdminContent/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Content/AdminContent/assets/font-awesome/css/font-awesome.min.css">
-    <!--page specific css styles-->
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/chosen-bootstrap/chosen.min.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/jquery-tags-input/jquery.tagsinput.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/jquery-pwstrength/jquery.pwstrength.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/bootstrap-duallistbox/duallistbox/bootstrap-duallistbox.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/dropzone/downloads/css/dropzone.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/bootstrap-colorpicker/css/colorpicker.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/bootstrap-timepicker/compiled/timepicker.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/clockface/css/clockface.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/bootstrap-datepicker/css/datepicker.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/bootstrap-daterangepicker/daterangepicker.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/bootstrap-switch/static/stylesheets/bootstrap-switch.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/AdminContent/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
-    <!--flaty css styles-->
-    <link rel="stylesheet" href="~/Content/AdminContent/css/flaty.css">
-    <link rel="stylesheet" href="~/Content/AdminContent/css/flaty-responsive.css">
-    <link href="~/Content/AdminContent/css/FooterStyle.css" rel="stylesheet" />
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="assets/jquery/jquery-2.1.4.min.js"><\/script>')</script>
-    <script src="~/Content/AdminContent/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/Content/AdminContent/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="~/Content/AdminContent/assets/jquery-cookie/jquery.cookie.js"></script>
-    <!--page specific plugin scripts-->
-    <script type="text/javascript" src="~/Content/AdminContent/assets/chosen-bootstrap/chosen.jquery.min.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/jquery-tags-input/jquery.tagsinput.min.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/jquery-pwstrength/jquery.pwstrength.min.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/bootstrap-duallistbox/duallistbox/bootstrap-duallistbox.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/dropzone/downloads/dropzone.min.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/clockface/js/clockface.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/bootstrap-daterangepicker/date.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/bootstrap-switch/static/js/bootstrap-switch.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
-    <script type="text/javascript" src="~/Content/AdminContent/assets/ckeditor/ckeditor.js"></script>
-    <script src="~/Content/AdminContent/js/buttonActions.js"></script>
+    
 
     <script type="text/javascript">
 

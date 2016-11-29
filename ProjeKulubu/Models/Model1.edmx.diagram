@@ -30,6 +30,8 @@
         <AssociationConnector Association="db2299D218BEModel.FK_Project_ProjectType" ManuallyRouted="false" />
         <AssociationConnector Association="db2299D218BEModel.FK_ProjectPicture_Project1" ManuallyRouted="false" />
         <AssociationConnector Association="db2299D218BEModel.FK_Team_Project" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="db2299D218BEModel.MainContents" Width="1.5" PointX="13.375" PointY="6.75" />
+        <AssociationConnector Association="db2299D218BEModel.FK_LoginList_Admin" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -2,12 +2,8 @@
 @model Team
 
 @{
-    ProjeKulubu.Models.db2299D218BEEntities10 db = new ProjeKulubu.Models.db2299D218BEEntities10();
-
-    List<Office> officeList = new List<Office>();
-
-    officeList = db.Office.ToList();
-
+    db2299D218BEEntities10 db = new db2299D218BEEntities10();
+    var officeList = db.Office.ToList();
 }
 
 @{
@@ -58,11 +54,11 @@
                     <div class="form-group">
                         <label class="col-sm-3 col-lg-2 control-label">* Çalışacağı Ofis:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <select name="officeId" id="Office" class="form-control input-sm" tabindex="1" required oninvalid="this.setCustomValidity('Öncelikle Bir Ofis Eklemelisiniz')" oninput="setCustomValidity('')">
-                                @foreach (Office item in officeList)
-                                {
-                                    <option value="@item.ID">@item.OfficeName</option>
-                                }
+                            <select name="officeId" id="Office" class="form-control input-sm" tabindex="1" oninput="setCustomValidity('')">
+                                    @foreach (Office item in officeList)
+                                    {
+                                        <option value="@item.ID">@item.OfficeName</option>
+                                    }  
                             </select>
                         </div>
                     </div>
@@ -114,6 +110,12 @@
                                     </span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Resim SEO:</label>
+                        <div class="col-sm-9 col-lg-10 controls">
+                            <input type="text" name="seo" id="seo" placeholder="SEO" class="form-control show-popover" data-trigger="hover" required style="color:#000000" oninvalid="this.setCustomValidity('SEO kısmını boş geçemezsiniz')" oninput="setCustomValidity('')" data-content="Bu kısıma ekip üyenizin resmiyle ilgili anahtar kelime giriniz" data-original-title="SEO" data-placement="left" value="@Model.MemberPictureSEO">
                         </div>
                     </div>
                     <div class="form-group">
