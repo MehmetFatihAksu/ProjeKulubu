@@ -8,10 +8,21 @@
 }
 
 @{
-ViewBag.Title = "TakingEducationIndex";
-    Layout = "~/Views/AdminShared/_Layout.cshtml";
+    ViewBag.Title = "TakingEducationIndex";
+     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
+@helper cutContent(string metin)
+{
+    if (metin.Length > 10)
+    {
+        <p>@metin.Substring(0, 10)...</p>
+    }
+    else
+    {
+        <p>@metin</p>
+    }
+}
 
     <div class="page-title">
         <div>
@@ -171,7 +182,7 @@ ViewBag.Title = "TakingEducationIndex";
                                                 </ul>
                                             </td>
                                             <td>@item.EducationFileSEO</td>
-                                            <td>@item.EducationContent</td>
+                                            <td>@{@cutContent(@item.EducationContent)}</td>
                                             <th>@item.EducationDate.ToString().Substring(0, 10)</th>
                                             <th>@item.EducationView</th>
                                             <td><a class="btn btn-sm show-tooltip" title="İnceleme" target="_blank" href="@Url.Action("Egitim","Home")/@item.ID"><i class="fa fa-search"></i></a></td>

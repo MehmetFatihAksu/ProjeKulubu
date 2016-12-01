@@ -6,30 +6,7 @@
     ViewBag.Title = "SaleProjectDelete";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
-
-<script type="text/javascript">
-
-
-    function ProjectDataDelete() {
-
-        $.ajax({
-
-            type: "POST",
-            url: "/Project/SaleProjectDataDelete/",
-            data: { id: $("#dataId").val() },
-            ajaxasync: true,
-            traditional: true,
-            success: function (response) {
-                alert("Seçilen Proje Başarıyla Silindi");
-                window.location.href = "/Project/SaleProjects";
-            },
-            error: function (response) {
-                console.log("Hata Oluştu");
-            }
-        });
-    }
-
-</script>
+<script src="~/Content/AdminContent/js/SaleProjectDelete.js"></script>
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">

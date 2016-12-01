@@ -6,6 +6,19 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
+@helper cutContent(string metin)
+{
+    if (metin.Length > 10)
+    {
+        <p>@metin.Substring(0, 10)...</p>
+    }
+    else
+    {
+        <p>@metin</p>
+    }
+}
+
+<script src="~/Content/AdminContent/js/BlogIndex.js"></script>
 <div class="page-title">
     <div>
         <h1><i class="fa fa-bars"></i> Makale Yönetimi</h1>
@@ -114,12 +127,11 @@
                         </div>
                     }
                 </div>
-@using (Html.BeginForm("MultipleDelete", "Blog", FormMethod.Post))
-{
+
     <div class="btn-toolbar pull-right">
         <div class="btn-group">
             <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
-            <button type="submit" class="btn btn-circle show-tooltip" title="Silme"><i class="fa fa-trash-o"></i></button>
+            <button type="submit" class="btn btn-circle show-tooltip" id="MultiDataDelete" onclick="MultiDataDelete()" title="Silme"><i class="fa fa-trash-o"></i></button>
         </div>
 
         <div class="btn-group">
@@ -170,7 +182,7 @@
                                         </ul>
                                     </td>
                                     <td>@item.BlogPictureSEO</td>
-                                    <td>@item.BlogContent</td>
+                                    <td>@{@cutContent(@item.BlogContent)}</td>
                                     <td>@item.BlogDate.ToString().Substring(0,10)</td>
                                     <td>@item.BlogViewCount</td>
                                     <td><a class="btn btn-sm show-tooltip" target="_blank" title="İncele" href="@Url.Action("BlogSingle", "Home")/@item.ID"><i class="fa fa-search"></i></a></td>
@@ -182,7 +194,6 @@
                         </tbody>
                     </table>
                 </div>
-}
             <div class="text-center">
                 <ul class="pagination">
                     @Html.PagedListPager(Model, page => Url.Action("BlogIndex", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })

@@ -6,6 +6,18 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
+@helper cutContent(string metin)
+{
+    if (metin.Length > 10)
+    {
+        <p>@metin.Substring(0, 10)...</p>
+    }
+    else
+    {
+        <p>@metin</p>
+    }
+}
+
 <div class="page-title">
     <div>
         <h1><i class="fa fa-bars"></i> Tamamlanan Proje Yönetimi</h1>
@@ -325,7 +337,6 @@
                                     <th>Proje Bütçesi</th>
                                     <th>Bitiş Yılı</th>
                                     <th>Proje İçerik</th>
-                                    <th>Çalışma Saatleri</th>
                                     <th>Telefon</th>
                                     <th>Adres</th>
                                     <th>E-Mail</th>
@@ -343,15 +354,10 @@
                                         <td>@item.ProjectName</td>
                                         <td>Resimler</td>
                                         <td>Ekip</td>
-                                        <td>
-                                            @item.ProjectType
-                                    </td>
-                                    <td>@item.ProjectBudgets</td>
-                                    <td>
-                                        @item.ProjectYear
-                                    </td>
-                                        <td>@item.ProjectContent</td>
-                                        <td>Çalışma Saatleri</td>
+                                        <td>@item.ProjectType</td>
+                                        <td>@item.ProjectBudgets</td>
+                                        <td>@item.ProjectYear</td>
+                                        <td>@{@cutContent(@item.ProjectContent)}</td>
                                         <td>@item.ProjectPhone</td>
                                         <td>@item.ProjectLocation</td>
                                         <td>@item.ProjectMail</td>

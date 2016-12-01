@@ -9,7 +9,7 @@
     ViewBag.Title = "OfficePictureIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
-
+<script src="~/Content/AdminContent/js/OfficePictureIndex.js"></script>
 <div class="page-title">
     <div>
         <h1><i class="fa fa-bars"></i> Ofis Resimleri</h1>
@@ -142,7 +142,7 @@
                 <div class="btn-toolbar pull-right">
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
-                        <button type="submit" class="btn btn-circle show-tooltip" title="Silme"><i class="fa fa-trash-o"></i></button>
+                        <button type="submit" class="btn btn-circle show-tooltip" id="MultiDataDelete" onclick="MultiDataDelete()" title="Silme"><i class="fa fa-trash-o"></i></button>
                     </div>
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("OfficePictureIndex", "Office")"><i class="fa fa-repeat"></i></a>

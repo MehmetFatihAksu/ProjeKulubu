@@ -5,7 +5,7 @@
     ViewBag.Title = "MusteriYorumlari";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
-
+<script src="~/Content/AdminContent/js/CustomerIndex.js"></script>
 <div class="page-title">
     <div>
         <h1><i class="fa fa-bars"></i> Müşteri Yorumları Yönetimi</h1>
@@ -107,19 +107,16 @@
                     </div>
                 }
             </div>
-@using (Html.BeginForm("MultipleDelete", "Customer", FormMethod.Post))
-{
+
             <div class="btn-toolbar pull-right">
                     
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
-                        <button type="submit" class="btn btn-circle show-tooltip"  title="Silme"><i class="fa fa-trash-o"></i></button>
+                        <button type="submit" class="btn btn-circle show-tooltip" id="MultiDataDelete" onclick="MultiDataDelete()" title="Silme"><i class="fa fa-trash-o"></i></button>
                     </div>
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("CustomerIndex","Customer")"><i class="fa fa-repeat"></i></a>
                     </div>
-                    
-                    
             </div>
             <br /><br />
             <div class="table-responsive" style="margin-top:10px">
@@ -162,7 +159,7 @@
                     </tbody>
                 </table>
             </div>
-                }
+               
             <div class="text-center">
                 <ul class="pagination">
                     @Html.PagedListPager(Model, page => Url.Action("CustomerIndex", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })

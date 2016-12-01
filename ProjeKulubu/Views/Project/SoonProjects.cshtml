@@ -164,6 +164,20 @@
 </script>
 
 
+@helper cutContent(string metin)
+{
+    if (metin.Length > 10)
+    {
+        <p>@metin.Substring(0, 10)...</p>
+    }
+    else
+    {
+        <p>@metin</p>
+    }
+}
+
+
+
 <div class="page-title">
     <div>
         <h1><i class="fa fa-bars"></i> Yakındaki Proje Yönetimi</h1>
@@ -526,7 +540,7 @@
                                     <td>@list.ProjectYear</td>
                                     <td>@list.ProjectLocation</td>
                                     <td>@list.ProjectMail</td>
-                                    <td>@list.ProjectContent.Substring(0, 10)</td>
+                                    <td>@{@cutContent(@list.ProjectContent)}</td>
                                     <td><a class="btn btn-sm show-tooltip" title="İncele" href="@Url.Action("SoonProjectView", "Project")/@list.ID"><i class="fa fa-search"></i></a></td>
                                     <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("SoonProjectUpdate", "Project")/@list.ID"><i class="fa fa-edit"></i></a></td>
                                     <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("SoonProjectDelete", "Project")/@list.ID"><i class="fa fa-trash-o"></i></a></td>
