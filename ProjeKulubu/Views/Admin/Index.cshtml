@@ -19,7 +19,7 @@
 <div class="page-title">
     <div>
         <h1><i class="fa fa-home"></i> Ana Sayfa</h1>
-        <h4>Sitenizin istatistiklerine erişebilirsiniz</h4>
+        <h4>Panelinize erişenleri inceleyebilir ve temanızın ana bilgilerini değiştirebilirsiniz</h4>
     </div>
 </div>@*Header 1*@
 
@@ -40,25 +40,27 @@
         </div>
     </div>
     <div class="col-md-3 tile-active">
-        <div class="tile tile-white">
-            <img src="~/Content/cizgitech.png" style="float:right;margin-right:85px;margin-top:10px" alt="Alternate Text" />
-
+        <div class="tile tile-magenta">
+            <div class="img img-center">
+                <i class="fa fa-desktop"></i>
+            </div>
+            <p class="title text-center">ÇİZGİ Panel V1.0.0</p>
         </div>
         <div class="tile tile-blue">
-            <p class="title">Cizgi Tech</p>
-            <p>Çizgi Teknolojileri Size En uygun çözümleri üretir.</p>
+            <p class="title">Panel Gelişimi</p>
+            <p>Panelin birinci sürümünü kullanmaktasınız gün geçtikçe yenilikleri farkettireceğiz..</p>
             <div class="img img-bottom">
                 <i class="fa fa-desktop"></i>
             </div>
         </div>
     </div>
     <div class="col-md-5">
-        <div class="tile tile-green">
-            <div class="img">
-                <i class="fa fa-copy"></i>
+        <div class="tile tile-white">
+            <div class="img" style="left:140px">
+                <img src="~/Content/cizgitech.png" style="max-width:150px;float:left" />
             </div>
-            <div class="content">
-                <p class="title"><a href="#" target="_blank" style="color:#000000">Tıklayın</a> ve Sizin İçin Hazırlanan Eğitim Sayfasına Gidin</p>
+            <div class="content" style="float:left;top:85px;right:70px">
+                <p class="title">Çizgi Tech İnternet ve Yazılım Teknojileri</p>
             </div>
         </div>
     </div>
@@ -115,7 +117,7 @@
                                         <td>@item.IPAdress</td>
                                         <td>@item.SoftwareType</td>
                                         <td>@item.LoginDate.ToString().Substring(0,10)</td>
-                                        <td>@item.LoginDate.ToString().Substring(10,9)</td>
+                                        <td>@item.LoginDate.ToString()@*hatalı*@</td>
                                     </tr>
                                 }
                             </tbody>
@@ -146,19 +148,19 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="/Question/AddQuestion" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                <form action="/Admin/MainUpdates" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label"><i class="fa fa-facebook "></i>  :</label>
                             <div class="col-sm-9 col-lg-10 controls">
 
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Facebook Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma facebook adresinizi giriniz..." data-placement="left" data-original-title="Facebook" name="Question" value="@data.facebookURL" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Facebook Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma facebook adresinizi giriniz..." data-placement="left" data-original-title="Facebook" name="facebook" value="@data.facebookURL" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label"><i class="fa fa-google-plus "></i>  :</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000"  class="form-control show-popover" id="Question" placeholder="GooglePlus adresinizi giriniz" data-trigger="hover" data-content="Bu kısıma Googleplus adresinizi giriniz..." data-placement="left" data-original-title="GooglePlus" name="Question" value="@data.googleURL" />                            </div>
+                                <input type="text" style="color:#000000"  class="form-control show-popover" id="Question" placeholder="GooglePlus adresinizi giriniz" data-trigger="hover" data-content="Bu kısıma Googleplus adresinizi giriniz..." data-placement="left" data-original-title="GooglePlus" name="google" value="@data.googleURL" />                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -166,13 +168,13 @@
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label"><i class="fa fa-twitter "></i>  :</label>
                             <div class="col-sm-9 col-lg-10 controls">
 
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Twitter Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma twitter adresinizi giriniz..." data-placement="left" data-original-title="Twitter" name="Question" value="@data.twitterURL" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Twitter Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma twitter adresinizi giriniz..." data-placement="left" data-original-title="Twitter" name="twitter" value="@data.twitterURL" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label"><i class="fa fa-linkedin "></i>  :</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Linedin Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma linkedin adresinizi giriniz..." data-placement="left" data-original-title="Linkedin" name="Question" value="@data.LinkedinURL" />                            </div>
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Linedin Adresinizi Giriniz" data-trigger="hover" data-content="Bu kısıma linkedin adresinizi giriniz..." data-placement="left" data-original-title="Linkedin" name="linkedin" value="@data.LinkedinURL" />                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -180,7 +182,7 @@
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Telefon:</label>
                             <div class="col-sm-9 col-lg-10 controls">
 
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Telefon Numarası Giriniz" data-trigger="hover" data-content="Bu kısıma telefon numarasını giriniz..." data-placement="left" data-original-title="Telefon" value="@data.phoneNumber" name="Question" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Telefon Numarası Giriniz" data-trigger="hover" data-content="Bu kısıma telefon numarasını giriniz..." data-placement="left" data-original-title="Telefon" value="@data.phoneNumber" name="phone" />
                             </div>
                         </div>
                     </div>
@@ -188,7 +190,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">E-Mail:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="E-Mail Adresinizi Girin" data-trigger="hover" data-content="Bu kısıma E-mail adresinizi giriniz.." value="@data.Mail" data-placement="left" data-original-title="E-Mail" name="Question" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="E-Mail Adresinizi Girin" data-trigger="hover" data-content="Bu kısıma E-mail adresinizi giriniz.." value="@data.Mail" data-placement="left" data-original-title="E-Mail" name="mail" />
                             </div>
                         </div>
                     </div>
@@ -198,7 +200,7 @@
                     <div class="form-group">
 
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <button type="submit" class="btn btn-primary" onclick="MainSuccess()" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
                         </div>
                     </div>
                 </form>
@@ -218,18 +220,18 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="/Question/AddQuestion" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                <form action="/Admin/ContactUpdates" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Kısa Metin:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control">@data.ContactMessage</textarea>
+                                <textarea class="form-control" style="color:#000000" name="contactmessage">@data.ContactMessage</textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">Telefon:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Telefon Numaranızı Giriniz" value="@data.phoneNumber" name="Question" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Telefon Numaranızı Giriniz" value="@data.phoneNumber" name="phone" />
 
                             </div>
                         </div>
@@ -238,7 +240,7 @@
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Ana Ofis Adresi:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <textarea class="form-control">@data.contanctmainoffice</textarea>
+                                <textarea class="form-control" style="color:#000000"  name="contactmainoffice">@data.contanctmainoffice</textarea>
 
                             </div>
                         </div>
@@ -248,7 +250,7 @@
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Fax:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Fax Adresinizi Giriniz" value="@data.fax" name="Question" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Fax Adresinizi Giriniz" value="@data.fax" name="fax" />
                             </div>
                         </div>
                     </div>
@@ -257,14 +259,14 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">E-Mail:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="E-Mail Adresinizi Girin" value="@data.Mail" name="Question" />
+                                <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="E-Mail Adresinizi Girin" value="@data.Mail" name="mail" />
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <button type="submit" class="btn btn-primary" style="float:right" onclick="ContactSuccess()"><i class="fa fa-check-circle"></i> Kaydet</button>
                         </div>
                     </div>
 
@@ -285,12 +287,12 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="/Question/AddQuestion" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                <form action="/Admin/ProjectUpdates" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">1.Proje:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <select name="blogId" id="Blog" class="form-control input-sm" tabindex="1" required oninvalid="this.setCustomValidity('Öncelikle Bir Makale Eklemelisiniz')" oninput="setCustomValidity('')" style="color:#000000">
+                                <select name="project1" id="Blog" class="form-control input-sm" tabindex="1"  style="color:#000000">
                                     @foreach (var item in projectList)
                                     {
                                         <option value="@item.ID">@item.ProjectName</option>
@@ -303,7 +305,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">2.Proje:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <select name="blogId" id="Blog" class="form-control input-sm" tabindex="1" required oninvalid="this.setCustomValidity('Öncelikle Bir Makale Eklemelisiniz')" oninput="setCustomValidity('')" style="color:#000000">
+                                <select name="project2" id="Blog" class="form-control input-sm" tabindex="1" style="color:#000000">
                                     @foreach (var item in projectList)
                                     {
                                         <option value="@item.ID">@item.ProjectName</option>
@@ -316,7 +318,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">3.Proje:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <select name="blogId" id="Blog" class="form-control input-sm" tabindex="1" required oninvalid="this.setCustomValidity('Öncelikle Bir Makale Eklemelisiniz')" oninput="setCustomValidity('')" style="color:#000000">
+                                <select name="project3" id="Blog" class="form-control input-sm" tabindex="1"  style="color:#000000">
                                     @foreach (var item in projectList)
                                     {
                                         <option value="@item.ID">@item.ProjectName</option>
@@ -328,7 +330,7 @@
 
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <button type="submit" class="btn btn-primary" style="float:right" onclick="ProjectSuccess()"><i class="fa fa-check-circle"></i> Kaydet</button>
                         </div>
                     </div>
 
@@ -349,38 +351,38 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="/Question/AddQuestion" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                <form action="/Admin/WorkingTimes" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="form-group">
                         <label class="col-sm-3 col-lg-2 control-label">Kısa Metin:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <textarea class="form-control col-md-12" id="Answer" name="Answer" rows="6">@data.workingcomment</textarea>
+                            <textarea class="form-control col-md-12" style="color:#000000" id="Answer" name="workingcomment" rows="6">@data.workingcomment</textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Pazartesi-Cuma:</label>
                         <div class="col-sm-9 col-lg-10 controls">
 
-                            <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Çalışma Saatinizi Giriniz" value="@data.Working1" name="Question" />
+                            <input type="text"  style="color:#000000" class="form-control show-popover" id="Question" placeholder="Çalışma Saatinizi Giriniz" value="@data.Working1" name="working1" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Cumartesi:</label>
                         <div class="col-sm-9 col-lg-10 controls">
 
-                            <input type="text" style="color:#000000"  oninput="setCustomValidity('')" class="form-control show-popover" id="Question" value="@data.Working2" placeholder="Çalışma Saatinizi Giriniz" name="Question" />
+                            <input type="text" style="color:#000000" class="form-control show-popover" id="Question" value="@data.Working2" placeholder="Çalışma Saatinizi Giriniz" name="working2" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Pazar:</label>
                         <div class="col-sm-9 col-lg-10 controls">
 
-                            <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Çalışma Saatinizi Giriniz" value="@data.Working3" name="Question" />
+                            <input type="text" style="color:#000000" class="form-control show-popover" id="Question" placeholder="Çalışma Saatinizi Giriniz" value="@data.Working3" name="working3" />
                         </div>
                     </div>
                     <div class="form-group">
 
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <button type="submit" class="btn btn-primary" style="float:right" onclick="WorkingSuccess()"><i class="fa fa-check-circle"></i> Kaydet</button>
                         </div>
                     </div>
                 </form>
@@ -397,5 +399,25 @@
     function Success() {
         alert("Verilerin Tümü Başarıyla Silindi");
     }
-</script>
+</script>@*Success Message İP*@
+<script type="text/javascript">
+    function MainSuccess() {
+        alert("İçerikler Başarıyla Güncellendi");
+    }
+</script>@*Success Message Main COntents*@
+<script type="text/javascript">
+    function ContactSuccess() {
+        alert("İletişim Bilgileri Başarıyla GÜncellendi");
+    }
+</script>@*Success Message Contact*@
+<script type="text/javascript">
+    function ProjectSuccess() {
+        alert("Seçili Projeler Başarıyla Güncellendi");
+    }
+</script>@*Success Message Project*@
+<script type="text/javascript">
+    function WorkingSuccess() {
+        alert("Çalışma Saatleri Başarıyla Güncellendi");
+    }
+</script>@*Success Message Working*@
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>

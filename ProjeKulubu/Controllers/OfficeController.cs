@@ -100,28 +100,17 @@ namespace ProjeKulubu.Controllers
         [ValidateInput(false)]
         public ActionResult OfficeDataUpdate(int id ,string Name, string Content, string AltIcerik, string Zaman, string Telefon, string EMail, string Location, string Adres)
         {
-
             Office officeModel = db.Office.Where(x => x.ID == id).FirstOrDefault();
-
             Content = Content.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
-
             AltIcerik = AltIcerik.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
-
-            if (Name != null || Content != null || AltIcerik != null)
-            {
-                officeModel.OfficeName = Name;
-                officeModel.OfficeMainContent = Content;
-                officeModel.OfficeAltContent = AltIcerik;
-                officeModel.OfficeMail = EMail;
-                officeModel.OfficeLocation = Adres + " " + Location;
-                officeModel.OfficePhone = Telefon;
-                officeModel.OfficeWorkingTime = Zaman;
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Error = "Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin";
-            }
+            officeModel.OfficeName = Name;
+            officeModel.OfficeMainContent = Content;
+            officeModel.OfficeAltContent = AltIcerik;
+            officeModel.OfficeMail = EMail;
+            officeModel.OfficeLocation = Adres + " " + Location;
+            officeModel.OfficePhone = Telefon;
+            officeModel.OfficeWorkingTime = Zaman;
+            db.SaveChanges();
             return RedirectToAction("OfficeIndex", "Office");
         }
 
@@ -129,8 +118,19 @@ namespace ProjeKulubu.Controllers
         public ActionResult OfficeDataDelete(int id)
         {
             Office removeOffice = db.Office.Find(id);
-            db.Team.Where(x => x.OfficeID == removeOffice.ID).ToList().ForEach(y => db.Team.Remove(y));
             db.OfficePictures.Where(x => x.OfficeID == removeOffice.ID).ToList().ForEach(y => db.OfficePictures.Remove(y));
+            var liste = db.Team.Where(x => x.OfficeID == removeOffice.ID).ToList();
+            foreach (var item in liste)
+            {
+                if (item.ProjectID != null)
+                {
+                    item.OfficeID = null;
+                }
+                else
+                {
+                    db.Team.Remove(item);
+                }
+            }
             db.Office.Remove(removeOffice);
             db.SaveChanges();
             return RedirectToAction("OfficeIndex", "Office");
@@ -142,7 +142,18 @@ namespace ProjeKulubu.Controllers
             {
                 Office removeModel = db.Office.Find(item);
                 db.OfficePictures.Where(x => x.OfficeID == removeModel.ID).ToList().ForEach(y => db.OfficePictures.Remove(y));
-                db.Team.Where(x => x.OfficeID == removeModel.ID).ToList().ForEach(y => db.Team.Remove(y));
+                var liste = db.Team.Where(x => x.OfficeID == removeModel.ID).ToList();
+                foreach (var items in liste)
+                {
+                    if (items.ProjectID != null)
+                    {
+                        items.OfficeID = null;
+                    }
+                    else
+                    {
+                        db.Team.Remove(items);
+                    }
+                }
             }
             db.Office.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Office.Remove(y));
             db.SaveChanges();

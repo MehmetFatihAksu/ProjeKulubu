@@ -32,7 +32,7 @@
             <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
             <span class="divider"><i class="fa fa-angle-right"></i></span>
         </li>
-        <li class="active">Proje Yönetimi</li>
+        <li class="active">Tamamlanan Proje Yönetimi</li>
     </ul>
 </div>@*Header 2*@
 
@@ -98,7 +98,7 @@
                                                 <div class="form-group">
                                                     <label for="textarea2" class="col-xs-3 col-lg-2 control-label">* İçerik :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <textarea name="Content" id="PContent" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma projenin açıklamasını giriniz..." data-original-title="Proje Açıklama" data-placement="top" placeholder="Proje Açıklaması Giriniz..."></textarea>
+                                                        <textarea name="Content" class="form-control ckeditor"></textarea>
                                                     </div>
                                                 </div>
                                                 <!-- END Left Side -->
@@ -108,7 +108,7 @@
                                                 <div class="form-group">
                                                     <label for="textfield2" class="col-xs-3 col-lg-2 control-label">* Bütçe :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <input type="text" style="color:#000000" name="Bugdet" id="PBudget" class="form-control show-popover" onkeypress="return OnlyNumber();" data-trigger="hover" data-content="Bu kısıma projenin bütçe değerini giriniz..." data-original-title="Proje Bütçesi" data-placement="left" placeholder="Proje Bütçe">
+                                                        <input type="text" style="color:#000000" name="Bugdet" id="PBudget" class="form-control show-popover" onkeypress="return OnlyNumber();" data-trigger="hover" data-content="Bu kısıma projenin bütçe aralığını giriniz..." data-original-title="Proje Bütçesi" data-placement="left" placeholder="Proje Bütçe">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -137,8 +137,10 @@
                                                 <div class="form-group">
                                                     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
                                                         <input type="button" class="btn btn-primary" onclick="StepControl1()" style="float:right;" value="Devam Et" />
+                                                        <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
                                                     </div>
                                                 </div>
+                                                
                                                 <!-- END Right Side -->
                                             </div>
                                         </div>
@@ -163,7 +165,7 @@
                                                 <div class="form-group">
                                                     <label for="tel" class="col-xs-3 col-lg-2 control-label">* Telefon :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <input class="form-control col-md-5 show-popover" onkeypress="return OnlyNumber();" name="Telefon" id="PPhone" type="text" style="color:#000000" maxlength="10" placeholder="Telefon Numarası" data-trigger="hover" data-content="Bu kısıma projenizin telefon numarasını giriniz..." data-original-title="Proje Telefon" data-placement="top">
+                                                        <input class="form-control col-md-5 show-popover" onkeypress="return OnlyNumber();" name="Telefon" id="PPhone" type="text" style="color:#000000" maxlength="10" placeholder="Telefon Numarası" data-trigger="hover" data-content="Bu kısıma projenizin telefon numarasını giriniz..." data-original-title="Proje Telefon" data-placement="left">
                                                         <span class="help-inline">(212) 212-2121</span>
                                                     </div>
                                                 </div>
@@ -172,7 +174,7 @@
                                                     <div class="col-sm-9 col-lg-10 controls">
                                                         <div class="input-group">
                                                             <span class="input-group-addon">@@</span>
-                                                            <input class="form-control show-popover" style="color:#000000" id="PEMail" name="EMail" type="text" placeholder="Email" data-trigger="hover" data-content="Bu kısıma projenizin E-posta adresini giriniz..." data-original-title="Proje E-Posta" data-placement="top">
+                                                            <input class="form-control show-popover" style="color:#000000" id="PEMail" name="EMail" type="text" placeholder="Email" data-trigger="hover" data-content="Bu kısıma projenizin E-posta adresini giriniz..." data-original-title="Proje E-Posta" data-placement="left">
 
                                                         </div>
                                                         <span class="help-inline">deneme@deneme.com</span>
@@ -185,19 +187,20 @@
                                                 <div class="form-group">
                                                     <label for="password1" class="col-xs-3 col-lg-2 control-label">Konum :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <input class="form-control show-popover" id="PLocation" value="İstanbul,Turkiye" disabled name="Location" type="text" placeholder="Konum" data-trigger="hover" data-content="Bu kısıma ofisinizin konumunu giriniz..." data-original-title="Ofis Konum" data-placement="top">
+                                                        <input class="form-control show-popover" id="PLocation" value="İstanbul,Turkiye" disabled name="Location" type="text" data-placement="top">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="textarea2" class="col-xs-3 col-lg-2 control-label">* Adres :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <textarea name="Adres" id="PAdress" rows="5" class="form-control show-popover" data-trigger="hover" style="color:#000000" data-content="Bu kısıma ofisinizin adres bilgisini giriniz..." data-original-title="Ofis Adres" data-placement="top" placeholder="Adres içeriği giriniz..."></textarea>
+                                                        <textarea name="Adres" id="PAdress" rows="5" class="form-control show-popover" data-trigger="hover" style="color:#000000" data-content="Bu kısıma projenizin adres bilgisini giriniz..." data-original-title="Proje Adres" data-placement="left" placeholder="Adres içeriği giriniz..."></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
                                                         <input type="button" class="btn btn-primary" onclick="StepControl2()" style="float:right;" value="Devam Et" />
+                                                        <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
                                                     </div>
                                                 </div>
                                                 <!-- END Right Side -->
@@ -330,11 +333,12 @@
                                 <tr>
                                     <th style="width:18px"><input type="checkbox" /></th>
                                     <th>ID</th>
-                                    <th>Proje İsmi</th>
+                                    <th>@Html.ActionLink("Proje İsmi", "CompleteProjects", new { Sorting_Order = ViewBag.ProjectName, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız Veriler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
                                     <th>Resimler</th>
                                     <th>Ekip Üyeleri</th>
                                     <th>Proje Tipi</th>
                                     <th>Proje Bütçesi</th>
+                                    <th>Para Birimi</th>
                                     <th>Bitiş Yılı</th>
                                     <th>Proje İçerik</th>
                                     <th>Telefon</th>
@@ -352,12 +356,41 @@
                                         <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
                                         <td>@item.ID</td>
                                         <td>@item.ProjectName</td>
-                                        <td>Resimler</td>
-                                        <td>Ekip</td>
-                                        <td>@item.ProjectType</td>
-                                        <td>@item.ProjectBudgets</td>
-                                        <td>@item.ProjectYear</td>
-                                        <td>@{@cutContent(@item.ProjectContent)}</td>
+                                        <td>
+                                        @foreach (var picture in item.ProjectPicture.Where(x => x.ProjectID == item.ID))
+                                        {
+                                            <ul class="gallery">
+                                                <li>
+                                                    <a href="~/Dosyalar/@picture.PictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+                                                        <div>
+                                                            <span class="fa fa-image"></span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        }</td>
+                                        <td>@foreach (var picture in item.Team.Where(x => x.ProjectID == item.ID))
+                                        {
+                                            <ul class="gallery">
+                                                <li>
+                                                    <a href="~/Dosyalar/@picture.MemberPictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+                                                        <div>
+                                                            <span class="fa fa-user"></span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        }</td>
+                                        <td>
+                                            @item.ProjectType
+                                    </td>
+                                    <td>@item.ProjectBudgets</td>
+                                        <td>@item.ProjectMoneyType</td>
+                                    <td>
+                                        @item.ProjectYear
+                                    </td>
+                                        <td>@item.ProjectContent</td>
+                                        <td>@item.ProjectWorkingTimes</td>
                                         <td>@item.ProjectPhone</td>
                                         <td>@item.ProjectLocation</td>
                                         <td>@item.ProjectMail</td>
@@ -406,8 +439,9 @@
 
 
     function StepControl1() {
+        var maincontent = CKEDITOR.instances.Content.getData();
 
-        if ($("#PName").val() == "" || $("#PBirim").val() == "" || $("#PBudget").val() == "" || $("#PYear").val() == "") {
+        if ($("#PName").val() == "" || $("#PBudget").val() == "" || maincontent.length == 0) {
             alert("Lütfen eksiksiz veri girişi yapınız..");
         } else {
             var elem = $("#StepOne");

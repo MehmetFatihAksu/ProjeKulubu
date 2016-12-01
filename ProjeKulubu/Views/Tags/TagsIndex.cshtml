@@ -62,7 +62,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">* Etiketin Ait Olduğu Makale:</label>
                             <div class="col-sm-9 col-lg-10 controls">
-                                <select name="blogId" id="Blog" class="form-control input-sm" tabindex="1" required oninvalid="this.setCustomValidity('Öncelikle Bir Makale Eklemelisiniz')" oninput="setCustomValidity('')" style="color:#000000">
+                                <select name="blogId" id="Blog" class="form-control input-sm" tabindex="1" oninput="setCustomValidity('')" style="color:#000000">
                                     @foreach (var item in blogList)
                                     {
                                         <option value="@item.ID">@item.BlogTitle</option>

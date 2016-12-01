@@ -13,8 +13,6 @@ namespace ProjeKulubu.Controllers
 {
     public class ProjectController : Controller
     {
-        //
-        // GET: /Project/
         db2299D218BEEntities10 db = new db2299D218BEEntities10();
 
         #region Complete Project Views
@@ -45,7 +43,7 @@ namespace ProjeKulubu.Controllers
             switch (Sorting_Order)
             {
                 case "Ada_Gore":
-                    kayitlar = kayitlar.OrderByDescending(Project => Project.ProjectName);
+                    kayitlar = kayitlar.OrderBy(Project => Project.ProjectName);
                     break;
                 default:
                     kayitlar = kayitlar.OrderByDescending(Project => Project.ID);
@@ -96,6 +94,7 @@ namespace ProjeKulubu.Controllers
             project.ProjectStatusID = 1;
             project.ProjectPhone = Telefon;
             project.ProjectAltLocation = Adres;
+            project.ProjectWorkingTimes = Zaman;
             db.Project.Add(project);
             db.SaveChanges();
             return RedirectToAction("CompleteProjects", "Project");
@@ -121,6 +120,7 @@ namespace ProjeKulubu.Controllers
             projectModel.ProjectStatusID = 1;
             projectModel.ProjectPhone = Telefon;
             projectModel.ProjectAltLocation = Adres;
+            projectModel.ProjectWorkingTimes = Zaman;
             db.SaveChanges();
             return RedirectToAction("CompleteProjects", "Project");
         }
@@ -129,6 +129,19 @@ namespace ProjeKulubu.Controllers
         public ActionResult CompleteProjectDataDelete(int id)
         {
             Project proje = db.Project.Find(id);
+            db.ProjectPicture.Where(x => x.ProjectID == proje.ID).ToList().ForEach(y => db.ProjectPicture.Remove(y));
+            var liste = db.Team.Where(x => x.ProjectID == proje.ID).ToList();
+            foreach (var item in liste)
+            {
+                if(item.OfficeID!=null)
+                {
+                    item.ProjectID = null;
+                }
+                else
+                {
+                    db.Team.Remove(item);
+                }
+            }
             db.Project.Remove(proje);
             db.SaveChanges();
             return RedirectToAction("CompleteProjects", "Project");
@@ -137,6 +150,23 @@ namespace ProjeKulubu.Controllers
         [HttpPost]
         public ActionResult CompleteProjectMultipleDelete(IEnumerable<int> idler)
         {
+            foreach (var item in idler)
+            {
+                Project removeProject = db.Project.Find(item);
+                db.ProjectPicture.Where(x => x.ProjectID == removeProject.ID).ToList().ForEach(y => db.ProjectPicture.Remove(y));
+                var liste = db.Team.Where(x => x.ProjectID == removeProject.ID).ToList();
+                foreach (var items in liste)
+                {
+                    if (items.OfficeID != null)
+                    {
+                        items.ProjectID = null;
+                    }
+                    else
+                    {
+                        db.Team.Remove(items);
+                    }
+                }
+            }
             db.Project.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Project.Remove(y));
             db.SaveChanges();
             return RedirectToAction("CompleteProjects", "Project");
@@ -147,13 +177,44 @@ namespace ProjeKulubu.Controllers
 
         #region Sale Project Views
         [UserAuthorize]
-        public ActionResult SaleProjects(int? page)
+        public ActionResult SaleProjects(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
-            var list = db.Project.Where(x => x.ProjectStatusID == 2).ToList();
-            var pageNumber = page ?? 1;
-            var onePageOfProject = list.ToPagedList(pageNumber, 7);
-            ViewBag.Show = onePageOfProject;
-            return View();
+            ViewBag.ProjectName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
+
+            ViewBag.CurrentSort = Sorting_Order;
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+
+            var kayitlar = from x in db.Project.Where(x => x.ProjectStatusID == 2) select x;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                kayitlar = kayitlar.Where(x => x.ProjectName.Contains(SearchString));
+            }
+
+            switch (Sorting_Order)
+            {
+                case "Ada_Gore":
+                    kayitlar = kayitlar.OrderBy(Project => Project.ProjectName);
+                    break;
+                default:
+                    kayitlar = kayitlar.OrderByDescending(Project => Project.ID);
+                    break;
+            }
+
+            ViewBag.HtmlStr = kayitlar.Count();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
 
         [UserAuthorize]
@@ -177,32 +238,22 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddSaleProject(string Name, string Type, string Content, string Bugdet, string Birim, string Year, string Zaman, string Telefon, string EMail, string Location, string Adres)
         {
             Project saleProject = new Project();
-
             Location = "İstanbul,Türkiye";
-
             Content = Content.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
-
-            if (Name != null || Type != null || Birim != null || Content != null || Bugdet != null)
-            {
-                saleProject.ProjectName = Name;
-                saleProject.ProjectBudgets = Bugdet;
-                saleProject.ProjectContent = Content;
-                saleProject.ProjectMoneyType = Birim;
-                saleProject.ProjectYear = Year;
-                saleProject.ProjectMail = EMail;
-                saleProject.ProjectLocation = Adres + " " + Location;
-                saleProject.ProjectType = Type;
-                saleProject.ProjectStatusID = 2;
-                saleProject.ProjectPhone = Telefon;
-                saleProject.ProjectAltLocation = Adres;
-
-                db.Project.Add(saleProject);
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Error = "Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin.";
-            }
+            saleProject.ProjectName = Name;
+            saleProject.ProjectBudgets = Bugdet;
+            saleProject.ProjectContent = Content;
+            saleProject.ProjectMoneyType = Birim;
+            saleProject.ProjectYear = Year;
+            saleProject.ProjectMail = EMail;
+            saleProject.ProjectLocation = Adres + " " + Location;
+            saleProject.ProjectType = Type;
+            saleProject.ProjectStatusID = 2;
+            saleProject.ProjectPhone = Telefon;
+            saleProject.ProjectAltLocation = Adres;
+            saleProject.ProjectWorkingTimes = Zaman;
+            db.Project.Add(saleProject);
+            db.SaveChanges();
             return RedirectToAction("SaleProjects", "Project");
         }
 
@@ -211,30 +262,21 @@ namespace ProjeKulubu.Controllers
         public ActionResult SaleProjectDataUpdate(int id, string Name, string Type, string Content, string Bugdet, string Birim, string Year, string Zaman, string Telefon, string EMail, string Location, string Adres)
         {
             Project saleProjectModel = db.Project.Where(x => x.ID == id).FirstOrDefault();
-
             Location = "İstanbul,Türkiye";
-
             Content = Content.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
-
-            if (Name != null || Type != null || Birim != null || Content != null || Bugdet != null)
-            {
-                saleProjectModel.ProjectName = Name;
-                saleProjectModel.ProjectBudgets = Bugdet;
-                saleProjectModel.ProjectContent = Content;
-                saleProjectModel.ProjectMoneyType = Birim;
-                saleProjectModel.ProjectYear = Year;
-                saleProjectModel.ProjectMail = EMail;
-                saleProjectModel.ProjectLocation = Adres + " " + Location;
-                saleProjectModel.ProjectType = Type;
-                saleProjectModel.ProjectStatusID = 2;
-                saleProjectModel.ProjectPhone = Telefon;
-                saleProjectModel.ProjectAltLocation = Adres;
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Error = "Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin.";
-            }
+            saleProjectModel.ProjectName = Name;
+            saleProjectModel.ProjectBudgets = Bugdet;
+            saleProjectModel.ProjectContent = Content;
+            saleProjectModel.ProjectMoneyType = Birim;
+            saleProjectModel.ProjectYear = Year;
+            saleProjectModel.ProjectMail = EMail;
+            saleProjectModel.ProjectLocation = Adres + " " + Location;
+            saleProjectModel.ProjectType = Type;
+            saleProjectModel.ProjectStatusID = 2;
+            saleProjectModel.ProjectPhone = Telefon;
+            saleProjectModel.ProjectAltLocation = Adres;
+            saleProjectModel.ProjectWorkingTimes = Zaman;
+            db.SaveChanges();
             return RedirectToAction("SaleProjects", "Project");
         }
 
@@ -242,9 +284,47 @@ namespace ProjeKulubu.Controllers
         public ActionResult SaleProjectDataDelete(int id)
         {
             Project SaleProject = db.Project.Find(id);
+            db.ProjectPicture.Where(x => x.ProjectID == SaleProject.ID).ToList().ForEach(y => db.ProjectPicture.Remove(y));
+            var liste = db.Team.Where(x => x.ProjectID == SaleProject.ID).ToList();
+            foreach (var item in liste)
+            {
+                if (item.OfficeID != null)
+                {
+                    item.ProjectID = null;
+                }
+                else
+                {
+                    db.Team.Remove(item);
+                }
+            }
             db.Project.Remove(SaleProject);
             db.SaveChanges();
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return RedirectToAction("SaleProjects", "Project");
+        }
+
+        [HttpPost]
+        public ActionResult SaleProjectMultipleDelete(IEnumerable<int> idler)
+        {
+            foreach (var item in idler)
+            {
+                Project removeProject = db.Project.Find(item);
+                db.ProjectPicture.Where(x => x.ProjectID == removeProject.ID).ToList().ForEach(y => db.ProjectPicture.Remove(y));
+                var liste = db.Team.Where(x => x.ProjectID == removeProject.ID).ToList();
+                foreach (var items in liste)
+                {
+                    if (items.OfficeID != null)
+                    {
+                        items.ProjectID = null;
+                    }
+                    else
+                    {
+                        db.Team.Remove(items);
+                    }
+                }
+            }
+            db.Project.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Project.Remove(y));
+            db.SaveChanges();
+            return RedirectToAction("SaleProjects", "Project");
         }
         #endregion
 
@@ -252,13 +332,44 @@ namespace ProjeKulubu.Controllers
 
         #region Soon Project Views
         [UserAuthorize]
-        public ActionResult SoonProjects(int? page)
+        public ActionResult SoonProjects(string Sorting_Order, string SearchString, string currentFilter, int? page)
         {
-            var list = db.Project.Where(x => x.ProjectStatusID == 3).ToList();
-            var pageNumber = page ?? 1;
-            var onePageOfProject = list.ToPagedList(pageNumber, 7);
-            ViewBag.Show = onePageOfProject;
-            return View();
+            ViewBag.ProjectName = string.IsNullOrEmpty(Sorting_Order) ? "Ada_Gore" : "";
+
+            ViewBag.CurrentSort = Sorting_Order;
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+
+            var kayitlar = from x in db.Project.Where(x => x.ProjectStatusID == 3) select x;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                kayitlar = kayitlar.Where(x => x.ProjectName.Contains(SearchString));
+            }
+
+            switch (Sorting_Order)
+            {
+                case "Ada_Gore":
+                    kayitlar = kayitlar.OrderBy(Project => Project.ProjectName);
+                    break;
+                default:
+                    kayitlar = kayitlar.OrderByDescending(Project => Project.ID);
+                    break;
+            }
+
+            ViewBag.HtmlStr = kayitlar.Count();
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
 
         [UserAuthorize]
@@ -282,32 +393,22 @@ namespace ProjeKulubu.Controllers
         public ActionResult AddSoonProject(string Name, string Type, string Content, string Bugdet, string Birim, string Year, string Zaman, string Telefon, string EMail, string Location, string Adres)
         {
             Project soonProject = new Project();
-
             Location = "İstanbul,Türkiye";
-
             Content = Content.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
-
-            if (Name != null || Type != null || Birim != null || Content != null || Bugdet != null)
-            {
-                soonProject.ProjectName = Name;
-                soonProject.ProjectBudgets = Bugdet;
-                soonProject.ProjectContent = Content;
-                soonProject.ProjectMoneyType = Birim;
-                soonProject.ProjectYear = Year;
-                soonProject.ProjectMail = EMail;
-                soonProject.ProjectLocation = Adres + " " + Location;
-                soonProject.ProjectType = Type;
-                soonProject.ProjectStatusID = 3;
-                soonProject.ProjectPhone = Telefon;
-                soonProject.ProjectAltLocation = Adres;
-
-                db.Project.Add(soonProject);
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Error = "Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin.";
-            }
+            soonProject.ProjectName = Name;
+            soonProject.ProjectBudgets = Bugdet;
+            soonProject.ProjectContent = Content;
+            soonProject.ProjectMoneyType = Birim;
+            soonProject.ProjectYear = Year;
+            soonProject.ProjectMail = EMail;
+            soonProject.ProjectLocation = Adres + " " + Location;
+            soonProject.ProjectType = Type;
+            soonProject.ProjectStatusID = 3;
+            soonProject.ProjectPhone = Telefon;
+            soonProject.ProjectAltLocation = Adres;
+            soonProject.ProjectWorkingTimes = Zaman;
+            db.Project.Add(soonProject);
+            db.SaveChanges();
             return RedirectToAction("SoonProjects", "Project");
         }
 
@@ -316,30 +417,21 @@ namespace ProjeKulubu.Controllers
         public ActionResult SoonProjectDataUpdate(int id, string Name, string Type, string Content, string Bugdet, string Birim, string Year, string Zaman, string Telefon, string EMail, string Location, string Adres)
         {
             Project soonProjectModel = db.Project.Where(x => x.ID == id).FirstOrDefault();
-
             Location = "İstanbul,Türkiye";
-
             Content = Content.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
-
-            if (Name != null || Type != null || Birim != null || Content != null || Bugdet != null)
-            {
-                soonProjectModel.ProjectName = Name;
-                soonProjectModel.ProjectBudgets = Bugdet;
-                soonProjectModel.ProjectContent = Content;
-                soonProjectModel.ProjectMoneyType = Birim;
-                soonProjectModel.ProjectYear = Year;
-                soonProjectModel.ProjectMail = EMail;
-                soonProjectModel.ProjectLocation = Adres + " " + Location;
-                soonProjectModel.ProjectType = Type;
-                soonProjectModel.ProjectStatusID = 3;
-                soonProjectModel.ProjectPhone = Telefon;
-                soonProjectModel.ProjectAltLocation = Adres;
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Error = "Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin.";
-            }
+            soonProjectModel.ProjectName = Name;
+            soonProjectModel.ProjectBudgets = Bugdet;
+            soonProjectModel.ProjectContent = Content;
+            soonProjectModel.ProjectMoneyType = Birim;
+            soonProjectModel.ProjectYear = Year;
+            soonProjectModel.ProjectMail = EMail;
+            soonProjectModel.ProjectLocation = Adres + " " + Location;
+            soonProjectModel.ProjectType = Type;
+            soonProjectModel.ProjectStatusID = 3;
+            soonProjectModel.ProjectPhone = Telefon;
+            soonProjectModel.ProjectAltLocation = Adres;
+            soonProjectModel.ProjectWorkingTimes = Zaman;
+            db.SaveChanges();
             return RedirectToAction("SoonProjects", "Project");
         }
 
@@ -347,9 +439,47 @@ namespace ProjeKulubu.Controllers
         public ActionResult SoonProjectDataDelete(int id)
         {
             Project soonProject = db.Project.Find(id);
+            db.ProjectPicture.Where(x => x.ProjectID == soonProject.ID).ToList().ForEach(y => db.ProjectPicture.Remove(y));
+            var liste = db.Team.Where(x => x.ProjectID == soonProject.ID).ToList();
+            foreach (var item in liste)
+            {
+                if (item.OfficeID != null)
+                {
+                    item.ProjectID = null;
+                }
+                else
+                {
+                    db.Team.Remove(item);
+                }
+            }
             db.Project.Remove(soonProject);
             db.SaveChanges();
-            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
+            return RedirectToAction("SoonProjects", "Project");
+        }
+
+        [HttpPost]
+        public ActionResult SoonProjectMultipleDelete(IEnumerable<int> idler)
+        {
+            foreach (var item in idler)
+            {
+                Project removeProject = db.Project.Find(item);
+                db.ProjectPicture.Where(x => x.ProjectID == removeProject.ID).ToList().ForEach(y => db.ProjectPicture.Remove(y));
+                var liste = db.Team.Where(x => x.ProjectID == removeProject.ID).ToList();
+                foreach (var items in liste)
+                {
+                    if (items.OfficeID != null)
+                    {
+                        items.ProjectID = null;
+                    }
+                    else
+                    {
+                        db.Team.Remove(items);
+                    }
+                }
+            }
+            db.Project.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Project.Remove(y));
+            db.SaveChanges();
+            return RedirectToAction("SoonProjects", "Project");
         }
         #endregion
 

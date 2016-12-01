@@ -1,10 +1,10 @@
 ﻿@model PagedList.IPagedList<ProjeKulubu.Models.Office>
 @using PagedList.Mvc
 @using ProjeKulubu.Models
-@{
-    ViewBag.Title = "OfficeIndex";
-    Layout = "~/Views/AdminShared/_Layout.cshtml";
-}
+    @{
+        ViewBag.Title = "OfficeIndex";
+        Layout = "~/Views/AdminShared/_Layout.cshtml";
+    }
 <script src="~/Content/AdminContent/js/OfficeIndex.js"></script>
 <script>
     $(document).ready(function () {
@@ -23,291 +23,291 @@
     else
     {
         <p>@metin</p>
+        }
     }
-}
 
-<div class="page-title">
-    <div>
-        <h1><i class="fa fa-bars"></i> Ofis Yönetimi</h1>
-        <h4>Bu kısımda ofis ekleyip silebilir veya düzenleyebilirsiniz</h4>
-    </div>
-</div>@*Header 1*@
+    <div class="page-title">
+        <div>
+            <h1><i class="fa fa-bars"></i> Ofis Yönetimi</h1>
+            <h4>Bu kısımda ofis ekleyip silebilir veya düzenleyebilirsiniz</h4>
+        </div>
+    </div>@*Header 1*@
 
-<div id="breadcrumbs">
-    <ul class="breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
-            <span class="divider"><i class="fa fa-angle-right"></i></span>
-        </li>
-        <li class="active">Ofis Yönetimi</li>
-        <li style="float:right"><i class="fa fa-arrow-circle-o-up"></i><a style="color:green" target="_blank" href="@Url.Action("SatisOfis","Home")">Görünüme Git</a></li>
-    </ul>
-</div>@*Header 2*@
+    <div id="breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="@Url.Action("Index","Admin")">Ana Sayfa</a>
+                <span class="divider"><i class="fa fa-angle-right"></i></span>
+            </li>
+            <li class="active">Ofis Yönetimi</li>
+            <li style="float:right"><i class="fa fa-arrow-circle-o-up"></i><a style="color:green" target="_blank" href="@Url.Action("SatisOfis","Home")">Görünüme Git</a></li>
+        </ul>
+    </div>@*Header 2*@
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-black">
-            <div class="box-title">
-                <h3><i class="fa fa-list-alt"></i> Ofis Ekleme Formu</h3>
-                <div class="box-tool">
-                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-black">
+                <div class="box-title">
+                    <h3><i class="fa fa-list-alt"></i> Ofis Ekleme Formu</h3>
+                    <div class="box-tool">
+                        <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                        <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="box-content">
-                <form action="/Office/AddOffice" method="post" enctype="multipart/form-data" class="form-horizontal">
-                    <div class="form-wizard" id="form-wizard-1">
-                        <ul class="row steps">
-                            <li class="col-xs-12 col-sm-6 col-lg-3" id="StepOne">
-                                <a class="step">
-                                    <span class="number">1</span>
-                                    <span class="desc"><i class="fa fa-check"></i> Genel Bilgiler</span>
-                                </a>
-                            </li>
-                            <li class="col-xs-12 col-sm-6 col-lg-3" id="StepTwo">
-                                <a class="step">
-                                    <span class="number">2</span>
-                                    <span class="desc"><i class="fa fa-check"></i> İletişim Bilgileri</span>
-                                </a>
-                            </li>
-                            <li class="col-xs-12 col-sm-6 col-lg-3" id="StepFour">
-                                <a class="step">
-                                    <span class="number">3</span>
-                                    <span class="desc"><i class="fa fa-check"></i> Onayla & Kaydet</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="progress progress-striped">
-                        <div class="progress-bar progress-bar-success"></div>
-                    </div>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab1-1">
-                            <div class="box-content">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <!-- BEGIN Left Side -->
-                                        <div class="form-group">
-                                            <label for="textfield1" class="col-xs-3 col-lg-2 control-label">* İsim : </label>
-                                            <div class="col-sm-9 col-lg-10 controls">
-                                                <input type="text" id="PName" style="color:#000000" name="Name" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin ismini giriniz..." data-original-title="Ofis İsmi" data-placement="left" placeholder="Ofis İsim">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="textarea2" class="col-xs-3 col-lg-2 control-label">* İçerik :</label>
-                                            <div class="col-sm-9 col-lg-10 controls">
-                                                <textarea name="Content" id="PContent" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma ofisiniz ile ilgili genel bilgi metni giriniz..." data-original-title="Ofis Açıklama" data-placement="top" placeholder="Ofis Açıklaması Giriniz..."></textarea>
-                                            </div>
-                                        </div>
-                                        <!-- END Left Side -->
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        <!-- BEGIN Right Side -->
-                                        <div class="form-group">
-                                            <label for="textarea2" class="col-xs-3 col-lg-2 control-label">Alt İçerik :</label>
-                                            <div class="col-sm-9 col-lg-10 controls">
-                                                <textarea name="AltIcerik" id="PContent2" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma ofisiniz ile ilgili yardımıcı bir içerik  metni giriniz..." data-original-title="Ofis Alt Açıklama" data-placement="top" placeholder="Ofis Alt Açıklaması Giriniz..."></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                                <input type="button" class="btn btn-primary" onclick="StepControl1()" style="float:right;" value="Devam Et" />
-                                                <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
-
-                                            </div>
-                                        </div>
-                                        <!-- END Right Side -->
-                                    </div>
-                                </div>
+                <div class="box-content">
+                    <form action="/Office/AddOffice" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <div class="form-wizard" id="form-wizard-1">
+                            <ul class="row steps">
+                                <li class="col-xs-12 col-sm-6 col-lg-3" id="StepOne">
+                                    <a class="step">
+                                        <span class="number">1</span>
+                                        <span class="desc"><i class="fa fa-check"></i> Genel Bilgiler</span>
+                                    </a>
+                                </li>
+                                <li class="col-xs-12 col-sm-6 col-lg-3" id="StepTwo">
+                                    <a class="step">
+                                        <span class="number">2</span>
+                                        <span class="desc"><i class="fa fa-check"></i> İletişim Bilgileri</span>
+                                    </a>
+                                </li>
+                                <li class="col-xs-12 col-sm-6 col-lg-3" id="StepFour">
+                                    <a class="step">
+                                        <span class="number">3</span>
+                                        <span class="desc"><i class="fa fa-check"></i> Onayla & Kaydet</span>
+                                    </a>
+                                </li>
+                            </ul>
                             </div>
-                        </div>
-                        <div class="tab-pane" id="tab1-2">
-                            <div class="box-content">
-
-                                <div class="row">
-                                    <div class="col-md-6 ">
-                                        <!-- BEGIN Left Side -->
-                                        <div class="form-group">
-                                            <label for="Location" class="col-xs-3 col-lg-2 control-label">* Zaman :</label>
-                                            <div class="col-sm-9 col-lg-10 controls">
-                                                <select class="form-control" name="Zaman" id="PTime" data-placeholder="Choose a Category" tabindex="1">
-                                                    <option value="Hafta-İçi(9:00-17:00)">Hafta-İçi(9:00-17:00)</option>
-                                                    <option value="Hafta-İçi(9:00-17:00),Cumartesi(9:00-13:00)">Hafta-İçi(9:00-17:00),Cumartesi(9:00-13:00)</option>
-                                                    <option value="Cumartesi-Pazar(10:30-15:00)">Cumartesi-Pazar(10:30-15:00)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tel" class="col-xs-3 col-lg-2 control-label">* Telefon :</label>
-                                            <div class="col-sm-9 col-lg-10 controls">
-                                                <input type="text" class="form-control col-md-5 show-popover" name="Telefon" id="PPhone" maxlength="11" onkeypress="OnlyNumber()" style="color:#000000" placeholder="Telefon Numarası" data-trigger="hover" data-content="Bu kısıma ofisinizin telefon numarasını giriniz..." data-original-title="Ofis Telefon" data-placement="left">
-                                                <span class="help-inline">(212) 212-2121</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Email" class="col-xs-3 col-lg-2 control-label">* E-Mail : </label>
-                                            <div class="col-sm-9 col-lg-10 controls">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">@@</span>
-                                                    <input class="form-control show-popover" style="color:#000000" id="PEMail" name="EMail" type="text" placeholder="Email" data-trigger="hover" data-content="Bu kısıma ofisinizin E-posta adresini giriniz..." data-original-title="Ofis E-Posta" data-placement="left">
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-success"></div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab1-1">
+                                    <div class="box-content">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <!-- BEGIN Left Side -->
+                                                <div class="form-group">
+                                                    <label for="textfield1" class="col-xs-3 col-lg-2 control-label">* İsim : </label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <input type="text" id="PName" style="color:#000000" name="Name" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin ismini giriniz..." data-original-title="Ofis İsmi" data-placement="left" placeholder="Ofis İsim">
+                                                    </div>
                                                 </div>
-                                                <span class="help-inline">deneme@deneme.com</span>
+                                                <div class="form-group">
+                                                    <label for="textarea2" class="col-xs-3 col-lg-2 control-label">* İçerik :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <textarea name="Content" class="form-control  show-popover ckeditor"></textarea>
+                                                    </div>
+                                                </div>
+                                                <!-- END Left Side -->
                                             </div>
-                                        </div>
-                                        <!-- END Left Side -->
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        <!-- BEGIN Right Side -->
-                                        <div class="form-group">
-                                            <label for="password1" class="col-xs-3 col-lg-2 control-label">Konum :</label>
-                                            <div class="col-sm-9 col-lg-10 controls">
-                                                <input class="form-control show-popover" id="PLocation" value="İstanbul,Türkiye" disabled name="Location" type="text" placeholder="Konum" data-trigger="hover" data-content="Bu kısıma ofisinizin konumunu giriniz..." data-original-title="Ofis Konum" data-placement="top">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="textarea2" class="col-xs-3 col-lg-2 control-label">* Adres :</label>
-                                            <div class="col-sm-9 col-lg-10 controls">
-                                                <textarea name="Adres" id="PAdress" style="color:#000000" rows="5" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin adres bilgisini giriniz..." data-original-title="Ofis Adres" data-placement="left" placeholder="Adres içeriği giriniz..."></textarea>
-                                            </div>
-                                        </div>
+                                            <div class="col-md-6 ">
+                                                <!-- BEGIN Right Side -->
+                                                <div class="form-group">
+                                                    <label for="textarea2" class="col-xs-3 col-lg-2 control-label">* Alt İçerik :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <textarea name="AltIcerik" class="form-control  show-popover ckeditor"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                                        <input type="button" class="btn btn-primary" onclick="StepControl1()" style="float:right;" value="Devam Et" />
+                                                        <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
 
+                                                    </div>
+                                                </div>
+                                                <!-- END Right Side -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab1-2">
+                                    <div class="box-content">
+
+                                        <div class="row">
+                                            <div class="col-md-6 ">
+                                                <!-- BEGIN Left Side -->
+                                                <div class="form-group">
+                                                    <label for="Location" class="col-xs-3 col-lg-2 control-label">* Zaman :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <select class="form-control" name="Zaman" id="PTime" data-placeholder="Choose a Category" tabindex="1">
+                                                            <option value="Hafta-İçi(9:00-17:00)">Hafta-İçi(9:00-17:00)</option>
+                                                            <option value="Hafta-İçi(9:00-17:00),Cumartesi(9:00-13:00)">Hafta-İçi(9:00-17:00),Cumartesi(9:00-13:00)</option>
+                                                            <option value="Cumartesi-Pazar(10:30-15:00)">Cumartesi-Pazar(10:30-15:00)</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tel" class="col-xs-3 col-lg-2 control-label">* Telefon :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                <input type="text" class="form-control col-md-5 show-popover" name="Telefon" id="PPhone" maxlength="11" onkeypress="OnlyNumber()" style="color:#000000" placeholder="Telefon Numarası" data-trigger="hover" data-content="Bu kısıma ofisinizin telefon numarasını giriniz..." data-original-title="Ofis Telefon" data-placement="left">
+                                                        <span class="help-inline">(212) 212-2121</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Email" class="col-xs-3 col-lg-2 control-label">* E-Mail : </label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">@@</span>
+                                                            <input class="form-control show-popover" style="color:#000000" id="PEMail" name="EMail" type="text" placeholder="Email" data-trigger="hover" data-content="Bu kısıma ofisinizin E-posta adresini giriniz..." data-original-title="Ofis E-Posta" data-placement="left">
+                                                        </div>
+                                                        <span class="help-inline">deneme@deneme.com</span>
+                                                    </div>
+                                                </div>
+                                                <!-- END Left Side -->
+                                            </div>
+                                            <div class="col-md-6 ">
+                                                <!-- BEGIN Right Side -->
+                                                <div class="form-group">
+                                                    <label for="password1" class="col-xs-3 col-lg-2 control-label">Konum :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <input class="form-control show-popover" id="PLocation" value="İstanbul,Türkiye" disabled name="Location" type="text" placeholder="Konum" data-trigger="hover" data-content="Bu kısıma ofisinizin konumunu giriniz..." data-original-title="Ofis Konum" data-placement="top">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="textarea2" class="col-xs-3 col-lg-2 control-label">* Adres :</label>
+                                                    <div class="col-sm-9 col-lg-10 controls">
+                                                        <textarea name="Adres" id="PAdress" style="color:#000000" rows="5" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma ofisinizin adres bilgisini giriniz..." data-original-title="Ofis Adres" data-placement="left" placeholder="Adres içeriği giriniz..."></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                                                        <input type="button" class="btn btn-primary" onclick="StepControl2()" style="float:right;" value="Devam Et" />
+                                                        <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
+
+                                                    </div>
+                                                </div>
+                                                <!-- END Right Side -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="tab1-4">
+                                    <div class="box-content">
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 col-lg-2 control-label">İsim :</label>
+                                                    <div class="col-sm-5 col-lg-3 controls">
+                                                        <span class="text" id="LblIsim"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 col-lg-2 control-label">Zaman :</label>
+                                                    <div class="col-sm-5 col-lg-3 controls">
+                                                        <span class="text" id="LblBugdet"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 col-lg-2 control-label">Konum :</label>
+                                                    <div class="col-sm-5 col-lg-3 controls">
+                                                        <span class="text" id="LblBirim"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 col-lg-2 control-label">Adres :</label>
+                                                    <div class="col-sm-5 col-lg-3 controls">
+                                                        <span class="text" id="LblLocation"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 col-lg-2 control-label">Telefon :</label>
+                                                    <div class="col-sm-5 col-lg-3 controls">
+                                                        <span class="text" id="LblYear"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 col-lg-2 control-label">E-Mail :</label>
+                                                    <div class="col-sm-5 col-lg-3 controls">
+                                                        <span class="text" id="LblEmail"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                                <input type="button" class="btn btn-primary" onclick="StepControl2()" style="float:right;" value="Devam Et" />
-                                                <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
-
+                                                <button type="submit" id="button-save" class="btn btn-primary" style="float:right; margin-right: 50px;">Onayla & Kaydet</button>
                                             </div>
                                         </div>
-                                        <!-- END Right Side -->
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="tab-pane" id="tab1-4">
-                            <div class="box-content">
-                                <div class="row">
-
-                                    <div class="col-md-6">
-
-                                        <div class="form-group">
-                                            <label class="col-sm-3 col-lg-2 control-label">İsim :</label>
-                                            <div class="col-sm-5 col-lg-3 controls">
-                                                <span class="text" id="LblIsim"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 col-lg-2 control-label">Zaman :</label>
-                                            <div class="col-sm-5 col-lg-3 controls">
-                                                <span class="text" id="LblBugdet"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 col-lg-2 control-label">Konum :</label>
-                                            <div class="col-sm-5 col-lg-3 controls">
-                                                <span class="text" id="LblBirim"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-
-                                        <div class="form-group">
-                                            <label class="col-sm-3 col-lg-2 control-label">Adres :</label>
-                                            <div class="col-sm-5 col-lg-3 controls">
-                                                <span class="text" id="LblLocation"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 col-lg-2 control-label">Telefon :</label>
-                                            <div class="col-sm-5 col-lg-3 controls">
-                                                <span class="text" id="LblYear"></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-3 col-lg-2 control-label">E-Mail :</label>
-                                            <div class="col-sm-5 col-lg-3 controls">
-                                                <span class="text" id="LblEmail"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                        <button type="submit" id="button-save" class="btn btn-primary" style="float:right; margin-right: 50px;">Onayla & Kaydet</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>@*Add Office*@
+    </div>@*Add Office*@
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-black">
-            <div class="box-title">
-                <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Ofisler</h3>
-                <div class="box-tool">
-                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-black">
+                <div class="box-title">
+                    <h3><i class="fa fa-bars"></i> Mevcut Yayındaki Ofisler</h3>
+                    <div class="box-tool">
+                        <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                        <a data-action="close" href="#"><i class="fa fa-times"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="box-content">
-                <div class="btn-toolbar pull-left">
-                    @using (Html.BeginForm("OfficeIndex", "Office", FormMethod.Post))
-                    {
-                        <div class="btn-group" style="margin-left:5px">
-                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Arama..", style = "color:#000000", required = "required" })
+                <div class="box-content">
+                    <div class="btn-toolbar pull-left">
+                        @using (Html.BeginForm("OfficeIndex", "Office", FormMethod.Post))
+                        {
+                            <div class="btn-group" style="margin-left:5px">
+                                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Arama..", style = "color:#000000", required = "required" })
+                            </div>
+                            <div class="btn-group">
+                                <input type="submit" style="margin-left:10px;height:34px" value="Ara" class="btn btn-info" />
+                            </div>
+                        }
+                    </div>
+                    <div class="btn-toolbar pull-right">
+                        <div class="btn-group">
+                            <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
+                        <button type="submit" class="btn btn-circle show-tooltip" id="MultiDataDelete" onclick="MultiDataDelete()" title="Silme"><i class="fa fa-trash-o"></i></button>
                         </div>
                         <div class="btn-group">
-                            <input type="submit" style="margin-left:10px;height:34px" value="Ara" class="btn btn-info" />
+                            <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("OfficeIndex", "Office")"><i class="fa fa-repeat"></i></a>
                         </div>
-                    }
-                </div>
-                <div class="btn-toolbar pull-right">
-                    <div class="btn-group">
-                        <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
-                        <button type="submit" class="btn btn-circle show-tooltip" id="MultiDataDelete" onclick="MultiDataDelete()" title="Silme"><i class="fa fa-trash-o"></i></button>
                     </div>
-                    <div class="btn-group">
-                        <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("OfficeIndex", "Office")"><i class="fa fa-repeat"></i></a>
-                    </div>
-                </div>
-                <br /><br />
+                    <br /><br />
                 <div class="table-responsive" style="margin-top:10px">
-                    <table class="table table-advance">
-                        <thead>
-                            <tr>
-                                <th style="width:18px"><input type="checkbox" /></th>
-                                <th>ID</th>
-                                <th>@Html.ActionLink("Ofis İsim", "OfficeIndex", new { Sorting_Order = ViewBag.OfficeName, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız İsimler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
-                                <th>Çalışma Saatleri</th>
-                                <th>Resimler</th>
-                                <th>Çalışanlar</th>
-                                <th>Telefon</th>
-                                <th>E-Posta</th>
-                                <th>Adres</th>
-                                <th>Ana İçerik</th>
-                                <th>Alt İçerik</th>
-                                <th>İncele</th>
-                                <th>Düzenleme</th>
-                                <th>Sil</th>
+                        <table class="table table-advance">
+                            <thead>
+                                <tr>
+                                    <th style="width:18px"><input type="checkbox" /></th>
+                                    <th>ID</th>
+                                    <th>@Html.ActionLink("Ofis İsim", "OfficeIndex", new { Sorting_Order = ViewBag.OfficeName, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız İsimler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
+                                    <th>Çalışma Saatleri</th>
+                                    <th>Resimler</th>
+                                    <th>Çalışanlar</th>
+                                    <th>Telefon</th>
+                                    <th>E-Posta</th>
+                                    <th>Adres</th>
+                                    <th>Ana İçerik</th>
+                                    <th>Alt İçerik</th>
+                                    <th>İncele</th>
+                                    <th>Düzenleme</th>
+                                    <th>Sil</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr class="table-flag-blue">
-                                    <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
-                                    <td>@item.ID</td>
-                                    <td>@item.OfficeName</td>
-                                    <td>@item.OfficeWorkingTime</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="table-flag-blue">
+                                        <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
+                                        <td>@item.ID</td>
+                                        <td>@item.OfficeName</td>
+                                        <td>@item.OfficeWorkingTime</td>
                                     <td>
                                         @foreach (var picture in item.OfficePictures.Where(x => x.OfficeID == item.ID))
                                         {
@@ -322,58 +322,58 @@
                                             </ul>
                                         }
                                 </td>
-                                <td>
-                                    @foreach (var member in item.Team.Where(x => x.OfficeID == item.ID))
-                                    {
-                                        <ul class="gallery">
-                                            <li>
-                                                <a href="~/Dosyalar/@member.MemberPictureURL" class="show-tooltip" title="@member.MemberName" rel="prettyPhoto">
-                                                    <div>
-                                                        <span class="fa fa-user"></span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    }
-                                </td>
-                                <td>@item.OfficePhone</td>
-                                <td>@item.OfficeMail</td>
-                                <td>@item.OfficeLocation</td>
+                                        <td>
+                                            @foreach (var member in item.Team.Where(x => x.OfficeID == item.ID))
+                                            {
+                                                <ul class="gallery">
+                                                    <li>
+                                                        <a href="~/Dosyalar/@member.MemberPictureURL" class="show-tooltip" title="@member.MemberName" rel="prettyPhoto">
+                                                            <div>
+                                                                <span class="fa fa-user"></span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            }
+                                        </td>
+                                        <td>@item.OfficePhone</td>
+                                        <td>@item.OfficeMail</td>
+                                        <td>@item.OfficeLocation</td>
                                 <td>@{@cutContent(@item.OfficeMainContent)}</td>
                                 <td>@{@cutContent(@item.OfficeAltContent)}</td>
-                                <td><a class="btn btn-sm show-tooltip" title="İncele" target="_blank" href="@Url.Action("SatisOfisSingle", "Home")/@item.ID"><i class="fa fa-search"></i></a></td>
-                                <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("OfficeUpdate", "Office")/@item.ID"><i class="fa fa-edit"></i></a></td>
-                                <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("OfficeDelete", "Office")/@item.ID"><i class="fa fa-trash-o"></i></a></td>
+                                        <td><a class="btn btn-sm show-tooltip" title="İncele" target="_blank" href="@Url.Action("SatisOfisSingle", "Home")/@item.ID"><i class="fa fa-search"></i></a></td>
+                                        <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("OfficeUpdate", "Office")/@item.ID"><i class="fa fa-edit"></i></a></td>
+                                        <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("OfficeDelete", "Office")/@item.ID"><i class="fa fa-trash-o"></i></a></td>
 
-                            </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <div class="text-center">
-                    <ul class="pagination">
-                        @Html.PagedListPager(Model, page => Url.Action("OfficeIndex", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
-                    </ul>
-                </div>
-                <div class="text-right" style="font-size:14px">
-                    Toplam:@(Html.Raw(ViewBag.HtmlStr)) sonuç
-                </div>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center">
+                        <ul class="pagination">
+                            @Html.PagedListPager(Model, page => Url.Action("OfficeIndex", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
+                        </ul>
+                    </div>
+                    <div class="text-right" style="font-size:14px">
+                        Toplam:@(Html.Raw(ViewBag.HtmlStr)) sonuç
+                    </div>
 
+                </div>
             </div>
         </div>
-    </div>
-</div> @*Office List*@
+    </div> @*Office List*@
 
-<footer>
-    <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
-</footer> @*Footer*@
+    <footer>
+        <p>2016 © <a target="_blank" href="http://www.cizgitech.com">Cizgi-Tech</a> Yazılım Çözümleri</p>
+    </footer> @*Footer*@
 
-@*Scripts Down Here*@
+    @*Scripts Down Here*@
 
-<a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
-<script src="~/Content/AdminContent/js/buttonActions.js"></script>
-<script type="text/javascript" src="/Content/AdminContent/assets/ckeditor/ckeditor.js"></script>
-@*<script language="javascript" type="text/javascript">
+    <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
+    <script src="~/Content/AdminContent/js/buttonActions.js"></script>
+    <script type="text/javascript" src="/Content/AdminContent/assets/ckeditor/ckeditor.js"></script>
+<script language="javascript" type="text/javascript">
 
 
     function isNumber(evt) {

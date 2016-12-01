@@ -71,7 +71,7 @@ namespace ProjeKulubu.Controllers
         #region Methods
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AddTeamMember(int officeId,string office, string name, string position, string exp, int age, HttpPostedFileBase picture,string seo, string facebook, string twitter, string google, string linkedin, string biografi)
+        public ActionResult AddTeamMember(int officeId,int projectId,string office, string name, string position, string exp, int age, HttpPostedFileBase picture,string seo, string facebook, string twitter, string google, string linkedin, string biografi)
         {
             Team teamModel = new Team();
             biografi = biografi.Replace("<p>", "").Replace("</p>", "");
@@ -89,7 +89,25 @@ namespace ProjeKulubu.Controllers
             teamModel.MemberPictureURL = fileMap;
             teamModel.MemberPozision = position;
             teamModel.MemberTwitterURL = "Http://" + twitter;
-            teamModel.OfficeID = officeId;
+
+            if(officeId == 0)
+            {
+
+            }
+            else
+            {
+                teamModel.OfficeID = officeId;
+            }
+
+            if(projectId == 0)
+            {
+
+            }
+            else
+            {
+                teamModel.ProjectID = projectId;
+            }
+
             db.Team.Add(teamModel);
             db.SaveChanges();
             return RedirectToAction("TeamIndex", "Team");
