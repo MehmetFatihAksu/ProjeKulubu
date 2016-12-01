@@ -14,10 +14,11 @@
         elem.addClass("active");
     });
 
-
+    
     function StepControl1() {
-
-        if ($("#PName").val() == "") {
+        var maincontent = CKEDITOR.instances.Content.getData();
+        var altcontent = CKEDITOR.instances.AltIcerik.getData();
+        if ($("#PName").val() == "" || maincontent.length == 0 || altcontent.length == 0) {
 
             alert("Lütfen eksiksiz veri girişi yapınız..");
 
@@ -34,7 +35,7 @@
     }
 
     function StepControl2() {
-
+        
         if ($("#PTime").val() == "" || $("#PPhone").val() == "" || $("#PEMail").val() == "" || $("#PLocation").val() == "" || $("#PAdress").val() == "") {
             alert("Lütfen eksiksiz veri girişi yapınız..");
 
@@ -180,7 +181,7 @@
                                                 <div class="form-group">
                                                     <label for="textarea2" class="col-xs-3 col-lg-2 control-label">* İçerik :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <textarea name="Content" id="PContent" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma ofisiniz ile ilgili genel bilgi metni giriniz..." data-original-title="Ofis Açıklama" data-placement="top" placeholder="Ofis Açıklaması Giriniz..."></textarea>
+                                                        <textarea name="Content" class="form-control  show-popover ckeditor"></textarea>
                                                     </div>
                                                 </div>
                                                 <!-- END Left Side -->
@@ -188,9 +189,9 @@
                                             <div class="col-md-6 ">
                                                 <!-- BEGIN Right Side -->
                                                 <div class="form-group">
-                                                    <label for="textarea2" class="col-xs-3 col-lg-2 control-label">Alt İçerik :</label>
+                                                    <label for="textarea2" class="col-xs-3 col-lg-2 control-label">* Alt İçerik :</label>
                                                     <div class="col-sm-9 col-lg-10 controls">
-                                                        <textarea name="AltIcerik" id="PContent2" rows="5" class="form-control ckeditor show-popover" data-trigger="hover" data-content="Bu kısıma ofisiniz ile ilgili yardımıcı bir içerik  metni giriniz..." data-original-title="Ofis Alt Açıklama" data-placement="top" placeholder="Ofis Alt Açıklaması Giriniz..."></textarea>
+                                                        <textarea name="AltIcerik" class="form-control  show-popover ckeditor"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -422,8 +423,8 @@
                                         <td>@item.OfficePhone</td>
                                         <td>@item.OfficeMail</td>
                                         <td>@item.OfficeLocation</td>
-                                        <td>içerik</td>
-                                        <td>içerik</td>
+                                        <td>@item.OfficeMainContent</td>
+                                        <td>@item.OfficeAltContent</td>
                                         <td><a class="btn btn-sm show-tooltip" title="İncele" target="_blank" href="@Url.Action("SatisOfisSingle", "Home")/@item.ID"><i class="fa fa-search"></i></a></td>
                                         <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("OfficeUpdate", "Office")/@item.ID"><i class="fa fa-edit"></i></a></td>
                                         <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" href="@Url.Action("OfficeDelete", "Office")/@item.ID"><i class="fa fa-trash-o"></i></a></td>

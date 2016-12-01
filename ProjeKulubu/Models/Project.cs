@@ -32,6 +32,7 @@ namespace ProjeKulubu.Models
         public string ProjectMail { get; set; }
         public string ProjectPhone { get; set; }
         public string ProjectAltLocation { get; set; }
+        public string ProjectWorkingTimes { get; set; }
     
         public virtual ProjectType ProjectType1 { get; set; }
         public virtual ICollection<ProjectPicture> ProjectPicture { get; set; }

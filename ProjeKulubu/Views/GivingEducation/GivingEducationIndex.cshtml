@@ -49,8 +49,6 @@
 
 </script>
 
-
-
 <div class="page-title">
     <div>
         <h1><i class="fa fa-bars"></i> Verilen Eğitim Yönetimi</h1>
@@ -81,7 +79,7 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="/GivingEducation/AddGivingEducation" method="post"
+                <form action="/GivingEducation/AddGivingEducation" onsubmit="return (Control());" method="post"
                       enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Eğitim Başlığı:</label>
@@ -255,4 +253,19 @@
 <script src="~/Content/AdminContent/js/buttonActions.js"></script>
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
+<script type="text/javascript">
+    function ErrorMessage() {
+        alert("Başında * Olan Yerler Boş Geçilemez");
+    }
+    function Control() {
+        var editorText = CKEDITOR.instances.content.getData();
+        if (editorText.length == 0) {
+            ErrorMessage();
+            return false;
+        }
+        else {
+            return true;
+        }
 
+    }
+</script>@*Content Control*@

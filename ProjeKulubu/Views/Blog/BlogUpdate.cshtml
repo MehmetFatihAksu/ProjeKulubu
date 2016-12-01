@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="/Blog/BlogDataUpdate" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                <form action="/Blog/BlogDataUpdate" method="post" onsubmit="return (Control());" enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Makale Başlığı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
@@ -105,3 +105,19 @@
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
+<script type="text/javascript">
+    function ErrorMessage() {
+        alert("Başında * Olan Yerler Boş Geçilemez");
+    }
+    function Control() {
+        var editorText = CKEDITOR.instances.content.getData();
+        if (editorText.length == 0) {
+            ErrorMessage();
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+</script>@*Content Control*@

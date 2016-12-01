@@ -118,8 +118,19 @@ namespace ProjeKulubu.Controllers
         public ActionResult OfficeDataDelete(int id)
         {
             Office removeOffice = db.Office.Find(id);
-            db.Team.Where(x => x.OfficeID == removeOffice.ID).ToList().ForEach(y => db.Team.Remove(y));
             db.OfficePictures.Where(x => x.OfficeID == removeOffice.ID).ToList().ForEach(y => db.OfficePictures.Remove(y));
+            var liste = db.Team.Where(x => x.OfficeID == removeOffice.ID).ToList();
+            foreach (var item in liste)
+            {
+                if (item.ProjectID != null)
+                {
+                    item.OfficeID = null;
+                }
+                else
+                {
+                    db.Team.Remove(item);
+                }
+            }
             db.Office.Remove(removeOffice);
             db.SaveChanges();
             return RedirectToAction("OfficeIndex", "Office");
@@ -131,7 +142,18 @@ namespace ProjeKulubu.Controllers
             {
                 Office removeModel = db.Office.Find(item);
                 db.OfficePictures.Where(x => x.OfficeID == removeModel.ID).ToList().ForEach(y => db.OfficePictures.Remove(y));
-                db.Team.Where(x => x.OfficeID == removeModel.ID).ToList().ForEach(y => db.Team.Remove(y));
+                var liste = db.Team.Where(x => x.OfficeID == removeModel.ID).ToList();
+                foreach (var items in liste)
+                {
+                    if (items.ProjectID != null)
+                    {
+                        items.OfficeID = null;
+                    }
+                    else
+                    {
+                        db.Team.Remove(items);
+                    }
+                }
             }
             db.Office.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.Office.Remove(y));
             db.SaveChanges();

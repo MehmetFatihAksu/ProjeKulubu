@@ -7,6 +7,10 @@
     var officeList = db.Office.ToList();
 }
 
+@{ 
+    var projectList = db.Project.ToList();
+}
+
 @{
     ViewBag.Title = "TeamIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
@@ -57,7 +61,7 @@
                 </div>
             </div>
             <div class="box-content">
-                @if (officeList.Count == 0)
+                @if (officeList.Count == 0 && projectList.Count == 0)
                 {
                     <form method="get" action="/Office/OfficeIndex"  class="form-horizontal form-row-separated">
                         <div class="form-group">
@@ -83,17 +87,43 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-3 col-lg-2 control-label">Çalıştığı Proje:</label>
+                            <div class="col-sm-9 col-lg-10 controls">
+                                @if (projectList.Count == 0)
+                                {
+                                    <select name="projectId" id="Office" class="form-control input-sm">
+                                        <option value="0">Henüz Bir Proje Eklenmemiş</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select name="projectId" id="Office" class="form-control input-sm" tabindex="1">
+                                        <option selected value="0">Ekip Üyenizin Çalıştığı Projeyi Seçiniz</option>
+                                        @foreach (Project item in projectList)
+                                        {
+                                            <option value="@item.ID">@item.ProjectName</option>
+                                        }
+
+                                    </select>
+                                }
+
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 col-lg-2 control-label">Çalıştığı Ofis:</label>
                             <div class="col-sm-9 col-lg-10 controls">
                                 @if (officeList.Count == 0)
                                 {
-                                    <select name="officeId" id="Office" class="form-control input-sm" required>
-                                        <option value="1">Henüz Bir Ofis Eklenmemiş</option>
+                                    <select selected name="officeId" id="Office" class="form-control input-sm">
+                                        <option value="0">Henüz Bir Ofis Eklenmemiş</option>
                                     </select>
                                 }
                                 else
                                 {
                                     <select name="officeId" id="Office" class="form-control input-sm" tabindex="1">
+                                        <option value="0">Ekip Üyenizin Çalıştığı Ofisi Seçiniz</option>
                                         @foreach (Office item in officeList)
                                         {
                                             <option value="@item.ID">@item.OfficeName</option>
@@ -277,8 +307,14 @@
                                     <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
                                     <td>@item.ID</td>
                                     <td>@item.MemberName</td>
-                                    <td>Proje</td>
-                                    <td>@item.Office.OfficeName</td>
+                                    <td>@if (item.ProjectID != null)
+                                    {
+                                        <p>@item.Project.ProjectName</p>
+                                    }</td>
+                                    <td>@if (item.OfficeID != null)
+                                    {
+                                        <p>@item.Office.OfficeName</p>
+                                    }</td>
                                     <td>@item.MemberPozision</td>
                                     <td>@if (!(IsPost))
                                     {
