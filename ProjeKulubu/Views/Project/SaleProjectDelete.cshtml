@@ -5,6 +5,7 @@
     ViewBag.Title = "CompleteProjectDelete";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
+<script src="~/Content/AdminContent/js/SaleProjectDelete.js"></script>
 
 <div id="breadcrumbs">
     <ul class="breadcrumb">
@@ -23,17 +24,17 @@
 </div>@*Header 1*@
 
 <form action="/Project/SaleProjectDataDelete" method="post" class="form-horizontal form-row-separated">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-black">
-                <div class="box-title">
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-black">
+            <div class="box-title">
                     <h3><i class="fa fa-trash-o"></i>Mevcut Projeyi Silmek İstediğinize Emin Misiniz ?</h3>
-                    <div class="box-tool">
-                        <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
-                        <a data-action="close" href="#"><i class="fa fa-times"></i></a>
-                    </div>
+                <div class="box-tool">
+                    <a data-action="collapse" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <a data-action="close" href="#"><i class="fa fa-times"></i></a>
                 </div>
-                <div class="box-content">
+            </div>
+            <div class="box-content">
                     <div class="form-group">
                         <label for="textfield1" class="col-xs-3 col-lg-2 control-label">ID : </label>
                         <div class="col-sm-9 col-lg-10 controls">
@@ -114,10 +115,10 @@
                     </div>
                     <!-- END Right Side -->
 
-                </div>
             </div>
         </div>
     </div>
+</div>
 </form>@*Project Delete Form*@
 
 

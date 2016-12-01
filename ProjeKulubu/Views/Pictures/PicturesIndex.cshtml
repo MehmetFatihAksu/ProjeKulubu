@@ -5,6 +5,8 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 
+<script src="~/Content/AdminContent/js/PicturesIndex.js"></script>
+
 <div class="page-title">
     <div>
         <h1><i class="fa fa-bars"></i> Bizden Resimler Alanı Yönetimi</h1>
@@ -95,13 +97,11 @@
                         </div>
                     }
                 </div>
-@using (Html.BeginForm("MultipleDelete", "Pictures", FormMethod.Post))
-{
+
                 <div class="btn-toolbar pull-right">
                     <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" id="NewAdd" onclick="GoAddProject()" title="" data-original-title="Yeni Ekle"><i class="fa fa-plus"></i></a>
-                        <button type="submit" class="btn btn-circle show-tooltip" onclick="Warning()"  title="Silme"><i class="fa fa-trash-o"></i></button>
-                            
+                        <button type="submit" class="btn btn-circle show-tooltip" id="MultiDataDelete" onclick="MultiDataDelete()" title="Silme"><i class="fa fa-trash-o"></i></button>
                     </div>
             <div class="btn-group">
                         <a class="btn btn-circle show-tooltip" title="Yenile" href="@Url.Action("PicturesIndex", "Pictures")"><i class="fa fa-repeat"></i></a>
@@ -145,7 +145,7 @@
                         </tbody>
                     </table>
                 </div>
-}
+
                 <div class="text-center">
                     <ul class="pagination">
                         @Html.PagedListPager(Model, page => Url.Action("PicturesIndex", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }),new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })

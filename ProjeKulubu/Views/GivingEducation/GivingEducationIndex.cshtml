@@ -11,43 +11,19 @@
     ViewBag.Title = "GivingEducationIndex";
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
-
-<script type="text/javascript">
-
-    var idler = [];
-    function MultiDataDelete() {
-
-        if ($("input[type=checkbox]:checked").length == 0) {
-            alert("Lütfen silmek istediğiniz veriyi seçiniz...");
-        } else {
-
-            var elemCount = $("input[type=checkbox]:checked").length;
-
-            for (var i = 0; i < elemCount; i++) {
-
-                var elemId = $("input[type=checkbox]:checked")[i].valueOf();
-                idler[i] = elemId;
+@helper cutContent(string metin)
+{
+    if (metin.Length > 10)
+    {
+        <p>@metin.Substring(0, 10)...</p>
             }
-
-            $.ajax({
-                type: "POST",
-                url: "/GivingEducation/MultipleDelete",
-                data: idler,
-                ajaxasync: true,
-                traditional: true,
-                success: function (response) {
-                    alert("Seçilen Eğitimler Başarıyla Silindi");
-                    window.location.href = "/GivingEducation/GivingEducationIndex";
-                },
-                error: function (response) {
-                    console.log("Hata Oluştu");
-                }
-            });
+    else
+    {
+        <p>@metin</p>
         }
     }
    
-
-</script>
+<script src="~/Content/AdminContent/js/GivingEducationIndex.js"></script>
 
 <div class="page-title">
     <div>
@@ -207,7 +183,7 @@
                                             </ul>
                                         </td>
                                         <td>@item.EducationFileSEO</td>
-                                        <td>@item.EducationContent</td>
+                                        <td>@{@cutContent(@item.EducationContent)}</td>
                                         <th>@item.EducationDate.ToString().Substring(0, 10)</th>
                                         <th>@item.EducationView</th>
                                         <td><a class="btn btn-sm show-tooltip" title="İnceleme" target="_blank" href="@Url.Action("Egitim","Home")/@item.ID"><i class="fa fa-search"></i></a></td>
