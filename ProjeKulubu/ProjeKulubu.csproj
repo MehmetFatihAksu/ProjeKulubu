@@ -1126,6 +1126,7 @@
     <Content Include="Content\AdminContent\index.html" />
     <Content Include="Content\AdminContent\js\BlogIndex.js" />
     <Content Include="Content\AdminContent\js\buttonActions.js" />
+    <Content Include="Content\AdminContent\js\CompleteProjects.js" />
     <Content Include="Content\AdminContent\js\ContactIndex.js" />
     <Content Include="Content\AdminContent\js\CustomerIndex.js" />
     <Content Include="Content\AdminContent\js\flaty-demo-codes.js" />
