@@ -11,11 +11,13 @@ namespace ProjeKulubu.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class OurPictures
     {
         public int ID { get; set; }
         public string PictureURL { get; set; }
+        [UIHint("tinymce_full_compressed")]
         public string PictureSEO { get; set; }
     }
 }

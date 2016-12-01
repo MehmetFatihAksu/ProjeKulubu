@@ -100,28 +100,17 @@ namespace ProjeKulubu.Controllers
         [ValidateInput(false)]
         public ActionResult OfficeDataUpdate(int id ,string Name, string Content, string AltIcerik, string Zaman, string Telefon, string EMail, string Location, string Adres)
         {
-
             Office officeModel = db.Office.Where(x => x.ID == id).FirstOrDefault();
-
             Content = Content.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
-
             AltIcerik = AltIcerik.Replace("<p>", "").Replace("</p>", "").Replace("\r", "").Replace("\n", "");
-
-            if (Name != null || Content != null || AltIcerik != null)
-            {
-                officeModel.OfficeName = Name;
-                officeModel.OfficeMainContent = Content;
-                officeModel.OfficeAltContent = AltIcerik;
-                officeModel.OfficeMail = EMail;
-                officeModel.OfficeLocation = Adres + " " + Location;
-                officeModel.OfficePhone = Telefon;
-                officeModel.OfficeWorkingTime = Zaman;
-                db.SaveChanges();
-            }
-            else
-            {
-                ViewBag.Error = "Serverdan kaynaklı bir hata oluştu,lütfen yetkili biriyle iletişime geçin";
-            }
+            officeModel.OfficeName = Name;
+            officeModel.OfficeMainContent = Content;
+            officeModel.OfficeAltContent = AltIcerik;
+            officeModel.OfficeMail = EMail;
+            officeModel.OfficeLocation = Adres + " " + Location;
+            officeModel.OfficePhone = Telefon;
+            officeModel.OfficeWorkingTime = Zaman;
+            db.SaveChanges();
             return RedirectToAction("OfficeIndex", "Office");
         }
 

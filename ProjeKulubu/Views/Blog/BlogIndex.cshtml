@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="box-content">
-                <form action="/Blog/AddBlog" method="post"  enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                <form action="/Blog/AddBlog" onsubmit="return (Control());" method="post"  enctype="multipart/form-data" class="form-horizontal form-row-separated">
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Makale Başlığı:</label>
                         <div class="col-sm-9 col-lg-10 controls">
@@ -55,9 +55,9 @@
                                     <span class="btn btn-default btn-file">
                                         <span class="fileupload-new">Resim Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
-                                        <input type="file" accept="image/*" name="picture" id="picture" class="file-input" />
+                                        <input type="file" accept="image/*" required oninvalid="this.setCustomValidity('Makale Resmini Boş Geçemezsiniz')" oninput="setCustomValidity('')" name="picture" id="picture" class="file-input" />
                                     </span>
-                                    <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
+                                    <a href="#" class="btn btn-default fileupload-exists"  data-dismiss="fileupload">Sil</a>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <label for="textfield3" class="col-sm-3 col-lg-2 control-label">Makale Resim SEO:</label>
                         <div class="col-sm-9 col-lg-10 controls">
-                            <input type="text" style="color:#000000" name="seo" id="seo" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma makalenizin resmiyle alakalı anahtar kelime giriniz" data-original-title="Makale Resim Seo Anahtarı" data-placement="left">
+                            <input type="text" style="color:#000000" name="seo" id="seo" placeholder="SEO Kelimenizi Giriniz" class="form-control show-popover" data-trigger="hover" data-content="Bu kısıma makalenizin resmiyle alakalı anahtar kelime giriniz" required oninvalid="this.setCustomValidity('Makale SEO Kısmını Boş Bırakamazsınız')" oninput="setCustomValidity('')" data-original-title="Makale Resim Seo Anahtarı" data-placement="left">
                         </div>
                     </div>
                     <div class="box-content">
@@ -81,7 +81,7 @@
 
                     <div class="form-group last">
                         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                            <button type="submit" class="btn btn-primary" style="float:right" onclick="Control()" ><i class="fa fa-check-circle"></i> Kaydet</button>
                             <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
 
                          </div>
@@ -212,7 +212,21 @@
 </style>
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
-<link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/jquery-tags-input/jquery.tagsinput.css" />
 <script src="~/Content/AdminContent/js/buttonActions.js"></script>
 <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
-<script type="text/javascript" src="/Content/AdminContent/assets/jquery-tags-input/jquery.tagsinput.min.js"></script>
+<script type="text/javascript">
+    function ErrorMessage() {
+        alert("Başında * Olan Yerler Boş Geçilemez");
+    }
+    function Control() {
+        var editorText = CKEDITOR.instances.content.getData();
+        if (editorText.length == 0) {
+            ErrorMessage();
+            return false;
+        }
+        else {
+            return true;
+        }
+       
+    }
+</script>@*Content Control*@

@@ -59,7 +59,7 @@
             <div class="box-content">
                 @if (officeList.Count == 0)
                 {
-                    <form method="get" action="/Office/OfficeIndex" class="form-horizontal form-row-separated">
+                    <form method="get" action="/Office/OfficeIndex"  class="form-horizontal form-row-separated">
                         <div class="form-group">
                             <div class="col-sm-12 col-lg-12 controls">
                                 <input type="text" name="OfficePictureSEO" disabled style="color:#000000" id="OfficePictureSEO" value="Öncelikle Bir Ofis veya Proje Eklemelisiniz" class="form-control show-popover">
@@ -75,7 +75,7 @@
                 }
                 else
                 {
-                    <form action="/Team/AddTeamMember" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
+                    <form action="/Team/AddTeamMember" onsubmit="return (Control());" method="post" enctype="multipart/form-data" class="form-horizontal form-row-separated">
                         <div class="form-group">
                             <label for="textfield3" class="col-sm-3 col-lg-2 control-label">* Üye İsim ve Soyisim:</label>
                             <div class="col-sm-9 col-lg-10 controls">
@@ -192,7 +192,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 col-lg-2 control-label">* Üye Biyografisi:</label>
                                 <div class="col-sm-9 col-lg-10 controls">
-                                    <textarea class="form-control col-md-12 ckeditor" name="biografi" id="biografi" rows="6"></textarea>
+                                    <textarea class="form-control col-md-12 ckeditor" name="biografi" rows="6"></textarea>
                                 </div>
                             </div>
 
@@ -200,13 +200,13 @@
 
                         <div class="form-group last">
                             <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
-                                <button type="submit" class="btn btn-primary" style="float:right" onclick="DataSave()"><i class="fa fa-check-circle"></i> Kaydet</button>
+                                <button type="submit" class="btn btn-primary" style="float:right"><i class="fa fa-check-circle"></i> Kaydet</button>
                                 <h6 style="float:left">Başında * Olan Yerler Doldurulmak Zorundadır.</h6>
 
                             </div>
                         </div>
                     </form>
-                }
+              }
                 
             </div>
         </div>
@@ -373,4 +373,19 @@
 </script> @*Only Number Script*@
 <link rel="stylesheet" type="text/css" href="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
 <script type="text/javascript" src="/Content/AdminContent/assets/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+<script type="text/javascript">
+    function ErrorMessage() {
+        alert("Başında * Olan Yerler Boş Geçilemez");
+    }
+    function Control() {
+        var editorText = CKEDITOR.instances.biografi.getData();
+        if (editorText.length == 0) {
+            ErrorMessage();
+            return false;
+        }
+        else {
+            return true;
+        }
 
+    }
+</script>@*Content Control*@
