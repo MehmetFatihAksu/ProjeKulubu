@@ -149,59 +149,63 @@
                         </div>
                     </div>
                     <br /><br />
-                    <div class="table-responsive" style="margin-top:10px">
-                        <table class="table table-advance">
-                            <thead>
-                                <tr>
-                                    <th style="width:18px"><input type="checkbox" /></th>
-                                    <th>ID</th>
-                                    <th>@Html.ActionLink("Resmin Ait Olduğu Proje", "ProjectPictureIndex", new { Sorting_Order = ViewBag.PictureOfficeName, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız İsimler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
-                                    <th>Proje Tipi</th>
-                                    <th>Resim SEO</th>
-                                    <th>Resim</th>
-                                    <th>Düzenleme</th>
-                                    <th>Silme</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
+                        <div class="table-responsive" style="margin-top:10px">
+                            <table class="table table-advance">
+                                <thead>
+                                    <tr>
+                                        <th style="width:18px"><input type="checkbox" /></th>
+                                        <th>ID</th>
+                                        <th>@Html.ActionLink("Resmin Ait Olduğu Proje", "ProjectPictureIndex", new { Sorting_Order = ViewBag.PictureOfficeName, currentFilter = ViewBag.CurrentFilter }, new { @class = "cssMenu" })    <span style="margin-left:2px" data-trigger="hover" data-content="Başlığa Tıklarsanız İsimler A'dan Z'ye Sıralanır" data-original-title="Bilgilendirme" data-placement="top" class="fa fa-question-circle show-popover"></span></th>
+                                        <th>Proje Tipi</th>
+                                        <th>Resim SEO</th>
+                                        <th>Resim</th>
+                                        <th>Düzenleme</th>
+                                        <th>Silme</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
                                 {
-                                    <tr class="table-flag-blue">
-                                        <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
-                                        <td>@item.ID</td>
-                                        <td>@item.Project.ProjectName</td>
-                                        <td>@if (item.Project.ProjectStatusID == 1)
+                                <tr class="table-flag-blue">
+                                    <td><input type="checkbox" name="idler" id="@item.ID" value="@item.ID" /></td>
+                                    <td>@item.ID</td>
+                                    <td>@item.Project.ProjectName</td>
+                                    <td>
+                                        @if (item.Project.ProjectStatusID == 1)
                                         {
-                                            <p>Tamamlanmış Proje</p>
+                                        <p>Tamamlanmış Proje</p>
                                         }
                                         else if (item.Project.ProjectStatusID == 2)
                                         {
-                                                <p>Satışı Devam Eden Proje</p>
+                                        <p>Satışı Devam Eden Proje</p>
                                         }
                                         else
                                         {
-                                            <p>Yakındaki Proje</p>
-                                        }</td>
-                                        <td>@item.PictureSEO</td>
-                                        <td>
-                                            <ul class="gallery">
-                                                <li>
-                                                    <a href="~/Dosyalar/@item.PictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
-                                                        <div>
-                                                            <span class="fa fa-image"></span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </td>
+                                        <p>Yakındaki Proje</p>
+                                        }
+                                </td>
+                                <td>@item.PictureSEO</td>
+                                <td>
+                                    <ul class="gallery">
+                                        <li>
+                                            <a href="~/Dosyalar/@item.PictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+                                                <div>
+                                                    <span class="fa fa-image"></span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
 
-                                        <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("ProjectPictureUpdate", "Project")/@item.ID"><i class="fa fa-edit"></i></a></td>
-                                        <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" name="idler" id="@item.ID"><i class="fa fa-trash-o"></i></a></td>
-                                    </tr>
+                                <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("ProjectPictureUpdate", "Project")/@item.ID"><i class="fa fa-edit"></i></a></td>
+                                <td><a class="btn btn-sm btn-danger show-tooltip" title="Silme" name="id"><i class="fa fa-trash-o"></i></a><input type="hidden"  />
+                                    </td>
+                            </tr>
                                 }
-                            </tbody>
-                        </table>
-                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+
                     <div class="text-center">
                         <ul class="pagination">
                             @Html.PagedListPager(Model, page => Url.Action("ProjectPictureIndex", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })

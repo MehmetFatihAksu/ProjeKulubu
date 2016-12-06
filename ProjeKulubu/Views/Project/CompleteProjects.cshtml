@@ -340,6 +340,7 @@
                                     <th>Para Birimi</th>
                                     <th>Bitiş Yılı</th>
                                     <th>Proje İçerik</th>
+                                    <th>Çalışma Saatleri</th>
                                     <th>Telefon</th>
                                     <th>Adres</th>
                                     <th>E-Mail</th>
@@ -356,30 +357,50 @@
                                         <td>@item.ID</td>
                                         <td>@item.ProjectName</td>
                                         <td>
-                                        @foreach (var picture in item.ProjectPicture.Where(x => x.ProjectID == item.ID))
+                                        @if (item.ProjectPicture.Where(x => x.ProjectID == item.ID).FirstOrDefault() != null)
                                         {
-                                            <ul class="gallery">
-                                                <li>
-                                                    <a href="~/Dosyalar/@picture.PictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
-                                                        <div>
-                                                            <span class="fa fa-image"></span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        }</td>
-                                        <td>@foreach (var picture in item.Team.Where(x => x.ProjectID == item.ID))
+                                            foreach (var picture in item.ProjectPicture.Where(x => x.ProjectID == item.ID))
+                                            {
+
+                                                <ul class="gallery">
+                                                    <li>
+
+                                                        <a href="~/Dosyalar/@picture.PictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+                                                            <div>
+                                                                <span class="fa fa-image"></span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+
+                                            }
+                                        }
+                                        else
                                         {
-                                            <ul class="gallery">
-                                                <li>
-                                                    <a href="~/Dosyalar/@picture.MemberPictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
-                                                        <div>
-                                                            <span class="fa fa-user"></span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        }</td>
+                                            <p style="color:#ff0000" class="show-popover" data-trigger="hover" data-content="Bir Projeye Resim Eklemediğiniz Takdirde Proje Yayınlanmaz(Birden fazla resmi olması estetik açıdan önerilir...)" data-original-title="Bilgilendirme" data-placement="top">Resim Eklenmedi</p>
+                                        }
+                                        </td>
+                                        <td>
+                                        @if (item.Team.Where(x => x.ProjectID == item.ID).FirstOrDefault() != null)
+                                        {
+                                            foreach (var picture in item.Team.Where(x => x.ProjectID == item.ID))
+                                            {
+                                                <ul class="gallery">
+                                                    <li>
+                                                        <a href="~/Dosyalar/@picture.MemberPictureURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+                                                            <div>
+                                                                <span class="fa fa-user"></span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <p style="color:#ff0000" class="show-popover" data-trigger="hover" data-content="Bir Projeye Herangi bir ekip üyesi eklenmediği takdirde o proje yayınlanmaz" data-original-title="Bilgilendirme" data-placement="top">Ekip Üyesi Eklenmedi</p>
+                                        }
+                                        </td>
                                         <td>
                                             @item.ProjectType
                                     </td>

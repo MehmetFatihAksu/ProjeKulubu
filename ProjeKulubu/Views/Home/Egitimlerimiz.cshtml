@@ -1,4 +1,12 @@
-﻿@{
+﻿@using ProjeKulubu.Models
+
+@{ 
+    db2299D218BEEntities10 db = new db2299D218BEEntities10();
+    var takeEduCount = db.Education.Where(x => x.EducationTypeID == 1).ToList();
+    var giveEduCount = db.Education.Where(x => x.EducationTypeID == 2).ToList();
+}
+
+@{
     ViewBag.Title = "Egitimlerimiz";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -54,16 +62,35 @@
 <script src="/Content/pikocon_html/assets/js/plugins.js"></script>
 
 <script>
-            //pie chart data
+    //pie chart data
+        if(@takeEduCount.Count()==0 && @giveEduCount.Count()==0)
+        {
+            var pieData = [
+               {
+                   value:1,
+                   color: "#a6c3a0",
+                   highlight: "#98b792",
+                   label: "Henüz Bir Eğitim Eklenmemiş"
+               },
+
+            ];
+
+            window.onload = function() {
+                var ctx = document.getElementById("chart-area").getContext("2d");
+                window.myPie = new Chart(ctx).Pie(pieData);
+            };
+        }
+        else
+        {
             var pieData = [
                 {
-                    value: 2,
+                value: @takeEduCount.Count(),
                     color: "#a6c3a0",
                     highlight: "#98b792",
                     label: "Aldığımız Eğitim Sayısı"
                 },
                 {
-                    value: 3,
+                value: @giveEduCount.Count(),
                     color: "#40C5E6",
                     highlight: "#8eb187",
                     label: "Verdiğimiz Eğitim Sayısı"
@@ -72,9 +99,11 @@
 
             ];
 
-            window.onload = function () {
+            window.onload = function() {
                 var ctx = document.getElementById("chart-area").getContext("2d");
                 window.myPie = new Chart(ctx).Pie(pieData);
             };
+        }
+
 
 </script>

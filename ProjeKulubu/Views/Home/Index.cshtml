@@ -1,4 +1,15 @@
-﻿
+﻿@using ProjeKulubu.Models
+
+@{ 
+    db2299D218BEEntities10 db = new db2299D218BEEntities10();
+    var blog1 = db.Blog.OrderByDescending(x => x.ID).FirstOrDefault();
+    var blog2 = db.Blog.OrderByDescending(x => x.ID).Skip(1).FirstOrDefault();
+    var blog3 = db.Blog.OrderByDescending(x => x.ID).Skip(2).FirstOrDefault();
+    var blog4 = db.Blog.OrderByDescending(x => x.ID).Skip(3).FirstOrDefault();
+    var referenceList = db.Reference.ToList();
+
+}
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,261 +23,67 @@
     }
 </style>
 
-
-<div class="tp-banner-container margin-t70" style="height:525px">
+<div class="tp-banner-container margin-t70">
     <div class="tp-banner2">
         <ul>
             <!-- SLIDE 1 -->
             <li data-transition="random" data-slotamount="7" data-masterspeed="1500">
                 <!-- MAIN IMAGE -->
-                <img src="~/Content/pikocon_html/assets/images/slider/bg1.1.jpg" alt="construction" data-bgposition="right top" data-kenburns="on" data-duration="12000" data-ease="Power0.easeInOut" data-bgfit="115" data-bgfitend="100" data-bgpositionend="center bottom">
-                <!-- LAYER NR. 1 -->
-                <div class="tp-caption lft tp-resizeme rs-parallaxlevel-0"
-                     data-x="160"
-                     data-y="190"
-                     data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                     data-speed="1000"
-                     data-start="1000"
-                     data-easing="Power3.easeInOut"
-                     data-splitin="none"
-                     data-splitout="none"
-                     data-elementdelay="0.1"
-                     data-endelementdelay="0.1"
-                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                    <span class="left-top corner-border"></span>
-                </div>
-                <!-- LAYER NR. 2 -->
-                <div class="tp-caption lfb tp-resizeme rs-parallaxlevel-0"
-                     data-x="160"
-                     data-y="330"
-                     data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                     data-speed="1000"
-                     data-start="1000"
-                     data-easing="Power3.easeInOut"
-                     data-splitin="none"
-                     data-splitout="none"
-                     data-elementdelay="0.1"
-                     data-endelementdelay="0.1"
-                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                    <span class="left-bottom corner-border"></span>
-                </div>
+                <img src="~/Content/bg2.jpg" alt="construction" data-bgposition="right top" data-kenburns="on" data-duration="12000" data-ease="Power0.easeInOut" data-bgfit="115" data-bgfitend="100" data-bgpositionend="center bottom">
 
-                <!-- LAYER NR. 3 -->
-                <div class="tp-caption lft tp-resizeme rs-parallaxlevel-0"
-                     data-x="810"
-                     data-y="190"
-                     data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                     data-speed="1000"
-                     data-start="1000"
-                     data-easing="Power3.easeInOut"
-                     data-splitin="none"
-                     data-splitout="none"
-                     data-elementdelay="0.1"
-                     data-endelementdelay="0.1"
-                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                    <span class="right-top corner-border"></span>
-                </div>
-
-                <!-- LAYER NR. 4 -->
-                <div class="tp-caption lfb tp-resizeme rs-parallaxlevel-0"
-                     data-x="810"
-                     data-y="330"
-                     data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                     data-speed="1000"
-                     data-start="1000"
-                     data-easing="Power3.easeInOut"
-                     data-splitin="none"
-                     data-splitout="none"
-                     data-elementdelay="0.1"
-                     data-endelementdelay="0.1"
-                     style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                    <span class="right-bottom corner-border"></span>
-                </div>
-                <!-- LAYER NR. 5 -->
-                <div class="tp-caption slide-title-65 customin customout tp-resizeme"
-                     data-x="center" data-hoffset="0"
-                     data-y="205"
-                     data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:5;scaleY:5;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                     data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                     data-speed="600"
-                     data-start="1400"
-                     data-easing="Power4.easeOut"
-                     data-endspeed="600"
-                     data-endeasing="Power0.easeIn"
-                     style="z-index: 3">
-                    PROJELERİMİZE GÖZ ATIN
-                </div>
-                <!-- LAYER NR. 6 -->
-                <div class="tp-caption slide-title-25 customin customout tp-resizeme"
-                     data-x="center" data-hoffset="0"
-                     data-y="bottom" data-voffset="-240"
-                     data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:5;scaleY:5;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                     data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                     data-speed="600"
-                     data-start="1400"
-                     data-easing="Power4.easeOut"
-                     data-endspeed="600"
-                     data-endeasing="Power0.easeIn"
-                     style="z-index: 3">
-                    50 PROJE 124 ÇALIŞAN İLE HİZMET VERİYORUZ
-                </div>
-                <div class="tp-caption slide-title-25 customin customout tp-resizeme"
-                     data-x="center" data-hoffset="0"
-                     data-y="bottom" data-voffset="-155"
-                     data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:5;scaleY:5;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                     data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                     data-speed="600"
-                     data-start="1400"
-                     data-easing="Power4.easeOut"
-                     data-endspeed="600"
-                     data-endeasing="Power0.easeIn"
-                     style="z-index: 3">
-                    <a class="btn-s5 light2 about-page-banner" href="@Url.Action("Projeler","Home")" style="min-height: 0px; min-width: 0px; line-height: 35px; border-width: 1px; margin: 0px; padding: 8px 18px; letter-spacing: 0px; font-size: 25px;">Hemen Tıklayın</a>
-                </div>
             </li>
             <!-- SLIDE 2 -->
             <li data-transition="random" data-slotamount="7" data-masterspeed="1500">
-                    <!-- MAIN IMAGE -->
-                    <img src="~/Content/pikocon_html/assets/images/slider/bg1.1.jpg" alt="construction" data-bgposition="left center" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-bgfit="115" data-bgfitend="115" data-bgpositionend="right bottom">
-                    <!-- LAYER NR. 1 -->
-                    <div class="tp-caption lft tp-resizeme rs-parallaxlevel-0"
-                         data-x="200"
-                         data-y="190"
-                         data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                         data-speed="1000"
-                         data-start="1000"
-                         data-easing="Power3.easeInOut"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.1"
-                         data-endelementdelay="0.1"
-                         style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                        <span class="left-top corner-border"></span>
-                    </div>
-                    <!-- LAYER NR. 2 -->
-                    <div class="tp-caption lfb tp-resizeme rs-parallaxlevel-0"
-                         data-x="200"
-                         data-y="330"
-                         data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                         data-speed="1000"
-                         data-start="1000"
-                         data-easing="Power3.easeInOut"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.1"
-                         data-endelementdelay="0.1"
-                         style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                        <span class="left-bottom corner-border"></span>
-                    </div>
+                <!-- MAIN IMAGE -->
+                <img src="~/Content/bg1.jpg" alt="construction" data-bgposition="left center" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-bgfit="115" data-bgfitend="115" data-bgpositionend="right bottom">
+                <!-- LAYER NR. 1 -->
 
-                    <!-- LAYER NR. 3 -->
-                    <div class="tp-caption lft tp-resizeme rs-parallaxlevel-0"
-                         data-x="800"
-                         data-y="190"
-                         data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                         data-speed="1000"
-                         data-start="1000"
-                         data-easing="Power3.easeInOut"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.1"
-                         data-endelementdelay="0.1"
-                         style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                        <span class="right-top corner-border"></span>
-                    </div>
-
-                    <!-- LAYER NR. 4 -->
-                    <div class="tp-caption lfb tp-resizeme rs-parallaxlevel-0"
-                         data-x="800"
-                         data-y="330"
-                         data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                         data-speed="1000"
-                         data-start="1000"
-                         data-easing="Power3.easeInOut"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.1"
-                         data-endelementdelay="0.1"
-                         style="z-index: 8; max-width: auto; max-height: auto; white-space: nowrap;">
-                        <span class="right-bottom corner-border"></span>
-                    </div>
-                    <!-- LAYER NR. 5 -->
-                    <div class="tp-caption slide-title-50 customin customout tp-resizeme"
-                         data-x="center" data-hoffset="0"
-                         data-y="240"
-                         data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:5;scaleY:5;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                         data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                         data-speed="600"
-                         data-start="1400"
-                         data-easing="Power4.easeOut"
-                         data-endspeed="600"
-                         data-endeasing="Power0.easeIn"
-                         style="z-index: 3">
-                        Realize Your Project!
-                    </div>
-                    <!-- LAYER NR. 6 -->
-                    <div class="tp-caption slide-title-25 customin customout tp-resizeme"
-                         data-x="center" data-hoffset="0"
-                         data-y="bottom" data-voffset="-240"
-                         data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:5;scaleY:5;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                         data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                         data-speed="600"
-                         data-start="1400"
-                         data-easing="Power4.easeOut"
-                         data-endspeed="600"
-                         data-endeasing="Power0.easeIn"
-                         style="z-index: 3">
-                        We are saving 50% your cost
-                    </div>
-                </li>
+            </li>
         </ul>
     </div>
-</div> @*Banner*@
+</div>@*Slider*@
 
-<section class="padding-tb100 pattern3" @*style="margin-top:-55px"*@>
+<section class="padding-content pattern3">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-12 col-md-3">
                 <div class="process wow fadeInLeft" data-wow-delay="0.5s">
                     <div class="media text-right">
                         <div class="media-body">
-                            <h4 class="media-heading">Avantajlarımız</h4>
+                            <h4 class="media-heading">AVANTAJLARIMIZ</h4>
                             <a href="@Url.Action("Avantajlarimiz","Home")"><p class="metin">The municipality will probably require a structural inspection to ensure that the home</p></a>
                         </div>
                         <div class="media-right">
                             <div class="process-icon"><i class="fa fa-gavel" aria-hidden="true"></i></div>
                         </div>
                     </div>
-                </div>@*1.Metin Sol*@
+                </div><!-- end of process icon -->
                 <div class="process wow fadeInLeft" data-wow-delay="0.5s">
                     <div class="media text-right">
                         <div class="media-body">
-                            <h4 class="media-heading"> SATIŞ SONU HİZMETLER</h4>
-                            <a href="@Url.Action("SatisSonuHizmetlerimiz","Home")"><p class="metin">Worker safety first priorities At this point, your builder and completing the fina.</p></a>
-                        </div>
+                            <h4 class="media-heading">SATIŞ SONU HİZMETLER</h4>
+                            <a href="@Url.Action("SatisSonuHizmetler","Home")"><p class="metin">Worker safety first priorities At this point, your builder and completing the fina.</p></a>                        </div>
                         <div class="media-right">
                             <div class="process-icon"><i class="fa fa-child" aria-hidden="true"></i></div>
                         </div>
                     </div>
-                </div>@*2.Metin Sol*@
+                </div><!-- end of process icon -->
                 <div class="process wow fadeInLeft" data-wow-delay="0.5s">
                     <div class="media text-right">
                         <div class="media-body">
-                            <h4 class="media-heading"> 2.Cİ EL SATIŞLARIMIZ</h4>
-                            <a href="@Url.Action("IkinciElSatis","Home")"><p class="metin">The construction is id turpis cursus. Donec at augue dictum dolor lacinia risus</p></a>
-                        </div>
+                            <h4 class="media-heading">2.Cİ EL SATIŞLARIMIZ</h4>
+                            <a href="@Url.Action("IkinciElSatis","Home")"><p class="metin">The construction is id turpis cursus. Donec at augue dictum dolor lacinia risus</p></a>                        </div>
                         <div class="media-right">
                             <div class="process-icon"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></div>
                         </div>
                     </div>
-                </div>@*3.Metin Sol*@
-                <!-- end of process icon -->
+                </div><!-- end of process icon -->
             </div>
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-12 col-md-6">
                 <div class="team1 wow  fadeIn" data-wow-delay="0.5s">
                     <div class="box">
                         <figure>
-                            <img src="/Content/banner12.jpg" alt="">
+                            <img src="~/Content/banner12.jpg" alt="">
                         </figure>
                         <!--caption-->
                         <div class="caption">
@@ -278,8 +95,8 @@
                         </div>  <!--end caption-->
                     </div>
                 </div>
-            </div>@*Orta Paragraf*@
-            <div class="col-sm-6 col-md-3">
+            </div>
+            <div class="col-sm-12 col-md-3">
                 <div class="process wow fadeInRight" data-wow-delay="0.5s">
                     <div class="media">
                         <div class="media-left">
@@ -287,10 +104,9 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">PROJE GELİŞTİRME</h4>
-                            <a href="@Url.Action("ProjeGelistirme","Home")"><p class="metin">At this point, your builder and crew are busy completing the final touches and cleaning up.</p></a>
-                        </div>
+                            <a href="@Url.Action("ProjeGelistirme","Home")"><p class="metin">At this point, your builder and crew are busy completing the final touches and cleaning up.</p></a>                        </div>
                     </div>
-                </div>@*1.Metin Sağ*@
+                </div><!-- end of process icon -->
                 <div class="process wow fadeInRight" data-wow-delay="0.5s">
                     <div class="media">
                         <div class="media-left">
@@ -298,10 +114,9 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">PROJE SATIŞ</h4>
-                            <a href="@Url.Action("ProjeSatis","Home")"><p class="metin">The municipality will probably require a structural inspection to ensure that the home built</p></a>
-                        </div>
+                            <a href="@Url.Action("ProjeSatis","Home")"><p class="metin">The municipality will probably require a structural inspection to ensure that the home built</p></a>                        </div>
                     </div>
-                </div> @*2.Metin Sağ*@
+                </div><!-- end of process icon -->
                 <div class="process wow fadeInRight" data-wow-delay="0.5s">
                     <div class="media">
                         <div class="media-left">
@@ -309,16 +124,15 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">PROJE PAZARLAMA</h4>
-                            <a href="@Url.Action("ProjePazarlama","Home")"><p class="metin">Phasellus luctus turpis ampto cursus. Donec at augue ni a dictum dolor In</p></a>
-                        </div>
+                            <a href="@Url.Action("ProjePazarlama","Home")"><p class="metin">Phasellus luctus turpis ampto cursus. Donec at augue ni a dictum dolor In</p></a>                        </div>
                     </div>
-                </div>@*3.Metin Sağ*@
+                </div><!-- end of process icon -->
             </div> <!-- end of column -->
         </div> <!-- end row -->
     </div>
-</section> @*Bilgilendirme Metinleri*@
+</section>@*Informations Words*@
 
-<div class="get-quote margin-t70">
+<div class="get-quote margin-t70 hidden-xs">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-7 col-sm-7 wow fadeInLeft" data-wow-delay="0.5s">
@@ -329,22 +143,21 @@
             <div class="col-lg-4 col-md-5 col-sm-5">
                 <div class="text-right">
                     <a class="btn-s5 light2 pull-left wow fadeInRight" data-wow-delay="0.5s" href="@Url.Action("Iletisim","Home")"><i class="fa fa-paper-plane-o"></i> Hemen Tıklayın</a>
-                    <a class="btn-s5 light2 pull-left wow fadeInRightBig hidden-sm hidden-xs" data-wow-delay="0.5s" href="@Url.Action("Projeler","Home")">Projelerimize Bakın</a>
+                    <a class="btn-s5 light2 pull-left wow fadeInRightBig" data-wow-delay="0.5s" href="@Url.Action("Projeler","Home")">Projelerimize Bakın</a>
                 </div>
             </div>
         </div>
     </div>
-</div> @*Bize ulaşın*@
+</div> @*Contact Us*@
 
-
-<section class="padding-kisayazilar pattern3">
+<section class="padding-tb100 pattern3">
     <div class="container">
         <div class="row no-gutter">
             <div class="col-xs-6 col-md-3">
                 <!--box item-->
                 <div class="box wow fadeInLeft" data-wow-delay="0.5s">
                     <div class="icon-box">
-                        <div class="image"><i class="fa fa-bars"></i></div>
+                        <div class="image"><i class="fa fa-university"></i></div>
                         <div class="info white">
                             <h4 class="title">İNSAN KAYNAKLARI</h4>
                             <p>We are ensure that give you Phasellus luctus id turpis cursus. Donec at augue dictum dolor In tempor ultrices est, nec lacinia risus vehicula</p>
@@ -356,7 +169,7 @@
                 <!--box item-->
                 <div class="box wow fadeInLeftBig" data-wow-delay="0.9s">
                     <div class="icon-box">
-                        <div class="image"><i class="fa fa-building"></i></div>
+                        <div class="image"><i class="fa fa-thumbs-o-up"></i></div>
                         <div class="info white">
                             <h4 class="title">ARSANI DEĞERLENDİR</h4>
                             <p>Cheeck our quality the discuss Phasellus luctus id turpis cursus. Donec at augue dictum dolor In tempor ultrices est, nec lacinia risus vehicula</p>
@@ -380,9 +193,9 @@
                 <!--box item-->
                 <div class="box wow fadeInRight" data-wow-delay="0.5s">
                     <div class="icon-box">
-                        <div class="image"><i class="fa fa-server"></i></div>
+                        <div class="image"><i class="fa fa-lightbulb-o"></i></div>
                         <div class="info white">
-                            <h4 class="title">MAKALE</h4>
+                            <h4 class="title">NEDEN BİZ?</h4>
                             <p>The construciton is OUR MISSION Phasellus luctus id turpis cursus. Donec at augue dictum dolor In tempor ultrices est, nec lacinia risus vehicula</p>
                         </div>
                     </div>
@@ -390,10 +203,7 @@
             </div>
         </div>
     </div>
-</section> @*kısa Yazılar*@
-
-
-
+</section>@*Short Words*@
 
 <section class="container">
     <div class="padding-makale">
@@ -405,100 +215,307 @@
         </div> <!--end heading-->
         <!--start post-->
         <div class="row">
-            <div class="col-md-3 col-xs-6">
-                <div class="team">
-                    <div class="box wow fadeInLeft" data-wow-delay="0.5s">
-                        <div class="blog_date"><strong>27 </strong><br><p>ŞUBAT</p></div>
-                        <figure>
-                            <img src="/Content/pikocon_html/images/body/blog01.jpg" alt="service">
-                        </figure>
-                        <div class="caption">
-                            <h3>Makale Başlık</h3>
-                            <ul class="piko-li">
-                                <li><i class="fa fa-calendar"></i>07.02.2015</li>
-                                <li><i class="fa fa-user"></i>Admin</li>
-                                <li><i class="fa fa-heart-o"></i>10</li>
-                            </ul>
-                            <p>Makale İçerik</p>
-                            <a href="@Url.Action("BlogSingle","Home")">Devamını Oku</a>
+            
+            @if (blog1 != null)
+            {
+                <div class="col-md-3 col-xs-6">
+                    <div class="team">
+                        <div class="box wow fadeInLeft" data-wow-delay="0.5s">
+                            <div class="blog_date">
+                                <strong>@blog1.BlogDate.Value.Day </strong><br>@if (blog1.BlogDate.Value.Month == 01)
+                                {
+                                    <p>Ocak</p>
+                                }
+                                else if (blog1.BlogDate.Value.Month == 02)
+                                {
+                                    <p>Şubat</p>
+                                }
+                                else if (blog1.BlogDate.Value.Month == 03)
+                                {
+                                    <p>Mart</p>
+                                }
+                                else if (blog1.BlogDate.Value.Month == 04)
+                                {
+                                    <p>Nisan</p>
+                                }
+                                else if (blog1.BlogDate.Value.Month == 05)
+                                {
+                                    <p>Mayıs</p>
+                                }
+                                else if (blog1.BlogDate.Value.Month == 06)
+                                {
+                                    <p>Haziran</p>
+                                }
+                                else if (blog1.BlogDate.Value.Month == 07)
+                                {
+                                    <p>Temmuz</p>
+                                }
+                                else if (blog1.BlogDate.Value.Month == 08)
+                                {
+                                    <p>Ağustos</p>
+                                }
+                                else if (blog1.BlogDate.Value.Month == 09)
+                                {
+                                    <p>Eylül</p>
+                                }
+                                else if (blog1.BlogDate.Value.Month == 10)
+                                {
+                                    <p>Ekim</p>
+                                }
+                                else if (blog1.BlogDate.Value.Month == 11)
+                                {
+                                    <p>Kasım</p>
+                                }
+                                else if (blog1.BlogDate.Value.Month == 12)
+                                {
+                                    <p>Aralık</p>
+                                }
+                            </div>
+                            <figure>
+                                <img style="height:157px;width:100%" src="~/Dosyalar/@blog1.BlogPictureURL" alt="@blog1.BlogPictureSEO">
+                            </figure>
+                            <div class="caption">
+                                <h3>@blog1.BlogTitle</h3>
+                                <ul class="piko-li">
+                                    <li><i class="fa fa-calendar"></i>@blog1.BlogDate.Value.ToShortDateString()</li>
+                                    <li><i class="fa fa-user"></i>Admin</li>
+                                    <li><i class="fa fa-search"></i>@blog1.BlogViewCount</li>
+                                </ul>
+                                <p></p>
+                                <a href="@Url.Action("BlogSingle","Home")/@blog1.ID">Devamını Oku</a>
+                            </div>
                         </div>
-                    </div>
-                </div> <!--end post-->
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <div class="team">
-                    <div class="box wow fadeInLeftBig" data-wow-delay="0.9s">
-                        <div class="blog_date"><strong>27 </strong><br><p>ŞUBAT</p></div>
-                        <figure>
-                            <img src="/Content/pikocon_html/images/body/blog01.jpg" alt="service">
-                        </figure>
-                        <div class="caption">
-                            <h3>Makale Başlık</h3>
-                            <ul class="piko-li">
-                                <li><i class="fa fa-calendar"></i>07.02.2015</li>
-                                <li><i class="fa fa-user"></i>Admin</li>
+                    </div> <!--end post-->
+                </div>
+            }
+            @if (blog2 != null)
+            {
+                <div class="col-md-3 col-xs-6">
+                    <div class="team">
+                        <div class="box wow fadeInLeftBig" data-wow-delay="0.9s">
+                            <div class="blog_date">
+                                <strong>@blog2.BlogDate.Value.Day </strong><br>@if (blog2.BlogDate.Value.Month == 01)
+                                {
+                                    <p>Ocak</p>
+                                }
+                                else if (blog2.BlogDate.Value.Month == 02)
+                                {
+                                    <p>Şubat</p>
+                                }
+                                else if (blog2.BlogDate.Value.Month == 03)
+                                {
+                                    <p>Mart</p>
+                                }
+                                else if (blog2.BlogDate.Value.Month == 04)
+                                {
+                                    <p>Nisan</p>
+                                }
+                                else if (blog2.BlogDate.Value.Month == 05)
+                                {
+                                    <p>Mayıs</p>
+                                }
+                                else if (blog2.BlogDate.Value.Month == 06)
+                                {
+                                    <p>Haziran</p>
+                                }
+                                else if (blog2.BlogDate.Value.Month == 07)
+                                {
+                                    <p>Temmuz</p>
+                                }
+                                else if (blog2.BlogDate.Value.Month == 08)
+                                {
+                                    <p>Ağustos</p>
+                                }
+                                else if (blog2.BlogDate.Value.Month == 09)
+                                {
+                                    <p>Eylül</p>
+                                }
+                                else if (blog2.BlogDate.Value.Month == 10)
+                                {
+                                    <p>Ekim</p>
+                                }
+                                else if (blog2.BlogDate.Value.Month == 11)
+                                {
+                                    <p>Kasım</p>
+                                }
+                                else if (blog2.BlogDate.Value.Month == 12)
+                                {
+                                    <p>Aralık</p>
+                                }
+                            </div>
+                            <figure>
+                                <img style="height:157px;width:100%" src="~/Dosyalar/@blog2.BlogPictureURL" alt="@blog2.BlogPictureSEO">
+                            </figure>
+                            <div class="caption">
+                                <h3>@blog2.BlogTitle</h3>
+                                <ul class="piko-li">
+                                    <li><i class="fa fa-calendar"></i>@blog2.BlogDate.Value.ToShortDateString()</li>
+                                    <li><i class="fa fa-user"></i>Admin</li>
+                                    <li><i class="fa fa-search"></i>@blog2.BlogViewCount</li>
+                                </ul>
+                                <p></p>
+                                <a href="@Url.Action("BlogSingle","Home")/@blog2.ID">Devamını Oku</a>
+                            </div>
+                        </div>
+                    </div> <!--end post-->
+                </div>
+            }
+            @if (blog3 != null)
+            {
+                <div class="col-md-3 col-xs-6">
+                    <div class="team">
+                        <div class="box wow fadeInRightBig" data-wow-delay="0.9s">
+                            <div class="blog_date">
+                                <strong>@blog3.BlogDate.Value.Day </strong><br>@if (blog3.BlogDate.Value.Month == 01)
+                                {
+                                    <p>Ocak</p>
+                                }
+                                else if (blog3.BlogDate.Value.Month == 02)
+                                {
+                                    <p>Şubat</p>
+                                }
+                                else if (blog3.BlogDate.Value.Month == 03)
+                                {
+                                    <p>Mart</p>
+                                }
+                                else if (blog3.BlogDate.Value.Month == 04)
+                                {
+                                    <p>Nisan</p>
+                                }
+                                else if (blog3.BlogDate.Value.Month == 05)
+                                {
+                                    <p>Mayıs</p>
+                                }
+                                else if (blog3.BlogDate.Value.Month == 06)
+                                {
+                                    <p>Haziran</p>
+                                }
+                                else if (blog3.BlogDate.Value.Month == 07)
+                                {
+                                    <p>Temmuz</p>
+                                }
+                                else if (blog3.BlogDate.Value.Month == 08)
+                                {
+                                    <p>Ağustos</p>
+                                }
+                                else if (blog3.BlogDate.Value.Month == 09)
+                                {
+                                    <p>Eylül</p>
+                                }
+                                else if (blog3.BlogDate.Value.Month == 10)
+                                {
+                                    <p>Ekim</p>
+                                }
+                                else if (blog3.BlogDate.Value.Month == 11)
+                                {
+                                    <p>Kasım</p>
+                                }
+                                else if (blog3.BlogDate.Value.Month == 12)
+                                {
+                                    <p>Aralık</p>
+                                }
+                            </div>
+                            <figure>
+                                <img style="height:157px;width:100%" src="~/Dosyalar/@blog3.BlogPictureURL" alt="@blog3.BlogPictureSEO">
+                            </figure>
+                            <div class="caption">
+                                <h3>@blog3.BlogTitle</h3>
+                                <ul class="piko-li">
+                                    <li><i class="fa fa-calendar"></i>@blog2.BlogDate.Value.ToShortDateString()</li>
+                                    <li><i class="fa fa-user"></i>Admin</li>
+                                    <li><i class="fa fa-search"></i>@blog2.BlogViewCount</li>
+                                </ul>
+                                <p></p>
+                                <a href="@Url.Action("BlogSingle","Home")/@blog3.ID">Devamını Oku</a>
+                            </div>
+                        </div>
+                    </div> <!--end post-->
+                </div>
+            }
+            @if (blog4 != null)
+            {
+                <div class="col-md-3 col-xs-6">
+                    <div class="team">
+                        <div class="box wow fadeInRight" data-wow-delay="0.5s">
+                            <div class="blog_date">
+                                <strong>@blog4.BlogDate.Value.Day </strong><br>@if (blog4.BlogDate.Value.Month == 01)
+                                {
+                                    <p>Ocak</p>
+                                }
+                                else if (blog4.BlogDate.Value.Month == 02)
+                                {
+                                    <p>Şubat</p>
+                                }
+                                else if (blog4.BlogDate.Value.Month == 03)
+                                {
+                                    <p>Mart</p>
+                                }
+                                else if (blog4.BlogDate.Value.Month == 04)
+                                {
+                                    <p>Nisan</p>
+                                }
+                                else if (blog4.BlogDate.Value.Month == 05)
+                                {
+                                    <p>Mayıs</p>
+                                }
+                                else if (blog4.BlogDate.Value.Month == 06)
+                                {
+                                    <p>Haziran</p>
+                                }
+                                else if (blog4.BlogDate.Value.Month == 07)
+                                {
+                                    <p>Temmuz</p>
+                                }
+                                else if (blog4.BlogDate.Value.Month == 08)
+                                {
+                                    <p>Ağustos</p>
+                                }
+                                else if (blog4.BlogDate.Value.Month == 09)
+                                {
+                                    <p>Eylül</p>
+                                }
+                                else if (blog4.BlogDate.Value.Month == 10)
+                                {
+                                    <p>Ekim</p>
+                                }
+                                else if (blog4.BlogDate.Value.Month == 11)
+                                {
+                                    <p>Kasım</p>
+                                }
+                                else if (blog4.BlogDate.Value.Month == 12)
+                                {
+                                    <p>Aralık</p>
+                                }
+                            </div>
+                            <figure>
+                                <img style="height:157px;width:100%" src="~/Dosyalar/@blog4.BlogPictureURL" alt="@blog4.BlogPictureSEO">
+                            </figure>
+                            <div class="caption">
+                                <h3>@blog4.BlogTitle</h3>
+                                <ul class="piko-li">
+                                    <li><i class="fa fa-calendar"></i>@blog4.BlogDate.Value.ToShortDateString()</li>
+                                    <li><i class="fa fa-user"></i>Admin</li>
+                                    <li><i class="fa fa-search"></i>@blog4.BlogViewCount</li>
+                                </ul>
+                                <p></p>
+                                <a href="@Url.Action("BlogSingle","Home")/@blog4.ID">Devamını Oku</a>
+                            </div>
+                        </div>
+                    </div> <!--end post-->
+                </div>
+            }
 
-                                <li><i class="fa fa-heart-o"></i>10</li>
-                            </ul>
-                            <p>Makale İçerik</p>
-                            <a href="@Url.Action("BlogSingle","Home")">Devamını Oku</a>
-                        </div>
-                    </div>
-                </div> <!--end post-->
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <div class="team">
-                    <div class="box wow fadeInRightBig" data-wow-delay="0.9s">
-                        <div class="blog_date"><strong>27 </strong><br><p>ŞUBAT</p></div>
-                        <figure>
-                            <img src="/Content/pikocon_html/images/body/blog01.jpg" alt="service">
-                        </figure>
-                        <div class="caption">
-                            <h3>Makale Başlık</h3>
-                            <ul class="piko-li">
-                                <li><i class="fa fa-calendar"></i>07.02.2015</li>
-                                <li><i class="fa fa-user"></i>Admin</li>
-
-                                <li><i class="fa fa-heart-o"></i>10</li>
-                            </ul>
-                            <p>Makale İçerik</p>
-                            <a href="@Url.Action("BlogSingle","Home")">Devamını Oku</a>
-                        </div>
-                    </div>
-                </div> <!--end post-->
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <div class="team">
-                    <div class="box wow fadeInRight" data-wow-delay="0.5s">
-                        <div class="blog_date"><strong>27 </strong><br><p>ŞUBAT</p></div>
-                        <figure>
-                            <img src="/Content/pikocon_html/images/body/blog01.jpg" alt="service">
-                        </figure>
-                        <div class="caption">
-                            <h3>Makale Başlık</h3>
-                            <ul class="piko-li">
-                                <li><i class="fa fa-calendar"></i>07.02.2015</li>
-                                <li><i class="fa fa-user"></i>Admin</li>
-
-                                <li><i class="fa fa-heart-o"></i>10</li>
-                            </ul>
-                            <p>Makale İçerik</p>
-                            <a href="@Url.Action("BlogSingle","Home")">Devamını Oku</a>
-                        </div>
-                    </div>
-                </div> <!--end post-->
-            </div>
+            
+            
+            
         </div>
     </div>
-</section> @*Son Eklenen Makaleler*@
-
-
-
+</section> @*Last Blogs*@
 
 <div class="pattern4">
     <div class="container">
-        <div id="partner" class="owl-carousel owl-nav-show-hover"
-             data-autoplay="ture"
+        <div id="partner" class="owl-carousel"
+             data-autoplay="true"
              data-margin="15"
              data-smartspeed="250"
              data-loop="true"
@@ -507,92 +524,17 @@
              data-dots="false"
              data-responsive="{&quot;0&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;992&quot;:{&quot;items&quot;:5},&quot;1200&quot;:{&quot;items&quot;:7}}">
             <!--client logo 1-->
-            <div class="partner item">
-                <img src="~/Content/pikocon_html/images/partner5.png" alt="construction" height="120" width="140" />
-            </div> <!--end client logo 1-->
-            <!--client logo 2-->
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner2.png" alt="construction" height="120" width="140" />
-            </div> <!--client logo 2-->
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner3.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner4.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner5.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner6.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner7.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner8.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner1.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner2.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner3.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner4.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner5.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner6.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner7.png" alt="construction" height="120" width="140" />
-            </div>
-            <div class="partner item">
-                <img src="/Content/pikocon_html/images/partner8.png" alt="construction" height="120" width="140" />
-            </div>
+            @foreach (var item in referenceList)
+            {
+                <div class="partner item" style="height:60px;width:150px">
+                    <img src="~/Dosyalar/@item.ReferencePictureURL" alt="@item.ReferencePictureSEO" style="max-height:80px" width="140"/>
+                </div> <!--end client logo 1-->
+            }
+            
         </div>
     </div>
-</div> @*Referans*@
+</div> @*References*@
 
 
-@*<div class="fixed-bg bg-img1 scroll " style="height:510px">
 
-    <div id="shop-slide" style="padding:100px;margin-top:-80px" class="owl-carousel owl-nav-show-hover margin-t20 zoomiN popup-gallery"
-         data-autoplay="ture"
-         data-margin="30"
-         data-smartspeed="250"
-         data-loop="true"
-         data-autoheight="false"
-         data-nav="true"
-         data-dots="true"
-         data-items="1">
-        <div class="item">
-            <a href="/Content/pikocon_html/images/history1.jpg" title="How is the description on that one">
-                <img src="/Content/pikocon_html/images/history1.jpg" alt="constructin" class="img-responsive">
-            </a>
-        </div>
-        <div class="item">
-            <a href="/Content/pikocon_html/images/history2.jpg" title="How is the description on that one">
-                <img src="/Content/pikocon_html/images/history2.jpg" alt="constructin" class="img-responsive">
-            </a>
-        </div>
-        <div class="item">
-            <a href="/Content/pikocon_html/images/history3.jpg" title="How is the description on that one">
-                <img src="/Content/pikocon_html/images/history3.jpg" alt="constructin" class="img-responsive">
-            </a>
-        </div>
-        <div class="item">
-            <a href="/Content/pikocon_html/images/history4.jpg" title="How is the description on that one">
-                <img src="/Content/pikocon_html/images/history4.jpg" alt="constructin" class="img-responsive">
-            </a>
-        </div>
-    </div>
-
-</div> @*Resimler*@
-
+ <!--end carousel-->

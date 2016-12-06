@@ -158,6 +158,7 @@
           <Property Name="ProjectPhone" Type="char" MaxLength="11" />
           <Property Name="ProjectAltLocation" Type="nvarchar" MaxLength="50" />
           <Property Name="ProjectWorkingTimes" Type="nvarchar" MaxLength="150" />
+          <Property Name="projectdurum" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ProjectPicture">
           <Key>
@@ -517,6 +518,7 @@
           <NavigationProperty Name="ProjectPicture" Relationship="Self.FK_ProjectPicture_Project1" FromRole="Project" ToRole="ProjectPicture" />
           <NavigationProperty Name="Team" Relationship="Self.FK_Team_Project" FromRole="Project" ToRole="Team" />
           <Property Name="ProjectWorkingTimes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="projectdurum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ProjectPicture">
           <Key>
@@ -892,6 +894,7 @@
           <EntitySetMapping Name="Project">
             <EntityTypeMapping TypeName="db2299D218BEModel.Project">
               <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="projectdurum" ColumnName="projectdurum" />
                 <ScalarProperty Name="ProjectWorkingTimes" ColumnName="ProjectWorkingTimes" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />

@@ -1,6 +1,5 @@
 ﻿@model PagedList.IPagedList<ProjeKulubu.Models.Office>
 @using PagedList.Mvc
-@using ProjeKulubu.Models
 @{
     ViewBag.Title = "SatisOfis";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -34,14 +33,13 @@
             {
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <div class="thumbnail piko-thub shop">
-                        <div class="quick-view">
+                        @*<div class="quick-view">
                             <a href="#" data-toggle="modal" data-target=".shop-quick"><i class="fa fa-gg"></i> İncele</a>
-                        </div>
-                        <img src="~/Content/noimage.gif" alt="product construction" class="piko-thub-img " style="max-height:250px;">
+                        </div>*@
+                            <img style="width:100%;height:270px" src="~/Dosyalar/@item.OfficePictures.FirstOrDefault().PictureURL" alt="product construction" class="piko-thub-img ">
                         <div class="caption">
                             <div class="piko-title5">
                                 <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><a href="@Url.Action("SatisOfisSingle","Home")/@item.ID"><strong>@item.OfficeName</strong></a></span></h3>
-                                <a href="#">@item.OfficeMainContent</a>
                             </div>
                             <div class="cart-button">
                                 @*<strong>$100 <del>$130</del></strong>*@
@@ -75,7 +73,7 @@
     <!--end of pagination-->
 </div>
 <!--quick product view-->
-<div class="modal fade shop-quick" tabindex="-1" role="dialog">
+@*<div class="modal fade shop-quick" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
@@ -128,4 +126,4 @@
             </div> <!--end of row-->
         </div> <!--end of model-->
     </div> <!--end of model lg-->
-</div> <!--end of quick view-->
+</div>*@ <!--end of quick view-->

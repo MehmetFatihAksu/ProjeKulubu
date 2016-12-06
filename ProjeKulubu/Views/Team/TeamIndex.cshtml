@@ -16,20 +16,6 @@
     Layout = "~/Views/AdminShared/_Layout.cshtml";
 }
 <script src="~/Content/AdminContent/js/TeamIndex.js"></script>
-@helper cutContent(string metin)
-{
-
-        if (metin.Length > 10)
-        {
-            
-                <p>@metin.Substring(0, 10)...</p>
-        }
-        else
-        {
-                <p>@metin</p>
-        }
-
-}
 
 <div class="page-title">
     <div>
@@ -309,10 +295,18 @@
                                     <td>@if (item.ProjectID != null)
                                     {
                                         <p>@item.Project.ProjectName</p>
+                                    }
+                                    else
+                                    {
+                                        <p style="color:#ff0000">Proje Belirtilmemiş</p>
                                     }</td>
                                     <td>@if (item.OfficeID != null)
                                     {
                                         <p>@item.Office.OfficeName</p>
+                                    }
+                                    else
+                                    {
+                                        <p style="color:#ff0000">Ofis Belirtilmemiş</p>
                                     }</td>
                                     <td>@item.MemberPozision</td>
                                     <td>@if (!(IsPost))
@@ -339,8 +333,13 @@
                                         }
                                     }</td>
                                     <td>@item.MemberAge</td>
-                                    <td>@{
-                                        @cutContent(item.MemberBiografi);
+                                    <td>@if (item.MemberBiografi.Length > 50)
+                                    {
+                                        @Html.Raw(item.MemberBiografi.Substring(0, 50) + "...")
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw(item.MemberBiografi + "...")
                                     }</td>
                                     <td>
                                         <ul class="gallery">

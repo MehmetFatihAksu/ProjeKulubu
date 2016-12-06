@@ -1,4 +1,11 @@
-﻿
+﻿@using ProjeKulubu.Models
+@{ 
+    db2299D218BEEntities10 db = new db2299D218BEEntities10();
+    var projectList = db.Project.ToList();
+    var picture = db.ProjectPicture.ToList();
+}
+
+
 @{
     ViewBag.Title = "Projeler";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,223 +25,106 @@
     </div>
 </section> <!--end sub titile-->
 <!-- start modern portfolio -->
+
 <section class="container">
     <div class="padding-tb75">
         <div class="row no-gutter4">
             <ul id="filter">
-                <li class="selected" data-group="all">Tümü</li>
-                <li data-group="construction">Tamamlanan Projeler</li>
-                <li data-group="isolation">Satışı Devam Eden Projeler</li>
-                <li data-group="interior">Yakındaki Projeler</li>
-                @*<li data-group="tiling">Tiling</li>*@
+                <li class="selected" data-group="all">TÜMÜ</li>
+                <li data-group="construction">TAMAMLANAN PROJELER</li>
+                <li data-group="isolation">SATIŞI DEVAM EDEN PROJELER</li>
+                <li data-group="interior">YAKINDAKİ PROJELER</li>
             </ul>
             <div id="portfolio-grid">
                 <!--start item-->
-                <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "construction"]'>
-                    <div class="recent-project">
-                        <figure>
-                            <div class="overlay"></div> <!--overlay color-->
-                            <!--project title-->
-                            <div class="title">
-                                <h4>Proje <strong>İSMİ</strong></h4> <hr>
-                            </div> <!--end project title-->
-                            <img src="/Content/pikocon_html/images/portfolio/thumbnails/1.jpg" alt="project image" />
-                            <!--project single link-->
-                            <div class="project-btn">
-                                <a href="@Url.Action("SingleProject","Home")">Proje Hakkında</a>
-                            </div> <!--project single link-->
-                        </figure>
-                    </div>
-                </div> <!--end project item-->
-                <!--start item-->
-                <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "interior", "construction"]'>
-                    <div class="recent-project">
-                        <figure>
-                            <div class="overlay"></div> <!--overlay color-->
-                            <!--project title-->
-                            <div class="title">
-                                <h4>Proje <strong>İSMİ</strong></h4> <hr>
-                            </div> <!--end project title-->
-                            <img src="/Content/pikocon_html/images/portfolio/thumbnails/2.jpg" alt="project image" />
-                            <!--project single link-->
-                            <div class="project-btn">
-                                <a href="@Url.Action("SingleProject","Home")">Proje Hakkında </a>
-                            </div> <!--project single link-->
-                        </figure>
-                    </div>
-                </div> <!--end project item-->
-                <!--start item-->
-                <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "isolation", "interior"]'>
-                    <div class="recent-project">
-                        <figure>
-                            <div class="overlay"></div> <!--overlay color-->
-                            <!--project title-->
-                            <div class="title">
-                                <h4>Proje <strong>İSMİ</strong></h4> <hr>
-                            </div> <!--end project title-->
-                            <img src="/Content/pikocon_html/images/portfolio/thumbnails/3.jpg" alt="project image" />
-                            <!--project single link-->
-                            <div class="project-btn">
-                                <a href="@Url.Action("SingleProject","Home")">Proje Hakkında </a>
-                            </div> <!--project single link-->
-                        </figure>
-                    </div>
-                </div> <!--end project item-->
-                <!--start item-->
-                <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "interior", "construction"]'>
-                    <div class="recent-project">
-                        <figure>
-                            <div class="overlay"></div> <!--overlay color-->
-                            <!--project title-->
-                            <div class="title">
-                                <h4>Proje <strong>İSMİ</strong></h4> <hr>
-                            </div> <!--end project title-->
-                            <img src="/Content/pikocon_html/images/portfolio/thumbnails/4.jpg" alt="project image" />
-                            <!--project single link-->
-                            <div class="project-btn">
-                                <a href="@Url.Action("SingleProject","Home")">Proje Hakkında </a>
-                            </div> <!--project single link-->
-                        </figure>
-                    </div>
-                </div> <!--end project item-->
-                <!--start item-->
-                <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "construction", "interior"]'>
-                    <div class="recent-project">
-                        <figure>
-                            <div class="overlay"></div> <!--overlay color-->
-                            <!--project title-->
-                            <div class="title">
-                                <h4>Proje <strong>İSMİ</strong></h4> <hr>
-                            </div> <!--end project title-->
-                            <img src="/Content/pikocon_html/images/portfolio/thumbnails/5.jpg" alt="project image" />
-                            <!--project single link-->
-                            <div class="project-btn">
-                                <a href="@Url.Action("SingleProject","Home")">Proje Hakkında </a>
-                            </div> <!--project single link-->
-                        </figure>
-                    </div>
-                </div> <!--end project item-->
-                <!--start item-->
-                <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "isolation", "interior"]'>
-                    <div class="recent-project">
-                        <figure>
-                            <div class="overlay"></div> <!--overlay color-->
-                            <!--project title-->
-                            <div class="title">
-                                <h4>Proje <strong>İSMİ</strong></h4> <hr>
-                            </div> <!--end project title-->
-                            <img src="/Content/pikocon_html/images/portfolio/thumbnails/6.jpg" alt="project image" />
-                            <!--project single link-->
-                            <div class="project-btn">
-                                <a href="@Url.Action("SingleProject","Home")">Proje Hakkında </a>
-                            </div> <!--project single link-->
-                        </figure>
-                    </div>
-                </div> <!--end project item-->
-                <!--start item-->
-                <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "isolation", "interior"]'>
-                    <div class="recent-project">
-                        <figure>
-                            <div class="overlay"></div> <!--overlay color-->
-                            <!--project title-->
-                            <div class="title">
-                                <h4>Proje <strong>İSMİ</strong></h4> <hr>
-                            </div> <!--end project title-->
-                            <img src="/Content/pikocon_html/images/portfolio/thumbnails/7.jpg" alt="project image" />
-                            <!--project single link-->
-                            <div class="project-btn">
-                                <a href="@Url.Action("SingleProject","Home")">Proje Hakkında </a>
-                            </div> <!--project single link-->
-                        </figure>
-                    </div>
-                </div> <!--end project item-->
-                <!--start item-->
-                <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "isolation", "isolation"]'>
-                    <div class="recent-project">
-                        <figure>
-                            <div class="overlay"></div> <!--overlay color-->
-                            <!--project title-->
-                            <div class="title">
-                                <h4>Proje <strong>İSMİ</strong></h4> <hr>
-                            </div> <!--end project title-->
-                            <img src="/Content/pikocon_html/images/portfolio/thumbnails/8.jpg" alt="project image" />
-                            <!--project single link-->
-                            <div class="project-btn">
-                                <a href="@Url.Action("SingleProject","Home")">Proje Hakkında </a>
-                            </div> <!--project single link-->
-                        </figure>
-                    </div>
-                </div> <!--end project item-->
-                <!--start item-->
-                <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "isolation", "construction"]'>
-                    <div class="recent-project">
-                        <figure>
-                            <div class="overlay"></div> <!--overlay color-->
-                            <!--project title-->
-                            <div class="title">
-                                <h4>Proje <strong>İSMİ</strong></h4> <hr>
-                            </div> <!--end project title-->
-                            <img src="/Content/pikocon_html/images/portfolio/thumbnails/9.jpg" alt="project image" />
-                            <!--project single link-->
-                            <div class="project-btn">
-                                <a href="@Url.Action("SingleProject","Home")">Proje Hakkında </a>
-                            </div> <!--project single link-->
-                        </figure>
-                    </div>
-                </div> <!--end project item-->
-                <!--start item-->
-                <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "construction", "isolation"]'>
-                    <div class="recent-project">
-                        <figure>
-                            <div class="overlay"></div> <!--overlay color-->
-                            <!--project title-->
-                            <div class="title">
-                                <h4>Proje <strong>İSMİ</strong></h4> <hr>
-                            </div> <!--end project title-->
-                            <img src="/Content/pikocon_html/images/portfolio/thumbnails/10.jpg" alt="project image" />
-                            <!--project single link-->
-                            <div class="project-btn">
-                                <a href="@Url.Action("SingleProject","Home")">Proje Hakkında </a>
-                            </div> <!--project single link-->
-                        </figure>
-                    </div>
-                </div> <!--end project item-->
-                <!--start item-->
-                <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "isolation", "isolation"]'>
-                    <div class="recent-project">
-                        <figure>
-                            <div class="overlay"></div> <!--overlay color-->
-                            <!--project title-->
-                            <div class="title">
-                                <h4>Proje <strong>İSMİ</strong></h4> <hr>
-                            </div> <!--end project title-->
-                            <img src="/Content/pikocon_html/images/portfolio/thumbnails/11.jpg" alt="project image" />
-                            <!--project single link-->
-                            <div class="project-btn">
-                                <a href="@Url.Action("SingleProject","Home")">Proje Hakkında </a>
-                            </div> <!--project single link-->
-                        </figure>
-                    </div>
-                </div> <!--end project item-->
-                <!--start item-->
-                <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "isolation", "interior"]'>
-                    <div class="recent-project">
-                        <figure>
-                            <div class="overlay"></div> <!--overlay color-->
-                            <!--project title-->
-                            <div class="title">
-                                <h4>Proje <strong>İSMİ</strong></h4> <hr>
-                            </div> <!--end project title-->
-                            <img src="/Content/pikocon_html/images/portfolio/thumbnails/12.jpg" alt="project image" />
-                            <!--project single link-->
-                            <div class="project-btn">
-                                <a href="@Url.Action("SingleProject","Home")">Proje Hakkında </a>
-                            </div> <!--project single link-->
-                        </figure>
-                    </div>
-                </div> <!--end project item-->
+                @foreach (var item in projectList)
+                {
+                    if (item.ProjectStatusID == 1)
+                    {
+                        if (item.ProjectPicture.Where(x => x.ProjectID == item.ID).FirstOrDefault() != null)
+                        {
+                            <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "construction"]'>
+                                <div class="recent-project">
+                                    <figure>
+                                        <div class="overlay"></div> <!--overlay color-->
+                                        <!--project title-->
+                                        <div class="title">
+                                            <h4><strong>@item.ProjectName</strong></h4> <hr>
+                                        </div> <!--end project title-->
+                                        <img style="height:225px;width:100%" src="~/Dosyalar/@item.ProjectPicture.FirstOrDefault().PictureURL" alt="@item.ProjectPicture.FirstOrDefault().PictureSEO" />                                    <!--project single link-->
+                                        <div class="project-link">
+                                            <a href="@Url.Action("SingleProject", "Home")/@item.ID">Projeyi İncele <i class="fa fa-arrow-right"></i></a>
+                                        </div> <!--project single link-->
+                                    </figure>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+
+                        }
+                         <!--end project item-->
+                    }
+                    else if (item.ProjectStatusID == 2)
+                    {
+
+                        if (item.ProjectPicture.Where(x => x.ProjectID == item.ID).FirstOrDefault() != null)
+                        {
+                            <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "isolation"]'>
+                                <div class="recent-project">
+                                    <figure>
+                                        <div class="overlay"></div> <!--overlay color-->
+                                        <!--project title-->
+                                        <div class="title">
+                                            <h4><strong>@item.ProjectName</strong></h4> <hr>
+                                        </div> <!--end project title-->
+                                        <img style="height:225px;width:100%" src="~/Dosyalar/@item.ProjectPicture.FirstOrDefault().PictureURL" alt="@item.ProjectPicture.FirstOrDefault().PictureSEO" />
+                                        <!--project single link-->
+                                        <div class="project-link">
+                                            <a href="@Url.Action("SingleProject","Home")/@item.ID">Projeyi İncele <i class="fa fa-arrow-right"></i></a>
+                                        </div> <!--project single link-->
+                                    </figure>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+
+                        }
+
+                         <!--end project item-->
+                    }
+                    else if (item.ProjectStatusID == 3)
+                    {
+                        if (item.ProjectPicture.Where(x => x.ProjectID == item.ID).FirstOrDefault() != null)
+                        {
+                            <div class="col-lg-3 col-md-4 col-sm-6 item" data-groups='["all", "interior"]'>
+                                <div class="recent-project">
+                                    <figure>
+                                        <div class="overlay"></div> <!--overlay color-->
+                                        <!--project title-->
+                                        <div class="title">
+                                            <h4><strong>@item.ProjectName</strong></h4> <hr>
+                                        </div> <!--end project title-->
+                                        <img style="height:225px;width:100%" src="~/Dosyalar/@item.ProjectPicture.FirstOrDefault().PictureURL" alt="@item.ProjectPicture.FirstOrDefault().PictureSEO" />
+                                        <!--project single link-->
+                                        <div class="project-link">
+                                            <a href="@Url.Action("SingleProject", "Home")/@item.ID">Projeyi İncele <i class="fa fa-arrow-right"></i></a>
+                                        </div> <!--project single link-->
+                                    </figure>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+
+                        }
+                         <!--end project item-->
+                    }
+
+                }
+               
             </div>
         </div>
     </div>
 </section>
-

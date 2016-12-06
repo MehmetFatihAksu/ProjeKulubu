@@ -86,32 +86,18 @@ namespace ProjeKulubu.Controllers
         {
             content = content.Replace("<p>", "").Replace("</p>", "");
             Education eduModel = new Education();
-            if (file != null)
-            {
-                string fileMap = Path.GetFileName(file.FileName);
-                var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
-                file.SaveAs(loadLocation);
-                eduModel.EducationFileURL = fileMap;
-                eduModel.EducationContent = content;
-                eduModel.EducationFileSEO = seo;
-                eduModel.EducationTitle = title;
-                eduModel.EducationTypeID = 2;
-                eduModel.EducationDate = DateTime.Today;
-                eduModel.EducationView = 0;
-                db.Education.Add(eduModel);
-                db.SaveChanges();
-            }
-            else
-            {
-                eduModel.EducationContent = content;
-                eduModel.EducationFileSEO = seo;
-                eduModel.EducationTitle = title;
-                eduModel.EducationTypeID = 2;
-                eduModel.EducationDate = DateTime.Today;
-                eduModel.EducationView = 0;
-                db.Education.Add(eduModel);
-                db.SaveChanges();
-            }
+            string fileMap = Path.GetFileName(file.FileName);
+            var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
+            file.SaveAs(loadLocation);
+            eduModel.EducationFileURL = fileMap;
+            eduModel.EducationContent = content;
+            eduModel.EducationFileSEO = seo;
+            eduModel.EducationTitle = title;
+            eduModel.EducationTypeID = 2;
+            eduModel.EducationDate = DateTime.Now;
+            eduModel.EducationView = 0;
+            db.Education.Add(eduModel);
+            db.SaveChanges();
             return RedirectToAction("GivingEducationIndex", "GivingEducation");
         }
 

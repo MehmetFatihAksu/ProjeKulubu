@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ProjeKulubu.Models;
 using PagedList;
+using System.Text.RegularExpressions;
 namespace ProjeKulubu.Controllers
 {
     public class HomeController : Controller
@@ -28,9 +29,13 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
-        public ActionResult MusteriYorumlari()
+        public ActionResult MusteriYorumlari(int? page)
         {
-            return View();
+            var kayitlar = from x in db.CustomerComments select x;
+            kayitlar = kayitlar.OrderBy(CustomerComments => CustomerComments.ID);
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult SikSorular()
         {
@@ -40,7 +45,7 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
-        public ActionResult NelerYapariz()//cfdbad
+        public ActionResult NelerYapariz()
         {
             return View();
         }
@@ -76,6 +81,7 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
+        [ValidateInput(false)]
         public ActionResult Egitim(int id)
         {
             var data = db.Education.Where(x => x.ID == id).FirstOrDefault();
@@ -85,15 +91,16 @@ namespace ProjeKulubu.Controllers
         {
             return View();
         }
-        public ActionResult SingleProject()
+        public ActionResult SingleProject(int id)
         {
-            return View(); 
+            var data = db.Project.Where(x => x.ID == id).FirstOrDefault();
+            return View(data); 
         }
         public ActionResult Ekip(int? page)
         {
             var kayitlar = from x in db.Team select x;
             kayitlar = kayitlar.OrderBy(Team => Team.ID);
-            int pageSize = 5;
+            int pageSize = 20;
             int pageNumber = (page ?? 1);
             return View(kayitlar.ToPagedList(pageNumber, pageSize));
         }
@@ -156,6 +163,10 @@ namespace ProjeKulubu.Controllers
             return View();
         }
         public ActionResult Error()
+        {
+            return View();
+        }
+        public ActionResult SatisSonuHizmetler()
         {
             return View();
         }

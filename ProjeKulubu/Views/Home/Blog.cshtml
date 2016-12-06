@@ -4,9 +4,24 @@
 
 @{ 
     db2299D218BEEntities10 db = new db2299D218BEEntities10();
-    var popList = (from x in db.Blog orderby x.BlogViewCount descending select x).Take(3);
-    var newList = (from x in db.Blog orderby x.ID descending select x).Take(3);
-    var tagsList = (from x in db.Tags orderby x.ID descending select x).Take(20);
+    var popList = db.Blog.OrderByDescending(x => x.BlogViewCount).Take(3);
+    var newList = db.Blog.OrderByDescending(x => x.ID).Take(3);
+    var tagsList = db.Tags.OrderByDescending(x=>x.ID).Take(20);
+    var january = db.Blog.Where(x => x.BlogDate.Value.Month == 01).ToList();
+    var february = db.Blog.Where(x => x.BlogDate.Value.Month == 02).ToList();
+    var march = db.Blog.Where(x => x.BlogDate.Value.Month == 03).ToList();
+    var april = db.Blog.Where(x => x.BlogDate.Value.Month == 04).ToList();
+    var may = db.Blog.Where(x => x.BlogDate.Value.Month == 05).ToList();
+    var june = db.Blog.Where(x => x.BlogDate.Value.Month == 06).ToList();
+    var july = db.Blog.Where(x => x.BlogDate.Value.Month == 07).ToList();
+    var august = db.Blog.Where(x => x.BlogDate.Value.Month == 08).ToList();
+    var september = db.Blog.Where(x => x.BlogDate.Value.Month == 09).ToList();
+    var october = db.Blog.Where(x => x.BlogDate.Value.Month == 10).ToList();
+    var november = db.Blog.Where(x => x.BlogDate.Value.Month == 11).ToList();
+    var december = db.Blog.Where(x => x.BlogDate.Value.Month == 12).ToList();
+
+
+
 }
 
 @{
@@ -42,26 +57,26 @@
                                 <div class="box">
                                     <!--blog date-->
                                     <div class="blog_date2">
-                                        <p><span>27 ŞUBAT</span> 2015</p>
-                                        @*<p>03 <span>omments</span></p>*@
                                     </div>
                                     <!--blog image-->
                                     <figure>
-                                        <img src="~/Dosyalar/@item.BlogPictureURL">
+                                        <img style="width:100%;height:350px" src="~/Dosyalar/@item.BlogPictureURL">
                                     </figure> <!--end blog image-->
                                     <!--blog caption-->
                                     <div class="caption">
                                         <h2>@item.BlogTitle</h2>
                                         <ul class="piko-li">
+                                            <li><i class="fa fa-calendar"></i>  @item.BlogDate.Value.ToShortDateString()</li>
                                             <li><i class="fa fa-user"></i> Yazar :</li>
 
                                             <li>
                                                 <i class="fa fa-tags"></i>
                                                 @foreach (var tags in item.Tags.Where(x => x.BlogID == item.ID))
-                                                {<a href="#">#@tags.TagsName   </a>} <a href="#"></a>
+                                                {<a href="#">#@tags.TagsName,   </a>}
                                             </li>
 
                                             <li><i class="fa fa-search"></i>@item.BlogViewCount</li>
+                                            
                                         </ul>
                                         <p>@item.BlogContent</p>
                                             <a href="@Url.Action("BlogSingle", "Home")/@item.ID">Devamını Oku</a>
@@ -97,12 +112,12 @@
                         <div class="media">
                             <div class="media-left">
                                 <a href="@Url.Action("BlogSingle","Home")/@item.ID">
-                                    <img class="media-object" src="~/Dosyalar/@item.BlogPictureURL" alt="@item.BlogPictureSEO">
+                                    <img style="width:100%;height:38px" class="media-object" src="~/Dosyalar/@item.BlogPictureURL" alt="@item.BlogPictureSEO">
                                 </a>
                             </div>
                             <div class="media-body">
                                 <a href="@Url.Action("BlogSingle","Home")/@item.ID">@item.BlogTitle</a><br>
-                                <p>@item.BlogDate</p>
+                                <p>@item.BlogDate.Value.ToShortDateString()</p>
                             </div>
                         </div>   <!--end tab post-->
                     }
@@ -115,12 +130,12 @@
                         <div class="media">
                             <div class="media-left">
                                 <a href="@Url.Action("BlogSingle","Home")/@item.ID">
-                                    <img class="media-object" alt="@item.BlogPictureSEO" src="~/Dosyalar/@item.BlogPictureURL">
+                                    <img style="width:100%;height:38px" class="media-object" alt="@item.BlogPictureSEO" src="~/Dosyalar/@item.BlogPictureURL">
                                 </a>
                             </div>
                             <div class="media-body">
                                 <a href="@Url.Action("BlogSingle","Home")/@item.ID">@item.BlogTitle</a><br>
-                                <p>@item.BlogDate</p>
+                                <p>@item.BlogDate.Value.ToShortDateString()</p>
                             </div>
                         </div>
                     }
@@ -128,18 +143,6 @@
                     </div> <!--end section b-->
                 </div> <!--End tabs-->
                 <!--start archive-->
-                <div class="margin-b30">
-                    <div class="piko-title4 widget">
-                        <h3><span class="line"></span><span class="text">Arşiv</span></h3>
-                    </div><br>
-                    <div class="archive">
-                        <a href="#">Ocak 2015</a>
-                        <a href="#">Şubat 2015</a>
-                        <a href="#">Mart 2015</a>
-                        <a href="#">Nisan 2014</a>
-                        <a href="#">Mayıs  2014</a>
-                    </div>
-                </div>
                 <!--start tag-->
                 <div class="margin-b30">
                     <div class="piko-title4 widget">
@@ -154,6 +157,139 @@
                         
                     </div>
                 </div>  <!--end start tag-->
+                <div class="margin-b30">
+                    <div class="piko-title4 widget">
+                        <h3><span class="line"></span><span class="text">Arşiv</span></h3>
+                    </div><br>
+                    <div class="archive">
+                        <a href="#">
+                            Ocak @if (january.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @january.Count )
+                                </mark>
+                            }
+                        </a>
+                        <a href="#">Şubat @if (february.Count == 0)
+                        {
+                            <mark>( 0 )</mark>
+                        }
+                        else
+                        {
+                            <mark>
+                                ( @february.Count )
+                            </mark>
+                        }</a>
+                        <a href="#">Mart @if (march.Count == 0)
+                        {
+                            <mark>( 0 )</mark>
+                        }
+                        else
+                        {
+                            <mark>
+                                ( @march.Count )
+                            </mark>
+                        }
+                        </a>
+                        <a href="#">Nisan @if (april.Count == 0)
+                        {
+                            <mark>( 0 )</mark>
+                        }
+                        else
+                        {
+                            <mark>
+                                ( @april.Count )
+                            </mark>
+                        }</a>
+                        <a href="#">Mayıs @if (may.Count == 0)
+                        {
+                            <mark>( 0 )</mark>
+                        }
+                        else
+                        {
+                            <mark>
+                                ( @may.Count )
+                            </mark>
+                        }</a>
+                        <a href="#">Haziran @if (june.Count == 0)
+                        {
+                            <mark>( 0 )</mark>
+                        }
+                        else
+                        {
+                            <mark>
+                                ( @june.Count )
+                            </mark>
+                        }</a>
+                        <a href="#">Temmuz @if (july.Count == 0)
+                        {
+                            <mark>( 0 )</mark>
+                        }
+                        else
+                        {
+                            <mark>
+                                ( @july.Count )
+                            </mark>
+                        }</a>
+                        <a href="#">Ağustos @if (august.Count == 0)
+                        {
+                            <mark>( 0 )</mark>
+                        }
+                        else
+                        {
+                            <mark>
+                                ( @august.Count )
+                            </mark>
+                        }</a>
+                        <a href="#">Eylül @if (september.Count == 0)
+                        {
+                            <mark>( 0 )</mark>
+                        }
+                        else
+                        {
+                            <mark>
+                                ( @september.Count )
+                            </mark>
+                        }</a>
+                        <a href="#">Ekim @if (october.Count == 0)
+                        {
+                            <mark>( 0 )</mark>
+                        }
+                        else
+                        {
+                            <mark>
+                                ( @october.Count )
+                            </mark>
+                        }</a>
+                        <a href="#">Kasım @if (november.Count == 0)
+                        {
+                            <mark>( 0 )</mark>
+                        }
+                        else
+                        {
+                            <mark>
+                                ( @november.Count )
+                            </mark>
+                        }</a>
+                        <a href="#">Aralık @if (december.Count == 0)
+                        {
+                            <mark>( 0 )</mark>
+                        }
+                        else
+                        {
+                            <mark>
+                                ( @december.Count )
+                            </mark>
+                        }
+                           </a>
+
+
+                    </div>
+                </div>
             </div>  <!--end of col-->
         </div> <!--end of row-->
     </div> <!--end of container-->

@@ -121,14 +121,12 @@ namespace ProjeKulubu.Controllers
             {
                 db.OurPictures.Where(x => idler.Contains(x.ID)).ToList().ForEach(y => db.OurPictures.Remove(y));
                 db.SaveChanges();
-                return RedirectToAction("PicturesIndex", "Pictures");
             }
             else
             {
-                string olmadi = "olmadi";
-                ViewBag.Error = olmadi;
-                return RedirectToAction("PicturesIndex", "Pictures");
             }
+            return RedirectToAction("PicturesIndex", "Pictures");
+
         }
         #endregion
 

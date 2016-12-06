@@ -75,7 +75,7 @@
                                     <span class="btn btn-default btn-file">
                                         <span class="fileupload-new">Resim/Video Seç</span>
                                         <span class="fileupload-exists">Değiştir</span>
-                                        <input type="file" name="file" id="file" required oninvalid="this.setCustomValidity('Eğitim Resmini&Videoyu Boş Geçemezsiniz')" accept="image/*" oninput="setCustomValidity('')" class="file-input" />
+                                        <input type="file" name="file" id="file" required oninvalid="this.setCustomValidity('Eğitim Resmini&Videoyu Boş Geçemezsiniz')" accept="video/*,image/*" oninput="setCustomValidity('')" class="file-input" />
                                     </span>
                                     <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Sil</a>
                                 </div>
@@ -172,19 +172,35 @@
                                         <td>@item.ID</td>
                                         <td>@item.EducationTitle</td>
                                         <td>
-                                            <ul class="gallery">
-                                                <li>
-                                                    <a href="~/Dosyalar/@Html.DisplayFor(modelitem=>item.EducationFileURL)" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
-                                                        <div>
-                                                            <span class="fa fa-image"></span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            @if (Path.GetExtension(item.EducationFileURL) == ".mp4")
+                                            {
+                                                <ul class="gallery">
+                                                    <li>
+                                                        <a target="_blank" href="~/Dosyalar/@item.EducationFileURL" class="show-tooltip" title="Videoyu İnceleyin">
+                                                            <div>
+                                                                <span class="fa fa-video-camera"></span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            }
+                                            else
+                                            {
+                                                <ul class="gallery">
+                                                    <li>
+                                                        <a href="~/Dosyalar/@item.EducationFileURL" class="show-tooltip" title="Resmi İnceleyin" rel="prettyPhoto">
+                                                            <div>
+                                                                <span class="fa fa-image"></span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            }
+                                            
                                         </td>
                                         <td>@item.EducationFileSEO</td>
                                         <td>@{@cutContent(@item.EducationContent)}</td>
-                                        <th>@item.EducationDate.ToString().Substring(0, 10)</th>
+                                        <th>@item.EducationDate.ToShortDateString().ToString()</th>
                                         <th>@item.EducationView</th>
                                         <td><a class="btn btn-sm show-tooltip" title="İnceleme" target="_blank" href="@Url.Action("Egitim","Home")/@item.ID"><i class="fa fa-search"></i></a></td>
                                         <td><a class="btn btn-sm show-tooltip" title="Düzenleme" href="@Url.Action("GivingEducationUpdate","GivingEducation")/@item.ID"><i class="fa fa-edit"></i></a></td>

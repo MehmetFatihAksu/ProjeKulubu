@@ -95,6 +95,7 @@ namespace ProjeKulubu.Controllers
             project.ProjectPhone = Telefon;
             project.ProjectAltLocation = Adres;
             project.ProjectWorkingTimes = Zaman;
+            project.projectdurum = "Tamamlandı";
             db.Project.Add(project);
             db.SaveChanges();
             return RedirectToAction("CompleteProjects", "Project");
@@ -252,6 +253,7 @@ namespace ProjeKulubu.Controllers
             saleProject.ProjectPhone = Telefon;
             saleProject.ProjectAltLocation = Adres;
             saleProject.ProjectWorkingTimes = Zaman;
+            saleProject.projectdurum = "Satışı Devam Ediyor";
             db.Project.Add(saleProject);
             db.SaveChanges();
             return RedirectToAction("SaleProjects", "Project");
@@ -407,6 +409,7 @@ namespace ProjeKulubu.Controllers
             soonProject.ProjectPhone = Telefon;
             soonProject.ProjectAltLocation = Adres;
             soonProject.ProjectWorkingTimes = Zaman;
+            soonProject.projectdurum = "Yakında Başlıyacak";
             db.Project.Add(soonProject);
             db.SaveChanges();
             return RedirectToAction("SoonProjects", "Project");
@@ -597,6 +600,7 @@ namespace ProjeKulubu.Controllers
             db.SaveChanges();
             return RedirectToAction("ProjectPictureIndex", "Project");
         }
+
         #endregion
 
 

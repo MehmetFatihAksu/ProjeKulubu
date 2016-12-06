@@ -115,6 +115,7 @@ namespace ProjeKulubu.Controllers
         }
 
 
+
         #region Main Change Methods
         public ActionResult MainUpdates(string facebook,string twitter,string google,string linkedin,string phone,string mail)
         {

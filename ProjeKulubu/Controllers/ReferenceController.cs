@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using ProjeKulubu.Models;
 using System.IO;
 using PagedList;
+using static System.Net.WebRequestMethods;
+using System.Net;
 
 namespace ProjeKulubu.Controllers
 {
@@ -74,7 +76,9 @@ namespace ProjeKulubu.Controllers
         [HttpPost]
         public ActionResult AddReference(HttpPostedFileBase ReferencePicture, string ReferenceName, string ReferencePictureSEO, string ReferenceURL)
         {
+            
             Reference referenceModel = new Reference();
+            
             string fileMap = Path.GetFileName(ReferencePicture.FileName);
             var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
             ReferencePicture.SaveAs(loadLocation);

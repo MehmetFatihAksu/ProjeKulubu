@@ -6,6 +6,19 @@
     db2299D218BEEntities10 db = new db2299D218BEEntities10();
     var populerList = db.Education.Where(x => x.EducationTypeID == 1).OrderByDescending(y => y.EducationView).Take(3);
     var newList = db.Education.Where(x => x.EducationTypeID == 1).OrderByDescending(y => y.ID).Take(3);
+    var january = db.Education.Where(x => x.EducationTypeID == 1).Where(x => x.EducationDate.Month == 01).ToList();
+    var february = db.Education.Where(x => x.EducationTypeID == 1).Where(x => x.EducationDate.Month == 02).ToList();
+    var march = db.Education.Where(x => x.EducationTypeID == 1).Where(x => x.EducationDate.Month == 03).ToList();
+    var april = db.Education.Where(x => x.EducationTypeID == 1).Where(x => x.EducationDate.Month == 04).ToList();
+    var may = db.Education.Where(x => x.EducationTypeID == 1).Where(x => x.EducationDate.Month == 05).ToList();
+    var june = db.Education.Where(x => x.EducationTypeID == 1).Where(x => x.EducationDate.Month == 06).ToList();
+    var july = db.Education.Where(x => x.EducationTypeID == 1).Where(x => x.EducationDate.Month == 07).ToList();
+    var august = db.Education.Where(x => x.EducationTypeID == 1).Where(x => x.EducationDate.Month == 08).ToList();
+    var september = db.Education.Where(x => x.EducationTypeID == 1).Where(x => x.EducationDate.Month == 09).ToList();
+    var october = db.Education.Where(x => x.EducationTypeID == 1).Where(x => x.EducationDate.Month == 10).ToList();
+    var november = db.Education.Where(x => x.EducationTypeID == 1).Where(x => x.EducationDate.Month == 11).ToList();
+    var december = db.Education.Where(x => x.EducationTypeID == 1).Where(x => x.EducationDate.Month == 12).ToList();
+
 }
 
 @{
@@ -39,19 +52,27 @@
                     {
                         <div class="box">
                             <!--blog date-->
-                            <div class="blog_date2">
-                                <p><span>27 ŞUBAT</span> 2015</p>
-                                @*<p>03 <span>omments</span></p>*@
-                            </div>
+                            
                             <!--blog image-->
                             <figure>
-                                <img src="~/Dosyalar/@item.EducationFileURL" alt="@item.EducationFileSEO" class="img-responsive">
+                                @if (Path.GetExtension(item.EducationFileURL) == ".mp4")
+                                {
+                                    <video style="width:100%" controls >
+                                        <source src="~/Dosyalar/@item.EducationFileURL" type="video/mp4">
+                                        Tarayıcınız Bu Video Türünü Desteklememektedir.
+                                    </video>
+                                }
+                                else
+                                {
+                                        <img style="height:350px;width:100%" src="~/Dosyalar/@item.EducationFileURL" alt="@item.EducationFileSEO">
+
+                                }
                             </figure> <!--end blog image-->
                             <!--blog caption-->
                             <div class="caption">
                                 <h2>@item.EducationTitle</h2>
                                 <ul class="piko-li">
-                                    <li><i class="fa fa-calendar"></i>@item.EducationDate</li>
+                                    <li><i class="fa fa-calendar"></i>@item.EducationDate.ToShortDateString().ToString()</li>
                                     <li><i class="fa fa-user"> Yazar:</i></li>
                                     <li><i class="fa fa-search"></i>@item.EducationView</li>
                                 </ul>
@@ -88,12 +109,20 @@
                         <div class="media">
                             <div class="media-left">
                                 <a href="@Url.Action("Egitim","Home")/@pop.ID">
-                                    <img class="media-object" src="~/Dosyalar/@pop.EducationFileURL" alt="@pop.EducationFileSEO">
+                                    @if (Path.GetExtension(pop.EducationFileURL) == ".mp4")
+                                    {
+                                        <img style="height:38px;width:100%" class="media-object" src="~/Content/video.png" />
+                                    }
+                                    else
+                                    {
+                                        <img style="height:38px;width:100%" class="media-object" src="~/Dosyalar/@pop.EducationFileURL" alt="@pop.EducationFileSEO">
+
+                                    }
                                 </a>
                             </div>
                             <div class="media-body">
                                 <a href="@Url.Action("Egitim","Home")/@pop.ID">@pop.EducationTitle</a><br>
-                                <p>@pop.EducationDate</p>
+                                <p>@pop.EducationDate.ToShortDateString()</p>
                             </div>
                         </div>   <!--end tab post-->
                     }
@@ -106,12 +135,20 @@
                         <div class="media">
                             <div class="media-left">
                                 <a href="@Url.Action("Egitim","Home")/@newEdu.ID">
-                                    <img class="media-object" src="~/Dosyalar/@newEdu.EducationFileURL" alt="@newEdu.EducationFileSEO">
+                                    @if (Path.GetExtension(newEdu.EducationFileURL) == ".mp4")
+                                    {
+                                        <img style="height:38px;width:100%" class="media-object" src="~/Content/video.png" />
+                                    }
+                                    else
+                                    {
+                                        <img style="height:38px;width:100%" class="media-object" src="~/Dosyalar/@newEdu.EducationFileURL" alt="@newEdu.EducationFileSEO">
+
+                                    }
                                 </a>
                             </div>
                             <div class="media-body">
                                 <a href="@Url.Action("Egitim","Home")/@newEdu.ID">@newEdu.EducationTitle</a><br>
-                                <p>@newEdu.EducationDate</p>
+                                <p>@newEdu.EducationDate.ToShortDateString()</p>
                             </div>
                         </div>
                     }
@@ -124,11 +161,152 @@
                         <h3><span class="line"></span><span class="text">Arşiv</span></h3>
                     </div><br>
                     <div class="archive">
-                        <a href="#">Ocak 2015</a>
-                        <a href="#">Şubat 2015</a>
-                        <a href="#">Mart 2015</a>
-                        <a href="#">Nisan 2014</a>
-                        <a href="#">Mayıs  2014</a>
+                        <a href="#">
+                            Ocak @if (january.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @january.Count )
+                                </mark>
+                            }
+                        </a>
+                        <a href="#">
+                            Şubat @if (february.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @february.Count )
+                                </mark>
+                            }
+                        </a>
+                        <a href="#">
+                            Mart @if (march.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @march.Count )
+                                </mark>
+                            }
+                        </a>
+                        <a href="#">
+                            Nisan @if (april.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @april.Count )
+                                </mark>
+                            }
+                        </a>
+                        <a href="#">
+                            Mayıs @if (may.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @may.Count )
+                                </mark>
+                            }
+                        </a>
+                        <a href="#">
+                            Haziran @if (june.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @june.Count )
+                                </mark>
+                            }
+                        </a>
+                        <a href="#">
+                            Temmuz @if (july.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @july.Count )
+                                </mark>
+                            }
+                        </a>
+                        <a href="#">
+                            Ağustos @if (august.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @august.Count )
+                                </mark>
+                            }
+                        </a>
+                        <a href="#">
+                            Eylül @if (september.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @september.Count )
+                                </mark>
+                            }
+                        </a>
+                        <a href="#">
+                            Ekim @if (october.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @october.Count )
+                                </mark>
+                            }
+                        </a>
+                        <a href="#">
+                            Kasım @if (november.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @november.Count )
+                                </mark>
+                            }
+                        </a>
+                        <a href="#">
+                            Aralık @if (december.Count == 0)
+                            {
+                                <mark>( 0 )</mark>
+                            }
+                            else
+                            {
+                                <mark>
+                                    ( @december.Count )
+                                </mark>
+                            }
+                        </a>
+
+
                     </div>
                 </div>
                 <!--start tag-->

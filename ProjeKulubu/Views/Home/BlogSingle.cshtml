@@ -17,7 +17,7 @@
 
 @{ 
     db2299D218BEEntities10 db = new db2299D218BEEntities10();
-    var tagsList = db.Tags.Where(x => x.BlogID == x.Blog.ID).ToList();
+    var tagsList = db.Tags.Where(x => x.ID == Model.ID).ToList();
 }
 <section class="banner margin-t150">
     <div class="container page-banner">
@@ -27,7 +27,7 @@
         <div class="col-sm-6 col-md-6">
             <ol class="breadcrumb pull-right">
                 <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
-                <li><a href="@Url.Action("Blog","Home")">Makale</a></li>
+                <li><a href="@Url.Action("Blog","Home")">Makaleler</a></li>
                 <li class="active">@Model.BlogTitle</li>
             </ol>
         </div>
@@ -40,7 +40,7 @@
                 <div class="box">
                     <!--blog image-->
                     <figure>
-                        <img src="~/Dosyalar/@Model.BlogPictureURL" alt="service" style="width:100%" class="img-responsive">
+                        <img src="~/Dosyalar/@Model.BlogPictureURL" alt="@Model.BlogPictureSEO" style="width:100%;height:350px" class="img-responsive">
                     </figure> <!--end blog image-->
                     <!--blog caption-->
                     <div class="caption">
@@ -49,9 +49,9 @@
                             <li><i class="fa fa-calendar"></i>@Model.BlogDate</li>
                             <li>
                                 <i class="fa fa-tags"></i>
-                                @foreach (var tags in tagsList)
+                                @foreach (var tags in Model.Tags.Where(x=>x.ID == Model.ID))
                                 {
-                                    <a href="#">#@tags.TagsName  </a>
+                                    <a href="#">@tags.TagsName  </a>
                                 }
                                 
                             </li>

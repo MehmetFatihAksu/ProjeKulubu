@@ -49,6 +49,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Helpers.Mvc.2.0.20710.0\lib\net40\Microsoft.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
       <Private>True</Private>
@@ -1168,6 +1172,8 @@
     <Content Include="Content\AdminContent\ui_tile.html" />
     <Content Include="Content\AdminContent\ui_timeline.html" />
     <Content Include="Content\banner12.jpg" />
+    <Content Include="Content\bg1.jpg" />
+    <Content Include="Content\bg2.jpg" />
     <Content Include="Content\cizgitech.png" />
     <Content Include="Content\img\a07.png" />
     <Content Include="Content\img\find-out-more-bt.png" />
@@ -1191,6 +1197,9 @@
     <Content Include="Content\js\jssor.slider-21.1.6.debug.js" />
     <Content Include="Content\js\jssor.slider-21.1.6.min.js" />
     <Content Include="Content\js\jssor.slider-21.1.6.mini.js" />
+    <Content Include="Content\logo-desktop-big.png" />
+    <Content Include="Content\logo-desktop.png" />
+    <Content Include="Content\logo-mobile.png" />
     <Content Include="Content\noimage.gif" />
     <Content Include="Content\notification.png" />
     <Content Include="Content\PagedList.css" />
@@ -1814,6 +1823,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\video.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\pikocon_html\.htaccess" />
@@ -2246,7 +2256,6 @@
     <Content Include="Views\Home\BizKimiz.cshtml" />
     <Content Include="Views\Home\Misyonumuz.cshtml" />
     <Content Include="Views\Home\MusteriMemnuniyeti.cshtml" />
-    <Content Include="Views\Home\MusteriYorumlari.cshtml" />
     <Content Include="Views\Home\NelerYapariz.cshtml" />
     <Content Include="Views\Home\SikSorular.cshtml" />
     <Content Include="Views\Home\VerdigimizEgitimler.cshtml" />
@@ -2265,7 +2274,6 @@
     <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\BlogSingle.cshtml" />
     <Content Include="Views\Home\Avantajlarimiz.cshtml" />
-    <Content Include="Views\Home\SatisSonuHizmetlerimiz.cshtml" />
     <Content Include="Views\Home\IkinciElSatis.cshtml" />
     <Content Include="Views\Home\ProjeGelistirme.cshtml" />
     <Content Include="Views\Home\ProjeSatis.cshtml" />
@@ -2302,7 +2310,6 @@
     <Content Include="Views\Project\CompleteProjectDelete.cshtml" />
     <Content Include="Views\Office\OfficePictureIndex.cshtml" />
     <Content Include="Views\Office\OfficePictureUpdate.cshtml" />
-    <Content Include="Views\Office\OfficePictureDelete.cshtml" />
     <Content Include="Views\Project\ProjectPictureIndex.cshtml" />
     <Content Include="Views\Project\ProjectPictureUpdate.cshtml" />
     <Content Include="Views\GivingEducation\GivingEducationDelete.cshtml" />
@@ -2315,7 +2322,6 @@
     <Content Include="Views\Project\SoonProjectDelete.cshtml" />
     <Content Include="Views\Home\Ekip.cshtml" />
     <Content Include="Views\Office\OfficeIndex.cshtml" />
-    <Content Include="Views\Contact\AddContact.cshtml" />
     <Content Include="Views\Contact\ContactIndex.cshtml" />
     <Content Include="Views\Contact\ContactView.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
@@ -2334,6 +2340,10 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Home\SatisSonuHizmetler.cshtml" />
+    <Content Include="Views\Home\Iletisim.cshtml" />
+    <Content Include="Views\Home\MusteriYorumlari.cshtml" />
+    <Content Include="Views\Home\Referanslar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

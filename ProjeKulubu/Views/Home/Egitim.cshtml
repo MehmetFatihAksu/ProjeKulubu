@@ -1,18 +1,23 @@
 ﻿@using ProjeKulubu.Models
 @model Education
+@using Microsoft.Web.Helpers;
+
+@{ 
+    Facebook.Initialize("126301597569314", "564254a25dc9425aa7893100e2d3d886");
+}
+
 @{
-    ViewBag.Title = "Egitim";
+    ViewBag.Title = "Proje Kulübü Eğitim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @{ 
     db2299D218BEEntities10 db = new db2299D218BEEntities10();
-    var takingList = db.Education.Where(x => x.EducationTypeID == 1).ToList();
-    var takePopList = (from x in takingList orderby x.EducationView descending select x).Take(3);
-    var takeNewList = (from x in takingList orderby x.ID descending select x).Take(3);
+    var takePopList = db.Education.Where(x => x.EducationTypeID == 1).OrderByDescending(y => y.EducationView).Take(3);
+    var takeNewList = db.Education.Where(x => x.EducationTypeID == 1).OrderByDescending(y => y.ID).Take(3);
 
-    var givingList = db.Education.Where(x => x.EducationTypeID == 2).ToList();
-    var givePopList = (from x in givingList orderby x.EducationView descending select x).Take(3);
-    var giveNewList = (from x in givingList orderby x.ID descending select x).Take(3);
+    var givePopList = db.Education.Where(x => x.EducationTypeID == 2).OrderByDescending(y => y.EducationView).Take(3);
+    var giveNewList = db.Education.Where(x => x.EducationTypeID == 2).OrderByDescending(y => y.ID).Take(3);
 }
 
 @if (!(IsPost))
@@ -59,13 +64,25 @@
                 <div class="box">
                     <!--blog image-->
                     <figure>
-                        <img src="~/Dosyalar/@Model.EducationFileURL" alt="@Model.EducationFileSEO" class="img-responsive">
-                    </figure> <!--end blog image-->
+                        @if (Path.GetExtension(Model.EducationFileURL) == ".mp4")
+                        {
+                            <video style="width:100%" controls>
+                                <source src="~/Dosyalar/@Model.EducationFileURL" type="video/mp4">
+                                Tarayıcınız Bu Video Türünü Desteklememektedir.
+                            </video>
+                        }
+                        else
+                        {
+                            <img style="width:100%" src="~/Dosyalar/@Model.EducationFileURL" alt="@Model.EducationFileSEO">
+
+                        }
+                   </figure> <!--end blog image-->
                     <!--blog caption-->
                     <div class="caption">
                         <h2>@Model.EducationTitle</h2>
                         <ul class="piko-li">
-                            <li><i class="fa fa-calendar"></i>@Model.EducationDate</li>
+                            <li><i class="fa fa-calendar"></i>@Model.EducationDate.ToShortDateString()</li>
+                            <li><i class="fa fa-user"> Yazar:</i></li>
                             <li><i class="fa fa-search"></i>@Model.EducationView</li>
                         </ul>
                         <p>@Model.EducationContent </p>
@@ -79,10 +96,10 @@
                     <div class="col-md-9 col-sm-12 col-xs-12">
                         <div class="social-share">
                             <ul>
-                                <li class="btn-bounce-top"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="btn-bounce-top"><a href="https://www.facebook.com/dialog/feed?app_id=1182096168537139&link=localhost:53435/Home/Egitim/@Model.ID&picture=http://localhost:53435/Dosyalar/@Model.EducationFileURL&name=@Model.EducationTitle&caption=@Model.EducationView&description=@Model.EducationContent&redirect_uri=http://google.com"><i class="fa fa-facebook"></i></a></li>
                                 <li class="btn-bounce-top"><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                 <li class="btn-bounce-top"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li class="btn-bounce-top"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="btn-bounce-top"><a href="#"><i class="fa fa-twitter"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -107,12 +124,20 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="@takepop.ID">
-                                            <img class="media-object" src="~/Dosyalar/@takepop.EducationFileURL" alt="@takepop.EducationFileSEO">
+                                            @if (Path.GetExtension(takepop.EducationFileURL) == ".mp4")
+                                            {
+                                                <img style="height:38px;width:100%" class="media-object" src="~/Content/video.png" />
+                                            }
+                                            else
+                                            {
+                                                <img style="height:38px;width:100%" class="media-object" src="~/Dosyalar/@takepop.EducationFileURL" alt="@takepop.EducationFileSEO">
+
+                                            }
                                         </a>
                                     </div>
                                     <div class="media-body">
                                         <a href="@takepop.ID">@takepop.EducationTitle</a><br>
-                                        <p>@takepop.EducationDate</p>
+                                        <p>@takepop.EducationDate.ToShortDateString()</p>
                                     </div>
                                 </div>   <!--end tab post-->
                             }
@@ -124,12 +149,20 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="@givepop.ID">
-                                            <img class="media-object" src="~/Dosyalar/@givepop.EducationFileURL" alt="@givepop.EducationFileSEO">
+                                            @if (Path.GetExtension(givepop.EducationFileURL) == ".mp4")
+                                            {
+                                                <img style="height:38px;width:100%" class="media-object" src="~/Content/video.png" />
+                                            }
+                                            else
+                                            {
+                                                <img style="height:38px;width:100%" class="media-object" src="~/Dosyalar/@givepop.EducationFileURL" alt="@givepop.EducationFileSEO">
+
+                                            }
                                         </a>
                                     </div>
                                     <div class="media-body">
                                         <a href="@givepop.ID">@givepop.EducationTitle</a><br>
-                                        <p>@givepop.EducationDate</p>
+                                        <p>@givepop.EducationDate.ToShortDateString()</p>
                                     </div>
                                 </div>   <!--end tab post-->
                             }
@@ -145,12 +178,20 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="@takenew.ID">
-                                            <img class="media-object" src="~/Dosyalar/@takenew.EducationFileURL" alt="@takenew.EducationFileSEO">
+                                           @if (Path.GetExtension(takenew.EducationFileURL) == ".mp4")
+                                           {
+                                            <img style="height:38px;width:100%" class="media-object" src="~/Content/video.png" />
+                                           }
+                                           else
+                                           {
+                                            <img style="height:38px;width:100%" class="media-object" src="~/Dosyalar/@takenew.EducationFileURL" alt="@takenew.EducationFileSEO">
+
+                                           }
                                         </a>
                                     </div>
                                     <div class="media-body">
                                         <a href="@takenew.ID">@takenew.EducationTitle</a><br>
-                                        <p>@takenew.EducationDate</p>
+                                        <p>@takenew.EducationDate.ToShortDateString()</p>
                                     </div>
                                 </div>
                             }
@@ -162,12 +203,20 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="@givenew.ID">
-                                            <img class="media-object" src="~/Dosyalar/@givenew.EducationFileURL" alt="@givenew.EducationFileSEO">
+                                            @if (Path.GetExtension(givenew.EducationFileURL) == ".mp4")
+                                            {
+                                                <img style="height:38px;width:100%" class="media-object" src="~/Content/video.png" />
+                                            }
+                                            else
+                                            {
+                                                <img style="height:38px;width:100%" class="media-object" src="~/Dosyalar/@givenew.EducationFileURL" alt="@givenew.EducationFileSEO">
+
+                                            }
                                         </a>
                                     </div>
                                     <div class="media-body">
                                         <a href="@givenew.ID">@givenew.EducationTitle</a><br>
-                                        <p>@givenew.EducationDate</p>
+                                        <p>@givenew.EducationDate.ToShortDateString()</p>
                                     </div>
                                 </div>
                             }
@@ -176,18 +225,7 @@
                     </div> <!--end section b-->
                 </div> <!--End tabs-->
                 <!--start archive-->
-                <div class="margin-b30">
-                    <div class="piko-title4 widget">
-                        <h3><span class="line"></span><span class="text">Arşiv</span></h3>
-                    </div><br>
-                    <div class="archive">
-                        <a href="#">Ocak 2015</a>
-                        <a href="#">Şubat 2015</a>
-                        <a href="#">Mart 2015</a>
-                        <a href="#">Nisan 2014</a>
-                        <a href="#">Mayıs  2014</a>
-                    </div>
-                </div>  <!--end start archive-->
+                  <!--end start archive-->
                 <!--start tag-->
                   <!--end start tag-->
             </div>  <!--end of col-->

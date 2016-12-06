@@ -1,91 +1,61 @@
-﻿@using ProjeKulubu.Models
+﻿@model PagedList.IPagedList<ProjeKulubu.Models.CustomerComments>
+    @using PagedList.Mvc
 
-@{
-    db2299D218BEEntities9 db = new db2299D218BEEntities9();
-    List<CustomerComments> commentList = new List<CustomerComments>();
-    commentList = db.CustomerComments.Where(x => x.Name != null && x.CommentsPictureURL != null).ToList();
-}
+    @{
+        ViewBag.Title = "MusteriYorumlari";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-
-
-@{
-    ViewBag.Title = "MusteriYorumlari";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<section class="banner margin-t150">
-    <div class="container page-banner">
-        <div class="col-sm-6 col-md-6">
-            <h1>Müşteri Yorumları</h1>
+    <section class="banner margin-t150">
+        <div class="container page-banner">
+            <div class="col-sm-6 col-md-6">
+                <h1>Müşteri Yorumları</h1>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <ol class="breadcrumb pull-right">
+                    <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
+                    <li><a href="@Url.Action("Vizyonumuz","Home")">Hakkımızda</a></li>
+                    <li><a href="@Url.Action("MusteriMemnuniyeti","Home")">Bireysel</a></li>
+                    <li class="active">Musteri Yorumlari</li>
+                </ol>
+            </div>
         </div>
-        <div class="col-sm-6 col-md-6">
-            <ol class="breadcrumb pull-right">
-                <li><a href="@Url.Action("Index","Home")">Ana Sayfa</a></li>
-                <li><a href="@Url.Action("Vizyonumuz","Home")">Hakkımızda</a></li>
-                <li><a href="@Url.Action("MusteriMemnuniyeti","Home")">Bireysel</a></li>
-                <li class="active">Musteri Yorumlari</li>
-            </ol>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="container">
-    <div class="row padding-tb50">
-        <div class="col-md-9 col-sm-3 col-md-push-3 col-sm-push-4 padding-b20-media">
-            <div class="container">
-                <div class="row" style="margin-top:-25px">
-                    <div class="piko-divider1 three"></div>
-                    <!--product-->
+<section class="padding-t50">
+    <div class="container">
+        <div class="row">
+            <div class="piko-divider1 three"></div>
+            <!--product-->
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="thumbnail piko-thub shop">
 
-                    @foreach (CustomerComments item in commentList)
-                    {
-                        <div class="col-lg-3 col-md-3 col-sm-6">
-                            <div class="thumbnail piko-thub shop" style="max-height:290px">
-
-                                <div class="caption">
-                                    <div class="piko-title5">
-                                        <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><a href="shop-single.html"><strong>@item.Name</strong></a></span></h3>
-                                        <img src="~/Dosyalar/@item.CommentsPictureURL" style="max-height:220px" alt="product construction" class="piko-thub-img" />
-                                    </div>
-                                </div>
+                        <div class="caption">
+                            <div class="piko-title5">
+                                <h3 class="shop"><span class="line2"></span><span class="line"></span><span class="text"><strong>@item.Name</strong></span></h3>
                             </div>
-                        </div>  <!--end product-->
-                    }
-                </div>
-            </div>  <!--end container-->
-            <div class="margin-tb25">
-                <!--start pagination-->
-                <div class="container">
-                    <div class="custom-pagi">
-                        <ul class="pagination">
-                            <li class="disabled">
-                                <a href="#">Önceki</a>
-                            </li>
-                            <li class="active">
-                                <a href="#">1</a>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">Sonraki</a>
-                            </li>
-                        </ul>
+                            <div class="cart-button" style="height:120px">
+                           <img src="~/Dosyalar/@item.CommentsPictureURL" alt="@item.PictureSEO" class="piko-thub-img" />
+                        </div>
+                        </div>
                     </div>
                 </div>
-                <!--end of pagination-->
-            </div>
-            <!--right side menu-->
+            }
+
         </div>
-            <div class="col-md-3 col-sm-4 col-md-pull-9 col-sm-pull-8">
-                @Html.Partial("HakkimizdaMenu")
-            </div> <!--end side menu-->
-        </div> <!-- end of row-->
+    </div>  <!--end container-->
 </section>
 
+<div class="margin-tb25">
+    <!--start pagination-->
+    <div class="container">
+        <div class="custom-pagi">
+            <ul class="pagination">
+                @Html.PagedListPager(Model, page => Url.Action("MusteriYorumlari", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions { LinkToPreviousPageFormat = "‹ Önceki", LinkToNextPageFormat = "Sonraki ›" })
+            </ul>
+        </div>
+    </div>
+    <!--end of pagination-->
+</div>

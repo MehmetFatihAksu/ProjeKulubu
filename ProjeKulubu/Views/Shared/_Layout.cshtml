@@ -1,7 +1,9 @@
 ﻿@using ProjeKulubu.Models
     @{ 
         db2299D218BEEntities10 db = new db2299D218BEEntities10();
-        var tagsList = (from x in db.Tags orderby x.ID descending select x).Take(15);
+        var tagsList = db.Tags.OrderByDescending(x => x.ID).Take(15);
+        var footerInformations = db.MainContents.Where(x => x.ID == 1).FirstOrDefault();
+        var projectList = db.Project.OrderByDescending(x => x.ID).Take(3);
     }
 @{
     Layout = null;
@@ -30,6 +32,8 @@
 
 </head>
 <body class="piko-layout-header-fixed piko-layout-header-topbar">
+    <div class="preloader"><p>Lütfen Bekleyiniz...</p></div>
+
     <header class="piko-layout-header full-width piko-layout-header-04 piko-layout-header-light-mobile piko-hover02">
         <!--top menu-->
         <div class="piko-topbar" style="background-color:#0F133E">
@@ -37,11 +41,11 @@
                 <!-- social icon -->
                 <nav class="piko-top-menu piko-pull-left" >
                     <ul class="piko-icons" >
-                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Googleplus"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Youtube"><i class="fa fa-youtube"></i></a></li>
-                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="@footerInformations.facebookURL" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="@footerInformations.googleURL" data-original-title="Googleplus"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="@footerInformations.twitterURL" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="@footerInformations.youtubeURL" data-original-title="Youtube"><i class="fa fa-youtube"></i></a></li>
+                        <li><a class="bottom" title="" data-placement="bottom" data-toggle="tooltip" href="@footerInformations.LinkedinURL" data-original-title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </nav> <!--end social icon -->
                 <!-- language -->
@@ -60,9 +64,9 @@
                 <!--login information/ phone number-->
                 <nav class="piko-top-menu piko-pull-right hidden-xs">
                     <ul class="piko-links">
-                        <li><a><i class="fa fa-phone"></i> (541) 557 36 10</a></li>
+                        <li><a><i class="fa fa-phone"></i> @footerInformations.phoneNumber</a></li>
                         <li><a><i class="fa fa-clock-o"></i> 7/24 Destek</a></li>
-                        <li><a><i class="fa fa-envelope-o"></i> info@projekulubuturkiye.com</a></li>
+                        <li><a><i class="fa fa-envelope-o"></i> @footerInformations.Mail</a></li>
                     </ul>
                 </nav>  <!--end login information/ phone number-->
             </div>
@@ -74,9 +78,9 @@
                     <div class="piko-brand piko-pull-left">
                         <!--logo-->
                         <a href="@Url.Action("Index","Home")" class="piko-logo">
-                            <img src="/Content/pikocon_html/images/logo/projekulubulogo.png" alt="construction" class="piko-desktop-logo"> <!--desktop logo-->
-                            <img src="/Content/pikocon_html/images/logo/projekulubulogosmall.png" alt="construction" class="piko-desktop-logo-inverse"> <!--inverse logo stiky menu-->
-                            <img src="/Content/pikocon_html/images/logo/projekulubulogomobil.png" alt="construction" class="piko-mobile-logo"> <!--mobile logo menu-->
+                            <img src="~/Content/logo-desktop-big.png" alt="LogoDesktop" class="piko-desktop-logo"> <!--desktop logo-->
+                            <img src="~/Content/logo-mobile.png" alt="LogoInverse" class="piko-desktop-logo-inverse"> <!--inverse logo stiky menu-->
+                            <img src="~/Content/logo-mobile.png" alt="LogoMobile" class="piko-mobile-logo"> <!--mobile logo menu-->
                         </a>
                         <!--mobile click menu-->
                         <div class="piko-hor-nav-toggler" data-target=".piko-mega-menu">
@@ -170,7 +174,7 @@
                                 </ul>
                             </li> <!--end sub menu style-->
                             <li class="piko-menu-type-classic">
-                                <a href="@Url.Action("Projeler","Home")" class="piko-link dropdown-toggle">Projelerimiz</a>
+                                <a href="@Url.Action("Projeler","Home")" class="piko-link dropdown-toggle">Projeler</a>
                                 <ul class="dropdown-menu piko-menu-type-classic piko-pull-left">
                                     <li><a href="@Url.Action("Projeler","Home")">Tamamlanan Projeler</a></li>
                                     <li><a href="@Url.Action("Projeler","Home")">Satışı Devam Eden Projeler</a></li>
@@ -186,10 +190,6 @@
                             </li>
                             <li class="piko-menu-type-classic">
                                 <a href="@Url.Action("Referanslar","Home")" class="piko-link dropdown-toggle">Referanslar</a>
-                                @*<ul class="dropdown-menu piko-menu-type-classic piko-pull-left">
-                                        <li><a href="shop-grid.html">Shop Grid</a></li>
-                                        <li><a href="shop-single.html">Shop Single View</a></li>
-                                    </ul>*@
                             </li>
                             <li class="piko-menu-type-classic">
                                 <a href="@Url.Action("Egitimlerimiz","Home")" class="piko-link dropdown-toggle">Eğitimler</a>
@@ -214,6 +214,8 @@
     <a href="#0" class="back-top"><i class="fa fa-arrow-up"></i></a>
     @RenderBody()
     <section class="footer2-bg">
+        <div class="f-line"></div>
+        <div class="f-line2"></div>
         <div class="padding-tb50">
             <div class="container">
                 <div class="row footer2">
@@ -223,15 +225,14 @@
                             <div class="piko-title4 widget">
                                 <h3><span class="line"></span><span class="text"><strong>İletişim Bilgilerimiz</strong></span></h3>
                             </div>
-                            <p>Metin1</p>
+                            <p>@footerInformations.ContactMessage</p>
                             <address>
-                                <strong>Ana Ofis</strong><br>
-                                Ofis Adresi<br>
-                                Pendik/İstanbul<br>
+                                <strong>@db.Office.OrderBy(x=>x.ID).FirstOrDefault().OfficeName</strong><br>
+                                @footerInformations.contanctmainoffice<br>
                             </address>
-                            <abbr title="Phone Number"><strong>Telefon:</strong></abbr> (541) 557 36 10<br>
-                            <abbr title="Fax"><strong>Fax:</strong></abbr> (541) 557 36 10<br>
-                            <abbr title="Email Address"><strong>Email:</strong></abbr> info@projekulubuturkiye.com
+                            <abbr title="Phone Number"><strong>Telefon:</strong></abbr> @footerInformations.phoneNumber<br>
+                            <abbr title="Fax"><strong>Fax:</strong></abbr> @footerInformations.fax<br>
+                            <abbr title="Email Address"><strong>Email:</strong></abbr> @footerInformations.Mail
                         </div>  <!--end box about us-->
                     </div>
                     <div class="col-sm-6 col-md-3">
@@ -241,13 +242,23 @@
                                 <h3><span class="line"></span><span class="text"><strong>Etiketler</strong></span></h3>
                             </div>
                             <p>
-                                @foreach (var item in tagsList)
+                                @if (tagsList.ToList().Count == 0)
                                 {
-                                    <a href="@Url.Action("BlogSingle","Home")/@item.Blog.ID" class="btn-s5 gray2">@item.TagsName</a>
 
                                 }
+                                else
+                                {
+                                    foreach (var item in tagsList)
+                                    {
+                                        <a href="@Url.Action("BlogSingle","Home")/@item.Blog.ID" class="btn-s5 gray2">@item.TagsName</a>
 
-                                
+                                    }
+                                }
+
+
+
+
+
                             </p>
                         </div>  <!--end box tab-->
                     </div>
@@ -257,35 +268,27 @@
                             <div class="piko-title4 widget">
                                 <h3><span class="line"></span><span class="text"><strong>İlgi Gören Projeler</strong></span></h3>
                             </div><br>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
+                        @foreach (var item in projectList)
+                        {
+                            if (item.ProjectPicture.Where(x => x.ProjectID == item.ID).FirstOrDefault() != null)
+                            {
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img style="width:64px;height:64px" class="media-object" src="~/Dosyalar/@item.ProjectPicture.Where(x=>x.ProjectID == item.ID).FirstOrDefault().PictureURL" alt="@item.ProjectPicture.Where(x=>x.ProjectID == item.ID).FirstOrDefault().PictureSEO">
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="@Url.Action("SingleProject","Home")/@item.ID">@item.ProjectName</a>
+                                    </div>
                                 </div>
-                                <div class="media-body">
-                                    <a href="blog-single1.html">Proje İsim</a>
-                                    <p>10 ŞUBAT 2015</p>
-                                </div>
-                            </div>
-                            </br>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </div>
-                                <div class="media-body">
-                                    <a href="blog-single1.html">Proje İsim</a>
-                                    <p>10 ŞUBAT 2015</p>
-                                </div>
-                            </div>
-                            </br>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="/Content/pikocon_html/images/body/blog-tab.jpg" alt="piko construciton">
-                                </div>
-                                <div class="media-body">
-                                    <a href="blog-single1.html">Proje İsim</a>
-                                    <p>10 ŞUBAT 2015</p>
-                                </div>
-                            </div>
+                                <br />
+                            }
+                            else
+                            {
+                            }
+
+
+                        }
+                            
                         </div> <!--box blog post-->
                     </div>
                     <div class="col-sm-5 col-md-3">
@@ -294,11 +297,11 @@
                             <div class="piko-title4 widget">
                                 <h3><span class="line"></span><span class="text"><strong>Çalışma Saatleri</strong></span></h3>
                             </div>
-                            <p>Metin</p>
+                            <p>@footerInformations.workingcomment</p>
                             <ol>
-                                <li>Pazartesi-Cuma:<span> 9:00 - 17:00</span></li>
-                                <li>Cumartesi:<span> 10:00 - 18:00</span></li>
-                                <li>Pazar:<span> Kapalı</span></li>
+                                <li>Pazartesi-Cuma:<span> @footerInformations.Working1</span></li>
+                                <li>Cumartesi:<span> @footerInformations.Working2</span></li>
+                                <li>Pazar:<span> @footerInformations.Working3</span></li>
                                 <li>Yardım Masası:<span> 7/24 Açık</span></li>
                             </ol>
                         </div> <!--end box working hour-->

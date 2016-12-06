@@ -79,12 +79,12 @@ namespace ProjeKulubu.Controllers
             var loadLocation = Path.Combine(Server.MapPath("~/Dosyalar"), fileMap);
             picture.SaveAs(loadLocation);
             teamModel.MemberAge = age;
-            teamModel.MemberBiografi = biografi;
             teamModel.MemberExperience = exp;
             teamModel.MemberFacebookURL = "Http://" + facebook;
             teamModel.MemberGoogleURL = "Http://" + google;
             teamModel.MemberLinkedinURL = "Http://" + linkedin;
             teamModel.MemberName = name;
+            teamModel.MemberBiografi = biografi;
             teamModel.MemberPictureSEO = seo;
             teamModel.MemberPictureURL = fileMap;
             teamModel.MemberPozision = position;

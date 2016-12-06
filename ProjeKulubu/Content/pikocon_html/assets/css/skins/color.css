@@ -14,8 +14,8 @@
     Background Color scream
 =========================================*/
 /*light link color*/
-a{color: #141414;}
-a:hover, a:focus{color: #45bf55;}
+a{color: #141414;} /*141414 deðitþi*/
+a:hover, a:focus{color: #284357;} /*45bf55 deðiþti*/
 a:hover { text-decoration: none;}
 a:active { color: #666; text-decoration: none;}
 mark{ color: #fff; font-weight: 600;}
@@ -145,7 +145,7 @@ footer .link.white a:hover,
 .blog-comment .media .media-body h4 a:hover,
 .page-banner .breadcrumb a:hover,
 .counter3 .one.two i, .counter3 .one.three i, .counter3 .one.two, .counter3 .one.four i, .counter3 .one.four, .counter3 .one{
-    color: #253E51;
+    color: #284357; /*253E51 deðiþti*/
 }
 /*========================================
     Border Color scream
@@ -261,7 +261,7 @@ div.price2,
 @media (max-width: 991px) {
     .piko-layout-header .piko-navbar .piko-mega-menu.piko-mega-menu-light-mobile > .nav.navbar-nav > li .dropdown-menu > li.piko-active > a,
     .piko-layout-header .piko-navbar .piko-mega-menu.piko-mega-menu-light-mobile > .nav.navbar-nav > li .dropdown-menu > li:hover > a{
-        color: #45bf55;
+        color: #284357; /*deðiþti 45bf55*/
         background-color: transparent;
     }
 }
